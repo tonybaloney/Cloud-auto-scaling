@@ -35,13 +35,13 @@ class Abiquo {
 			CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
 			CURLOPT_USERPWD => $this->username.':'.$this->password
 			);
-		$res = $this->HttpRequest( $url , $opt ) ;
+		$res = $this->HttpRequest( $this->url , $opt ) ;
 		
 		// There's probably an easier way of doing this!
 		$pattern  = "/Set-Cookie:(?P<name>.*?)=(?P<value>.*?); expires=(?P<expiry_dayname>\w+), (?P<expiry_day>\d+)-(?P<expiry_month>\w+)-(?P<expiry_year>\d+) (?P<expiry_hour>\d+):(?P<expiry_minute>\d+):(?P<expiry_second>\d+) (?P<expiry_zone>\w+)/";
 		preg_match_all($pattern,$res,$matches);
 		$i=0;
-		foreach($matches[name] as $cookie_name)
+		foreach($matches['name'] as $cookie_name)
 		{
 			if ($cookie_name == 'auth')
 				$this->token = $matches['values'][$i];

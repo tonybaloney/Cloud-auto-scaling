@@ -9,7 +9,7 @@ class Auth {
 	public static function GetMe() {
 		return DB::GetRecord("SELECT * from customers where customerId='".DB::Sanitise(Auth::GetUID())."' LIMIT 1");
 	}
-	public static function GetAllUsers(){
+	public static function GetAllCustomers(){
 		return DB::GetData("SELECT * from customers ;");
 	}
 	public static function SaveDetails ($portalAPIUrl, $portalUsername, $portalPassword, $apiType){

@@ -84,10 +84,15 @@ Ext.define('Cloud.TriggerPortlet', {
 						fieldLabel: 'Scale Down Time (sec)',
 						allowBlank: false
 					},{
-						xtype:'textfield',
+						xtype:'combo',
 						name:'oid',
 						fieldLabel: 'SNMP OID',
 						value: (triggerRecord?triggerRecord.data.oid:'1.1.1.1.1'),
+						displayField:'title',
+						valueField:'oid',
+						store: 'snmpOptions',
+						queryMode: 'local',
+						typeAhead: true,
 						allowBlank: false
 					},{
 						xtype:'textfield',
@@ -112,7 +117,7 @@ Ext.define('Cloud.TriggerPortlet', {
 							popup.hide(); 
 						}
 					}
-					,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
+					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
 					]
 				}
 			}); 
@@ -120,6 +125,21 @@ Ext.define('Cloud.TriggerPortlet', {
 		popup.center();
 	},
     initComponent: function(){
+		Ext.define('SNMP', {
+			extend: 'Ext.data.Model',
+			fields: [
+				{name: 'oid', type: 'string'},
+				{name: 'title',  type: 'string'}
+			]
+		});
+
+		Ext.create('Ext.data.Store', {
+			storeId: 'snmpOptions',
+			model: 'SNMP',
+			data : [
+				{oid:".1.3.6.1.4.1.2021.10.1.3.1",title:"Linux/1 Min Load Average"}
+			]
+		});
         Ext.apply(this, {
             //height: 300,
             height: this.height,
