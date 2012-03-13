@@ -1,0 +1,55 @@
+DB Setup : 
+
+CREATE DATABASE scaler;
+USE scaler;
+
+DROP TABLE IF EXISTS `clusters`;
+CREATE TABLE `clusters` (
+  `clusterId` int(11) NOT NULL AUTO_INCREMENT,
+  `customerId` int(11) DEFAULT NULL,
+  `clusterName` varchar(50) DEFAULT NULL,
+  `minServers` smallint(5) unsigned DEFAULT NULL,
+  `maxServers` smallint(5) unsigned DEFAULT NULL,
+  `targetVlanId` int(10) unsigned DEFAULT NULL,
+  `targetVlanName` varchar(50) DEFAULT NULL,
+  `targetApplianceId` int(10) unsigned DEFAULT NULL,
+  `targetApplianceName` varchar(50) DEFAULT NULL,
+  `dateCreated` datetime DEFAULT NULL,
+  `dateChanged` datetime DEFAULT NULL,
+  PRIMARY KEY (`clusterId`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customers` (
+  `customerId` int(11) NOT NULL AUTO_INCREMENT,
+  `portalAPIUrl` varchar(250) DEFAULT NULL,
+  `portalUsername` varchar(50) DEFAULT NULL,
+  `portalPassword` varchar(50) DEFAULT NULL,
+  `apiType` enum('abiquo') DEFAULT NULL,
+  PRIMARY KEY (`customerId`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `triggers`
+--
+
+DROP TABLE IF EXISTS `triggers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `triggers` (
+  `triggerId` int(11) NOT NULL AUTO_INCREMENT,
+  `triggerName` enum('cpu','ram') DEFAULT NULL,
+  `clusterId` int(11) unsigned DEFAULT NULL,
+  `lower` int(11) unsigned DEFAULT NULL,
+  `upper` int(11) unsigned DEFAULT NULL,
+  `scaleUpTime` int(11) unsigned DEFAULT NULL,
+  `scaleDownTime` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`triggerId`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
