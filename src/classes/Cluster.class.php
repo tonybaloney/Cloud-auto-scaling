@@ -5,8 +5,8 @@ class Cluster {
 		$name = DB::Sanitise($name);
 		DB::Query ( "INSERT INTO `clusters` (`clusterName`) VALUES ('$name')" );
 	}
-	public static function GetClusters(){
-		$uid = Auth::GetUID();
+	public static function GetClusters($uid=false){
+		if (!$uid) $uid = Auth::GetUID();
 		return DB::GetData("SELECT * FROM `clusters` WHERE `customerId`=$uid;");
 	}
 	
@@ -19,13 +19,15 @@ class Cluster {
 	public $targetVlanName; // Target VLAN Name
 	public $targetApplianceId; // Target Virtual Appliance ID, 
 	public $targetApplianceName; // Target Virtual Appliance Name
+	public $targetVdcName; // Name of the Virtual Data Center'
+	public $targetVdcId; // ID of the VDC
 	public $dateCreated; // Date the cluster was created 
 	public $dateChanged; // Date the cluster was last changed.
 	
-	public function Cluster($id) {
+	public function Cluster($id,$uid=false) {
 		// Get Cluster data
 		$id = DB::Sanitise($id);
-		$uid = Auth::GetUID();
+		if(!$uid) $uid = Auth::GetUID();
 		$data = DB::GetRecord("SELECT * FROM `clusters` WHERE `customerId`='$uid' AND `clusterId`='$id' LIMIT 1;");
 		// Fill fields
 		$this->clusterId=$data['clusterId'];
@@ -36,6 +38,8 @@ class Cluster {
 		$this->targetVlanId=$data['targetVlanId'];
 		$this->targetVlanName=$data['targetVlanName'];
 		$this->targetApplianceId=$data['targetApplianceId'];
+		$this->targetVdcName=$data['targetVdcName'];
+		$this->targetVdcId=$data['targetVdcId'];
 		$this->targetApplianceName=$data['targetApplianceName'];
 		$this->dateCreated=$data['dateCreated'];
 		$this->dateChanged=$data['dateChanged'];
@@ -51,6 +55,8 @@ class Cluster {
 			targetVlanName='".DB::Sanitise($this->targetVlanName)."',
 			targetApplianceId='".DB::Sanitise($this->targetApplianceId)."',
 			targetApplianceName='".DB::Sanitise($this->targetApplianceName)."',
+			targetVdcId='".DB::Sanitise($this->targetVdcId)."',
+			targetVdcName='".DB::Sanitise($this->targetVdcName)."',
 			dateChanged=NOW() WHERE clusterId = $this->clusterId";
 		DB::Query($q);
 	}

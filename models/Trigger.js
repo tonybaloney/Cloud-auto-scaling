@@ -12,7 +12,9 @@ Ext.define('Trigger', {
 		{name: 'upper', type: 'int'}, // Upper threshold to scale up, either CPU load av or RAM usage %
 		{name: 'lower', type: 'int'}, // lower threshold to scale down, either CPU load av or RAM usage %
 		{name: 'scaleUpTime', type: 'int'}, // Time in seconds to allow for a scale-up
-		{name: 'scaleDownTime', type: 'int'} // Time in seconds to allow for a scale-up
+		{name: 'scaleDownTime', type: 'int'}, // Time in seconds to allow for a scale-up
+		{name: 'oid', type: 'string'},
+		{name: 'communityString', type: 'string'}
 	]
 });
 /*

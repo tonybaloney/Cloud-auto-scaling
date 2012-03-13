@@ -7,7 +7,10 @@ class Auth {
  		return 1;
 	}
 	public static function GetMe() {
-		return DB::GetData("SELECT * from customers where customerId='".DB::Sanitise(Auth::GetUID())."' LIMIT 1");
+		return DB::GetRecord("SELECT * from customers where customerId='".DB::Sanitise(Auth::GetUID())."' LIMIT 1");
+	}
+	public static function GetAllUsers(){
+		return DB::GetData("SELECT * from customers ;");
 	}
 	public static function SaveDetails ($portalAPIUrl, $portalUsername, $portalPassword, $apiType){
 		$q = "UPDATE `customers` SET

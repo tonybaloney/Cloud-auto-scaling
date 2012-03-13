@@ -9,8 +9,8 @@ class Trigger {
 		} else 
 			return false;
 	}
-	public static function GetTriggers(){
-		$uid = Auth::GetUID();
+	public static function GetTriggers($uid=false){
+		if(!$uid) $uid = Auth::GetUID();
 		return DB::GetData("SELECT triggers.*, clusters.clusterName FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.customerId = $uid;");
 	}
 	
@@ -24,10 +24,12 @@ class Trigger {
 	public $lower;
 	public $scaleDownTime;
 	public $scaleUpTime;
+	public $oid;
+	public $communityString;
 		
-	public function Trigger($id) {
+	public function Trigger($id,$uid=false) {
 		// Get Cluster data
-		$uid = Auth::GetUID();
+		if(!$uid) $uid = Auth::GetUID();
 		$id = DB::Sanitise($id);
 		$data = DB::GetData("SELECT triggers.*, clusters.clusterName FROM triggers INNER JOIN clusters ON triggers.clusterId = clusters.clusterId WHERE clusters.customerId = $uid AND triggers.triggerId = $id LIMIT 1;");
 		// Fill fields
@@ -41,6 +43,8 @@ class Trigger {
 		$this->lower = $data['lower'];
 		$this->scaleDownTime = $data['scaleDownTime'];
 		$this->scaleUpTime = $data['scaleUpTime'];
+		$this->communityString = $data['communityString'];
+		$this->oid = $data['oid'];
 	}
 	
 	public function Save(){
@@ -50,7 +54,9 @@ class Trigger {
 			`clusterId`='".DB::Sanitise($this->clusterId)."',
 			`lower`='".DB::Sanitise($this->lower)."',
 			`scaleDownTime`='".DB::Sanitise($this->scaleDownTime)."',
-			`scaleUpTime`='".DB::Sanitise($this->scaleUpTime)."'
+			`scaleUpTime`='".DB::Sanitise($this->scaleUpTime)."',
+			`communityString`='".DB::Sanitise($this->communityString)."',
+			`oid`='".DB::Sanitise($this->oid)."'
 			WHERE `triggerId`=".DB::Sanitise($this->triggerId).";";
 		DB::Query($q);
 		

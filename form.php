@@ -40,6 +40,8 @@ switch ($_GET['form']){
 			$t->scaleUpTime = $_POST['scaleUpTime'];
 			$t->scaleDownTime = $_POST['scaleDownTime'];
 			$t->clusterId = $_POST['clusterId'];
+			$t->oid = $_POST['oid'];
+			$t->communityString = $_POST['communityString'];
 			$t->Save();
 			$res['success'] = true;
 			$res['msg'] = "Trigger created successfully";
@@ -57,6 +59,8 @@ switch ($_GET['form']){
 			$t->scaleUpTime = $_POST['scaleUpTime'];
 			$t->scaleDownTime = $_POST['scaleDownTime'];
 			$t->clusterId = $_POST['clusterId'];
+			$t->oid = $_POST['oid'];
+			$t->communityString = $_POST['communityString'];
 			$t->Save();
 			$res['success'] = true;
 			$res['msg'] = "Trigger modified successfully";

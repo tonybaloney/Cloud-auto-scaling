@@ -8,7 +8,7 @@ Ext.define('Cloud.TriggerPortlet', {
 		var popup = new Ext.Window({	
 			layout:'fit',
 			width:320,
-			height:439,
+			height:548,
 			closeAction:'hide',
 			plain: true,
 			resizable:true,
@@ -50,11 +50,10 @@ Ext.define('Cloud.TriggerPortlet', {
 						value: (triggerRecord?triggerRecord.data.triggerId:null)
 					},
 					{
-						xtype:'combo',
+						xtype:'textfield',
 						name:'triggerName',
-						fieldLabel: 'Trigger Type',
+						fieldLabel: 'Trigger Name',
 						value: (triggerRecord?triggerRecord.data.triggerName:'cpu'),
-						store : [ 'cpu','ram'],
 						allowBlank: false
 					},
 					{
@@ -84,6 +83,18 @@ Ext.define('Cloud.TriggerPortlet', {
 						value: (triggerRecord?triggerRecord.data.scaleDownTime:120),
 						fieldLabel: 'Scale Down Time (sec)',
 						allowBlank: false
+					},{
+						xtype:'textfield',
+						name:'oid',
+						fieldLabel: 'SNMP OID',
+						value: (triggerRecord?triggerRecord.data.oid:'1.1.1.1.1'),
+						allowBlank: false
+					},{
+						xtype:'textfield',
+						name:'communityString',
+						fieldLabel: 'SNMP Community String',
+						value: (triggerRecord?triggerRecord.data.communityString:''),
+						allowBlank: false
 					}
 				],
 				buttons: [
@@ -101,7 +112,7 @@ Ext.define('Cloud.TriggerPortlet', {
 							popup.hide(); 
 						}
 					}
-					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
+					,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
 					]
 				}
 			}); 
