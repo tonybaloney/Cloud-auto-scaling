@@ -84,6 +84,7 @@ Ext.define('Cloud.ClusterPortlet', {
 								   Ext.Msg.alert('Success', action.result.msg);
 								   // refresh store.
 								   Ext.data.StoreManager.lookup('ClusterStore').load();
+								   Ext.data.StoreManager.lookup('TriggerStore').load();
 								},
 								failure: function(form, action) {}}); 
 							popup.hide(); 

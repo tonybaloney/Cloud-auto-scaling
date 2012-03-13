@@ -33,7 +33,7 @@ switch ($_GET['form']){
 		}
 		break;
 	case 'AddTrigger':
-		$t = Trigger::CreateTrigger($_POST['triggerName']);
+		$t = Trigger::CreateTrigger($_POST['triggerName'],$_POST['clusterId']);
 		if ($t){
 			$t->upper = $_POST['upper'];
 			$t->lower = $_POST['lower'];

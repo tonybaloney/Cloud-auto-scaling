@@ -1,9 +1,10 @@
 <?php
 
 class Trigger {
-	public static function CreateTrigger ( $metric ) {
-		$name = DB::Sanitise($name);
-		DB::Query ( "INSERT INTO `clusters` (`clusterName`) VALUES ('$name')" );
+	public static function CreateTrigger ( $metric, $clusterId ) {
+		$name = DB::Sanitise($metric);
+		$clusterId = DB::Sanitise($clusterId);
+		DB::Query ( "INSERT INTO `triggers` (`triggerName`,`clusterId`) VALUES ('$name','$clusterId')" );
 		if( mysql_insert_id() ){
 			return new Trigger(mysql_insert_id());
 		} else 

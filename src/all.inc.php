@@ -4,5 +4,5 @@ include ( 'classes/Auth.class.php');
 include ( 'classes/Abiquo.class.php');
 include ( 'classes/Cluster.class.php');
 include ( 'classes/Trigger.class.php');
-
+include ( 'classes/Log.class.php');
 ?>

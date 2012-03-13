@@ -13,11 +13,12 @@
     <script type="text/javascript" src="models/Trigger.js"></script>
     <script type="text/javascript" src="models/Cluster.js"></script>
     <script type="text/javascript" src="models/Customer.js"></script>
+	<script type="text/javascript" src="models/Log.js"></script>
 	
     <!-- Portlets for the dashboard -->
     <script type="text/javascript" src="classes/TriggerPortlet.js"></script>
 	<script type="text/javascript" src="classes/ClusterPortlet.js"></script>
-
+	<script type="text/javascript" src="classes/LogPortlet.js"></script>
     <script type="text/javascript" src="classes/ChartPortlet.js"></script>
     <script type="text/javascript" src="classes/PortalColumn.js"></script>
     <script type="text/javascript" src="classes/PortalPanel.js"></script>

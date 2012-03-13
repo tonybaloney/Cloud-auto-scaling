@@ -137,8 +137,16 @@ Ext.define('Cloud.TriggerPortlet', {
 			storeId: 'snmpOptions',
 			model: 'SNMP',
 			data : [
-				{oid:".1.3.6.1.4.1.2021.10.1.3.1",title:"Linux/1 Min Load Average"}
-			]
+				{oid:".1.3.6.1.4.1.2021.10.1.3.1",title:"Linux/1 Min Load Average"},
+				{oid:".1.3.6.1.4.1.2021.10.1.3.2",title:"Linux/5 Min Load Average"},
+				{oid:".1.3.6.1.4.1.2021.10.1.3.3",title:"Linux/15 Min Load Average"},
+				{oid:".1.3.6.1.4.1.2021.11.9.0",title:"% of user CPU time"},
+				{oid:".1.3.6.1.4.1.2021.11.50.0",title:"Raw user CPU time"},
+				{oid:".1.3.6.1.4.1.2021.4.3.0",title:"Total Swap Size"},
+				{oid:".1.3.6.1.4.1.2021.4.4.0",title:"Available Swap Space"},
+				{oid:".1.3.6.1.4.1.2021.4.6.0",title:"Total RAM used"},
+				{oid:".1.3.6.1.4.1.2021.4.11.0",title:"Total RAM free"}
+				]
 		});
         Ext.apply(this, {
             //height: 300,
@@ -146,10 +154,23 @@ Ext.define('Cloud.TriggerPortlet', {
             store: 'TriggerStore',
             stripeRows: true,
             columnLines: true,
-            columns: [{
-                id :'triggerName',
-                text : 'Trigger',
+            columns: [
+			{
+                text : 'Cluster',
                 flex: 1,
+                sortable : true,
+                dataIndex: 'clusterName'
+            },{
+                text : 'Metric',
+                flex: 2,
+                sortable : true,
+                dataIndex: 'oid',
+				renderer : function (val, met,rec){
+					return Ext.data.StoreManager.lookup('snmpOptions').findRecord('oid',val).data.title ; 
+				}
+            },{
+                text : 'Trigger',
+                flex: 2,
                 sortable : true,
                 dataIndex: 'triggerName'
             },{

@@ -2,7 +2,7 @@ Ext.define('Ext.app.Portal', {
 
     extend: 'Ext.container.Viewport',
 
-    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Ext.app.ChartPortlet'],
+    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Ext.app.ChartPortlet', 'Cloud.LogPortlet'],
 	ConfigureAPI : function (){
 		var me = Ext.data.StoreManager.lookup('CustomerStore').getAt(0);
 		var popup = new Ext.Window({
@@ -88,13 +88,11 @@ Ext.define('Ext.app.Portal', {
 	},
     initComponent: function(){
         Ext.apply(this, {
-            id: 'app-viewport',
             layout: {
                 type: 'border',
                 padding: '0 5 5 5' // pad the layout from the window edges
             },
             items: [{
-                id: 'app-header',
                 xtype: 'box',
                 region: 'north',
                 height: 60,
@@ -128,21 +126,19 @@ Ext.define('Ext.app.Portal', {
 					}],
                     items: Ext.create('Cloud.ClusterPortlet')
                 },{
-                    id: 'app-portal',
                     xtype: 'portalpanel',
                     region: 'center',
                     items: [{
-                        id: 'col-1',
                         items: [{
-                            id: 'trigger-portlet',
                             title: 'Triggers',
 							iconCls:'icon-trigger',
                             items: Ext.create('Cloud.TriggerPortlet')
-                        }]
+                        },{
+							title: 'Logs',
+							items: Ext.create('Cloud.LogPortlet') 
+						}]
                     },{
-                        id: 'col-3',
                         items: [{
-                            id: 'portlet-4',
                             title: 'Performance',
 							iconCls:'icon-chart',
                             items: Ext.create('Cloud.ChartPortlet')

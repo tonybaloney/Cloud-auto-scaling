@@ -14,7 +14,10 @@ switch ($_GET['view']){
 		$data = Trigger::GetTriggers();
 		break;
 	case 'Customer':
-		$data = Auth::GetMe();
+		$data[] = Auth::GetMe();
+		break;
+	case 'Log':
+		$data = Log::GetLogs();
 		break;
 }
 echo json_encode($data);
