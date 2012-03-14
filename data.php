@@ -1,6 +1,8 @@
 <?php
-
-// JSON data loader 
+/** 
+ * Load database views into JSON for frontend 
+ * @package auto-scaler
+ */
 
 if (!isset($_GET['view'])) die();
 

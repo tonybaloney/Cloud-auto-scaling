@@ -1,5 +1,9 @@
 <?php 
-// System form input
+/**
+ * Signpost for POST requests from the frontend
+ * all are of the format ?form.php?form=[Add|Save][Cluster|Trigger|Customer]
+ * @package auto-scaler
+ */
 
 if (!isset($_GET['form'])) die();
 
