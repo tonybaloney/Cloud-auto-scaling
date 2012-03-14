@@ -28,7 +28,7 @@ Screenshot : [twitpic](https://p.twimg.com/An5NlwkCAAAGJn8.png:large)
 Roadmap
 ---------------
 * Adding support for OpenStack, EC2, Parallels
-* Adding support for SNMP 
+* Adding support for SNMP SetRequest to allow a Load-Balancer to be updated with changes (currently assume a network range is added to a pool in F5/Citrix/etc.)
 
 Installation
 ---------------
