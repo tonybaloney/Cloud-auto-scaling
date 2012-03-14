@@ -66,7 +66,7 @@ class Abiquo {
 		return ($this->token);
 	}
 	
-	/* 
+	/**
 	 * Login to the abiquo server, get the auth token and session (jsession) id
 	 * Store these in the class for later API calls.
 	 * @return bool Success or failure on finding server and establishing a login 
@@ -97,7 +97,7 @@ class Abiquo {
 		return ($this->token && $this->sessionid);
 	}
 	
-	/* 
+	/** 
 	 * Execute a HTTP request using CURL
 	 * @param string $url HTTP URI
 	 * @param array $opt List of CURL options <link>http://uk3.php.net/manual/en/function.curl-setopt.php</link>
@@ -113,7 +113,7 @@ class Abiquo {
 		return $result;
 	}
 	
-	/* 
+	/** 
 	 * Request to the API, expect XML back and format into assoc array and return 
 	 * @param string $url URI to request (will be appended to the address of the API)
 	 * @return SimpleXML XML Object of the returned data
@@ -133,7 +133,7 @@ class Abiquo {
 		} else return false;
 	}
 	
-	/*
+	/**
 	 * Get a list of VDCs in logged in Enterprise
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
@@ -142,7 +142,7 @@ class Abiquo {
 		return $this->ApiRequest('cloud/virtualdatacenters');
 	}
 	
-	/*
+	/**
 	 * Get a VDC in logged in Enterprise	 
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @return Object SimpleXML Object tree of the result
@@ -152,7 +152,7 @@ class Abiquo {
 		return $this->ApiRequest("cloud/virtualdatacenters/$id/");
 	}
 	
-	/*
+	/**
 	 * Get a list of Private Networks (VLANs) in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @return Object SimpleXML Object tree of the result
@@ -162,7 +162,7 @@ class Abiquo {
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks");
 	}
 	
-	/*
+	/**
 	 * Get a specific private network in this enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $pn_id ID of the Private Network
@@ -173,7 +173,7 @@ class Abiquo {
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$pn_id");
 	}
 	
-	/*
+	/**
 	 * Get a list of Virtual Appliances in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @return Object SimpleXML Object tree of the result
@@ -183,7 +183,7 @@ class Abiquo {
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances");
 	}
 	
-	/*
+	/**
 	 * Get a Virtual Appliance in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
@@ -194,7 +194,7 @@ class Abiquo {
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id");
 	}
 
-	/*
+	/**
 	 * Get a list of IPs used in a specified Virtual Appliance
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
@@ -205,7 +205,7 @@ class Abiquo {
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/action/ips");
 	}
 	
-	/*
+	/**
 	 * Get a list of Virtual Machines in a specified Virtual Appliance
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
@@ -216,7 +216,7 @@ class Abiquo {
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines");
 	}
 	
-	/*
+	/**
 	 * Get a Virtual Machine in this VDC/VAPP
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
