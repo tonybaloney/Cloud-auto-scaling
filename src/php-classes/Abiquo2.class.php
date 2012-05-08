@@ -8,7 +8,9 @@
  * @package auto-scaler
  */
 /**
- * Class for talking to the Abiquo API
+ * Class for talking to the Abiquo >2.0 API
+ * Based on http://community.abiquo.com/display/ABI20/The+Abiquo+API
+ * functions as standard return a SimpleXML class with the response XML.
  * Usage :
  * $a= new Abiquo('http://example.com/api','user','password');
  * $a->GetVirtualDatacenters();
