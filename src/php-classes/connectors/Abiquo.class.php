@@ -207,7 +207,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetVirtualDatacenters () {
+	public function GetAbiquoVirtualDatacenters () {
 		return $this->ApiRequest('cloud/virtualdatacenters','application/vnd.abiquo.datacenters+xml');
 	}
 	
@@ -217,7 +217,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetVirtualDatacenter ($id){
+	public function GetAbiquoVirtualDatacenter ($id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$id/",'application/vnd.abiquo.virtualdatacenter+xml');
 	}
 	
@@ -227,7 +227,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetPrivateNetworks ($vdc_id){
+	public function GetAbiquoPrivateNetworks ($vdc_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks",'application/vnd.abiquo.vlans+xml');
 	}
 	
@@ -238,11 +238,11 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetPrivateNetwork ($vdc_id, $pn_id){
+	public function GetAbiquoPrivateNetwork ($vdc_id, $pn_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$pn_id",'application/vnd.abiquo.vlan+xml');
 	}
 	
-	public function CreateVirtualAppliance ($vdc_id, $vapp_name){
+	public function CreateAbiquoVirtualAppliance ($vdc_id, $vapp_name){
 		"<virtualAppliance><name>$vapp_name</name></virtualAppliance>";
 	}
 	
@@ -252,7 +252,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetVirtualAppliances ($vdc_id){
+	public function GetAbiquoVirtualAppliances ($vdc_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances",'application/vnd.abiquo.virtualappliances+xml');
 	}
 	
@@ -263,7 +263,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetVirtualAppliance ($vdc_id,$vapp_id){
+	public function GetAbiquoVirtualAppliance ($vdc_id,$vapp_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id",'application/vnd.abiquo.virtualappliance+xml');
 	}
 
@@ -274,7 +274,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetIPsUsedInVirtualAppliance ($vdc_id, $vapp_id){
+	public function GetAbiquoIPsUsedInVirtualAppliance ($vdc_id, $vapp_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/action/ips",'application/vnd.abiquo.ip+xml');
 	}
 	
@@ -285,7 +285,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetVirtualMachines($vdc_id,$vapp_id){
+	public function GetAbiquoVirtualMachines($vdc_id,$vapp_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines",'application/vnd.abiquo.virtualmachines+xml');
 	}
 	
@@ -297,7 +297,7 @@ class Abiquo implements Connector{
 	 * @return Object SimpleXML Object tree of the result
 	 * @access public
 	 */
-	public function GetVirtualMachine($vdc_id,$vapp_id,$vm_id){
+	public function GetAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id",'application/vnd.abiquo.virtualmachine+xml');
 	}
 	
@@ -320,11 +320,28 @@ class Abiquo implements Connector{
 	 * @access public
 	 **/
 	public function GetLocations () { 
-		$vdcs = $this->GetVirtualDatacenters();
+		$vdcs = $this->GetAbiquoVirtualDatacenters();
 		$results=array();
 		if (is_array($vdcs)){
 			foreach ($vdcs['virtualDatacenter'] as $vdc) {
 				$results[] = array ('clusterLocation'=>$vdc['id'][0], 'locationName' => $vdc['name'][0]);
+			}
+		}
+		return $results;
+	}
+	
+	/**
+	 * Get a list of private networks
+	 * @param int $location Location ID
+	 * @return array List of private networks 
+	 * @access public
+	 **/
+	public function GetPrivateNetworks ($location) { 
+		$vdcs = $this->GetAbiquoPrivateNetworks($location);
+		$results=array();
+		if (is_array($vdcs)){
+			foreach ($vdcs['network'] as $vdc) {
+				$results[] = array ('networkId'=>$vdc['id'][0], 'networkName' => $vdc['name'][0]);
 			}
 		}
 		return $results;

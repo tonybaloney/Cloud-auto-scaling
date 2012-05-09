@@ -21,6 +21,14 @@ interface Connector {
 	 * @access public
 	 **/
 	public function GetLocations ();
+	
+	/**
+	 * Get a list of private networks
+	 * @param int $location Location ID
+	 * @return array List of private networks 
+	 * @access public
+	 **/
+	public function GetPrivateNetworks ($location);
 }
 
  define ('CEX_BACKEND_HTTP_FAILURE', 101);

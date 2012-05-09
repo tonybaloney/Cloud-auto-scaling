@@ -28,6 +28,15 @@ switch ($_GET['view']){
 		} catch (ConnectorException $cex){
 			die ($cex->GetConnectorErrorMessage());
 		}
+		break;
+	case 'PrivateNetworks':
+		try { 
+			$cloud = Auth::GetCloudConnection();
+			$data = $cloud->GetPrivateNetworks($_GET['location']);
+		} catch (ConnectorException $cex){
+			die ($cex->GetConnectorErrorMessage());
+		}
+		break;
 }
 echo json_encode($data);
 ?>
