@@ -52,6 +52,13 @@ class Cluster {
 	public $clusterName;
 	
 	/**
+	 * ID of the cluster location on the cloud
+	 * @var int
+	 * @access public
+	 */
+	public $clusterLocation;
+	
+	/**
 	 * UID of the user/customer
 	 * @var int
 	 * @access public
@@ -136,6 +143,7 @@ class Cluster {
 		// Fill fields
 		$this->clusterId=$data['clusterId'];
 		$this->clusterName=$data['clusterName'];
+		$this->clusterLocation=$data['clusterLocation'];
 		$this->customerId=$data['customerId'];
 		$this->minServers=$data['minServers'];
 		$this->maxServers=$data['maxServers'];
@@ -153,6 +161,7 @@ class Cluster {
 		// Save the current field back to the DB.
 		$q = "UPDATE `clusters` SET
 			clusterName='".DB::Sanitise($this->clusterName)."',
+			clusterLocation='".DB::Sanitise($this->clusterLocation)."',
 			minServers='".DB::Sanitise($this->minServers)."',
 			maxServers='".DB::Sanitise($this->maxServers)."',
 			targetVlanId='".DB::Sanitise($this->targetVlanId)."',

@@ -46,6 +46,18 @@ Ext.define('Cloud.ClusterPortlet', {
 						value: (clusterRecord?clusterRecord.data.clusterName:'')
 					},
 					{
+						xtype:'combo',
+						name:'clusterLocation',
+						fieldLabel: 'Location',
+						displayField: 'locationName',
+						valueField: 'clusterLocation',
+						value: (clusterRecord?clusterRecord.data.clusterLocation:null),
+						store: 'LocationStore',
+						queryMode: 'local',
+						typeAhead: true,
+						allowBlank: false
+					},
+					{
 						xtype:'numberfield',
 						name:'minServers',
 						fieldLabel:'Minimum VM\'s',

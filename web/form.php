@@ -22,6 +22,7 @@ switch ($_GET['form']){
 		if( $cluster ) {
 			// Save fields.
 			$cluster->clusterName=$_POST['clusterName'];
+			$cluster->clusterLocation=$_POST['clusterLocation'];
 			$cluster->minServers=$_POST['minServers'];
 			$cluster->maxServers=$_POST['maxServers'];
 			$cluster->targetVlanId=$_POST['targetVlanId'];

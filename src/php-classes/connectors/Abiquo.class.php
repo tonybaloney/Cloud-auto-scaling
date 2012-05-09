@@ -153,12 +153,12 @@ class Abiquo implements Connector{
 			CURLOPT_FAILONERROR => true,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HEADER => false,
-			CURLOPT_HTTPHEADER => 'Accept:'.$accept,
+			CURLOPT_HTTPHEADER => array('Accept:'.$accept),
 			CURLOPT_COOKIE => 'auth='.$this->token.'; JSESSIONID='.$this->sessionid 
 			);
 		$res = $this->HttpRequest ($this->url.$url, $opt);
 		if ($res){
-			$array = xml2array($res);
+			$array = $this->xml2array($res);
 			if (!is_array($array)){
 				throw new ConnectorException( $this, "Backend did not return valid XML (".var_export($xml, true).")",CEX_INVALID_API_RESPONSE);
 			}
@@ -175,8 +175,8 @@ class Abiquo implements Connector{
 	 * @access private
 	 **/
 	private function xml2array($xml){
-	  $sxi = new SimpleXmlIterator($fname, null, true);
-	  return sxiToArray($sxi);
+	  $sxi = new SimpleXmlIterator($xml);
+	  return $this->sxiToArray($sxi);
 	}
 	
 	/**
@@ -193,7 +193,7 @@ class Abiquo implements Connector{
 		  $a[$sxi->key()] = array();
 		}
 		if($sxi->hasChildren()){
-		  $a[$sxi->key()][] = sxiToArray($sxi->current());
+		  $a[$sxi->key()][] = $this->sxiToArray($sxi->current());
 		}
 		else{
 		  $a[$sxi->key()][] = strval($sxi->current());
@@ -323,8 +323,8 @@ class Abiquo implements Connector{
 		$vdcs = $this->GetVirtualDatacenters();
 		$results=array();
 		if (is_array($vdcs)){
-			foreach ($vdcs as $vdc) {
-				$results[$vdc->id] = $vdc->name;
+			foreach ($vdcs['virtualDatacenter'] as $vdc) {
+				$results[] = array ('clusterLocation'=>$vdc['id'][0], 'locationName' => $vdc['name'][0]);
 			}
 		}
 		return $results;

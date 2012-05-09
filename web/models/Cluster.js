@@ -6,6 +6,7 @@ Ext.define('Cluster', {
 	fields: [
 		{name: 'clusterId', type: 'int'}, // UID of the cluster
 		{name: 'clusterName', type: 'string'}, // Friendly name of the cluster
+		{name: 'clusterLocation', type: 'int'}, // ID of the cluster location
         {name: 'customerId', type: 'int'}, // UID of the user/customer
 		{name: 'minServers', type: 'int'}, // Minimum number of servers required in cluster
 		{name: 'maxServers', type: 'int'}, // Maximum number of servers required in cluster

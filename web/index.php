@@ -14,6 +14,7 @@
     <script type="text/javascript" src="models/Cluster.js"></script>
     <script type="text/javascript" src="models/Customer.js"></script>
 	<script type="text/javascript" src="models/Log.js"></script>
+	<script type="text/javascript" src="models/Location.js"></script>	
 	
     <!-- Portlets for the dashboard -->
     <script type="text/javascript" src="classes/TriggerPortlet.js"></script>
