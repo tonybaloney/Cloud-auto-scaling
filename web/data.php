@@ -6,7 +6,7 @@
 
 if (!isset($_GET['view'])) die();
 
-include ('src/all.inc.php');
+include ('../src/all.inc.php');
 
 switch ($_GET['view']){
 	case 'Cluster':

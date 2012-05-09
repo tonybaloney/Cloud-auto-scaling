@@ -14,7 +14,7 @@
  * $a->GetVirtualDatacenters();
  * @package auto-scaler
  */
-class Abiquo { 
+class Abiquo implements Connector{ 
 	/**
 	 * URL of the API to abiquo, must point to the root (/api/)
 	 * @var string
@@ -226,5 +226,32 @@ class Abiquo {
 	 */
 	public function GetVirtualMachine($vdc_id,$vapp_id,$vm_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id");
+	}
+	
+	/**
+	 ** Section: Interface implementations
+	 **/
+	 
+	 /** 
+	 * Test connection to the cloud provider
+	 * @return bool Connection successful
+	 * @access public
+	 **/
+	public function TestConnection() { 
+		return ($this->ApiRequest('cloud/')!=false);
+	}
+	
+	/**
+	 * Get a list of locations, for multi-regional cloud platforms.
+	 * @return array List of locations (Key-Value pair array)
+	 * @access public
+	 **/
+	public function GetLocations () { 
+		$vdcs = $this->GetVirtualDatacenters();
+		$results=array();
+		foreach ($vdcs as $vdc) {
+			$results[$vdc->id] = $vdc->name;
+		}
+		return $results;
 	}
 }

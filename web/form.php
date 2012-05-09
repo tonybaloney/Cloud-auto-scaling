@@ -7,7 +7,7 @@
 
 if (!isset($_GET['form'])) die();
 
-include ('src/all.inc.php');
+include ('../src/all.inc.php');
 
 $res = array( 'success'=>false,'msg'=>'Message not understood');
 

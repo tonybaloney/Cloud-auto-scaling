@@ -16,7 +16,7 @@
  * $a->GetVirtualDatacenters();
  * @package auto-scaler
  */
-class Abiquo { 
+class Abiquo2 implements Connector { 
 	/**
 	 * URL of the API to abiquo, must point to the root (/api/)
 	 * @var string
@@ -57,7 +57,7 @@ class Abiquo {
 	 * @return bool Success or failure on finding server and establishing a login 
 	 * @access public
 	 */
-	public function Abiquo ( $url, $username, $password ) {
+	public function Abiquo2 ( $url, $username, $password ) {
 		// Format the server URL correctly
 		if (substr($url,-1,1) != '/') $url.='/';
 		
@@ -119,6 +119,7 @@ class Abiquo {
 	 * Sanitise a string for XML input (remove < and > characters)
 	 * @param string $s Input string
 	 * @return string The sanitised string.
+	 * @access private
 	 */
 	private function SanitiseForXML ( $s ) {
 		return str_replace (str_replace($s,'>','&gt;'), '<','&lt;');
@@ -127,7 +128,7 @@ class Abiquo {
 	/** 
 	 * Request to the API, expect XML back and format into assoc array and return 
 	 * @param string $url URI to request (will be appended to the address of the API)
-	 * @return SimpleXML XML Object of the returned data
+	 * @return Assoc array from the API server. Attributes for XML elements are lost
 	 * @access private
 	 */	 
 	private function ApiRequest( $url , $accept ) {
@@ -143,6 +144,40 @@ class Abiquo {
 			$xml = simplexml_load_string($res);
 			return $xml;
 		} else return false;
+	}
+	
+	/** 
+	 * Convert an XML string into an associative array
+	 * @param string $xml XML String
+	 * @return Array
+	 * @access private
+	 **/
+	private function xml2array($xml){
+	  $sxi = new SimpleXmlIterator($fname, null, true);
+	  return sxiToArray($sxi);
+	}
+	
+	/**
+	 * Convert a SimpleXMLIterator to an associative array
+	 * TODO: Carry XML element attributes into the structure
+	 * @param SimpleXMLIterator Object
+	 * @return Array
+	 * @access private
+	 **/
+	private function sxiToArray($sxi){
+	  $a = array();
+	  for( $sxi->rewind(); $sxi->valid(); $sxi->next() ) {
+		if(!array_key_exists($sxi->key(), $a)){
+		  $a[$sxi->key()] = array();
+		}
+		if($sxi->hasChildren()){
+		  $a[$sxi->key()][] = sxiToArray($sxi->current());
+		}
+		else{
+		  $a[$sxi->key()][] = strval($sxi->current());
+		}
+	  }
+	  return $a;
 	}
 	
 	/**
@@ -243,4 +278,32 @@ class Abiquo {
 	public function GetVirtualMachine($vdc_id,$vapp_id,$vm_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id",'application/vnd.abiquo.virtualmachine+xml');
 	}
+	
+	/**
+	 ** Section: Interface implementations
+	 **/
+	 
+	 /** 
+	 * Test connection to the cloud provider
+	 * @return bool Connection successful
+	 * @access public
+	 **/
+	public function TestConnection() { 
+		return ($this->ApiRequest('cloud/')!=false);
+	}
+	
+	/**
+	 * Get a list of locations, for multi-regional cloud platforms.
+	 * @return array List of locations (Key-Value pair array)
+	 * @access public
+	 **/
+	public function GetLocations () { 
+		$vdcs = $this->GetVirtualDatacenters();
+		$results=array();
+		foreach ($vdcs as $vdc) {
+			$results[$vdc->id] = $vdc->name;
+		}
+		return $results;
+	}
 }
+?>
