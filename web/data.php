@@ -21,6 +21,13 @@ switch ($_GET['view']){
 	case 'Log':
 		$data = Log::GetLogs();
 		break;
+	case 'Locations':
+		try { 
+			$cloud = Auth::GetCloudConnection();
+			$data = $cloud->GetLocations();
+		} catch (ConnectorException $cex){
+			die ($cex->GetConnectorErrorMessage());
+		}
 }
 echo json_encode($data);
 ?>

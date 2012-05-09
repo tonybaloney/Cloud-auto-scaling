@@ -57,5 +57,21 @@ class Auth {
 		WHERE customerId = '".DB::Sanitise(Auth::GetUID())."' ";
 		return (DB::Query($q));
 	}
+	
+	public static function GetCloudConnection () {
+		$me = Auth::GetMe();
+		switch ( $me['apiType'] ) {
+			case 'abiquo':
+				$cloud = new Abiquo($me['portalAPIUrl'],$me['portalUsername'],$me['portalPassword']);
+				break;
+			case 'abiquo2':
+				$cloud = new Abiquo2($me['portalAPIUrl'],$me['portalUsername'],$me['portalPassword']);
+				break;
+			default:
+				die ('Cloud proxy not recognised.');
+				break;
+		}
+		return $cloud;
+	}
 }
 ?>

@@ -8,7 +8,7 @@
  * @package auto-scaler
  */
 /**
- * Class for talking to the Abiquo API
+ * Class for talking to the Abiquo API, added support for Abiquo v2 as well, combined to the same class.
  * Usage :
  * $a= new Abiquo('http://example.com/api','user','password');
  * $a->GetVirtualDatacenters();
@@ -21,24 +21,35 @@ class Abiquo implements Connector{
 	 * @access private
 	 */
 	private $url; 
+	
+	/** 
+	 * Version number of Abiquo
+	 * @var int
+	 * @access private
+	 **/
+	private $abiquo_version;
+	
 	/**
 	 * Abiquo username (normally in email format)
 	 * @var string
 	 * @access private
 	 */
 	private $username;
+	
 	/**
 	 * Abiquo password
 	 * @var string
 	 * @access private
 	 */
 	private $password;
+	
 	/**
 	 * Basic authentication token returned in response cookie
 	 * @var string
 	 * @access private
 	 */
 	private $token;
+	
 	/**
 	 * JSESSION ID returned from abiquo API server after successful,
 	 * authenticated request
@@ -58,6 +69,9 @@ class Abiquo implements Connector{
 	public function Abiquo ( $url, $username, $password ) {
 		// Format the server URL correctly
 		if (substr($url,-1,1) != '/') $url.='/';
+		$this->url = $url;
+		$this->username = $username;
+		$this->password = $password; 
 		
 		// Login to the server
 		$this->Authenticate();
@@ -80,7 +94,10 @@ class Abiquo implements Connector{
 			CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
 			CURLOPT_USERPWD => $this->username.':'.$this->password
 			);
-		$res = $this->HttpRequest( $this->url , $opt ) ;
+		$res = $this->HttpRequest( $this->url.'cloud/' , $opt ) ;
+		
+		// TODO: Read headers to establish version.
+		$this->abiquo_version = 2; 
 		
 		// There's probably an easier way of doing this!
 		$pattern  = "/Set-Cookie:(?P<name>.*?)=(?P<value>.*?); expires=(?P<expiry_dayname>\w+), (?P<expiry_day>\d+)-(?P<expiry_month>\w+)-(?P<expiry_year>\d+) (?P<expiry_hour>\d+):(?P<expiry_minute>\d+):(?P<expiry_second>\d+) (?P<expiry_zone>\w+)/";
@@ -109,8 +126,20 @@ class Abiquo implements Connector{
 		curl_setopt_array($ch, $opt);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
+		if ($result===false)
+			throw new ConnectorException( $this, "Failure from cURL speaking to backend (".curl_error($ch).") on URL '$url' with options - ".var_export($opt,true),CEX_INVALID_API_RESPONSE);
 		curl_close($ch);
 		return $result;
+	}
+	
+	/**
+	 * Sanitise a string for XML input (remove < and > characters)
+	 * @param string $s Input string
+	 * @return string The sanitised string.
+	 * @access private
+	 */
+	private function SanitiseForXML ( $s ) {
+		return str_replace (str_replace($s,'>','&gt;'), '<','&lt;');
 	}
 	
 	/** 
@@ -119,18 +148,58 @@ class Abiquo implements Connector{
 	 * @return SimpleXML XML Object of the returned data
 	 * @access private
 	 */	 
-	private function ApiRequest( $url ) {
+	private function ApiRequest( $url, $accept ) {
 		$opt = array( 
 			CURLOPT_FAILONERROR => true,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HEADER => false,
+			CURLOPT_HTTPHEADER => 'Accept:'.$accept,
 			CURLOPT_COOKIE => 'auth='.$this->token.'; JSESSIONID='.$this->sessionid 
 			);
 		$res = $this->HttpRequest ($this->url.$url, $opt);
 		if ($res){
-			$xml = simplexml_load_string($res);
-			return $xml;
-		} else return false;
+			$array = xml2array($res);
+			if (!is_array($array)){
+				throw new ConnectorException( $this, "Backend did not return valid XML (".var_export($xml, true).")",CEX_INVALID_API_RESPONSE);
+			}
+			return $array;
+		} else {
+			throw new ConnectorException( $this, "Backend did not return valid result (".var_export(true).")",CEX_INVALID_API_RESPONSE);
+		}
+	}
+	
+	/** 
+	 * Convert an XML string into an associative array
+	 * @param string $xml XML String
+	 * @return Array
+	 * @access private
+	 **/
+	private function xml2array($xml){
+	  $sxi = new SimpleXmlIterator($fname, null, true);
+	  return sxiToArray($sxi);
+	}
+	
+	/**
+	 * Convert a SimpleXMLIterator to an associative array
+	 * TODO: Carry XML element attributes into the structure
+	 * @param SimpleXMLIterator Object
+	 * @return Array
+	 * @access private
+	 **/
+	private function sxiToArray($sxi){
+	  $a = array();
+	  for( $sxi->rewind(); $sxi->valid(); $sxi->next() ) {
+		if(!array_key_exists($sxi->key(), $a)){
+		  $a[$sxi->key()] = array();
+		}
+		if($sxi->hasChildren()){
+		  $a[$sxi->key()][] = sxiToArray($sxi->current());
+		}
+		else{
+		  $a[$sxi->key()][] = strval($sxi->current());
+		}
+	  }
+	  return $a;
 	}
 	
 	/**
@@ -139,7 +208,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetVirtualDatacenters () {
-		return $this->ApiRequest('cloud/virtualdatacenters');
+		return $this->ApiRequest('cloud/virtualdatacenters','application/vnd.abiquo.datacenters+xml');
 	}
 	
 	/**
@@ -149,7 +218,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetVirtualDatacenter ($id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$id/");
+		return $this->ApiRequest("cloud/virtualdatacenters/$id/",'application/vnd.abiquo.virtualdatacenter+xml');
 	}
 	
 	/**
@@ -159,7 +228,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetPrivateNetworks ($vdc_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks");
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks",'application/vnd.abiquo.vlans+xml');
 	}
 	
 	/**
@@ -170,7 +239,11 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetPrivateNetwork ($vdc_id, $pn_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$pn_id");
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$pn_id",'application/vnd.abiquo.vlan+xml');
+	}
+	
+	public function CreateVirtualAppliance ($vdc_id, $vapp_name){
+		"<virtualAppliance><name>$vapp_name</name></virtualAppliance>";
 	}
 	
 	/**
@@ -180,7 +253,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetVirtualAppliances ($vdc_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances");
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances",'application/vnd.abiquo.virtualappliances+xml');
 	}
 	
 	/**
@@ -191,7 +264,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetVirtualAppliance ($vdc_id,$vapp_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id");
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id",'application/vnd.abiquo.virtualappliance+xml');
 	}
 
 	/**
@@ -202,7 +275,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetIPsUsedInVirtualAppliance ($vdc_id, $vapp_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/action/ips");
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/action/ips",'application/vnd.abiquo.ip+xml');
 	}
 	
 	/**
@@ -213,7 +286,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetVirtualMachines($vdc_id,$vapp_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines");
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines",'application/vnd.abiquo.virtualmachines+xml');
 	}
 	
 	/**
@@ -225,7 +298,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetVirtualMachine($vdc_id,$vapp_id,$vm_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id");
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id",'application/vnd.abiquo.virtualmachine+xml');
 	}
 	
 	/**
@@ -249,8 +322,10 @@ class Abiquo implements Connector{
 	public function GetLocations () { 
 		$vdcs = $this->GetVirtualDatacenters();
 		$results=array();
-		foreach ($vdcs as $vdc) {
-			$results[$vdc->id] = $vdc->name;
+		if (is_array($vdcs)){
+			foreach ($vdcs as $vdc) {
+				$results[$vdc->id] = $vdc->name;
+			}
 		}
 		return $results;
 	}
