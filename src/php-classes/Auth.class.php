@@ -64,9 +64,6 @@ class Auth {
 			case 'abiquo':
 				$cloud = new Abiquo($me['portalAPIUrl'],$me['portalUsername'],$me['portalPassword']);
 				break;
-			case 'abiquo2':
-				$cloud = new Abiquo2($me['portalAPIUrl'],$me['portalUsername'],$me['portalPassword']);
-				break;
 			default:
 				die ('Cloud proxy not recognised.');
 				break;
