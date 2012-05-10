@@ -66,7 +66,7 @@ class Log {
 		$vmId = DB::Sanitise($vmId);
 		$vmName = DB::Sanitise($vmName);
 		$result = DB::Sanitise($result);
-		DB::Query("INSERT INTO `tick_log` (`customerId`,`clusterId`,`triggerId`,`vmId`,`vmName`,`date`,`result`) VALUES ( $customerId, $clusterId, $triggerId, $vmId, '$vmName',NOW(), '$result)");
+		DB::Query("INSERT INTO `tick_log` (`customerId`,`clusterId`,`triggerId`,`vmId`,`vmName`,`date`,`result`) VALUES ( $customerId, $clusterId, $triggerId, $vmId, '$vmName',NOW(), '$result')");
 	}
 }
 ?>
