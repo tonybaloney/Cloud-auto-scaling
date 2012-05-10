@@ -4,8 +4,23 @@
 Ext.define('Cloud.ClusterPortlet', {
     extend: 'Ext.grid.Panel', // Extend from basic panel
 	
+	updateLocationFilters: function ( sender, event ) {
+		Ext.data.StoreManager.lookup('PrivateNetworkStore').load({
+			params: {
+				location: 9
+				}
+		});
+	},
+	
 	// Create cluster dialog combined with edit cluster dialog, pass cluster record to edit, null to create
 	CreateCluster : function (sender,event,clusterRecord/* If record is given this is an edit not a create */){
+		if(clusterRecord){
+			Ext.data.StoreManager.lookup('PrivateNetworkStore').load({
+			params: {
+				location: clusterRecord.data.clusterLocation
+				}
+			});
+		}
 		var popup = new Ext.Window({
 			layout:'fit',
 			width:263,
@@ -52,6 +67,9 @@ Ext.define('Cloud.ClusterPortlet', {
 						displayField: 'locationName',
 						valueField: 'clusterLocation',
 						value: (clusterRecord?clusterRecord.data.clusterLocation:null),
+						listeners: {
+							'select': this.updateLocationFilters
+						},
 						store: 'LocationStore',
 						queryMode: 'local',
 						typeAhead: true,
@@ -72,11 +90,17 @@ Ext.define('Cloud.ClusterPortlet', {
 						value: (clusterRecord?clusterRecord.data.maxServers:1)
 					},
 					{
-						xtype:'textfield',
-						name:'targetVlanName',
-						fieldLabel:'Target VLAN Name',
+						xtype:'combo',
+						name:'targetVlanId',
+						fieldLabel:'Target VLAN',
 						allowBlank:false,
-						value: (clusterRecord?clusterRecord.data.targetVlanName:'')
+						value: (clusterRecord?clusterRecord.data.targetVlanId:''),
+						displayField: 'networkName',
+						valueField: 'networkId',
+						store: 'PrivateNetworkStore',
+						queryMode: 'local',
+						typeAhead: true,
+						allowBlank: false
 					},
 					{
 						xtype:'textfield',
