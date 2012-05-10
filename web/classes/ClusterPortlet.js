@@ -7,7 +7,12 @@ Ext.define('Cloud.ClusterPortlet', {
 	updateLocationFilters: function ( sender, event ) {
 		Ext.data.StoreManager.lookup('PrivateNetworkStore').load({
 			params: {
-				location: 9
+				location: sender.value
+				}
+		});
+		Ext.data.StoreManager.lookup('VirtualApplianceStore').load({
+			params: {
+				location: sender.value
 				}
 		});
 	},
@@ -20,11 +25,16 @@ Ext.define('Cloud.ClusterPortlet', {
 				location: clusterRecord.data.clusterLocation
 				}
 			});
+			Ext.data.StoreManager.lookup('VirtualApplianceStore').load({
+			params: {
+				location: clusterRecord.data.clusterLocation
+				}
+			});
 		}
 		var popup = new Ext.Window({
 			layout:'fit',
 			width:263,
-			height:373,
+			height:430,
 			closeAction:'hide',
 			iconCls:'icon-cluster',
 			plain: true,
@@ -95,7 +105,7 @@ Ext.define('Cloud.ClusterPortlet', {
 						fieldLabel:'Target VLAN',
 						allowBlank:false,
 						value: (clusterRecord?clusterRecord.data.targetVlanId:''),
-						displayField: 'networkName',
+						displayField: 'networkDescription',
 						valueField: 'networkId',
 						store: 'PrivateNetworkStore',
 						queryMode: 'local',
@@ -103,11 +113,17 @@ Ext.define('Cloud.ClusterPortlet', {
 						allowBlank: false
 					},
 					{
-						xtype:'textfield',
-						name:'targetApplianceName',
-						fieldLabel:'Target Appliance Name',
+						xtype:'combo',
+						name:'targetApplianceId',
+						fieldLabel:'Target Appliance',
 						allowBlank:false,
-						value: (clusterRecord?clusterRecord.data.targetApplianceName:'')
+						value: (clusterRecord?clusterRecord.data.targetApplianceId:''),
+						displayField: 'applianceName',
+						valueField: 'applianceId',
+						store: 'VirtualApplianceStore',
+						queryMode: 'local',
+						typeAhead: true,
+						allowBlank: false
 					}
 				],
 				buttons: [

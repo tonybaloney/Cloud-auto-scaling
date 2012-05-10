@@ -37,6 +37,14 @@ switch ($_GET['view']){
 			die ($cex->GetConnectorErrorMessage());
 		}
 		break;
+	case 'VirtualAppliances':
+		try { 
+			$cloud = Auth::GetCloudConnection();
+			$data = $cloud->GetAppliances($_GET['location']);
+		} catch (ConnectorException $cex){
+			die ($cex->GetConnectorErrorMessage());
+		}
+		break;
 }
 echo json_encode($data);
 ?>

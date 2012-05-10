@@ -341,7 +341,35 @@ class Abiquo implements Connector{
 		$results=array();
 		if (is_array($vdcs)){
 			foreach ($vdcs['network'] as $vdc) {
-				$results[] = array ('networkId'=>$vdc['id'][0], 'networkName' => $vdc['name'][0]);
+				$results[] = array (
+					'networkId'=>$vdc['id'][0], 
+					'networkName' => $vdc['name'][0], 
+					'networkAddress' => $vdc['address'][0], 
+					'networkMask' => $vdc['mask'][0], 
+					'networkGateway' => $vdc['gateway'][0],
+					'networkDescription' => $vdc['name'][0]." (".$vdc['address'][0]."/".$vdc['mask'][0].")"
+				);
+			}
+		}
+		return $results;
+	}
+	
+	/**
+	 * Get a list of VM Groups/Appliances
+	 * @param int $location Location ID
+	 * @return array List of appliances 
+	 * @access public
+	 **/
+	public function GetAppliances ($location) { 
+		$vdcs = $this->GetAbiquoVirtualAppliances($location);
+		$results=array();
+		if (is_array($vdcs)){
+			foreach ($vdcs['virtualAppliance'] as $vdc) {
+				$results[] = array (
+					'applianceId'=>$vdc['id'][0],
+					'applianceName'=>$vdc['name'][0],
+					'applianceState'=>$vdc['state'][0]
+				);
 			}
 		}
 		return $results;

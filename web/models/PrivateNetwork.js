@@ -6,6 +6,9 @@ Ext.define('PrivateNetwork', {
 	fields: [
 		{name: 'networkId', type: 'int'}, // Location ID
 		{name: 'networkName', type: 'string'}, // Name of the location
+		{name: 'networkAddress', type: 'string'}, // Network address e.g. 192.168.1.0
+		{name: 'networkMask', type: 'int'}, // Network mask e.g. '24' for /24
+		{name: 'networkDescription', type: 'string'}
 	]
 });
 /*
