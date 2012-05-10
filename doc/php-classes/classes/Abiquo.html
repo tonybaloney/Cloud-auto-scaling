@@ -1,0 +1,714 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Abiquo</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/auto-scale.html"><i class="icon-folder-open"></i> auto-scale</a></li>
+<li><a href="../packages/auto-scaler.html"><i class="icon-folder-open"></i> auto-scaler</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">44</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#Abiquo" title="Abiquo :: Create an instance of the Abiquo API object"><span class="description">Create an instance of the Abiquo API object</span><pre>Abiquo()</pre></a></li>
+<li class="method public "><a href="#CreateAbiquoVirtualAppliance" title="CreateAbiquoVirtualAppliance :: "><span class="description">CreateAbiquoVirtualAppliance()
+        </span><pre>CreateAbiquoVirtualAppliance()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoIPsUsedInVirtualAppliance" title="GetAbiquoIPsUsedInVirtualAppliance :: Get a list of IPs used in a specified Virtual Appliance"><span class="description">Get a list of IPs used in a specified Virtual Appliance</span><pre>GetAbiquoIPsUsedInVirtualAppliance()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoPrivateNetwork" title="GetAbiquoPrivateNetwork :: Get a specific private network in this enterprise"><span class="description">Get a specific private network in this enterprise</span><pre>GetAbiquoPrivateNetwork()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoPrivateNetworks" title="GetAbiquoPrivateNetworks :: Get a list of Private Networks (VLANs) in this Enterprise"><span class="description">Get a list of Private Networks (VLANs) in this Enterprise</span><pre>GetAbiquoPrivateNetworks()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoVirtualAppliance" title="GetAbiquoVirtualAppliance :: Get a Virtual Appliance in this Enterprise"><span class="description">Get a Virtual Appliance in this Enterprise</span><pre>GetAbiquoVirtualAppliance()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoVirtualAppliances" title="GetAbiquoVirtualAppliances :: Get a list of Virtual Appliances in this Enterprise"><span class="description">Get a list of Virtual Appliances in this Enterprise</span><pre>GetAbiquoVirtualAppliances()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoVirtualDatacenter" title="GetAbiquoVirtualDatacenter :: Get a VDC in logged in Enterprise"><span class="description">Get a VDC in logged in Enterprise</span><pre>GetAbiquoVirtualDatacenter()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoVirtualDatacenters" title="GetAbiquoVirtualDatacenters :: Get a list of VDCs in logged in Enterprise"><span class="description">Get a list of VDCs in logged in Enterprise</span><pre>GetAbiquoVirtualDatacenters()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoVirtualMachine" title="GetAbiquoVirtualMachine :: Get a Virtual Machine in this VDC/VAPP"><span class="description">Get a Virtual Machine in this VDC/VAPP</span><pre>GetAbiquoVirtualMachine()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoVirtualMachineNetworks" title="GetAbiquoVirtualMachineNetworks :: Get a Virtual Machine Networks in this VDC/VAPP"><span class="description">Get a Virtual Machine Networks in this VDC/VAPP</span><pre>GetAbiquoVirtualMachineNetworks()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoVirtualMachines" title="GetAbiquoVirtualMachines :: Get a list of Virtual Machines in a specified Virtual Appliance"><span class="description">Get a list of Virtual Machines in a specified Virtual Appliance</span><pre>GetAbiquoVirtualMachines()</pre></a></li>
+<li class="method public "><a href="#GetAppliances" title="GetAppliances :: Get a list of VM Groups/Appliances"><span class="description">Get a list of VM Groups/Appliances</span><pre>GetAppliances()</pre></a></li>
+<li class="method public "><a href="#GetLocations" title="GetLocations :: Get a list of locations, for multi-regional cloud platforms."><span class="description">Get a list of locations, for multi-regional cloud platforms.</span><pre>GetLocations()</pre></a></li>
+<li class="method public "><a href="#GetPrivateNetwork" title="GetPrivateNetwork :: Get a list of private networks"><span class="description">Get a list of private networks</span><pre>GetPrivateNetwork()</pre></a></li>
+<li class="method public "><a href="#GetPrivateNetworks" title="GetPrivateNetworks :: Get a list of private networks"><span class="description">Get a list of private networks</span><pre>GetPrivateNetworks()</pre></a></li>
+<li class="method public "><a href="#GetVirtualMachineNetworks" title="GetVirtualMachineNetworks :: Get a list of VM s"><span class="description">Get a list of VM s</span><pre>GetVirtualMachineNetworks()</pre></a></li>
+<li class="method public "><a href="#GetVirtualMachines" title="GetVirtualMachines :: Get a list of VM s"><span class="description">Get a list of VM s</span><pre>GetVirtualMachines()</pre></a></li>
+<li class="method public "><a href="#TestConnection" title="TestConnection :: Test connection to the cloud provider"><span class="description">Test connection to the cloud provider</span><pre>TestConnection()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private "><a href="#ApiRequest" title="ApiRequest :: Request to the API, expect XML back and format into assoc array and return"><span class="description">Request to the API, expect XML back and format into assoc array and return</span><pre>ApiRequest()</pre></a></li>
+<li class="method private "><a href="#Authenticate" title="Authenticate :: Login to the abiquo server, get the auth token and session (jsession) id
+Store these in the class for later API calls."><span class="description">Login to the abiquo server, get the auth token and session (jsession) id
+Store these in the class for later API calls.</span><pre>Authenticate()</pre></a></li>
+<li class="method private "><a href="#HttpRequest" title="HttpRequest :: Execute a HTTP request using CURL"><span class="description">Execute a HTTP request using CURL</span><pre>HttpRequest()</pre></a></li>
+<li class="method private "><a href="#SanitiseForXML" title="SanitiseForXML :: Sanitise a string for XML input (remove &lt; and &gt; characters)"><span class="description">Sanitise a string for XML input (remove &lt; and &gt; characters)</span><pre>SanitiseForXML()</pre></a></li>
+<li class="method private "><a href="#sxiToArray" title="sxiToArray :: Convert a SimpleXMLIterator to an associative array
+TODO: Carry XML element attributes into the structure"><span class="description">Convert a SimpleXMLIterator to an associative array
+TODO: Carry XML element attributes into the structure</span><pre>sxiToArray()</pre></a></li>
+<li class="method private "><a href="#xml2array" title="xml2array :: Convert an XML string into an associative array"><span class="description">Convert an XML string into an associative array</span><pre>xml2array()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24abiquo_version" title="$abiquo_version :: Version number of Abiquo"><span class="description">Version number of Abiquo</span><pre>$abiquo_version</pre></a></li>
+<li class="property private "><a href="#%24password" title="$password :: Abiquo password"><span class="description">Abiquo password</span><pre>$password</pre></a></li>
+<li class="property private "><a href="#%24sessionid" title="$sessionid :: JSESSION ID returned from abiquo API server after successful,
+authenticated request"><span class="description">JSESSION ID returned from abiquo API server after successful,
+authenticated request</span><pre>$sessionid</pre></a></li>
+<li class="property private "><a href="#%24token" title="$token :: Basic authentication token returned in response cookie"><span class="description">Basic authentication token returned in response cookie</span><pre>$token</pre></a></li>
+<li class="property private "><a href="#%24url" title="$url :: URL of the API to abiquo, must point to the root (/api/)"><span class="description">URL of the API to abiquo, must point to the root (/api/)</span><pre>$url</pre></a></li>
+<li class="property private "><a href="#%24username" title="$username :: Abiquo username (normally in email format)"><span class="description">Abiquo username (normally in email format)</span><pre>$username</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CAbiquo" id="\Abiquo"></a><div href="../classes/Abiquo.html" class="element class">
+<p class="short_description">Class for talking to the Abiquo API, added support for Abiquo v2 as well, combined to the same class.</p>
+<div class="details">
+<p class="long_description"><p>Usage :
+$a= new Abiquo('http://example.com/api','user','password');
+$a->GetVirtualDatacenters();</p></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="..//packages/auto-scaler.html">auto-scaler</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="Abiquo" id="Abiquo"></a><div class="element clickable method public Abiquo" data-toggle="collapse" data-target=".Abiquo .collapse">
+<h2>Create an instance of the Abiquo API object</h2>
+<pre>Abiquo(string $url, string $username, string $password) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>URL of the Abiquo Server</p></div>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><p>Username for Abiquo</p></div>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>string</code><p>Password for Abiquo</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>Success or failure on finding server and establishing a login</div>
+</div></div>
+</div>
+<a name="CreateAbiquoVirtualAppliance" id="CreateAbiquoVirtualAppliance"></a><div class="element clickable method public CreateAbiquoVirtualAppliance" data-toggle="collapse" data-target=".CreateAbiquoVirtualAppliance .collapse">
+<h2>CreateAbiquoVirtualAppliance()
+        </h2>
+<pre>CreateAbiquoVirtualAppliance($vdc_id, $vapp_name) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$vapp_name</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="GetAbiquoIPsUsedInVirtualAppliance" id="GetAbiquoIPsUsedInVirtualAppliance"></a><div class="element clickable method public GetAbiquoIPsUsedInVirtualAppliance" data-toggle="collapse" data-target=".GetAbiquoIPsUsedInVirtualAppliance .collapse">
+<h2>Get a list of IPs used in a specified Virtual Appliance</h2>
+<pre>GetAbiquoIPsUsedInVirtualAppliance(int $vdc_id, int $vapp_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$vapp_id</h4>
+<code>int</code><p>ID of the Virtual Appliance</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoPrivateNetwork" id="GetAbiquoPrivateNetwork"></a><div class="element clickable method public GetAbiquoPrivateNetwork" data-toggle="collapse" data-target=".GetAbiquoPrivateNetwork .collapse">
+<h2>Get a specific private network in this enterprise</h2>
+<pre>GetAbiquoPrivateNetwork(int $vdc_id, int $pn_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$pn_id</h4>
+<code>int</code><p>ID of the Private Network</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoPrivateNetworks" id="GetAbiquoPrivateNetworks"></a><div class="element clickable method public GetAbiquoPrivateNetworks" data-toggle="collapse" data-target=".GetAbiquoPrivateNetworks .collapse">
+<h2>Get a list of Private Networks (VLANs) in this Enterprise</h2>
+<pre>GetAbiquoPrivateNetworks(int $vdc_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoVirtualAppliance" id="GetAbiquoVirtualAppliance"></a><div class="element clickable method public GetAbiquoVirtualAppliance" data-toggle="collapse" data-target=".GetAbiquoVirtualAppliance .collapse">
+<h2>Get a Virtual Appliance in this Enterprise</h2>
+<pre>GetAbiquoVirtualAppliance(int $vdc_id, int $vapp_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$vapp_id</h4>
+<code>int</code><p>ID of the Virtual Appliance</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoVirtualAppliances" id="GetAbiquoVirtualAppliances"></a><div class="element clickable method public GetAbiquoVirtualAppliances" data-toggle="collapse" data-target=".GetAbiquoVirtualAppliances .collapse">
+<h2>Get a list of Virtual Appliances in this Enterprise</h2>
+<pre>GetAbiquoVirtualAppliances(int $vdc_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoVirtualDatacenter" id="GetAbiquoVirtualDatacenter"></a><div class="element clickable method public GetAbiquoVirtualDatacenter" data-toggle="collapse" data-target=".GetAbiquoVirtualDatacenter .collapse">
+<h2>Get a VDC in logged in Enterprise</h2>
+<pre>GetAbiquoVirtualDatacenter($id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoVirtualDatacenters" id="GetAbiquoVirtualDatacenters"></a><div class="element clickable method public GetAbiquoVirtualDatacenters" data-toggle="collapse" data-target=".GetAbiquoVirtualDatacenters .collapse">
+<h2>Get a list of VDCs in logged in Enterprise</h2>
+<pre>GetAbiquoVirtualDatacenters() : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoVirtualMachine" id="GetAbiquoVirtualMachine"></a><div class="element clickable method public GetAbiquoVirtualMachine" data-toggle="collapse" data-target=".GetAbiquoVirtualMachine .collapse">
+<h2>Get a Virtual Machine in this VDC/VAPP</h2>
+<pre>GetAbiquoVirtualMachine(int $vdc_id, int $vapp_id, int $vm_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$vapp_id</h4>
+<code>int</code><p>ID of the Virtual Appliance</p></div>
+<div class="subelement argument">
+<h4>$vm_id</h4>
+<code>int</code><p>ID of the Virtual Machine</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoVirtualMachineNetworks" id="GetAbiquoVirtualMachineNetworks"></a><div class="element clickable method public GetAbiquoVirtualMachineNetworks" data-toggle="collapse" data-target=".GetAbiquoVirtualMachineNetworks .collapse">
+<h2>Get a Virtual Machine Networks in this VDC/VAPP</h2>
+<pre>GetAbiquoVirtualMachineNetworks(int $vdc_id, int $vapp_id, int $vm_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$vapp_id</h4>
+<code>int</code><p>ID of the Virtual Appliance</p></div>
+<div class="subelement argument">
+<h4>$vm_id</h4>
+<code>int</code><p>ID of the Virtual Machine</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAbiquoVirtualMachines" id="GetAbiquoVirtualMachines"></a><div class="element clickable method public GetAbiquoVirtualMachines" data-toggle="collapse" data-target=".GetAbiquoVirtualMachines .collapse">
+<h2>Get a list of Virtual Machines in a specified Virtual Appliance</h2>
+<pre>GetAbiquoVirtualMachines(int $vdc_id, int $vapp_id) : Object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$vapp_id</h4>
+<code>int</code><p>ID of the Virtual Appliance</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code>SimpleXML Object tree of the result</div>
+</div></div>
+</div>
+<a name="GetAppliances" id="GetAppliances"></a><div class="element clickable method public GetAppliances" data-toggle="collapse" data-target=".GetAppliances .collapse">
+<h2>Get a list of VM Groups/Appliances</h2>
+<pre>GetAppliances(int $location) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$location</h4>
+<code>int</code><p>Location ID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of appliances</div>
+</div></div>
+</div>
+<a name="GetLocations" id="GetLocations"></a><div class="element clickable method public GetLocations" data-toggle="collapse" data-target=".GetLocations .collapse">
+<h2>Get a list of locations, for multi-regional cloud platforms.</h2>
+<pre>GetLocations() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of locations (Key-Value pair array)</div>
+</div></div>
+</div>
+<a name="GetPrivateNetwork" id="GetPrivateNetwork"></a><div class="element clickable method public GetPrivateNetwork" data-toggle="collapse" data-target=".GetPrivateNetwork .collapse">
+<h2>Get a list of private networks</h2>
+<pre>GetPrivateNetwork(int $location, int $networkId) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$location</h4>
+<code>int</code><p>Location ID</p></div>
+<div class="subelement argument">
+<h4>$networkId</h4>
+<code>int</code><p>Private Network ID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of private networks</div>
+</div></div>
+</div>
+<a name="GetPrivateNetworks" id="GetPrivateNetworks"></a><div class="element clickable method public GetPrivateNetworks" data-toggle="collapse" data-target=".GetPrivateNetworks .collapse">
+<h2>Get a list of private networks</h2>
+<pre>GetPrivateNetworks(int $location) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$location</h4>
+<code>int</code><p>Location ID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of private networks</div>
+</div></div>
+</div>
+<a name="GetVirtualMachineNetworks" id="GetVirtualMachineNetworks"></a><div class="element clickable method public GetVirtualMachineNetworks" data-toggle="collapse" data-target=".GetVirtualMachineNetworks .collapse">
+<h2>Get a list of VM s</h2>
+<pre>GetVirtualMachineNetworks(int $location, int $appliance, int $virtualMachine) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$location</h4>
+<code>int</code><p>Location ID</p></div>
+<div class="subelement argument">
+<h4>$appliance</h4>
+<code>int</code><p>Appliance ID</p></div>
+<div class="subelement argument">
+<h4>$virtualMachine</h4>
+<code>int</code><p>VM ID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of NICS.</div>
+</div></div>
+</div>
+<a name="GetVirtualMachines" id="GetVirtualMachines"></a><div class="element clickable method public GetVirtualMachines" data-toggle="collapse" data-target=".GetVirtualMachines .collapse">
+<h2>Get a list of VM s</h2>
+<pre>GetVirtualMachines(int $location, int $appliance) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$location</h4>
+<code>int</code><p>Location ID</p></div>
+<div class="subelement argument">
+<h4>$appliance</h4>
+<code>int</code><p>Appliance ID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of virtual machines.</div>
+</div></div>
+</div>
+<a name="TestConnection" id="TestConnection"></a><div class="element clickable method public TestConnection" data-toggle="collapse" data-target=".TestConnection .collapse">
+<h2>Test connection to the cloud provider</h2>
+<pre>TestConnection() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>Connection successful</div>
+</div></div>
+</div>
+<a name="ApiRequest" id="ApiRequest"></a><div class="element clickable method private ApiRequest" data-toggle="collapse" data-target=".ApiRequest .collapse">
+<h2>Request to the API, expect XML back and format into assoc array and return</h2>
+<pre>ApiRequest(string $url, $accept) : \SimpleXML</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>URI to request (will be appended to the address of the API)</p>
+</div>
+<div class="subelement argument">
+<h4>$accept</h4>
+<code></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\SimpleXML</code>XML Object of the returned data</div>
+</div></div>
+</div>
+<a name="Authenticate" id="Authenticate"></a><div class="element clickable method private Authenticate" data-toggle="collapse" data-target=".Authenticate .collapse">
+<h2>Login to the abiquo server, get the auth token and session (jsession) id
+Store these in the class for later API calls.</h2>
+<pre>Authenticate() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>Success or failure on finding server and establishing a login</div>
+</div></div>
+</div>
+<a name="HttpRequest" id="HttpRequest"></a><div class="element clickable method private HttpRequest" data-toggle="collapse" data-target=".HttpRequest .collapse">
+<h2>Execute a HTTP request using CURL</h2>
+<pre>HttpRequest(string $url, array $opt) : string | bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>HTTP URI</p></div>
+<div class="subelement argument">
+<h4>$opt</h4>
+<code>array</code><p>List of CURL options <link>http://uk3.php.net/manual/en/function.curl-setopt.php</link></p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code>bool</code>Response of the CURL request, false on failure, string on success</div>
+</div></div>
+</div>
+<a name="SanitiseForXML" id="SanitiseForXML"></a><div class="element clickable method private SanitiseForXML" data-toggle="collapse" data-target=".SanitiseForXML .collapse">
+<h2>Sanitise a string for XML input (remove &lt; and &gt; characters)</h2>
+<pre>SanitiseForXML(string $s) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code>string</code><p>Input string</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The sanitised string.</div>
+</div></div>
+</div>
+<a name="sxiToArray" id="sxiToArray"></a><div class="element clickable method private sxiToArray" data-toggle="collapse" data-target=".sxiToArray .collapse">
+<h2>Convert a SimpleXMLIterator to an associative array
+TODO: Carry XML element attributes into the structure</h2>
+<pre>sxiToArray(<a href="http://php.net/manual/en/class.simplexmliterator.php">\SimpleXMLIterator</a> $sxi) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$sxi</h4>
+<code><a href="http://php.net/manual/en/class.simplexmliterator.php">\SimpleXMLIterator</a></code><p>Object</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Array</code></div>
+</div></div>
+</div>
+<a name="xml2array" id="xml2array"></a><div class="element clickable method private xml2array" data-toggle="collapse" data-target=".xml2array .collapse">
+<h2>Convert an XML string into an associative array</h2>
+<pre>xml2array(string $xml) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$xml</h4>
+<code>string</code><p>XML String</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Array</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24abiquo_version" id="$abiquo_version"> </a><div class="element clickable property private $abiquo_version" data-toggle="collapse" data-target=".$abiquo_version .collapse">
+<h2>Version number of Abiquo</h2>
+<pre>$abiquo_version : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24password" id="$password"> </a><div class="element clickable property private $password" data-toggle="collapse" data-target=".$password .collapse">
+<h2>Abiquo password</h2>
+<pre>$password : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24sessionid" id="$sessionid"> </a><div class="element clickable property private $sessionid" data-toggle="collapse" data-target=".$sessionid .collapse">
+<h2>JSESSION ID returned from abiquo API server after successful,
+authenticated request</h2>
+<pre>$sessionid : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24token" id="$token"> </a><div class="element clickable property private $token" data-toggle="collapse" data-target=".$token .collapse">
+<h2>Basic authentication token returned in response cookie</h2>
+<pre>$token : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24url" id="$url"> </a><div class="element clickable property private $url" data-toggle="collapse" data-target=".$url .collapse">
+<h2>URL of the API to abiquo, must point to the root (/api/)</h2>
+<pre>$url : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24username" id="$username"> </a><div class="element clickable property private $username" data-toggle="collapse" data-target=".$username .collapse">
+<h2>Abiquo username (normally in email format)</h2>
+<pre>$username : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-10T22:36:30+01:00.<br></footer></div>
+</div>
+</body>
+</html>

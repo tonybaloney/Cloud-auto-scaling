@@ -98,7 +98,20 @@ Ext.define('Cloud.TriggerPortlet', {
 						xtype:'textfield',
 						name:'communityString',
 						fieldLabel: 'SNMP Community String',
-						value: (triggerRecord?triggerRecord.data.communityString:''),
+						value: (triggerRecord?triggerRecord.data.communityString:'public'),
+						allowBlank: false
+					},{
+						xtype:'textfield',
+						name:'vmPrefix',
+						fieldLabel: 'VM Prefix',
+						value: (triggerRecord?triggerRecord.data.vmPrefix:'ABQ_'),
+						allowBlank: false
+					},{
+						xtype:'combo',
+						name:'triggerApproval',
+						fieldLabel: 'Approval',
+						value: (triggerRecord?triggerRecord.data.triggerApproval:'Manual'),
+						store: ['Manual','Automatic'],
 						allowBlank: false
 					}
 				],
@@ -117,7 +130,7 @@ Ext.define('Cloud.TriggerPortlet', {
 							popup.hide(); 
 						}
 					}
-					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
+					,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
 					]
 				}
 			}); 

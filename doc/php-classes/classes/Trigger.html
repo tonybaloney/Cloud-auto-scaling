@@ -1,0 +1,247 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Trigger</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/auto-scale.html"><i class="icon-folder-open"></i> auto-scale</a></li>
+<li><a href="../packages/auto-scaler.html"><i class="icon-folder-open"></i> auto-scaler</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">44</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#CreateTrigger" title="CreateTrigger :: "><span class="description">CreateTrigger()
+        </span><pre>CreateTrigger()</pre></a></li>
+<li class="method public "><a href="#GetTriggers" title="GetTriggers :: "><span class="description">GetTriggers()
+        </span><pre>GetTriggers()</pre></a></li>
+<li class="method public "><a href="#GetTriggersForCluster" title="GetTriggersForCluster :: "><span class="description">GetTriggersForCluster()
+        </span><pre>GetTriggersForCluster()</pre></a></li>
+<li class="method public "><a href="#Save" title="Save :: "><span class="description">Save()
+        </span><pre>Save()</pre></a></li>
+<li class="method public "><a href="#Trigger" title="Trigger :: "><span class="description">Trigger()
+        </span><pre>Trigger()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="property public "><a href="#%24clusterId" title="$clusterId :: "><span class="description">$clusterId</span><pre>$clusterId</pre></a></li>
+<li class="property public "><a href="#%24clusterName" title="$clusterName :: "><span class="description">$clusterName</span><pre>$clusterName</pre></a></li>
+<li class="property public "><a href="#%24communityString" title="$communityString :: "><span class="description">$communityString</span><pre>$communityString</pre></a></li>
+<li class="property public "><a href="#%24lower" title="$lower :: "><span class="description">$lower</span><pre>$lower</pre></a></li>
+<li class="property public "><a href="#%24oid" title="$oid :: "><span class="description">$oid</span><pre>$oid</pre></a></li>
+<li class="property public "><a href="#%24scaleDownTime" title="$scaleDownTime :: "><span class="description">$scaleDownTime</span><pre>$scaleDownTime</pre></a></li>
+<li class="property public "><a href="#%24scaleUpTime" title="$scaleUpTime :: "><span class="description">$scaleUpTime</span><pre>$scaleUpTime</pre></a></li>
+<li class="property public "><a href="#%24triggerApproval" title="$triggerApproval :: "><span class="description">$triggerApproval</span><pre>$triggerApproval</pre></a></li>
+<li class="property public "><a href="#%24triggerName" title="$triggerName :: "><span class="description">$triggerName</span><pre>$triggerName</pre></a></li>
+<li class="property public "><a href="#%24upper" title="$upper :: "><span class="description">$upper</span><pre>$upper</pre></a></li>
+<li class="property public "><a href="#%24vmPrefix" title="$vmPrefix :: "><span class="description">$vmPrefix</span><pre>$vmPrefix</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24triggerId" title="$triggerId :: "><span class="description">$triggerId</span><pre>$triggerId</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CTrigger" id="\Trigger"></a><div href="../classes/Trigger.html" class="element class"><div class="details">
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="CreateTrigger" id="CreateTrigger"></a><div class="element clickable method public CreateTrigger" data-toggle="collapse" data-target=".CreateTrigger .collapse">
+<h2>CreateTrigger()
+        </h2>
+<pre>CreateTrigger($metric, $clusterId) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$metric</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$clusterId</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="GetTriggers" id="GetTriggers"></a><div class="element clickable method public GetTriggers" data-toggle="collapse" data-target=".GetTriggers .collapse">
+<h2>GetTriggers()
+        </h2>
+<pre>GetTriggers($uid) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$uid</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="GetTriggersForCluster" id="GetTriggersForCluster"></a><div class="element clickable method public GetTriggersForCluster" data-toggle="collapse" data-target=".GetTriggersForCluster .collapse">
+<h2>GetTriggersForCluster()
+        </h2>
+<pre>GetTriggersForCluster($clusterId) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clusterId</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="Save" id="Save"></a><div class="element clickable method public Save" data-toggle="collapse" data-target=".Save .collapse">
+<h2>Save()
+        </h2>
+<pre>Save() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="Trigger" id="Trigger"></a><div class="element clickable method public Trigger" data-toggle="collapse" data-target=".Trigger .collapse">
+<h2>Trigger()
+        </h2>
+<pre>Trigger($id, $uid) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$uid</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24clusterId" id="$clusterId"> </a><div class="element clickable property public $clusterId" data-toggle="collapse" data-target=".$clusterId .collapse">
+<h2>$clusterId</h2>
+<pre>$clusterId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24clusterName" id="$clusterName"> </a><div class="element clickable property public $clusterName" data-toggle="collapse" data-target=".$clusterName .collapse">
+<h2>$clusterName</h2>
+<pre>$clusterName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24communityString" id="$communityString"> </a><div class="element clickable property public $communityString" data-toggle="collapse" data-target=".$communityString .collapse">
+<h2>$communityString</h2>
+<pre>$communityString </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24lower" id="$lower"> </a><div class="element clickable property public $lower" data-toggle="collapse" data-target=".$lower .collapse">
+<h2>$lower</h2>
+<pre>$lower </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24oid" id="$oid"> </a><div class="element clickable property public $oid" data-toggle="collapse" data-target=".$oid .collapse">
+<h2>$oid</h2>
+<pre>$oid </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24scaleDownTime" id="$scaleDownTime"> </a><div class="element clickable property public $scaleDownTime" data-toggle="collapse" data-target=".$scaleDownTime .collapse">
+<h2>$scaleDownTime</h2>
+<pre>$scaleDownTime </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24scaleUpTime" id="$scaleUpTime"> </a><div class="element clickable property public $scaleUpTime" data-toggle="collapse" data-target=".$scaleUpTime .collapse">
+<h2>$scaleUpTime</h2>
+<pre>$scaleUpTime </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24triggerApproval" id="$triggerApproval"> </a><div class="element clickable property public $triggerApproval" data-toggle="collapse" data-target=".$triggerApproval .collapse">
+<h2>$triggerApproval</h2>
+<pre>$triggerApproval </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24triggerName" id="$triggerName"> </a><div class="element clickable property public $triggerName" data-toggle="collapse" data-target=".$triggerName .collapse">
+<h2>$triggerName</h2>
+<pre>$triggerName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24upper" id="$upper"> </a><div class="element clickable property public $upper" data-toggle="collapse" data-target=".$upper .collapse">
+<h2>$upper</h2>
+<pre>$upper </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24vmPrefix" id="$vmPrefix"> </a><div class="element clickable property public $vmPrefix" data-toggle="collapse" data-target=".$vmPrefix .collapse">
+<h2>$vmPrefix</h2>
+<pre>$vmPrefix </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<a name="%24triggerId" id="$triggerId"> </a><div class="element clickable property private $triggerId" data-toggle="collapse" data-target=".$triggerId .collapse">
+<h2>$triggerId</h2>
+<pre>$triggerId </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-10T22:36:30+01:00.<br></footer></div>
+</div>
+</body>
+</html>

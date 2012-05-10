@@ -42,7 +42,11 @@ function Tick () {
 										$result = @snmpget($ip,$trigger['communityString'],$trigger['oid']);
 										if ($result !== false){
 											// Log SNMP result to the DB.
-											Log::LogTickResult($customer['customerId'],$cluster['clusterId'],$trigger['triggerId'],$vm['vmId'],$vm['vmName'],$result);
+											$result_parts = explode(' ',$result);
+											if (is_numeric($result_parts[1]))
+												Log::LogTickResult($customer['customerId'],$cluster['clusterId'],$trigger['triggerId'],$vm['vmId'],$vm['vmName'],$result_parts[1]);
+											else
+												trigger_error( "SNMP result is non-numeric, cannot track and action strings, trigger:".$trigger['triggerName'] );
 											$result_count++;
 										}
 									}
@@ -63,6 +67,6 @@ function Tick () {
 		trigger_error("Did not establish any succesful SNMP results. Check configuration and network connectivity.");
 }
 function invalid_result(){
-
+	trigger_error("Received invalid result from an API or DB call.");
 }
 ?>

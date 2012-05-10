@@ -1,0 +1,354 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Cluster</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/auto-scale.html"><i class="icon-folder-open"></i> auto-scale</a></li>
+<li><a href="../packages/auto-scaler.html"><i class="icon-folder-open"></i> auto-scaler</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">44</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">1</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#Cluster" title="Cluster :: "><span class="description">Cluster()
+        </span><pre>Cluster()</pre></a></li>
+<li class="method public "><a href="#CreateCluster" title="CreateCluster :: Create a new cluster"><span class="description">Create a new cluster</span><pre>CreateCluster()</pre></a></li>
+<li class="method public "><a href="#GetClusters" title="GetClusters :: Get a list of clusters on the system for the specified user"><span class="description">Get a list of clusters on the system for the specified user</span><pre>GetClusters()</pre></a></li>
+<li class="method public "><a href="#Save" title="Save :: "><span class="description">Save()
+        </span><pre>Save()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="property public "><a href="#%24clusterLocation" title="$clusterLocation :: ID of the cluster location on the cloud"><span class="description">ID of the cluster location on the cloud</span><pre>$clusterLocation</pre></a></li>
+<li class="property public "><a href="#%24clusterName" title="$clusterName :: Friendly name of the cluster"><span class="description">Friendly name of the cluster</span><pre>$clusterName</pre></a></li>
+<li class="property public "><a href="#%24customerId" title="$customerId :: UID of the user/customer"><span class="description">UID of the user/customer</span><pre>$customerId</pre></a></li>
+<li class="property public "><a href="#%24dateChanged" title="$dateChanged :: Date the cluster was last changed"><span class="description">Date the cluster was last changed</span><pre>$dateChanged</pre></a></li>
+<li class="property public "><a href="#%24dateCreated" title="$dateCreated :: Date/Time the cluster was created"><span class="description">Date/Time the cluster was created</span><pre>$dateCreated</pre></a></li>
+<li class="property public "><a href="#%24maxServers" title="$maxServers :: Maximum number of servers required in cluster"><span class="description">Maximum number of servers required in cluster</span><pre>$maxServers</pre></a></li>
+<li class="property public "><a href="#%24minServers" title="$minServers :: Minimum number of servers required in cluster"><span class="description">Minimum number of servers required in cluster</span><pre>$minServers</pre></a></li>
+<li class="property public "><a href="#%24targetApplianceId" title="$targetApplianceId :: Target Virtual Appliance ID"><span class="description">Target Virtual Appliance ID</span><pre>$targetApplianceId</pre></a></li>
+<li class="property public "><a href="#%24targetApplianceName" title="$targetApplianceName :: Target Virtual Appliance Name"><span class="description">Target Virtual Appliance Name</span><pre>$targetApplianceName</pre></a></li>
+<li class="property public "><a href="#%24targetVdcId" title="$targetVdcId :: ID of the VDC"><span class="description">ID of the VDC</span><pre>$targetVdcId</pre></a></li>
+<li class="property public "><a href="#%24targetVdcName" title="$targetVdcName :: Name of the Virtual Data Center"><span class="description">Name of the Virtual Data Center</span><pre>$targetVdcName</pre></a></li>
+<li class="property public "><a href="#%24targetVlanId" title="$targetVlanId :: Target VLAN ID (ID in backend, will lookup on name change)"><span class="description">Target VLAN ID (ID in backend, will lookup on name change)</span><pre>$targetVlanId</pre></a></li>
+<li class="property public "><a href="#%24targetVlanName" title="$targetVlanName :: Target VLAN Name"><span class="description">Target VLAN Name</span><pre>$targetVlanName</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24clusterId" title="$clusterId :: ID of the Cluster"><span class="description">ID of the Cluster</span><pre>$clusterId</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CCluster" id="\Cluster"></a><div href="../classes/Cluster.html" class="element class">
+<p class="short_description">Cluster class, represents a Virtual Appliance on which you add/remove Virtual Machines according to the metrics</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="..//packages/auto-scaler.html">auto-scaler</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="Cluster" id="Cluster"></a><div class="element clickable method public Cluster" data-toggle="collapse" data-target=".Cluster .collapse">
+<h2>Cluster()
+        </h2>
+<pre>Cluster($id, $uid) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$uid</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="CreateCluster" id="CreateCluster"></a><div class="element clickable method public CreateCluster" data-toggle="collapse" data-target=".CreateCluster .collapse">
+<h2>Create a new cluster</h2>
+<pre>CreateCluster(string $name) : Object | bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>static</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>Name of the cluster</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Object</code><code>bool</code>Cluster object on success, false on failure</div>
+</div></div>
+</div>
+<a name="GetClusters" id="GetClusters"></a><div class="element clickable method public GetClusters" data-toggle="collapse" data-target=".GetClusters .collapse">
+<h2>Get a list of clusters on the system for the specified user</h2>
+<pre>GetClusters(int $uid) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>static</th>
+<td></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$uid</h4>
+<code>int</code><p>User ID (assumes current user if not specified)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>List of cluster records</div>
+</div></div>
+</div>
+<a name="Save" id="Save"></a><div class="element clickable method public Save" data-toggle="collapse" data-target=".Save .collapse">
+<h2>Save()
+        </h2>
+<pre>Save() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24clusterLocation" id="$clusterLocation"> </a><div class="element clickable property public $clusterLocation" data-toggle="collapse" data-target=".$clusterLocation .collapse">
+<h2>ID of the cluster location on the cloud</h2>
+<pre>$clusterLocation : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24clusterName" id="$clusterName"> </a><div class="element clickable property public $clusterName" data-toggle="collapse" data-target=".$clusterName .collapse">
+<h2>Friendly name of the cluster</h2>
+<pre>$clusterName : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24customerId" id="$customerId"> </a><div class="element clickable property public $customerId" data-toggle="collapse" data-target=".$customerId .collapse">
+<h2>UID of the user/customer</h2>
+<pre>$customerId : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24dateChanged" id="$dateChanged"> </a><div class="element clickable property public $dateChanged" data-toggle="collapse" data-target=".$dateChanged .collapse">
+<h2>Date the cluster was last changed</h2>
+<pre>$dateChanged : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24dateCreated" id="$dateCreated"> </a><div class="element clickable property public $dateCreated" data-toggle="collapse" data-target=".$dateCreated .collapse">
+<h2>Date/Time the cluster was created</h2>
+<pre>$dateCreated : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24maxServers" id="$maxServers"> </a><div class="element clickable property public $maxServers" data-toggle="collapse" data-target=".$maxServers .collapse">
+<h2>Maximum number of servers required in cluster</h2>
+<pre>$maxServers : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24minServers" id="$minServers"> </a><div class="element clickable property public $minServers" data-toggle="collapse" data-target=".$minServers .collapse">
+<h2>Minimum number of servers required in cluster</h2>
+<pre>$minServers : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24targetApplianceId" id="$targetApplianceId"> </a><div class="element clickable property public $targetApplianceId" data-toggle="collapse" data-target=".$targetApplianceId .collapse">
+<h2>Target Virtual Appliance ID</h2>
+<pre>$targetApplianceId : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24targetApplianceName" id="$targetApplianceName"> </a><div class="element clickable property public $targetApplianceName" data-toggle="collapse" data-target=".$targetApplianceName .collapse">
+<h2>Target Virtual Appliance Name</h2>
+<pre>$targetApplianceName : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24targetVdcId" id="$targetVdcId"> </a><div class="element clickable property public $targetVdcId" data-toggle="collapse" data-target=".$targetVdcId .collapse">
+<h2>ID of the VDC</h2>
+<pre>$targetVdcId : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24targetVdcName" id="$targetVdcName"> </a><div class="element clickable property public $targetVdcName" data-toggle="collapse" data-target=".$targetVdcName .collapse">
+<h2>Name of the Virtual Data Center</h2>
+<pre>$targetVdcName : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24targetVlanId" id="$targetVlanId"> </a><div class="element clickable property public $targetVlanId" data-toggle="collapse" data-target=".$targetVlanId .collapse">
+<h2>Target VLAN ID (ID in backend, will lookup on name change)</h2>
+<pre>$targetVlanId : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24targetVlanName" id="$targetVlanName"> </a><div class="element clickable property public $targetVlanName" data-toggle="collapse" data-target=".$targetVlanName .collapse">
+<h2>Target VLAN Name</h2>
+<pre>$targetVlanName : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24clusterId" id="$clusterId"> </a><div class="element clickable property private $clusterId" data-toggle="collapse" data-target=".$clusterId .collapse">
+<h2>ID of the Cluster</h2>
+<pre>$clusterId : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
+            generated on 2012-05-10T22:36:30+01:00.<br></footer></div>
+</div>
+</body>
+</html>

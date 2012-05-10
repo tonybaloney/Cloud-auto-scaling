@@ -47,6 +47,8 @@ switch ($_GET['form']){
 			$t->clusterId = $_POST['clusterId'];
 			$t->oid = $_POST['oid'];
 			$t->communityString = $_POST['communityString'];
+			$t->triggerApproval = $_POST['triggerApproval'];
+			$t->vmPrefix = $_POST['vmPrefix'];
 			$t->Save();
 			$res['success'] = true;
 			$res['msg'] = "Trigger created successfully";
@@ -66,6 +68,8 @@ switch ($_GET['form']){
 			$t->clusterId = $_POST['clusterId'];
 			$t->oid = $_POST['oid'];
 			$t->communityString = $_POST['communityString'];
+			$t->triggerApproval = $_POST['triggerApproval'];
+			$t->vmPrefix = $_POST['vmPrefix'];
 			$t->Save();
 			$res['success'] = true;
 			$res['msg'] = "Trigger modified successfully";

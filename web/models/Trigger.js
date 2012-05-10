@@ -14,7 +14,9 @@ Ext.define('Trigger', {
 		{name: 'scaleUpTime', type: 'int'}, // Time in seconds to allow for a scale-up
 		{name: 'scaleDownTime', type: 'int'}, // Time in seconds to allow for a scale-up
 		{name: 'oid', type: 'string'},
-		{name: 'communityString', type: 'string'}
+		{name: 'communityString', type: 'string'},
+		{name: 'vmPrefix', type: 'string'},
+		{name: 'triggerApproval', type: 'string'}
 	]
 });
 /*

@@ -68,5 +68,16 @@ class Log {
 		$result = DB::Sanitise($result);
 		DB::Query("INSERT INTO `tick_log` (`customerId`,`clusterId`,`triggerId`,`vmId`,`vmName`,`date`,`result`) VALUES ( $customerId, $clusterId, $triggerId, $vmId, '$vmName',NOW(), '$result')");
 	}
+	
+	/** 
+	 * Get the results in the tick log for a cluster
+	 * @param int $clusterId The ID of the cluster
+	 * @return array The tick_log rows
+	 **/
+	public static function GetTickLog ($clusterId,$triggerId){
+		$clusterId = DB::Sanitise($clusterId);
+		$triggerId = DB::Sanitise($triggerId);
+		return DB::GetData("SELECT * FROM `tick_log` WHERE `clusterId` = $clusterId AND `triggerId` = $triggerId");
+	}
 }
 ?>

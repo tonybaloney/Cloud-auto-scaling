@@ -21,6 +21,10 @@ switch ($_GET['view']){
 	case 'Log':
 		$data = Log::GetLogs();
 		break;
+	case 'TickLog':
+		if(isset($_GET['clusterId']) && isset($_GET['triggerId'])) 
+			$data = Log::GetTickLog($_GET['clusterId'],$_GET['triggerId']);
+		break;
 	case 'ErrorLog':
 		$data = Log::GetErrorLogs();
 		break;
