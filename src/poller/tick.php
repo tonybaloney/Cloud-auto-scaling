@@ -39,15 +39,20 @@ function Tick () {
 								foreach ($nets as $net) { 
 									$ip = $net['nicIP'];
 									foreach ( $triggers as $trigger ) {
-										$result = @snmpget($ip,$trigger['communityString'],$trigger['oid']);
-										if ($result !== false){
-											// Log SNMP result to the DB.
-											$result_parts = explode(' ',$result);
-											if (is_numeric($result_parts[1]))
-												Log::LogTickResult($customer['customerId'],$cluster['clusterId'],$trigger['triggerId'],$vm['vmId'],$vm['vmName'],$result_parts[1]);
-											else
-												trigger_error( "SNMP result is non-numeric, cannot track and action strings, trigger:".$trigger['triggerName'] );
-											$result_count++;
+										if(strncmp($vm['vmName'], $trigger['vmPrefix'], strlen($trigger['vmPrefix'])) == 0){
+											$result = @snmpget($ip,$trigger['communityString'],$trigger['oid']);
+											if ($result !== false){
+												// Log SNMP result to the DB.
+												$result_parts = explode(' ',$result);
+												if (is_numeric($result_parts[1]))
+													Log::LogTickResult($customer['customerId'],$cluster['clusterId'],$trigger['triggerId'],$vm['vmId'],$vm['vmName'],$result_parts[1]);
+												else
+													trigger_error( "SNMP result is non-numeric, cannot track and action strings, trigger:".$trigger['triggerName'] );
+												$result_count++;
+											}
+										} else {
+											// Ignore because this VM does not start with the vmPrefix that the trigger contains..
+											// TODO: possibly log this message for poor configuration.
 										}
 									}
 								}

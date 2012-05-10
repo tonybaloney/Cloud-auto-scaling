@@ -696,120 +696,129 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </class>
   </file>
-  <file path="ConnectorException.class.php" hash="8ce76a72b68c0652d20cdfe949afbab2" package="Default">
+  <file path="ConnectorException.class.php" hash="b082df503e9fab35238a95677f9337d0" package="auto-scaler">
+    <docblock line="2">
+      <description><![CDATA[Types of error]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="auto-scaler"/>
+    </docblock>
     <parse_markers>
-      <error line="31" code="50014">Name of argument $cloud does not match with the DocBlock's name $message in ConnectorException()</error>
-      <error line="31" code="50014">Name of argument $message does not match with the DocBlock's name $type in ConnectorException()</error>
-      <error line="31" code="50015">Argument $type is missing from the Docblock of ConnectorException()</error>
-      <error line="1" code="50007">No page-level DocBlock was found in file ConnectorException.class.php</error>
+      <error line="35" code="50014">Name of argument $cloud does not match with the DocBlock's name $message in ConnectorException()</error>
+      <error line="35" code="50014">Name of argument $message does not match with the DocBlock's name $type in ConnectorException()</error>
+      <error line="35" code="50015">Argument $type is missing from the Docblock of ConnectorException()</error>
     </parse_markers>
-    <constant namespace="default" line="2" package="Default">
+    <constant namespace="default" line="6" package="auto-scaler">
       <name>CEX_BACKEND_HTTP_FAILURE</name>
       <value><![CDATA[101]]></value>
+      <docblock line="2">
+        <description><![CDATA[Types of error]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="2" name="package" description="auto-scaler"/>
+      </docblock>
     </constant>
-    <constant namespace="default" line="3" package="Default">
+    <constant namespace="default" line="7" package="Default">
       <name>CEX_NO_BACKEND_CONFIGURED</name>
       <value><![CDATA[102]]></value>
     </constant>
-    <constant namespace="default" line="4" package="Default">
+    <constant namespace="default" line="8" package="Default">
       <name>CEX_INVALID_API_RESPONSE</name>
       <value><![CDATA[103]]></value>
     </constant>
-    <class final="false" abstract="false" namespace="default" line="9" package="auto-scaler">
+    <class final="false" abstract="false" namespace="default" line="13" package="auto-scaler">
       <name>ConnectorException</name>
       <full_name>\ConnectorException</full_name>
       <extends>\Exception</extends>
-      <docblock line="5">
+      <docblock line="9">
         <description><![CDATA[Holding exception class for errors from Cloud providers..]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="5" name="package" description="auto-scaler"/>
+        <tag line="9" name="package" description="auto-scaler"/>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="15" package="Default">
+      <property final="false" static="false" visibility="protected" line="19" package="Default">
         <name>$message</name>
         <default><![CDATA[]]></default>
-        <docblock line="10">
+        <docblock line="14">
           <description><![CDATA[Error message]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="10" name="var" description="" type="string">
+          <tag line="14" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="10" name="access" description="protected"/>
+          <tag line="14" name="access" description="protected"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="22" package="Default">
+      <property final="false" static="false" visibility="protected" line="26" package="Default">
         <name>$type</name>
         <default><![CDATA[]]></default>
-        <docblock line="17">
+        <docblock line="21">
           <description><![CDATA[Type of failure]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="17" name="var" description="" type="int">
+          <tag line="21" name="var" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="17" name="access" description="protected"/>
+          <tag line="21" name="access" description="protected"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="29" package="Default">
+      <property final="false" static="false" visibility="protected" line="33" package="Default">
         <name>$cloud</name>
         <default><![CDATA[]]></default>
-        <docblock line="24">
+        <docblock line="28">
           <description><![CDATA[Cloud that failed.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="24" name="var" description="" type="\Connector">
+          <tag line="28" name="var" description="" type="\Connector">
             <type by_reference="false">\Connector</type>
           </tag>
-          <tag line="24" name="access" description="protected"/>
+          <tag line="28" name="access" description="protected"/>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="37" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="41" package="">
         <name>ConnectorException</name>
         <type>function</type>
-        <docblock line="31">
+        <docblock line="35">
           <description><![CDATA[Create a ConnectorException]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="31" name="access" description="public"/>
-          <tag line="31" name="param" description="The text of the message" type="string" variable="$message">
+          <tag line="35" name="access" description="public"/>
+          <tag line="35" name="param" description="The text of the message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="31" name="param" description="One of the CEX exception types" type="int" variable="$type">
+          <tag line="35" name="param" description="One of the CEX exception types" type="int" variable="$type">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="37">
+        <argument line="41">
           <name>$cloud</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="37">
+        <argument line="41">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="37">
+        <argument line="41">
           <name>$type</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="48" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="52" package="">
         <name>GetConnectorErrorMessage</name>
         <type>function</type>
-        <docblock line="43">
+        <docblock line="47">
           <description><![CDATA[Get the error message]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="43" name="access" description="public"/>
-          <tag line="43" name="return" description="The text of the message" type="string">
+          <tag line="47" name="access" description="public"/>
+          <tag line="47" name="return" description="The text of the message" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="57" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="61" package="">
         <name>LogError</name>
         <type>function</type>
-        <docblock line="52">
+        <docblock line="56">
           <description><![CDATA[Log this error]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="52" name="access" description="public"/>
-          <tag line="52" name="return" description="" type="null">
+          <tag line="56" name="access" description="public"/>
+          <tag line="56" name="return" description="" type="null">
             <type by_reference="false">null</type>
           </tag>
         </docblock>
@@ -1198,187 +1207,200 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </class>
   </file>
-  <file path="Trigger.class.php" hash="5583f738590147bba827de82cd6b9a6b" package="Default">
+  <file path="Trigger.class.php" hash="19f26776f87b43b21fd39d4090387ac8" package="auto-scaler">
+    <docblock line="2">
+      <description><![CDATA[Trigger Class represents a watch (SNMP) on a cluster.]]></description>
+      <long-description><![CDATA[<p>A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling</p>]]></long-description>
+      <tag line="2" name="package" description="auto-scaler"/>
+    </docblock>
     <parse_markers>
-      <error line="4" code="50010">No DocBlock was found for method CreateTrigger()</error>
-      <error line="13" code="50010">No DocBlock was found for method GetTriggers()</error>
-      <error line="17" code="50010">No DocBlock was found for method GetTriggersForCluster()</error>
-      <error line="22" code="50018">No DocBlock was found for property $triggerId</error>
-      <error line="23" code="50018">No DocBlock was found for property $triggerName</error>
-      <error line="24" code="50018">No DocBlock was found for property $clusterId</error>
-      <error line="25" code="50018">No DocBlock was found for property $clusterName</error>
-      <error line="26" code="50018">No DocBlock was found for property $upper</error>
-      <error line="27" code="50018">No DocBlock was found for property $lower</error>
-      <error line="28" code="50018">No DocBlock was found for property $scaleDownTime</error>
-      <error line="29" code="50018">No DocBlock was found for property $scaleUpTime</error>
-      <error line="30" code="50018">No DocBlock was found for property $oid</error>
-      <error line="31" code="50018">No DocBlock was found for property $communityString</error>
-      <error line="32" code="50018">No DocBlock was found for property $vmPrefix</error>
-      <error line="33" code="50018">No DocBlock was found for property $triggerApproval</error>
-      <error line="35" code="50010">No DocBlock was found for method Trigger()</error>
-      <error line="56" code="50010">No DocBlock was found for method Save()</error>
-      <error line="3" code="50000">No DocBlock was found for Trigger</error>
-      <error line="1" code="50007">No page-level DocBlock was found in file Trigger.class.php</error>
+      <error line="8" code="50010">No DocBlock was found for method CreateTrigger()</error>
+      <error line="17" code="50010">No DocBlock was found for method GetTriggers()</error>
+      <error line="21" code="50010">No DocBlock was found for method GetTriggersForCluster()</error>
+      <error line="26" code="50018">No DocBlock was found for property $triggerId</error>
+      <error line="27" code="50018">No DocBlock was found for property $triggerName</error>
+      <error line="28" code="50018">No DocBlock was found for property $clusterId</error>
+      <error line="29" code="50018">No DocBlock was found for property $clusterName</error>
+      <error line="30" code="50018">No DocBlock was found for property $upper</error>
+      <error line="31" code="50018">No DocBlock was found for property $lower</error>
+      <error line="32" code="50018">No DocBlock was found for property $scaleDownTime</error>
+      <error line="33" code="50018">No DocBlock was found for property $scaleUpTime</error>
+      <error line="34" code="50018">No DocBlock was found for property $oid</error>
+      <error line="35" code="50018">No DocBlock was found for property $communityString</error>
+      <error line="36" code="50018">No DocBlock was found for property $vmPrefix</error>
+      <error line="37" code="50018">No DocBlock was found for property $triggerApproval</error>
+      <error line="39" code="50010">No DocBlock was found for method Trigger()</error>
+      <error line="60" code="50010">No DocBlock was found for method Save()</error>
     </parse_markers>
-    <class final="false" abstract="false" namespace="default" line="3" package="Default">
+    <class final="false" abstract="false" namespace="default" line="7" package="auto-scaler">
       <name>Trigger</name>
       <full_name>\Trigger</full_name>
       <extends/>
-      <property final="false" static="false" visibility="private" line="22" package="Default">
+      <docblock line="2">
+        <description><![CDATA[Trigger Class represents a watch (SNMP) on a cluster.]]></description>
+        <long-description><![CDATA[<p>A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling</p>]]></long-description>
+        <tag line="2" name="package" description="auto-scaler"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="26" package="Default">
         <name>$triggerId</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="23" package="Default">
+      <property final="false" static="false" visibility="public" line="27" package="Default">
         <name>$triggerName</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="24" package="Default">
+      <property final="false" static="false" visibility="public" line="28" package="Default">
         <name>$clusterId</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="25" package="Default">
+      <property final="false" static="false" visibility="public" line="29" package="Default">
         <name>$clusterName</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="26" package="Default">
+      <property final="false" static="false" visibility="public" line="30" package="Default">
         <name>$upper</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="27" package="Default">
+      <property final="false" static="false" visibility="public" line="31" package="Default">
         <name>$lower</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="28" package="Default">
+      <property final="false" static="false" visibility="public" line="32" package="Default">
         <name>$scaleDownTime</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="29" package="Default">
+      <property final="false" static="false" visibility="public" line="33" package="Default">
         <name>$scaleUpTime</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="30" package="Default">
+      <property final="false" static="false" visibility="public" line="34" package="Default">
         <name>$oid</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="31" package="Default">
+      <property final="false" static="false" visibility="public" line="35" package="Default">
         <name>$communityString</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="32" package="Default">
+      <property final="false" static="false" visibility="public" line="36" package="Default">
         <name>$vmPrefix</name>
         <default><![CDATA[]]></default>
       </property>
-      <property final="false" static="false" visibility="public" line="33" package="Default">
+      <property final="false" static="false" visibility="public" line="37" package="Default">
         <name>$triggerApproval</name>
         <default><![CDATA[]]></default>
       </property>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="4" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="8" package="">
         <name>CreateTrigger</name>
         <type>function</type>
-        <argument line="4">
+        <argument line="8">
           <name>$metric</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="4">
+        <argument line="8">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="13" package="">
-        <name>GetTriggers</name>
-        <type>function</type>
-        <argument line="13">
-          <name>$uid</name>
-          <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
       <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="17" package="">
-        <name>GetTriggersForCluster</name>
+        <name>GetTriggers</name>
         <type>function</type>
         <argument line="17">
-          <name>$clusterId</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="35" package="">
-        <name>Trigger</name>
-        <type>function</type>
-        <argument line="35">
-          <name>$id</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="35">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="56" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="21" package="">
+        <name>GetTriggersForCluster</name>
+        <type>function</type>
+        <argument line="21">
+          <name>$clusterId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="39" package="">
+        <name>Trigger</name>
+        <type>function</type>
+        <argument line="39">
+          <name>$id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$uid</name>
+          <default><![CDATA[false]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="60" package="">
         <name>Save</name>
         <type>function</type>
       </method>
     </class>
   </file>
-  <file path="ErrorLogger.php" hash="ee7e66589b7ded84824629f414bef6ba" package="Default">
+  <file path="ErrorLogger.php" hash="69ea18fe39c6281276a7ec2db2e41382" package="auto-scaler">
+    <docblock line="3">
+      <description><![CDATA[Custom error logger for PHP that tracks the errors in the database against the user that caused them]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="3" name="package" description="auto-scaler"/>
+    </docblock>
     <parse_markers>
       <error line="3" code="50015">Argument $errno is missing from the Docblock of cloudErrorHandler()</error>
       <error line="3" code="50015">Argument $errstr is missing from the Docblock of cloudErrorHandler()</error>
       <error line="3" code="50015">Argument $errfile is missing from the Docblock of cloudErrorHandler()</error>
       <error line="3" code="50015">Argument $errline is missing from the Docblock of cloudErrorHandler()</error>
-      <error line="1" code="50007">No page-level DocBlock was found in file ErrorLogger.php</error>
     </parse_markers>
-    <function namespace="default" line="6" package="Default">
+    <function namespace="default" line="7" package="auto-scaler">
       <name>cloudErrorHandler</name>
       <type>function</type>
       <docblock line="3">
         <description><![CDATA[Custom error logger for PHP that tracks the errors in the database against the user that caused them]]></description>
         <long-description><![CDATA[]]></long-description>
+        <tag line="3" name="package" description="auto-scaler"/>
       </docblock>
-      <argument line="6">
+      <argument line="7">
         <name>$errno</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="6">
+      <argument line="7">
         <name>$errstr</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="6">
+      <argument line="7">
         <name>$errfile</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="6">
+      <argument line="7">
         <name>$errline</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
     </function>
   </file>
-  <file path="DB.class.php" hash="4e6745f036ba0ff4f89cd464e37aaa99" package="auto-scale">
+  <file path="DB.class.php" hash="917ddb8d38c4b26088ae455355bf6907" package="auto-scaler">
     <docblock line="4">
       <description><![CDATA[]]></description>
       <long-description><![CDATA[]]></long-description>
-      <tag line="4" name="package" description="auto-scale"/>
+      <tag line="4" name="package" description="auto-scaler"/>
     </docblock>
     <parse_markers>
       <critical line="4" code="50005">No short description for class DB</critical>
       <critical line="4" code="50008">No short description for file DB.class.php</critical>
     </parse_markers>
-    <class final="false" abstract="false" namespace="default" line="7" package="auto-scale">
+    <class final="false" abstract="false" namespace="default" line="7" package="auto-scaler">
       <name>DB</name>
       <full_name>\DB</full_name>
       <extends/>
       <docblock line="4">
         <description><![CDATA[]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="4" name="package" description="auto-scale"/>
+        <tag line="4" name="package" description="auto-scaler"/>
       </docblock>
       <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="13" package="">
         <name>Connect</name>
@@ -1865,7 +1887,6 @@ TODO: Auth from DB.]]></description>
   </file>
   <package name="" full_name=""/>
   <package name="Default" full_name="Default"/>
-  <package name="auto-scale" full_name="auto-scale"/>
   <package name="auto-scaler" full_name="auto-scaler"/>
   <namespace name="default" full_name="default"/>
   <marker count="1">todo</marker>

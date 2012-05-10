@@ -1,5 +1,9 @@
 <?php
-
+/** 
+ * Trigger Class represents a watch (SNMP) on a cluster.
+ * A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling
+ * @package auto-scaler
+ **/
 class Trigger {
 	public static function CreateTrigger ( $metric, $clusterId ) {
 		$name = DB::Sanitise($metric);

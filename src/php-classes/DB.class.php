@@ -2,7 +2,7 @@
 // quick db class.
 
 /** 
- * @package auto-scale
+ * @package auto-scaler
  */
 class DB { 
 	/** 

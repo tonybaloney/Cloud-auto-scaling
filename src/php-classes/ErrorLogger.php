@@ -2,6 +2,7 @@
 
 /**
  * Custom error logger for PHP that tracks the errors in the database against the user that caused them
+ * @package auto-scaler
  **/
 function cloudErrorHandler ($errno, $errstr, $errfile, $errline){
 	$message= "<b>PHP ERROR</b> [$errno] $errstr<br />";

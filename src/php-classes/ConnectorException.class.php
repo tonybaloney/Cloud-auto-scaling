@@ -1,4 +1,8 @@
 <?php
+/** 
+ * Types of error
+ * @package auto-scaler
+ **/
 define ('CEX_BACKEND_HTTP_FAILURE', 101);
 define ('CEX_NO_BACKEND_CONFIGURED', 102);
 define ('CEX_INVALID_API_RESPONSE', 103);
