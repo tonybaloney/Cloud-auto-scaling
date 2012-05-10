@@ -2,7 +2,7 @@ Ext.define('Ext.app.Portal', {
 
     extend: 'Ext.container.Viewport',
 
-    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Ext.app.ChartPortlet', 'Cloud.LogPortlet'],
+    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Ext.app.ChartPortlet', 'Cloud.LogPortlet','Cloud.ErrorLogPortlet'],
 	ConfigureAPI : function (){
 		var me = Ext.data.StoreManager.lookup('CustomerStore').getAt(0);
 		var popup = new Ext.Window({
@@ -75,7 +75,9 @@ Ext.define('Ext.app.Portal', {
 								   Ext.data.StoreManager.lookup('ClusterStore').load();
 								   Ext.data.StoreManager.lookup('TriggerStore').load();
 								},
-								failure: function(form, action) {}}); 
+								failure: function(form, action) {
+									Ext.Msg.alert('Saved settings but API incorrect', action.result.msg);
+								}}); 
 							popup.hide(); 
 						}
 					}
@@ -142,7 +144,10 @@ Ext.define('Ext.app.Portal', {
                             title: 'Performance',
 							iconCls:'icon-chart',
                             items: Ext.create('Cloud.ChartPortlet')
-                        }]
+                        },{
+							title: 'Error Logs',
+							items: Ext.create('Cloud.ErrorLogPortlet') 
+						}]
                     }]
                 }]
             }]

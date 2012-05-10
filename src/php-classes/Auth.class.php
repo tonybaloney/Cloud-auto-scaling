@@ -10,6 +10,7 @@
 class Auth { 
 	/** 
 	 * Get the customerId of the logged in user
+	 * TODO: Auth from DB.
 	 * @static
 	 * @access public
 	 * @return int Customer ID number
@@ -26,6 +27,16 @@ class Auth {
 	 */
 	public static function GetMe() {
 		return DB::GetRecord("SELECT * from customers where customerId='".DB::Sanitise(Auth::GetUID())."' LIMIT 1");
+	}
+	
+	/** 
+	 * Get the details of the current logged in user
+	 * @static
+	 * @access public
+	 * @return Array Customer details
+	 */
+	public static function GetCustomer($uid) {
+		return DB::GetRecord("SELECT * from customers where customerId='".DB::Sanitise($uid)."' LIMIT 1");
 	}
 	
 	/** 
@@ -58,8 +69,14 @@ class Auth {
 		return (DB::Query($q));
 	}
 	
-	public static function GetCloudConnection () {
-		$me = Auth::GetMe();
+	/**
+	 * Get the connection to the cloud backend for this user
+	 * @access public
+	 * @return Connector The Cloud object (implements the Connector interface)
+	 **/
+	public static function GetCloudConnection ($uid=false) {
+		if(!$uid) $me = Auth::GetMe();
+		else $me = Auth::GetCustomer($uid);
 		switch ( $me['apiType'] ) {
 			case 'abiquo':
 				$cloud = new Abiquo($me['portalAPIUrl'],$me['portalUsername'],$me['portalPassword']);

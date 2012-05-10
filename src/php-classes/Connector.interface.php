@@ -31,60 +31,39 @@ interface Connector {
 	public function GetPrivateNetworks ($location);
 	
 	/**
+	 * Get a list of private networks
+	 * @param int $location Location ID
+	 * @param int $networkId Private Network ID
+	 * @return array List of private networks 
+	 * @access public
+	 **/
+	public function GetPrivateNetwork ($location, $networkId);
+	
+	/**
 	 * Get a list of VM Groups/Appliances
 	 * @param int $location Location ID
 	 * @return array List of appliances 
 	 * @access public
 	 **/
 	public function GetAppliances ($location);
-}
-
- define ('CEX_BACKEND_HTTP_FAILURE', 101);
- define ('CEX_NO_BACKEND_CONFIGURED', 102);
- define ('CEX_INVALID_API_RESPONSE', 103);
- /** 
- * Holding exception class for errors from Cloud providers..
- * @package auto-scaler
- **/
-class ConnectorException extends Exception { 
-	/** 
-	 * Error message
-	 * @var string
-	 * @access protected
-	 **/
-	protected $message ;
-	
-	/** 
-	 * Type of failure
-	 * @var int
-	 * @access protected
-	 **/
-	protected $type ; 
-	
-	/** 
-	 * Cloud that failed.
-	 * @var Connector
-	 * @access protected
-	 **/
-	protected $cloud ; 
 	
 	/**
-	 * Create a ConnectorException
+	 * Get a list of VM s
+	 * @param int $location Location ID
+	 * @param int $appliance Appliance ID
+	 * @return array List of virtual machines.
 	 * @access public
-	 * @param string $message The text of the message
-	 * @param int $type One of the CEX exception types
 	 **/
-	public function ConnectorException ($cloud, $message, $type) { 
-		$this->cloud = $cloud; $this->message = $message; $this->type = $type;
-	}
+	public function GetVirtualMachines ($location, $appliance) ;
 	
 	/**
-	 * Get the error message
+	 * Get a list of VM s
+	 * @param int $location Location ID
+	 * @param int $appliance Appliance ID
+	 * @param int $virtualMachine VM ID
+	 * @return array List of NICS.
 	 * @access public
-	 * @return string The text of the message
 	 **/
-	public function GetConnectorErrorMessage() { 
-		return "Error with message :".$this->message." and exception code ".$this->type.".";
-	}
+	public function GetVirtualMachineNetworks ($location, $appliance, $virtualMachine);
 }
 ?>

@@ -14,6 +14,7 @@
     <script type="text/javascript" src="models/Cluster.js"></script>
     <script type="text/javascript" src="models/Customer.js"></script>
 	<script type="text/javascript" src="models/Log.js"></script>
+	<script type="text/javascript" src="models/ErrorLog.js"></script>
 	<script type="text/javascript" src="models/Location.js"></script>	
 	<script type="text/javascript" src="models/PrivateNetwork.js"></script>	
 	<script type="text/javascript" src="models/VirtualAppliance.js"></script>	
@@ -21,6 +22,7 @@
     <script type="text/javascript" src="classes/TriggerPortlet.js"></script>
 	<script type="text/javascript" src="classes/ClusterPortlet.js"></script>
 	<script type="text/javascript" src="classes/LogPortlet.js"></script>
+	<script type="text/javascript" src="classes/ErrorLogPortlet.js"></script>
     <script type="text/javascript" src="classes/ChartPortlet.js"></script>
     <script type="text/javascript" src="classes/PortalColumn.js"></script>
     <script type="text/javascript" src="classes/PortalPanel.js"></script>

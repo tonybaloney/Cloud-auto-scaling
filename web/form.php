@@ -76,8 +76,20 @@ switch ($_GET['form']){
 		break;
 	case 'SaveCustomer':
 		Auth::SaveDetails($_POST['portalAPIUrl'],$_POST['portalUsername'],$_POST['portalPassword'],$_POST['apiType']);
-		$res['success'] = true;
-		$res['msg'] = 'Updated user details.';
+		try { 
+			$cloud = Auth::GetCloudConnection();
+			$result = $cloud->TestConnection();
+			if($result) {
+				$res['success'] = true;
+				$res['msg'] = 'Updated user details. Connection test to API was successful.';
+			} else { 
+				$res['success'] = false;
+				$res['msg'] = 'Could not establish connection to API';
+			}
+		} catch (ConnectorException $cex){
+			$res['success'] = false;
+			$res['msg'] = $cex->GetConnectorErrorMessage();
+		}		
 	break;
 }
 echo json_encode($res);

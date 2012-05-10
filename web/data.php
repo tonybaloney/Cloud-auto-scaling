@@ -21,6 +21,9 @@ switch ($_GET['view']){
 	case 'Log':
 		$data = Log::GetLogs();
 		break;
+	case 'ErrorLog':
+		$data = Log::GetErrorLogs();
+		break;
 	case 'Locations':
 		try { 
 			$cloud = Auth::GetCloudConnection();
@@ -30,21 +33,25 @@ switch ($_GET['view']){
 		}
 		break;
 	case 'PrivateNetworks':
-		try { 
-			$cloud = Auth::GetCloudConnection();
-			$data = $cloud->GetPrivateNetworks($_GET['location']);
-		} catch (ConnectorException $cex){
-			die ($cex->GetConnectorErrorMessage());
+		if(isset($_GET['location'])) {
+			try { 
+				$cloud = Auth::GetCloudConnection();
+				$data = $cloud->GetPrivateNetworks($_GET['location']);
+			} catch (ConnectorException $cex){
+				die ($cex->GetConnectorErrorMessage());
+			}
 		}
 		break;
 	case 'VirtualAppliances':
-		try { 
-			$cloud = Auth::GetCloudConnection();
-			$data = $cloud->GetAppliances($_GET['location']);
-		} catch (ConnectorException $cex){
-			die ($cex->GetConnectorErrorMessage());
+		if(isset($_GET['location'])) {
+			try { 
+				$cloud = Auth::GetCloudConnection();
+				$data = $cloud->GetAppliances($_GET['location']);
+			} catch (ConnectorException $cex){
+				die ($cex->GetConnectorErrorMessage());
+			}
 		}
-		break;
+		break;		
 }
 echo json_encode($data);
 ?>

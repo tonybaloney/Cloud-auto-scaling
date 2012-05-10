@@ -14,7 +14,10 @@ class Trigger {
 		if(!$uid) $uid = Auth::GetUID();
 		return DB::GetData("SELECT triggers.*, clusters.clusterName FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.customerId = $uid;");
 	}
-	
+	public static function GetTriggersForCluster($clusterId){
+		$clusterId = DB::Sanitise($clusterId);
+		return DB::GetData("SELECT triggers.*, clusters.clusterName FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.clusterId = $clusterId;");
+	}
 	// Public fields
 	private $customerId ;
 	private $triggerId;

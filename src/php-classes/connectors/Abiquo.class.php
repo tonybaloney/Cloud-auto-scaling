@@ -76,6 +76,9 @@ class Abiquo implements Connector{
 		// Login to the server
 		$this->Authenticate();
 		
+		// Get the virtual data centers page
+		$vdcs = $this->GetAbiquoVirtualDatacenters();
+		
 		// Return success or failure
 		return ($this->token);
 	}
@@ -94,7 +97,7 @@ class Abiquo implements Connector{
 			CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
 			CURLOPT_USERPWD => $this->username.':'.$this->password
 			);
-		$res = $this->HttpRequest( $this->url.'cloud/' , $opt ) ;
+		$res = $this->HttpRequest( $this->url.'cloud/virtualdatacenters' , $opt ) ;
 		
 		// TODO: Read headers to establish version.
 		$this->abiquo_version = 2; 
@@ -196,7 +199,14 @@ class Abiquo implements Connector{
 		  $a[$sxi->key()][] = $this->sxiToArray($sxi->current());
 		}
 		else{
-		  $a[$sxi->key()][] = strval($sxi->current());
+			$attr=array();
+			foreach($sxi->current()->attributes() as $key => $val) {
+				$attr[$key]=strval($val);
+			}
+			if (count($attr)>0)
+				$a[$sxi->key()][] = array_merge($attr,array('value'=>strval($sxi->current())));
+			else
+				$a[$sxi->key()][] = strval($sxi->current());
 		}
 	  }
 	  return $a;
@@ -302,6 +312,18 @@ class Abiquo implements Connector{
 	}
 	
 	/**
+	 * Get a Virtual Machine Networks in this VDC/VAPP
+	 * @param int $vdc_id ID of the Virtual Data Center
+	 * @param int $vapp_id ID of the Virtual Appliance
+	 * @param int $vm_id ID of the Virtual Machine
+	 * @return Object SimpleXML Object tree of the result
+	 * @access public
+	 */
+	public function GetAbiquoVirtualMachineNetworks($vdc_id,$vapp_id,$vm_id){
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/network/configurations",'application/vnd.abiquo.nics+xml');
+	}
+	
+	/**
 	 ** Section: Interface implementations
 	 **/
 	 
@@ -369,6 +391,77 @@ class Abiquo implements Connector{
 					'applianceId'=>$vdc['id'][0],
 					'applianceName'=>$vdc['name'][0],
 					'applianceState'=>$vdc['state'][0]
+				);
+			}
+		}
+		return $results;
+	}
+	
+	/**
+	 * Get a list of private networks
+	 * @param int $location Location ID
+	 * @param int $networkId Private Network ID
+	 * @return array List of private networks 
+	 * @access public
+	 **/
+	public function GetPrivateNetwork ($location, $networkId) {
+		$vdcs = $this->GetAbiquoPrivateNetwork($location,$networkId);
+		$results=array();
+		if (is_array($vdcs)){
+			print_r($vdcs);
+			foreach ($vdcs['network'] as $vdc) {
+				$results[] = array (
+					'networkId'=>$vdc['id'][0], 
+					'networkName' => $vdc['name'][0], 
+					'networkAddress' => $vdc['address'][0], 
+					'networkMask' => $vdc['mask'][0], 
+					'networkGateway' => $vdc['gateway'][0],
+					'networkDescription' => $vdc['name'][0]." (".$vdc['address'][0]."/".$vdc['mask'][0].")"
+				);
+			}
+		}
+		return $results;
+	}
+	
+	/**
+	 * Get a list of VM s
+	 * @param int $location Location ID
+	 * @param int $appliance Appliance ID
+	 * @return array List of virtual machines.
+	 * @access public
+	 **/
+	public function GetVirtualMachines ($location, $appliance) {
+		$vdcs = $this->GetAbiquoVirtualMachines($location,$appliance);
+		$results=array();
+		if (is_array($vdcs)){
+			foreach ($vdcs['virtualMachine'] as $vdc) {
+				$results[] = array (
+					'vmId'=>$vdc['id'][0],
+					'vmName'=>$vdc['name'][0],
+					'vmState'=>$vdc['state'][0]
+				);
+			}
+		}
+		return $results;
+	}
+	
+	/**
+	 * Get a list of VM s
+	 * @param int $location Location ID
+	 * @param int $appliance Appliance ID
+	 * @param int $virtualMachine VM ID
+	 * @return array List of NICS.
+	 * @access public
+	 **/
+	public function GetVirtualMachineNetworks ($location, $appliance, $virtualMachine){
+		$vdcs = $this->GetAbiquoVirtualMachineNetworks($location,$appliance,$virtualMachine);
+		$results=array();
+		if (is_array($vdcs)){
+			foreach ($vdcs['nic'] as $vdc) {
+				$results[] = array (
+					'nicId'=>$vdc['id'][0],
+					'nicIP'=>$vdc['ip'][0],
+					'nicMac'=>$vdc['mac'][0]
 				);
 			}
 		}
