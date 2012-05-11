@@ -16,7 +16,8 @@ Ext.define('Trigger', {
 		{name: 'oid', type: 'string'},
 		{name: 'communityString', type: 'string'},
 		{name: 'vmPrefix', type: 'string'},
-		{name: 'triggerApproval', type: 'string'}
+		{name: 'triggerApproval', type: 'string'},
+		{name: 'clusterVmCount', type: 'int'}
 	]
 });
 /*

@@ -23,7 +23,7 @@ switch ($_GET['view']){
 		break;
 	case 'TickLog':
 		if(isset($_GET['clusterId']) && isset($_GET['triggerId'])) 
-			$data = Log::GetTickLog($_GET['clusterId'],$_GET['triggerId']);
+			$data = Log::GetTickLog($_GET['clusterId'],$_GET['triggerId'],$_GET['limit']);
 		break;
 	case 'TockLog':
 		if(isset($_GET['clusterId']))

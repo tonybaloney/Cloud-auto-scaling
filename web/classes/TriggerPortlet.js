@@ -208,6 +208,11 @@ Ext.define('Cloud.TriggerPortlet', {
 					return Ext.data.StoreManager.lookup('snmpOptions').findRecord('oid',val).data.title ; 
 				}
             },{
+                text : 'VM Count',
+                flex: 1,
+                sortable : true,
+                dataIndex: 'clusterVmCount'
+            },{
                 text : 'Trigger',
                 flex: 2,
                 sortable : true,

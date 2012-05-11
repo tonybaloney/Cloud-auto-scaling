@@ -81,10 +81,11 @@ class Log {
 	 * @param int $clusterId The ID of the cluster
 	 * @return array The tick_log rows
 	 **/
-	public static function GetTickLog ($clusterId,$triggerId){
+	public static function GetTickLog ($clusterId,$triggerId,$limit){
 		$clusterId = DB::Sanitise($clusterId);
 		$triggerId = DB::Sanitise($triggerId);
-		return DB::GetData("SELECT * FROM `tick_log` WHERE `clusterId` = $clusterId AND `triggerId` = $triggerId");
+		$limit = DB::Sanitise($limit);
+		return DB::GetData("SELECT * FROM `tick_log` WHERE `clusterId` = $clusterId AND `triggerId` = $triggerId ORDER BY `date` DESC LIMIT $limit;");
 	}
 	
 	/**

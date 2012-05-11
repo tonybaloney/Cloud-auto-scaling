@@ -8,8 +8,7 @@
  * --> Triggers
  * Collect the performance data for each server in a cluster, log to the DB
  **/
-require( '../all.inc.php');
-Tick();
+
 function Tick () {
 	$customers = Auth::GetAllCustomers();
 	$result_count=0;
@@ -33,6 +32,8 @@ function Tick () {
 					// 1: Get a list of each VM in the target appliance
 					$vms = $cloud->GetVirtualMachines($location,$applianceId);
 					if (is_array($vms)){
+						$num_vms= count($vms);
+						DB::Query("UPDATE `clusters` SET `clusterVmCount` = $num_vms WHERE `clusterId`=$cluster[clusterId]");
 						foreach ($vms as $vm){
 							$nets = $cloud->GetVirtualMachineNetworks($location,$applianceId,$vm['vmId']);
 							if(is_array($nets)){

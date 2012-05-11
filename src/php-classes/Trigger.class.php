@@ -16,11 +16,11 @@ class Trigger {
 	}
 	public static function GetTriggers($uid=false){
 		if(!$uid) $uid = Auth::GetUID();
-		return DB::GetData("SELECT triggers.*, clusters.clusterName FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.customerId = $uid;");
+		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.customerId = $uid;");
 	}
 	public static function GetTriggersForCluster($clusterId){
 		$clusterId = DB::Sanitise($clusterId);
-		return DB::GetData("SELECT triggers.*, clusters.clusterName FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.clusterId = $clusterId;");
+		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.clusterId = $clusterId;");
 	}
 	// Public fields
 	private $triggerId;
@@ -71,6 +71,18 @@ class Trigger {
 			`triggerApproval`='".DB::Sanitise($this->triggerApproval)."'
 			WHERE `triggerId`=".DB::Sanitise($this->triggerId).";";
 		DB::Query($q);
+	}
+	
+	/**
+	 * Scale this trigger up or down
+	 * @access public
+	 * @param string $direction Either SCALE_UP or SCALE_DOWN
+	 **/
+	public function Scale($direction){
+		if($this->triggerApproval == 'Automatic') $approval = 'AUTO_APPROVED';
+		else $approval = 'PENDING';
+		// Create the item in tock actions.
+		DB::Query("INSERT INTO `tock_actions` (`clusterId`,`triggerId`,`action`,`approval`,`date`) VALUES (".DB::Sanitise($this->clusterId).",".DB::Sanitise($this->triggerId).",'$direction','$approval',NOW())");
 	}
 }
 ?>

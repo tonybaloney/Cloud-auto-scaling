@@ -998,7 +998,7 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </interface>
   </file>
-  <file path="Log.class.php" hash="795c4b80c55be3a06c81cab5c5961b8e" package="auto-scaler">
+  <file path="Log.class.php" hash="372186fba4dcad9a153bab78ba37fb25" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Logging class]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1014,6 +1014,7 @@ TODO: Carry XML element attributes into the structure]]></description>
       <notice line="60" code="50013">Parameter $hostname could not be found in LogTickResult()</notice>
       <notice line="60" code="50013">Parameter $message could not be found in LogTickResult()</notice>
       <error line="79" code="50015">Argument $triggerId is missing from the Docblock of GetTickLog()</error>
+      <error line="79" code="50015">Argument $limit is missing from the Docblock of GetTickLog()</error>
     </parse_markers>
     <class final="false" abstract="false" namespace="default" line="6" package="auto-scaler">
       <name>Log</name>
@@ -1226,21 +1227,26 @@ TODO: Carry XML element attributes into the structure]]></description>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
+        <argument line="84">
+          <name>$limit</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="95" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="96" package="">
         <name>GetTockLog</name>
         <type>function</type>
-        <docblock line="90">
+        <docblock line="91">
           <description><![CDATA[Get a list of tock_log actions (scale up or down)]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="90" name="param" description="the ID of the cluster" type="int" variable="$clusterId">
+          <tag line="91" name="param" description="the ID of the cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="90" name="return" description="the tock_log rows and the triggerName from triggers, newest first" type="array">
+          <tag line="91" name="return" description="the tock_log rows and the triggerName from triggers, newest first" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="95">
+        <argument line="96">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -1248,7 +1254,7 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </class>
   </file>
-  <file path="Trigger.class.php" hash="19f26776f87b43b21fd39d4090387ac8" package="auto-scaler">
+  <file path="Trigger.class.php" hash="f52706cffa56033e58d4a0e528a48315" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Trigger Class represents a watch (SNMP) on a cluster.]]></description>
       <long-description><![CDATA[<p>A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling</p>]]></long-description>
@@ -1379,6 +1385,23 @@ TODO: Carry XML element attributes into the structure]]></description>
       <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="60" package="">
         <name>Save</name>
         <type>function</type>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="81" package="">
+        <name>Scale</name>
+        <type>function</type>
+        <docblock line="76">
+          <description><![CDATA[Scale this trigger up or down]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="access" description="public"/>
+          <tag line="76" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$direction</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
       </method>
     </class>
   </file>
