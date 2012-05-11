@@ -24,18 +24,7 @@ Ext.define('Cloud.ChartPortlet', {
                 xtype: 'chart',
                 animate: false,
                 shadow: false,
-                store: Ext.create('Ext.data.JsonStore', {
-                    fields: ['tl_id', 'result'],
-                    proxy: {
-						type: 'ajax',
-						url : 'data.php?view=TickLog&clusterId=1&triggerId=3',
-						reader: {
-							type: 'json',
-							root: 'logs'
-						}
-					},
-					autoLoad: true
-                }),
+                store: 'TickLogStore',
                 legend: {
                     position: 'bottom'
                 },
@@ -62,7 +51,32 @@ Ext.define('Cloud.ChartPortlet', {
                         'stroke-width': 1
                     }
                 }]
-            }
+            },
+			dockedItems: [{
+                xtype: 'toolbar',
+                items: [{
+                    text: 'Trigger',
+					xtype:'combo',
+                    scope: this,
+                    handler: this.CreateTrigger,
+					store: 'TriggerStore',
+					listeners: {
+						'select': function(a,b){
+							Ext.data.StoreManager.lookup('TickLogStore').load({
+							params: {
+								clusterId: b[0].data.clusterId,
+								triggerId: b[0].data.triggerId
+							}
+							});
+						}
+					},
+					displayField: 'triggerName',
+					valueField: 'triggerId',
+					queryMode: 'local',
+					typeAhead: true
+				}
+				]
+            }]
         });
 
         this.callParent(arguments);

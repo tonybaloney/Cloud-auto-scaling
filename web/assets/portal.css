@@ -63,3 +63,10 @@
 .icon-edit-trigger { background-image:url('edit-trigger.png'); !important}
 .icon-delete-trigger { background-image:url('delete-trigger.png'); !important}
 .icon-configure { background-image:url('configure.png'); !important}
+.icon-tock-logs { background-image:url('tock_logs.png'); !important}
+.icon-approve { background-image:url('action_approve.png'); !important}
+.icon-decline { background-image:url('action_decline.png'); !important}
+.icon-error-logs { background-image:url('error_log.png'); !important}
+.icon-refresh { background-image:url('refresh.png'); !important}
+.icon-error-logs { background-image:url('error_log.png'); !important}
+.x-cust-mask div{padding:5px 10px 5px 25px;background-image:url('error_log.png');background-repeat:no-repeat;background-position:5px center;cursor:wait;border:1px solid #a3bad9;background-color:#eeeeee;color:#222222;font:normal 11px tahoma, arial, verdana, sans-serif}

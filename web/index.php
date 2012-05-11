@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css" />
     <link rel="stylesheet" type="text/css" href="assets/portal.css" />
 
-    <script type="text/javascript" src="extjs/ext-all.js"></script>
+    <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
     
     <!-- MVC Views and Models -->
     <script type="text/javascript" src="models/Trigger.js"></script>
@@ -15,6 +15,8 @@
     <script type="text/javascript" src="models/Customer.js"></script>
 	<script type="text/javascript" src="models/Log.js"></script>
 	<script type="text/javascript" src="models/ErrorLog.js"></script>
+	<script type="text/javascript" src="models/TockLog.js"></script>
+	<script type="text/javascript" src="models/TickLog.js"></script>
 	<script type="text/javascript" src="models/Location.js"></script>	
 	<script type="text/javascript" src="models/PrivateNetwork.js"></script>	
 	<script type="text/javascript" src="models/VirtualAppliance.js"></script>	
@@ -22,6 +24,7 @@
     <script type="text/javascript" src="classes/TriggerPortlet.js"></script>
 	<script type="text/javascript" src="classes/ClusterPortlet.js"></script>
 	<script type="text/javascript" src="classes/LogPortlet.js"></script>
+	<script type="text/javascript" src="classes/TickLogPortlet.js"></script>
 	<script type="text/javascript" src="classes/ErrorLogPortlet.js"></script>
     <script type="text/javascript" src="classes/ChartPortlet.js"></script>
     <script type="text/javascript" src="classes/PortalColumn.js"></script>
@@ -33,6 +36,9 @@
     <script type="text/javascript">
         Ext.onReady(function(){
             Ext.create('Ext.app.Portal');
+			Ext.get('tock-logs').mask("Select a cluster.","x-cust-mask");
+			Ext.get('trigger-grid').mask("Select a cluster.","x-cust-mask");
+			Ext.get('tick-logs').mask("Select a trigger.","x-cust-mask");
         });
     </script>
 </head>

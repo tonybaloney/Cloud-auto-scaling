@@ -7,8 +7,8 @@ Ext.define('Cloud.TriggerPortlet', {
 	CreateTrigger : function (sender,event,triggerRecord/* If record is given this is an edit not a create */)	{
 		var popup = new Ext.Window({	
 			layout:'fit',
-			width:320,
-			height:548,
+			width:560,
+			height:306,
 			closeAction:'hide',
 			plain: true,
 			resizable:true,
@@ -18,8 +18,9 @@ Ext.define('Cloud.TriggerPortlet', {
 				xtype:'form',
 				url:(triggerRecord?'form.php?form=SaveTrigger':'form.php?form=AddTrigger'),
 				layout: {
-					type: 'vbox',
-					align: 'stretch'
+					type: 'hbox',
+					align: 'stretch',
+					border:false
 				},
 				border: false,
 				bodyPadding: 10,
@@ -29,92 +30,104 @@ Ext.define('Cloud.TriggerPortlet', {
 					labelStyle: 'font-weight:bold'
 				},
 				defaults: {
-					margins: '0 0 10 0'
+					border: false,
+					xtype: 'panel',
+					flex: 1,
+					layout: 'anchor'
 				},
-				items: [
-					{
-						xtype:'combo',
-						name:'clusterId',
-						fieldLabel: 'Cluster Name',
-						displayField: 'clusterName',
-						valueField: 'clusterId',
-						value: (triggerRecord?triggerRecord.data.clusterId:null),
-						store: 'ClusterStore',
-						queryMode: 'local',
-						typeAhead: true,
-						allowBlank: false
-					},
-					{
-						xtype:'hiddenfield',
-						name: 'triggerId',
-						value: (triggerRecord?triggerRecord.data.triggerId:null)
-					},
-					{
-						xtype:'textfield',
-						name:'triggerName',
-						fieldLabel: 'Trigger Name',
-						value: (triggerRecord?triggerRecord.data.triggerName:'cpu'),
-						allowBlank: false
-					},
-					{
-						xtype:'numberfield',
-						name:'lower',
-						value: (triggerRecord?triggerRecord.data.lower:0),
-						fieldLabel: 'Lower Limit',
-						allowBlank: false
-					},
-					{
-						xtype:'numberfield',
-						name:'upper',
-						value: (triggerRecord?triggerRecord.data.upper:0),
-						fieldLabel: 'Upper Limit',
-						allowBlank: false
-					},
-					{
-						xtype:'numberfield',
-						name:'scaleUpTime',
-						value: (triggerRecord?triggerRecord.data.scaleUpTime:120),
-						fieldLabel: 'Scale Up Time (sec)',
-						allowBlank: false
-					},
-					{
-						xtype:'numberfield',
-						name:'scaleDownTime',
-						value: (triggerRecord?triggerRecord.data.scaleDownTime:120),
-						fieldLabel: 'Scale Down Time (sec)',
-						allowBlank: false
-					},{
-						xtype:'combo',
-						name:'oid',
-						fieldLabel: 'SNMP OID',
-						value: (triggerRecord?triggerRecord.data.oid:'1.1.1.1.1'),
-						displayField:'title',
-						valueField:'oid',
-						store: 'snmpOptions',
-						queryMode: 'local',
-						typeAhead: true,
-						allowBlank: false
-					},{
-						xtype:'textfield',
-						name:'communityString',
-						fieldLabel: 'SNMP Community String',
-						value: (triggerRecord?triggerRecord.data.communityString:'public'),
-						allowBlank: false
-					},{
-						xtype:'textfield',
-						name:'vmPrefix',
-						fieldLabel: 'VM Prefix',
-						value: (triggerRecord?triggerRecord.data.vmPrefix:'ABQ_'),
-						allowBlank: false
-					},{
-						xtype:'combo',
-						name:'triggerApproval',
-						fieldLabel: 'Approval',
-						value: (triggerRecord?triggerRecord.data.triggerApproval:'Manual'),
-						store: ['Manual','Automatic'],
-						allowBlank: false
-					}
-				],
+				items: [{
+					border: false,
+					items:[
+						{
+							xtype:'combo',
+							name:'clusterId',
+							fieldLabel: 'Cluster Name',
+							displayField: 'clusterName',
+							valueField: 'clusterId',
+							value: (triggerRecord?triggerRecord.data.clusterId:null),
+							store: 'ClusterStore',
+							queryMode: 'local',
+							typeAhead: true,
+							allowBlank: false
+						},
+						{
+							xtype:'hiddenfield',
+							name: 'triggerId',
+							value: (triggerRecord?triggerRecord.data.triggerId:null)
+						},
+						{
+							xtype:'textfield',
+							name:'triggerName',
+							fieldLabel: 'Trigger Name',
+							value: (triggerRecord?triggerRecord.data.triggerName:'cpu'),
+							allowBlank: false
+						}
+					]},{
+					border: false,
+					items:[
+						{
+							xtype:'numberfield',
+							name:'lower',
+							value: (triggerRecord?triggerRecord.data.lower:0),
+							fieldLabel: 'Lower Limit',
+							allowBlank: false
+						},
+						{
+							xtype:'numberfield',
+							name:'upper',
+							value: (triggerRecord?triggerRecord.data.upper:0),
+							fieldLabel: 'Upper Limit',
+							allowBlank: false
+						},
+						{
+							xtype:'numberfield',
+							name:'scaleUpTime',
+							value: (triggerRecord?triggerRecord.data.scaleUpTime:120),
+							fieldLabel: 'Scale Up Time (sec)',
+							allowBlank: false
+						},
+						{
+							xtype:'numberfield',
+							name:'scaleDownTime',
+							value: (triggerRecord?triggerRecord.data.scaleDownTime:120),
+							fieldLabel: 'Scale Down Time (sec)',
+							allowBlank: false
+						}
+					]},{
+					border: false,
+					items:[{
+							xtype:'combo',
+							name:'oid',
+							fieldLabel: 'SNMP OID',
+							value: (triggerRecord?triggerRecord.data.oid:'1.1.1.1.1'),
+							displayField:'title',
+							valueField:'oid',
+							store: 'snmpOptions',
+							queryMode: 'local',
+							typeAhead: true,
+							allowBlank: false
+						},{
+							xtype:'textfield',
+							name:'communityString',
+							fieldLabel: 'SNMP Community String',
+							value: (triggerRecord?triggerRecord.data.communityString:'public'),
+							allowBlank: false
+						},{
+							xtype:'textfield',
+							name:'vmPrefix',
+							fieldLabel: 'VM Prefix',
+							value: (triggerRecord?triggerRecord.data.vmPrefix:'ABQ_'),
+							allowBlank: false
+						},{
+							xtype:'combo',
+							name:'triggerApproval',
+							fieldLabel: 'Approval',
+							value: (triggerRecord?triggerRecord.data.triggerApproval:'Manual'),
+							store: ['Manual','Automatic'],
+							allowBlank: false
+						}
+					]
+				}],
 				buttons: [
 					{ text:(triggerRecord?'Save Trigger':'Create Trigger'), handler: function(){
 							this.up('form').getForm().submit({
@@ -167,6 +180,19 @@ Ext.define('Cloud.TriggerPortlet', {
             store: 'TriggerStore',
             stripeRows: true,
             columnLines: true,
+			listeners: {
+				'select': function(a,b){
+					Ext.data.StoreManager.lookup('TickLogStore').load({
+						params: {
+							clusterId: b.data.clusterId,
+							triggerId: b.data.triggerId
+						}
+					});
+					Ext.getCmp('DeleteTrigger').enable();
+					Ext.getCmp('ConfigureTrigger').enable();
+					Ext.get('tick-logs').unmask();
+				}
+			},
             columns: [
 			{
                 text : 'Cluster',
@@ -206,18 +232,22 @@ Ext.define('Cloud.TriggerPortlet', {
 					iconCls:'icon-add-trigger'
                 }, {
                     text: 'Delete',
+					id:'DeleteTrigger',
+					disabled:true,
                     scope: this,
                     handler: this.onDeleteClick,
 					iconCls:'icon-delete-trigger'
                 },
 				{
 					text: 'Configure',
+					id:'ConfigureTrigger',
+					disabled:true,
 					scope:this,
 					handler: function () { 
 						this.CreateTrigger(this,null,(this.selModel.selected.length>0?this.selModel.selected.items[0]:null)) ;
 					},
 					iconCls:'icon-edit-trigger'
-				}
+				},{xtype:'tbfill'}
 				]
             }]
         });

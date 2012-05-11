@@ -1,27 +1,27 @@
 /*
  * Define the data set for the Log class, reflects the view in the DB.
- * @package auto-scaler
  */
-Ext.define('Log', {
+Ext.define('TockLog', {
 	extend: 'Ext.data.Model',
 	fields: [
 		{name: 'customerId', type: 'int'}, // Customer UID
 		{name: 'clusterId', type: 'int'}, // cluster ID
-		{name: 'clusterName', type: 'string'},
 		{name: 'triggerName', type: 'string'},
 		{name: 'triggerId', type: 'int'}, //trigger
-		{name: 'message', type: 'string'} //Message of the 
+		{name: 'action', type: 'string'}, //Message of the 
+		{name: 'approval', type: 'string'},
+		{name: 'date', type: 'string'}
 	]
 });
 /*
  * Create a store to load the data from the DB, should only show this customer UID.
  */
 Ext.create('Ext.data.Store', {
-	model: 'Log',
-	storeId : 'LogStore',
+	model: 'TockLog',
+	storeId : 'TockLogStore',
 	proxy: {
 		type: 'ajax',
-		url : 'data.php?view=Log',
+		url : 'data.php?view=TockLog',
 		reader: {
 			type: 'json',
 			root: 'logs'

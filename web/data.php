@@ -25,8 +25,14 @@ switch ($_GET['view']){
 		if(isset($_GET['clusterId']) && isset($_GET['triggerId'])) 
 			$data = Log::GetTickLog($_GET['clusterId'],$_GET['triggerId']);
 		break;
+	case 'TockLog':
+		if(isset($_GET['clusterId']))
+			$data = Log::GetTockLog($_GET['clusterId']);
+		break;
 	case 'ErrorLog':
-		$data = Log::GetErrorLogs();
+		$data['logs'] = Log::GetErrorLogs(false,$_GET['start'],$_GET['limit']);
+		$limit=Log::GetErrorLogsLimit();
+		$data['total'] = $limit['total'];
 		break;
 	case 'Locations':
 		try { 

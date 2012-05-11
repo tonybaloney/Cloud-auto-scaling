@@ -21,9 +21,16 @@ class Log {
 	 * @param int Customer ID
 	 * @return array The log entries
 	 **/
-	public static function GetErrorLogs( $uid=false ) {
+	public static function GetErrorLogs( $uid=false,$start=0,$limit=0 ) {
 		if(!$uid) $uid = Auth::GetUID();
-		return DB::GetData("SELECT `error_log`.* FROM `error_log` WHERE `error_log`.`customerId` = $uid ORDER BY `date` DESC");
+		$start=DB::Sanitise($start);
+		$limit=DB::Sanitise($limit);
+		return DB::GetData("SELECT `error_log`.* FROM `error_log` WHERE `error_log`.`customerId` = $uid ORDER BY `date` DESC LIMIT $start,$limit");
+	}
+	
+	public static function GetErrorLogsLimit($uid=false){
+		if(!$uid) $uid = Auth::GetUID();
+		return DB::GetRecord("SELECT COUNT(1) AS `total` FROM `error_log` WHERE `error_log`.`customerId` = $uid ORDER BY `date` DESC");
 	}
 	
 	/** 
@@ -78,6 +85,16 @@ class Log {
 		$clusterId = DB::Sanitise($clusterId);
 		$triggerId = DB::Sanitise($triggerId);
 		return DB::GetData("SELECT * FROM `tick_log` WHERE `clusterId` = $clusterId AND `triggerId` = $triggerId");
+	}
+	
+	/**
+	 * Get a list of tock_log actions (scale up or down)
+	 * @param int $clusterId the ID of the cluster
+	 * @return array the tock_log rows and the triggerName from triggers, newest first
+	 **/
+	public static function GetTockLog ($clusterId) {
+		$clusterId = DB::Sanitise($clusterId);
+		return DB::GetData("select `tock_actions`.*,`triggers`.`triggerName` from tock_actions INNER JOIN triggers ON tock_actions.triggerId = triggers.triggerId WHERE `tock_actions`.`clusterId` = $clusterId ORDER BY `tock_actions`.`date` DESC;");
 	}
 }
 ?>

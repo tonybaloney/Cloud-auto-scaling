@@ -998,19 +998,22 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </interface>
   </file>
-  <file path="Log.class.php" hash="86f8f4f28d2a8b3246c55cd87a191617" package="auto-scaler">
+  <file path="Log.class.php" hash="795c4b80c55be3a06c81cab5c5961b8e" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Logging class]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
     <parse_markers>
-      <error line="53" code="50014">Name of argument $vmId does not match with the DocBlock's name $hostname in LogTickResult()</error>
-      <error line="53" code="50014">Name of argument $vmName does not match with the DocBlock's name $message in LogTickResult()</error>
-      <error line="53" code="50015">Argument $result is missing from the Docblock of LogTickResult()</error>
-      <notice line="53" code="50013">Parameter $hostname could not be found in LogTickResult()</notice>
-      <notice line="53" code="50013">Parameter $message could not be found in LogTickResult()</notice>
-      <error line="72" code="50015">Argument $triggerId is missing from the Docblock of GetTickLog()</error>
+      <error line="18" code="50015">Argument $start is missing from the Docblock of GetErrorLogs()</error>
+      <error line="18" code="50015">Argument $limit is missing from the Docblock of GetErrorLogs()</error>
+      <error line="31" code="50010">No DocBlock was found for method GetErrorLogsLimit()</error>
+      <error line="60" code="50014">Name of argument $vmId does not match with the DocBlock's name $hostname in LogTickResult()</error>
+      <error line="60" code="50014">Name of argument $vmName does not match with the DocBlock's name $message in LogTickResult()</error>
+      <error line="60" code="50015">Argument $result is missing from the Docblock of LogTickResult()</error>
+      <notice line="60" code="50013">Parameter $hostname could not be found in LogTickResult()</notice>
+      <notice line="60" code="50013">Parameter $message could not be found in LogTickResult()</notice>
+      <error line="79" code="50015">Argument $triggerId is missing from the Docblock of GetTickLog()</error>
     </parse_markers>
     <class final="false" abstract="false" namespace="default" line="6" package="auto-scaler">
       <name>Log</name>
@@ -1060,147 +1063,185 @@ TODO: Carry XML element attributes into the structure]]></description>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
+        <argument line="24">
+          <name>$start</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+        <argument line="24">
+          <name>$limit</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="37" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="31" package="">
+        <name>GetErrorLogsLimit</name>
+        <type>function</type>
+        <argument line="31">
+          <name>$uid</name>
+          <default><![CDATA[false]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="44" package="">
         <name>LogTriggerError</name>
         <type>function</type>
-        <docblock line="29">
+        <docblock line="36">
           <description><![CDATA[Log an error in the trigger log]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="29" name="access" description="public"/>
-          <tag line="29" name="param" description="The customer" type="int" variable="$customerId">
+          <tag line="36" name="access" description="public"/>
+          <tag line="36" name="param" description="The customer" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="29" name="param" description="The cluster" type="int" variable="$clusterId">
+          <tag line="36" name="param" description="The cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="29" name="param" description="The trigger" type="int" variable="$triggerId">
+          <tag line="36" name="param" description="The trigger" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="29" name="param" description="Error message" type="string" variable="$message">
+          <tag line="36" name="param" description="Error message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="37">
+        <argument line="44">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="37">
+        <argument line="44">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="37">
+        <argument line="44">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="37">
+        <argument line="44">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="47" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="54" package="">
         <name>LogCustomerError</name>
         <type>function</type>
-        <docblock line="41">
+        <docblock line="48">
           <description><![CDATA[Log an error in the customer generic log]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="41" name="access" description="public"/>
-          <tag line="41" name="param" description="The customer" type="int" variable="$customerId">
+          <tag line="48" name="access" description="public"/>
+          <tag line="48" name="param" description="The customer" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="41" name="param" description="Error message" type="string" variable="$message">
+          <tag line="48" name="param" description="Error message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="47">
+        <argument line="54">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="47">
+        <argument line="54">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="62" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="69" package="">
         <name>LogTickResult</name>
         <type>function</type>
-        <docblock line="53">
+        <docblock line="60">
           <description><![CDATA[Log an SNMP result in the tick_log table]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="53" name="access" description="public"/>
-          <tag line="53" name="param" description="The customer" type="int" variable="$customerId">
+          <tag line="60" name="access" description="public"/>
+          <tag line="60" name="param" description="The customer" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="53" name="param" description="The target cluster" type="int" variable="$clusterId">
+          <tag line="60" name="param" description="The target cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="53" name="param" description="The target trigger" type="int" variable="$triggerId">
+          <tag line="60" name="param" description="The target trigger" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="53" name="param" description="The target Virtual Machine Name" type="string" variable="$hostname">
+          <tag line="60" name="param" description="The target Virtual Machine Name" type="string" variable="$hostname">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="53" name="param" description="Error message" type="string" variable="$message">
+          <tag line="60" name="param" description="Error message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="62">
+        <argument line="69">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="69">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="69">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="69">
           <name>$vmId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="69">
           <name>$vmName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="69">
           <name>$result</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="77" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="84" package="">
         <name>GetTickLog</name>
         <type>function</type>
-        <docblock line="72">
+        <docblock line="79">
           <description><![CDATA[Get the results in the tick log for a cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="72" name="param" description="The ID of the cluster" type="int" variable="$clusterId">
+          <tag line="79" name="param" description="The ID of the cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="72" name="return" description="The tick_log rows" type="array">
+          <tag line="79" name="return" description="The tick_log rows" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="77">
+        <argument line="84">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="77">
+        <argument line="84">
           <name>$triggerId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="95" package="">
+        <name>GetTockLog</name>
+        <type>function</type>
+        <docblock line="90">
+          <description><![CDATA[Get a list of tock_log actions (scale up or down)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="90" name="param" description="the ID of the cluster" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="90" name="return" description="the tock_log rows and the triggerName from triggers, newest first" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="95">
+          <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>

@@ -33,5 +33,5 @@ Ext.create('Ext.data.Store', {
 			root: 'triggers'
 		}
 	},
-	autoLoad: true
+	autoLoad: false
 });

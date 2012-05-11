@@ -20,7 +20,8 @@ Ext.create('Ext.data.Store', {
 		url : 'data.php?view=ErrorLog',
 		reader: {
 			type: 'json',
-			root: 'logs'
+			root: 'logs',
+			totalProperty:'total'
 		}
 	},
 	autoLoad: true

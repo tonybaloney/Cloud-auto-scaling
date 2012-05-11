@@ -159,6 +159,27 @@ Ext.define('Cloud.ClusterPortlet', {
             columnLines: true,
 			border: false,
 			flex:1,
+			listeners: {
+				'select' : function (a,b,c){
+					if (b.data && b.data.clusterId){
+						// Load the stores..
+						Ext.data.StoreManager.lookup('TriggerStore').load({
+							params: {
+								clusterId: b.data.clusterId
+								}
+						});
+						Ext.get('tock-logs').unmask();
+						Ext.get('trigger-grid').unmask();
+						Ext.data.StoreManager.lookup('TockLogStore').load({
+							params: {
+								clusterId: b.data.clusterId
+								}
+						});
+					}
+					Ext.getCmp('DeleteCluster').enable();
+					Ext.getCmp('ConfigureCluster').enable();
+				}	
+			},
             columns: [{
                 id :'cluster',
                 text : 'Cluster',
@@ -176,12 +197,16 @@ Ext.define('Cloud.ClusterPortlet', {
 					iconCls:'icon-add-cluster'
                 },{
                     text: 'Delete',
+					id:'DeleteCluster',
+					disabled:true,
                     scope: this,
                     handler: this.onDeleteClick,
 					iconCls:'icon-delete-cluster'
 					
                 },{
                     text: 'Configure',
+					id:'ConfigureCluster',
+					disabled:true,
                     scope: this,
                     handler: function(){ 
 						this.CreateCluster(this,null,(this.selModel.selected.length>0?this.selModel.selected.items[0]:null)) ;

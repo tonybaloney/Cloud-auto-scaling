@@ -2,7 +2,7 @@ Ext.define('Ext.app.Portal', {
 
     extend: 'Ext.container.Viewport',
 
-    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Ext.app.ChartPortlet', 'Cloud.LogPortlet','Cloud.ErrorLogPortlet'],
+    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Ext.app.TickLogPortlet', 'Cloud.TockLogPortlet','Cloud.ErrorLogPortlet'],
 	ConfigureAPI : function (){
 		var me = Ext.data.StoreManager.lookup('CustomerStore').getAt(0);
 		var popup = new Ext.Window({
@@ -134,18 +134,23 @@ Ext.define('Ext.app.Portal', {
                         items: [{
                             title: 'Triggers',
 							iconCls:'icon-trigger',
+							id:'trigger-grid',
                             items: Ext.create('Cloud.TriggerPortlet')
                         },{
-							title: 'Logs',
-							items: Ext.create('Cloud.LogPortlet') 
+							title: 'Tock Logs (Scaling actions)',
+							iconCls: 'icon-tock-logs',
+							id: 'tock-logs',
+							items: Ext.create('Cloud.TockLogPortlet') 
 						}]
                     },{
                         items: [{
-                            title: 'Performance',
+                            title: 'Tick Logs (Trigger results)',
 							iconCls:'icon-chart',
-                            items: Ext.create('Cloud.ChartPortlet')
+							id:'tick-logs',
+                            items: Ext.create('Cloud.TickLogPortlet')
                         },{
 							title: 'Error Logs',
+							iconCls:'icon-error-logs',
 							items: Ext.create('Cloud.ErrorLogPortlet') 
 						}]
                     }]
