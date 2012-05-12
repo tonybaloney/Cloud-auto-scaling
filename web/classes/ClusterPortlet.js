@@ -124,6 +124,13 @@ Ext.define('Cloud.ClusterPortlet', {
 						queryMode: 'local',
 						typeAhead: true,
 						allowBlank: false
+					},
+					{
+						xtype:'textfield', 
+						name:'clusterEmailAlerts',
+						fieldLabel:'Alert Email',
+						allowBlank:true,
+						value: (clusterRecord?clusterRecord.data.clusterEmailAlerts:'')
 					}
 				],
 				buttons: [

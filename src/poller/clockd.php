@@ -18,6 +18,13 @@ while (1==1){
 			sleep(5);
 	}
 	Tock();
+	$res = DB::GetRecords( "SELECT `tock_actions`.*,`clusters`.`customerId` FROM `tock_actions` INNER JOIN `clusters` ON `tock_actions`.`clusterId` = `clusters`.`clusterId` WHERE `approval` IN ('APPROVED','AUTO_APPROVED')");
+	foreach ($res as $action){
+		$id = $action['ta_id'];
+		Alerts::ClusterChangeAlert($action['customerId'],$action['clusterId'],$action['triggerId']);
+		$trigger = new Trigger ($action['triggerId'],$action['customerId']);
+		$trigger->CompleteScale($action['action']);
+	}
 }
 
 

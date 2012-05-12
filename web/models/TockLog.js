@@ -4,6 +4,7 @@
 Ext.define('TockLog', {
 	extend: 'Ext.data.Model',
 	fields: [
+		{nane: 'ta_id', type: 'int'}, //Tock log id
 		{name: 'customerId', type: 'int'}, // Customer UID
 		{name: 'clusterId', type: 'int'}, // cluster ID
 		{name: 'triggerName', type: 'string'},

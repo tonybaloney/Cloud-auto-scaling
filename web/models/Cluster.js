@@ -15,7 +15,8 @@ Ext.define('Cluster', {
 		{name: 'targetApplianceId', type: 'int'}, // Target Virtual Appliance ID, 
 		{name: 'targetApplianceName', type: 'string'}, // Target Virtual Appliance Name
 		{name: 'dateCreated', type: 'string'}, // Date the cluster was created 
-		{name: 'dateChanged', type: 'string'} // Date the cluster was last changed.
+		{name: 'dateChanged', type: 'string'}, // Date the cluster was last changed.
+		{name: 'clusterEmailAlerts', type: 'string'} // Email to send alerts to
 	]
 });
 /*

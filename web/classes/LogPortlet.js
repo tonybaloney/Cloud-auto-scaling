@@ -3,10 +3,34 @@
  */
 Ext.define('Cloud.TockLogPortlet', {
 	ApproveTockAction: function (sender,event){
-	
+		var b=sender.ownerCt.ownerCt.selModel.getSelection();
+		var id = b[0].raw.ta_id;
+		Ext.Ajax.request({
+			url: 'form.php',
+			params: {
+				form:'ApproveTock',
+				ta_id:id
+			},
+			success: function(response){
+				var text = response.responseText;
+				// process server response here
+			}
+		});
 	},
 	DeclineTockAction: function (sender,event){
-		
+		var b=sender.ownerCt.ownerCt.selModel.getSelection();
+		var id = b[0].raw.ta_id;
+		Ext.Ajax.request({
+			url: 'form.php',
+			params: {
+				form:'DeclineTock',
+				ta_id:id
+			},
+			success: function(response){
+				var text = response.responseText;
+				// process server response here
+			}
+		});
 	},
     extend: 'Ext.grid.Panel',
     height: 300,
@@ -17,9 +41,14 @@ Ext.define('Cloud.TockLogPortlet', {
             stripeRows: true,
             columnLines: true,
 			listeners: {
-				'select': function(){
-					Ext.getCmp('ApproveButton').enable();
-					Ext.getCmp('DeclineButton').enable();
+				'select': function(sender,selected){
+					if( selected.data.approval == 'PENDING') { 
+						Ext.getCmp('ApproveButton').enable();
+						Ext.getCmp('DeclineButton').enable();
+					} else { 
+						Ext.getCmp('ApproveButton').disable();
+						Ext.getCmp('DeclineButton').disable();					
+					}
 				}
 			},
             columns: [{
@@ -49,14 +78,12 @@ Ext.define('Cloud.TockLogPortlet', {
                     text: 'Approve',
 					id:'ApproveButton',
 					disabled:true,
-                    scope: this,
                     handler: this.ApproveTockAction,
 					iconCls:'icon-approve'
                 },{
                     text: 'Decline',
 					id:'DeclineButton',
 					disabled:true,
-                    scope: this,
                     handler: this.DeclineTockAction,
 					iconCls:'icon-decline'
                 }

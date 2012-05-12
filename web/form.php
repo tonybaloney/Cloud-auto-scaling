@@ -12,6 +12,14 @@ include ('../src/all.inc.php');
 $res = array( 'success'=>false,'msg'=>'Message not understood');
 
 switch ($_GET['form']){
+	case 'ApproveTock':
+		$ta_id = $_POST['id'];
+		Trigger::ModifyTockAction($ta_id,'APPROVED');
+		break;
+	case 'DeclineTock':
+		$ta_id = $_POST['id'];
+		Trigger::ModifyTockAction($ta_id,'DECLINED');
+		break;
 	case 'AddCluster':
 		Cluster::CreateCluster($_POST['clusterName']);
 		$res['success'] = true;
@@ -26,9 +34,8 @@ switch ($_GET['form']){
 			$cluster->minServers=$_POST['minServers'];
 			$cluster->maxServers=$_POST['maxServers'];
 			$cluster->targetVlanId=$_POST['targetVlanId'];
-			$cluster->targetVlanName=$_POST['targetVlanName'];
 			$cluster->targetApplianceId=$_POST['targetApplianceId'];
-			$cluster->targetApplianceName=$_POST['targetApplianceName'];
+			$cluster->clusterEmailAlerts=$_POST['clusterEmailAlerts'];
 			$cluster->Save();
 			$res['success'] = true;
 			$res['msg'] = "Cluster modified successfully";

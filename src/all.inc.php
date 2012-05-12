@@ -12,4 +12,5 @@ include ( 'php-classes/Cluster.class.php');
 include ( 'php-classes/Trigger.class.php');
 include ( 'php-classes/Log.class.php');
 include ( 'php-classes/ErrorLogger.php');
+include ( 'php-classes/Alerts.class.php');
 ?>

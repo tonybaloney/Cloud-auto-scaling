@@ -135,6 +135,20 @@ class Cluster {
 	 */	
 	public $dateChanged; 
 	
+	/** 
+	 * E-mail address(es) to send alerts to, seperated by a semicolon
+	 * @var string
+	 * @access public
+	 **/
+	public $clusterEmailAlerts; 
+	 
+	/**
+	 * Create a cluster object from the DB
+	 * @param int $id The ID of the cluster
+	 * @param int $uid limit to a specific user ID
+	 * @access public
+	 * @return object the cluster object
+	 **/
 	public function Cluster($id,$uid=false) {
 		// Get Cluster data
 		$id = DB::Sanitise($id);
@@ -155,8 +169,13 @@ class Cluster {
 		$this->targetApplianceName=$data['targetApplianceName'];
 		$this->dateCreated=$data['dateCreated'];
 		$this->dateChanged=$data['dateChanged'];
+		$this->clusterEmailAlerts=$data['clusterEmailAlerts'];
 	}
 	
+	/**
+	 * Save this object back to the database
+	 * @access public
+	 **/
 	public function Save() {
 		// Save the current field back to the DB.
 		$q = "UPDATE `clusters` SET
@@ -170,6 +189,7 @@ class Cluster {
 			targetApplianceName='".DB::Sanitise($this->targetApplianceName)."',
 			targetVdcId='".DB::Sanitise($this->targetVdcId)."',
 			targetVdcName='".DB::Sanitise($this->targetVdcName)."',
+			clusterEmailAlerts='".DB::Sanitise($this->clusterEmailAlerts)."',
 			dateChanged=NOW() WHERE clusterId = $this->clusterId";
 		DB::Query($q);
 	}

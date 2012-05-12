@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \DB</title>
+<title>phpDocumentor » \Alerts</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -58,16 +58,15 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#Connect" title="Connect :: Connect to the database"><span class="description">Connect to the database</span><pre>Connect()</pre></a></li>
-<li class="method public "><a href="#GetData" title="GetData :: Run an SQL query and return an array of the results"><span class="description">Run an SQL query and return an array of the results</span><pre>GetData()</pre></a></li>
-<li class="method public "><a href="#GetRecord" title="GetRecord :: Return an assoc array from a SQL query with 1 row"><span class="description">Return an assoc array from a SQL query with 1 row</span><pre>GetRecord()</pre></a></li>
-<li class="method public "><a href="#Query" title="Query :: Run an SQL Query"><span class="description">Run an SQL Query</span><pre>Query()</pre></a></li>
-<li class="method public "><a href="#Sanitise" title="Sanitise :: Connect to the database"><span class="description">Connect to the database</span><pre>Sanitise()</pre></a></li>
+<li class="method public "><a href="#ClusterChangeAlert" title="ClusterChangeAlert :: Trigger VM creation/deletion alert."><span class="description">Trigger VM creation/deletion alert.</span><pre>ClusterChangeAlert()</pre></a></li>
+<li class="method public "><a href="#GetEmails" title="GetEmails :: Get the emails for this cluster"><span class="description">Get the emails for this cluster</span><pre>GetEmails()</pre></a></li>
+<li class="method public "><a href="#TriggerScalingAlert" title="TriggerScalingAlert :: Trigger scaling alert"><span class="description">Trigger scaling alert</span><pre>TriggerScalingAlert()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CDB" id="\DB"></a><div href="../classes/DB.html" class="element class">
-<p class="short_description"></p>
+<a name="%5CAlerts" id="\Alerts"></a><div href="../classes/Alerts.html" class="element class">
+<p class="short_description">Alerts class
+Static functions for sending email alerts out to the user about events on the system</p>
 <div class="details">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
@@ -76,23 +75,27 @@
 </tr></table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a name="Connect" id="Connect"></a><div class="element clickable method public Connect" data-toggle="collapse" data-target=".Connect .collapse">
-<h2>Connect to the database</h2>
-<pre>Connect() : \MySQLResource</pre>
+<a name="ClusterChangeAlert" id="ClusterChangeAlert"></a><div class="element clickable method public ClusterChangeAlert" data-toggle="collapse" data-target=".ClusterChangeAlert .collapse">
+<h2>Trigger VM creation/deletion alert.</h2>
+<pre>ClusterChangeAlert(int $customerId, int $clusterId, int $triggerId) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>access</th>
-<td>public</td>
-</tr></table>
-<h3>Returns</h3>
-<div class="subelement response"><code>\MySQLResource</code></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$customerId</h4>
+<code>int</code><p>Customer ID</p></div>
+<div class="subelement argument">
+<h4>$clusterId</h4>
+<code>int</code><p>Cluster ID</p></div>
+<div class="subelement argument">
+<h4>$triggerId</h4>
+<code>int</code><p>Trigger ID</p></div>
 </div></div>
 </div>
-<a name="GetData" id="GetData"></a><div class="element clickable method public GetData" data-toggle="collapse" data-target=".GetData .collapse">
-<h2>Run an SQL query and return an array of the results</h2>
-<pre>GetData(string $sql) : array</pre>
+<a name="GetEmails" id="GetEmails"></a><div class="element clickable method public GetEmails" data-toggle="collapse" data-target=".GetEmails .collapse">
+<h2>Get the emails for this cluster</h2>
+<pre>GetEmails(int $clusterId) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -102,61 +105,37 @@
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$sql</h4>
-<code>string</code><p>Query</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>array</code></div>
-</div></div>
-</div>
-<a name="GetRecord" id="GetRecord"></a><div class="element clickable method public GetRecord" data-toggle="collapse" data-target=".GetRecord .collapse">
-<h2>Return an assoc array from a SQL query with 1 row</h2>
-<pre>GetRecord(string $sql) : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$sql</h4>
-<code>string</code><p>SQL query</p></div>
+<h4>$clusterId</h4>
+<code>int</code><p>Cluster ID</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>Single row as array</div>
+<code>string</code>List of emails (seperated by semi-colons)</div>
 </div></div>
 </div>
-<a name="Query" id="Query"></a><div class="element clickable method public Query" data-toggle="collapse" data-target=".Query .collapse">
-<h2>Run an SQL Query</h2>
-<pre>Query(string $sql) : resource</pre>
+<a name="TriggerScalingAlert" id="TriggerScalingAlert"></a><div class="element clickable method public TriggerScalingAlert" data-toggle="collapse" data-target=".TriggerScalingAlert .collapse">
+<h2>Trigger scaling alert</h2>
+<pre>TriggerScalingAlert(int $customerId, int $clusterId, int $triggerId, string $action, string $approval) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>access</th>
-<td>public</td>
-</tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$sql</h4>
-<code>string</code><p>SQL Query</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>resource</code></div>
-</div></div>
+<h4>$customerId</h4>
+<code>int</code><p>Customer ID</p></div>
+<div class="subelement argument">
+<h4>$clusterId</h4>
+<code>int</code><p>Cluster ID</p></div>
+<div class="subelement argument">
+<h4>$triggerId</h4>
+<code>int</code><p>Trigger ID</p></div>
+<div class="subelement argument">
+<h4>$action</h4>
+<code>string</code><p>Scaling action (SCALE_UP,SCALE_DOWN)</p>
 </div>
-<a name="Sanitise" id="Sanitise"></a><div class="element clickable method public Sanitise" data-toggle="collapse" data-target=".Sanitise .collapse">
-<h2>Connect to the database</h2>
-<pre>Sanitise(string $data) : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>access</th>
-<td>public</td>
-</tr></table>
-<h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$data</h4>
-<code>string</code><p>String to sanitise</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>string</code></div>
+<h4>$approval</h4>
+<code>string</code><p>The approval status (e.g. AUTO_APPROVED)</p>
+</div>
 </div></div>
 </div>
 </div>

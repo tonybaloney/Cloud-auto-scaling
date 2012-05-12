@@ -998,6 +998,125 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </interface>
   </file>
+  <file path="Alerts.class.php" hash="709f05afbc8ebdf83c8d14182f4ab307" package="auto-scaler">
+    <docblock line="2">
+      <description><![CDATA[Alerts class
+Static functions for sending email alerts out to the user about events on the system]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="package" description="auto-scaler"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="default" line="7" package="auto-scaler">
+      <name>Alerts</name>
+      <full_name>\Alerts</full_name>
+      <extends/>
+      <docblock line="2">
+        <description><![CDATA[Alerts class
+Static functions for sending email alerts out to the user about events on the system]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="2" name="package" description="auto-scaler"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="16" package="">
+        <name>TriggerScalingAlert</name>
+        <type>function</type>
+        <docblock line="8">
+          <description><![CDATA[Trigger scaling alert]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="8" name="param" description="Customer ID" type="int" variable="$customerId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="8" name="param" description="Cluster ID" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="8" name="param" description="Trigger ID" type="int" variable="$triggerId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="8" name="param" description="Scaling action (SCALE_UP,SCALE_DOWN)" type="string" variable="$action">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="8" name="param" description="The approval status (e.g. AUTO_APPROVED)" type="string" variable="$approval">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="16">
+          <name>$customerId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="16">
+          <name>$clusterId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="16">
+          <name>$triggerId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="16">
+          <name>$action</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="16">
+          <name>$approval</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="37" package="">
+        <name>ClusterChangeAlert</name>
+        <type>function</type>
+        <docblock line="31">
+          <description><![CDATA[Trigger VM creation/deletion alert.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="param" description="Customer ID" type="int" variable="$customerId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="31" name="param" description="Cluster ID" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="31" name="param" description="Trigger ID" type="int" variable="$triggerId">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="37">
+          <name>$customerId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="37">
+          <name>$clusterId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="37">
+          <name>$triggerId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="47" package="">
+        <name>GetEmails</name>
+        <type>function</type>
+        <docblock line="41">
+          <description><![CDATA[Get the emails for this cluster]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="param" description="Cluster ID" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="41" name="access" description="public"/>
+          <tag line="41" name="return" description="List of emails (seperated by semi-colons)" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$clusterId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
   <file path="Log.class.php" hash="372186fba4dcad9a153bab78ba37fb25" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Logging class]]></description>
@@ -1254,7 +1373,7 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </class>
   </file>
-  <file path="Trigger.class.php" hash="f52706cffa56033e58d4a0e528a48315" package="auto-scaler">
+  <file path="Trigger.class.php" hash="f3ae469a74b7564a30954169a0281926" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Trigger Class represents a watch (SNMP) on a cluster.]]></description>
       <long-description><![CDATA[<p>A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling</p>]]></long-description>
@@ -1276,8 +1395,9 @@ TODO: Carry XML element attributes into the structure]]></description>
       <error line="35" code="50018">No DocBlock was found for property $communityString</error>
       <error line="36" code="50018">No DocBlock was found for property $vmPrefix</error>
       <error line="37" code="50018">No DocBlock was found for property $triggerApproval</error>
-      <error line="39" code="50010">No DocBlock was found for method Trigger()</error>
-      <error line="60" code="50010">No DocBlock was found for method Save()</error>
+      <error line="38" code="50018">No DocBlock was found for property $customerId</error>
+      <error line="40" code="50010">No DocBlock was found for method Trigger()</error>
+      <error line="62" code="50010">No DocBlock was found for method Save()</error>
     </parse_markers>
     <class final="false" abstract="false" namespace="default" line="7" package="auto-scaler">
       <name>Trigger</name>
@@ -1336,6 +1456,10 @@ TODO: Carry XML element attributes into the structure]]></description>
         <name>$triggerApproval</name>
         <default><![CDATA[]]></default>
       </property>
+      <property final="false" static="false" visibility="public" line="38" package="Default">
+        <name>$customerId</name>
+        <default><![CDATA[]]></default>
+      </property>
       <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="8" package="">
         <name>CreateTrigger</name>
         <type>function</type>
@@ -1368,37 +1492,80 @@ TODO: Carry XML element attributes into the structure]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="39" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="40" package="">
         <name>Trigger</name>
         <type>function</type>
-        <argument line="39">
+        <argument line="40">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="39">
+        <argument line="40">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="60" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="62" package="">
         <name>Save</name>
         <type>function</type>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="81" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="83" package="">
         <name>Scale</name>
         <type>function</type>
-        <docblock line="76">
+        <docblock line="78">
           <description><![CDATA[Scale this trigger up or down]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="76" name="access" description="public"/>
-          <tag line="76" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
+          <tag line="78" name="access" description="public"/>
+          <tag line="78" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="81">
+        <argument line="83">
           <name>$direction</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="96" package="">
+        <name>CompleteScale</name>
+        <type>function</type>
+        <docblock line="91">
+          <description><![CDATA[Scale this trigger up or down]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="91" name="access" description="public"/>
+          <tag line="91" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="96">
+          <name>$direction</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="114" package="">
+        <name>ModifyTockAction</name>
+        <type>function</type>
+        <docblock line="107">
+          <description><![CDATA[Modify the approval status of a 'tock action']]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="107" name="access" description="public"/>
+          <tag line="107" name="static" description=""/>
+          <tag line="107" name="param" description="The tock action ID" type="int" variable="$ta_id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="107" name="param" description="the new approval status e.g. APPROVED" type="string" variable="$newApprovalStatus">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="114">
+          <name>$ta_id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="114">
+          <name>$newApprovalStatus</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
@@ -1559,16 +1726,12 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </class>
   </file>
-  <file path="Cluster.class.php" hash="bf7dee045c76c582f05c7ae73fe362cc" package="auto-scaler">
+  <file path="Cluster.class.php" hash="df793f8156a5caad80d268c503b0f881" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[PHP Requirements - N/A]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
-    <parse_markers>
-      <error line="138" code="50010">No DocBlock was found for method Cluster()</error>
-      <error line="160" code="50010">No DocBlock was found for method Save()</error>
-    </parse_markers>
     <class final="false" abstract="false" namespace="default" line="11" package="auto-scaler">
       <name>Cluster</name>
       <full_name>\Cluster</full_name>
@@ -1746,6 +1909,18 @@ TODO: Carry XML element attributes into the structure]]></description>
           <tag line="131" name="access" description="public"/>
         </docblock>
       </property>
+      <property final="false" static="false" visibility="public" line="143" package="Default">
+        <name>$clusterEmailAlerts</name>
+        <default><![CDATA[]]></default>
+        <docblock line="138">
+          <description><![CDATA[E-mail address(es) to send alerts to, seperated by a semicolon]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="138" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="138" name="access" description="public"/>
+        </docblock>
+      </property>
       <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="19" package="">
         <name>CreateCluster</name>
         <type>function</type>
@@ -1789,23 +1964,42 @@ TODO: Carry XML element attributes into the structure]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="138" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="152" package="">
         <name>Cluster</name>
         <type>function</type>
-        <argument line="138">
+        <docblock line="145">
+          <description><![CDATA[Create a cluster object from the DB]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="145" name="param" description="The ID of the cluster" type="int" variable="$id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="145" name="param" description="limit to a specific user ID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="145" name="access" description="public"/>
+          <tag line="145" name="return" description="the cluster object" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="152">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="138">
+        <argument line="152">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="160" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="179" package="">
         <name>Save</name>
         <type>function</type>
+        <docblock line="175">
+          <description><![CDATA[Save this object back to the database]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="175" name="access" description="public"/>
+        </docblock>
       </method>
     </class>
   </file>
