@@ -32,6 +32,4 @@ while (1==1){
 		$trigger->CompleteScale($action['action']);
 	}
 }
-
-
 ?>

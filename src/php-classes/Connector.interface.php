@@ -65,5 +65,24 @@ interface Connector {
 	 * @access public
 	 **/
 	public function GetVirtualMachineNetworks ($location, $appliance, $virtualMachine);
+	
+	/**
+	 * Create a VM
+	 * @access public
+	 * @param int $clusterLocation The ID of the cluster location
+	 * @param int $targetApplianceId The ID of the target virtual appliance
+	 * @param int $targetVlanId The ID of the target VLAN
+	 * @param int $templateId The ID to create the VM from
+	 **/
+	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateId );
+	
+	/**
+	 * Destroy the next VM in a cluster
+	 * @access public
+	 * @param int $clusterLocation The ID of the cluster location
+	 * @param int $targetApplianceId The ID of the target virtual appliance
+	 * @param string $vmPrefix The prefix for Virtual Machines.
+	 **/
+	public function DestroyNextVM ( $clusterLocation, $targetApplianceId, $vmPrefix ) ;
 }
 ?>

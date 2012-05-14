@@ -32,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">43</span></a></li>
+                <span class="label label-info">45</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">3</span>
@@ -61,6 +61,8 @@
 <li class="method public "><a href="#Abiquo" title="Abiquo :: Create an instance of the Abiquo API object"><span class="description">Create an instance of the Abiquo API object</span><pre>Abiquo()</pre></a></li>
 <li class="method public "><a href="#CreateAbiquoVirtualAppliance" title="CreateAbiquoVirtualAppliance :: "><span class="description">CreateAbiquoVirtualAppliance()
         </span><pre>CreateAbiquoVirtualAppliance()</pre></a></li>
+<li class="method public "><a href="#CreateVM" title="CreateVM :: Create a VM"><span class="description">Create a VM</span><pre>CreateVM()</pre></a></li>
+<li class="method public "><a href="#DestroyNextVM" title="DestroyNextVM :: Destroy the next VM in a cluster"><span class="description">Destroy the next VM in a cluster</span><pre>DestroyNextVM()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoIPsUsedInVirtualAppliance" title="GetAbiquoIPsUsedInVirtualAppliance :: Get a list of IPs used in a specified Virtual Appliance"><span class="description">Get a list of IPs used in a specified Virtual Appliance</span><pre>GetAbiquoIPsUsedInVirtualAppliance()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoPrivateNetwork" title="GetAbiquoPrivateNetwork :: Get a specific private network in this enterprise"><span class="description">Get a specific private network in this enterprise</span><pre>GetAbiquoPrivateNetwork()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoPrivateNetworks" title="GetAbiquoPrivateNetworks :: Get a list of Private Networks (VLANs) in this Enterprise"><span class="description">Get a list of Private Networks (VLANs) in this Enterprise</span><pre>GetAbiquoPrivateNetworks()</pre></a></li>
@@ -79,6 +81,7 @@
 <li class="method public "><a href="#GetVirtualMachines" title="GetVirtualMachines :: Get a list of VM s"><span class="description">Get a list of VM s</span><pre>GetVirtualMachines()</pre></a></li>
 <li class="method public "><a href="#TestConnection" title="TestConnection :: Test connection to the cloud provider"><span class="description">Test connection to the cloud provider</span><pre>TestConnection()</pre></a></li>
 <li class="nav-header private">» Private</li>
+<li class="method private "><a href="#ApiPOSTRequest" title="ApiPOSTRequest :: Request to the API, expect XML back and format into assoc array and return"><span class="description">Request to the API, expect XML back and format into assoc array and return</span><pre>ApiPOSTRequest()</pre></a></li>
 <li class="method private "><a href="#ApiRequest" title="ApiRequest :: Request to the API, expect XML back and format into assoc array and return"><span class="description">Request to the API, expect XML back and format into assoc array and return</span><pre>ApiRequest()</pre></a></li>
 <li class="method private "><a href="#Authenticate" title="Authenticate :: Login to the abiquo server, get the auth token and session (jsession) id
 Store these in the class for later API calls."><span class="description">Login to the abiquo server, get the auth token and session (jsession) id
@@ -93,6 +96,8 @@ TODO: Carry XML element attributes into the structure</span><pre>sxiToArray()</p
 <i class="icon-custom icon-property"></i> Properties</li>
 <li class="nav-header private">» Private</li>
 <li class="property private "><a href="#%24abiquo_version" title="$abiquo_version :: Version number of Abiquo"><span class="description">Version number of Abiquo</span><pre>$abiquo_version</pre></a></li>
+<li class="property private "><a href="#%24debugMode" title="$debugMode :: Debug mode prints the requests and responses to the screen (in HTML)"><span class="description">Debug mode prints the requests and responses to the screen (in HTML)</span><pre>$debugMode</pre></a></li>
+<li class="property private "><a href="#%24enterpriseId" title="$enterpriseId :: The Abiquo Enterprise ID of this user"><span class="description">The Abiquo Enterprise ID of this user</span><pre>$enterpriseId</pre></a></li>
 <li class="property private "><a href="#%24password" title="$password :: Abiquo password"><span class="description">Abiquo password</span><pre>$password</pre></a></li>
 <li class="property private "><a href="#%24sessionid" title="$sessionid :: JSESSION ID returned from abiquo API server after successful,
 authenticated request"><span class="description">JSESSION ID returned from abiquo API server after successful,
@@ -117,7 +122,7 @@ $a->GetVirtualDatacenters();</p></p>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a name="Abiquo" id="Abiquo"></a><div class="element clickable method public Abiquo" data-toggle="collapse" data-target=".Abiquo .collapse">
 <h2>Create an instance of the Abiquo API object</h2>
-<pre>Abiquo(string $url, string $username, string $password) : bool</pre>
+<pre>Abiquo(string $url, string $username, string $password, $debugMode) : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -135,6 +140,15 @@ $a->GetVirtualDatacenters();</p></p>
 <div class="subelement argument">
 <h4>$password</h4>
 <code>string</code><p>Password for Abiquo</p></div>
+<div class="subelement argument">
+<h4>$debugMode</h4>
+<code></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/ConnectorException.html">\ConnectorException</a></code></th>
+<td></td>
+</tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>bool</code>Success or failure on finding server and establishing a login</div>
@@ -156,6 +170,54 @@ $a->GetVirtualDatacenters();</p></p>
 <h4>$vapp_name</h4>
 <code></code>
 </div>
+</div></div>
+</div>
+<a name="CreateVM" id="CreateVM"></a><div class="element clickable method public CreateVM" data-toggle="collapse" data-target=".CreateVM .collapse">
+<h2>Create a VM</h2>
+<pre>CreateVM(int $clusterLocation, int $targetApplianceId, int $targetVlanId, $templateUri) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clusterLocation</h4>
+<code>int</code><p>The ID of the cluster location</p></div>
+<div class="subelement argument">
+<h4>$targetApplianceId</h4>
+<code>int</code><p>The ID of the target virtual appliance</p></div>
+<div class="subelement argument">
+<h4>$targetVlanId</h4>
+<code>int</code><p>The ID of the target VLAN</p></div>
+<div class="subelement argument">
+<h4>$templateUri</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="DestroyNextVM" id="DestroyNextVM"></a><div class="element clickable method public DestroyNextVM" data-toggle="collapse" data-target=".DestroyNextVM .collapse">
+<h2>Destroy the next VM in a cluster</h2>
+<pre>DestroyNextVM(int $clusterLocation, int $targetApplianceId, string $vmPrefix) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clusterLocation</h4>
+<code>int</code><p>The ID of the cluster location</p></div>
+<div class="subelement argument">
+<h4>$targetApplianceId</h4>
+<code>int</code><p>The ID of the target virtual appliance</p></div>
+<div class="subelement argument">
+<h4>$vmPrefix</h4>
+<code>string</code><p>The prefix for Virtual Machines.</p></div>
 </div></div>
 </div>
 <a name="GetAbiquoIPsUsedInVirtualAppliance" id="GetAbiquoIPsUsedInVirtualAppliance"></a><div class="element clickable method public GetAbiquoIPsUsedInVirtualAppliance" data-toggle="collapse" data-target=".GetAbiquoIPsUsedInVirtualAppliance .collapse">
@@ -506,9 +568,9 @@ $a->GetVirtualDatacenters();</p></p>
 <code>bool</code>Connection successful</div>
 </div></div>
 </div>
-<a name="ApiRequest" id="ApiRequest"></a><div class="element clickable method private ApiRequest" data-toggle="collapse" data-target=".ApiRequest .collapse">
+<a name="ApiPOSTRequest" id="ApiPOSTRequest"></a><div class="element clickable method private ApiPOSTRequest" data-toggle="collapse" data-target=".ApiPOSTRequest .collapse">
 <h2>Request to the API, expect XML back and format into assoc array and return</h2>
-<pre>ApiRequest(string $url, $accept) : \SimpleXML</pre>
+<pre>ApiPOSTRequest(string $url, string $accept, string $message) : Array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -523,11 +585,39 @@ $a->GetVirtualDatacenters();</p></p>
 </div>
 <div class="subelement argument">
 <h4>$accept</h4>
-<code></code>
-</div>
+<code>string</code><p>The ACCEPT: header for HTTP request</p></div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>The XML message for the API</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\SimpleXML</code>XML Object of the returned data</div>
+<code>Array</code>Object of the returned data</div>
+</div></div>
+</div>
+<a name="ApiRequest" id="ApiRequest"></a><div class="element clickable method private ApiRequest" data-toggle="collapse" data-target=".ApiRequest .collapse">
+<h2>Request to the API, expect XML back and format into assoc array and return</h2>
+<pre>ApiRequest(string $url, string $accept, array $extraOpt) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>URI to request (will be appended to the address of the API)</p>
+</div>
+<div class="subelement argument">
+<h4>$accept</h4>
+<code>string</code><p>The ACCEPT: header for HTTP request</p></div>
+<div class="subelement argument">
+<h4>$extraOpt</h4>
+<code>array</code><p>Additional options for CURL</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Array</code>of the returned data</div>
 </div></div>
 </div>
 <a name="Authenticate" id="Authenticate"></a><div class="element clickable method private Authenticate" data-toggle="collapse" data-target=".Authenticate .collapse">
@@ -639,6 +729,30 @@ TODO: Carry XML element attributes into the structure</h2>
 </tr></table>
 </div></div>
 </div>
+<a name="%24debugMode" id="$debugMode"> </a><div class="element clickable property private $debugMode" data-toggle="collapse" data-target=".$debugMode .collapse">
+<h2>Debug mode prints the requests and responses to the screen (in HTML)</h2>
+<pre>$debugMode : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24enterpriseId" id="$enterpriseId"> </a><div class="element clickable property private $enterpriseId" data-toggle="collapse" data-target=".$enterpriseId .collapse">
+<h2>The Abiquo Enterprise ID of this user</h2>
+<pre>$enterpriseId : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
 <a name="%24password" id="$password"> </a><div class="element clickable property private $password" data-toggle="collapse" data-target=".$password .collapse">
 <h2>Abiquo password</h2>
 <pre>$password : string</pre>
@@ -707,7 +821,7 @@ authenticated request</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-14T10:00:32+01:00.<br></footer></div>
+            generated on 2012-05-14T21:36:00+01:00.<br></footer></div>
 </div>
 </body>
 </html>

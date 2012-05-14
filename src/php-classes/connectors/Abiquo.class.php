@@ -58,15 +58,31 @@ class Abiquo implements Connector{
 	 */
 	private $sessionid;
 
+	/** 
+	 * The Abiquo Enterprise ID of this user
+	 * @var int
+	 * @access private
+	 **/
+	private $enterpriseId;
+	
+	/** 
+	 * Debug mode prints the requests and responses to the screen (in HTML)
+	 * @var bool
+	 * @access private
+	 **/
+	private $debugMode;
+	
 	/**
 	 * Create an instance of the Abiquo API object
 	 * @param string $url URL of the Abiquo Server
 	 * @param string $username Username for Abiquo
 	 * @param string $password Password for Abiquo
 	 * @return bool Success or failure on finding server and establishing a login 
+	 * @throws ConnectorException
 	 * @access public
 	 */
-	public function Abiquo ( $url, $username, $password ) {
+	public function Abiquo ( $url, $username, $password, $debugMode = false ) {
+		$this->debugMode = $debugMode;
 		// Format the server URL correctly
 		if (substr($url,-1,1) != '/') $url.='/';
 		$this->url = $url;
@@ -76,9 +92,23 @@ class Abiquo implements Connector{
 		// Login to the server
 		$this->Authenticate();
 		
-		// Get the virtual data centers page
+		// Get the virtual data centers page and establish the Enterprise ID
 		$vdcs = $this->GetAbiquoVirtualDatacenters();
-		
+		if (is_array($vdcs)){
+			if (is_array($vdcs['virtualDatacenter'][0]['link'])){
+				foreach ($vdcs['virtualDatacenter'][0]['link'] as $link){
+					if ($link['rel'] == 'enterprise') {
+						$parts = explode('/',$link['href']);
+						$enterpriseId = $parts[count($parts)-1];
+						$this->enterpriseId;
+					}
+				}
+			} else {
+				throw new ConnectorException( $this, "Could not establish Enterprise ID from API response.",CEX_INVALID_API_RESPONSE);
+			}
+		} else { 
+			throw new ConnectorException( $this, "Could not establish Enterprise ID from API response.",CEX_INVALID_API_RESPONSE);
+		}
 		// Return success or failure
 		return ($this->token);
 	}
@@ -97,6 +127,7 @@ class Abiquo implements Connector{
 			CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
 			CURLOPT_USERPWD => $this->username.':'.$this->password
 			);
+
 		$res = $this->HttpRequest( $this->url.'cloud/virtualdatacenters' , $opt ) ;
 		
 		// TODO: Read headers to establish version.
@@ -125,12 +156,22 @@ class Abiquo implements Connector{
 	 * @access private
 	 */
 	private function HttpRequest ( $url, $opt ) { 
+		if ($this->debugMode){
+			echo "<table border=1>";
+			echo "<tr><td colspan=2><h2>Abiquo API Request</h2></td></tr>";
+			echo "<tr><td>URI</td><td>".$url."</td></tr>";
+			echo "<tr><td>HTTP Parameters</td><td>".var_export($opt,true)."</td></tr>";
+		}
 		$ch = curl_init($url);
 		curl_setopt_array($ch, $opt);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
 		if ($result===false)
-			throw new ConnectorException( $this, "Failure from cURL speaking to backend (".curl_error($ch).") on URL '$url' with options - ".var_export($opt,true),CEX_INVALID_API_RESPONSE);
+			throw new ConnectorException( $this, "Failure from cURL speaking to backend, curl error-".curl_errno()." (".curl_error($ch).") on URL '$url' with options - ".var_export($opt,true),CEX_INVALID_API_RESPONSE);
+		if ($this->debugMode){
+			echo "<tr><td>Result</td><td><pre>".htmlspecialchars($result)."</pre></td></tr>";
+			echo "</table>";
+		}
 		curl_close($ch);
 		return $result;
 	}
@@ -148,10 +189,12 @@ class Abiquo implements Connector{
 	/** 
 	 * Request to the API, expect XML back and format into assoc array and return 
 	 * @param string $url URI to request (will be appended to the address of the API)
-	 * @return SimpleXML XML Object of the returned data
+	 * @param string $accept The ACCEPT: header for HTTP request
+	 * @param array $extraOpt Additional options for CURL
+	 * @return Array of the returned data
 	 * @access private
 	 */	 
-	private function ApiRequest( $url, $accept ) {
+	private function ApiRequest( $url, $accept, $extraOpt = false ) {
 		$opt = array( 
 			CURLOPT_FAILONERROR => true,
 			CURLOPT_FOLLOWLOCATION => true,
@@ -159,6 +202,8 @@ class Abiquo implements Connector{
 			CURLOPT_HTTPHEADER => array('Accept:'.$accept),
 			CURLOPT_COOKIE => 'auth='.$this->token.'; JSESSIONID='.$this->sessionid 
 			);
+		if ($extraOpt)
+			$opt = array_merge($opt,$extraOpt);
 		$res = $this->HttpRequest ($this->url.$url, $opt);
 		if ($res){
 			$array = $this->xml2array($res);
@@ -169,6 +214,22 @@ class Abiquo implements Connector{
 		} else {
 			throw new ConnectorException( $this, "Backend did not return valid result (".var_export(true).")",CEX_INVALID_API_RESPONSE);
 		}
+	}
+	
+	/** 
+	 * Request to the API, expect XML back and format into assoc array and return 
+	 * @param string $url URI to request (will be appended to the address of the API)
+	 * @param string $accept The ACCEPT: header for HTTP request
+	 * @param string $message The XML message for the API
+	 * @return Array Object of the returned data
+	 * @access private
+	 */	 
+	private function ApiPOSTRequest( $url, $accept, $message ) {
+		$opt = array( 
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => $message
+		);
+		return $this->ApiRequest($url, $accept, $opt);
 	}
 	
 	/** 
@@ -466,5 +527,34 @@ class Abiquo implements Connector{
 			}
 		}
 		return $results;
+	}
+	
+	/**
+	 * Create a VM
+	 * @access public
+	 * @param int $clusterLocation The ID of the cluster location
+	 * @param int $targetApplianceId The ID of the target virtual appliance
+	 * @param int $targetVlanId The ID of the target VLAN
+	 * @param int $templateId The ID to create the VM from
+	 **/
+	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateUri ) {
+		// Get the Virtual Data Center
+		$request = "<virtualMachine><link href=\"".$templateUri."\" rel=\"virtualmachinetemplate\" title=\"Nostalgia\"/></virtualMachine>";
+		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
+		print_r($vm);
+		// @todo establish VM ID
+		$vm = 1;
+		$this->ApiRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines/$vmId/action/deploy",'application/vnd.abiquo.acceptedrequest+xml');
+	}
+	
+	/**
+	 * Destroy the next VM in a cluster
+	 * @access public
+	 * @param int $clusterLocation The ID of the cluster location
+	 * @param int $targetApplianceId The ID of the target virtual appliance
+	 * @param string $vmPrefix The prefix for Virtual Machines.
+	 **/
+	public function DestroyNextVM ( $clusterLocation, $targetApplianceId, $vmPrefix ) {
+	
 	}
 }

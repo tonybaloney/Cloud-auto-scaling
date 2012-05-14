@@ -99,9 +99,8 @@ class Trigger {
 		if ($direction=='SCALE_UP'){
 			$cloud->CreateVM ( $cluster->clusterLocation, $cluster->targetApplianceId, $cluster->targetVlanId, $cluster->templateId );
 		} else { 
-			$cloud->CreateVM ( $cluster->clusterLocation, $cluster->targetApplianceId, $trigger->vmPrefix ) ;
+			$cloud->DestroyNextVM ( $cluster->clusterLocation, $cluster->targetApplianceId, $trigger->vmPrefix ) ;
 		}	
-		
 	}
 	
 	/**

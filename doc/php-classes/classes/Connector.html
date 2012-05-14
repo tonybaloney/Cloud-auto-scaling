@@ -32,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">43</span></a></li>
+                <span class="label label-info">45</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">3</span>
@@ -58,6 +58,8 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#CreateVM" title="CreateVM :: Create a VM"><span class="description">Create a VM</span><pre>CreateVM()</pre></a></li>
+<li class="method public "><a href="#DestroyNextVM" title="DestroyNextVM :: Destroy the next VM in a cluster"><span class="description">Destroy the next VM in a cluster</span><pre>DestroyNextVM()</pre></a></li>
 <li class="method public "><a href="#GetAppliances" title="GetAppliances :: Get a list of VM Groups/Appliances"><span class="description">Get a list of VM Groups/Appliances</span><pre>GetAppliances()</pre></a></li>
 <li class="method public "><a href="#GetLocations" title="GetLocations :: Get a list of locations, for multi-regional cloud platforms."><span class="description">Get a list of locations, for multi-regional cloud platforms.</span><pre>GetLocations()</pre></a></li>
 <li class="method public "><a href="#GetPrivateNetwork" title="GetPrivateNetwork :: Get a list of private networks"><span class="description">Get a list of private networks</span><pre>GetPrivateNetwork()</pre></a></li>
@@ -78,6 +80,53 @@
 </tr></table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
+<a name="CreateVM" id="CreateVM"></a><div class="element clickable method public CreateVM" data-toggle="collapse" data-target=".CreateVM .collapse">
+<h2>Create a VM</h2>
+<pre>CreateVM(int $clusterLocation, int $targetApplianceId, int $targetVlanId, int $templateId) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clusterLocation</h4>
+<code>int</code><p>The ID of the cluster location</p></div>
+<div class="subelement argument">
+<h4>$targetApplianceId</h4>
+<code>int</code><p>The ID of the target virtual appliance</p></div>
+<div class="subelement argument">
+<h4>$targetVlanId</h4>
+<code>int</code><p>The ID of the target VLAN</p></div>
+<div class="subelement argument">
+<h4>$templateId</h4>
+<code>int</code><p>The ID to create the VM from</p></div>
+</div></div>
+</div>
+<a name="DestroyNextVM" id="DestroyNextVM"></a><div class="element clickable method public DestroyNextVM" data-toggle="collapse" data-target=".DestroyNextVM .collapse">
+<h2>Destroy the next VM in a cluster</h2>
+<pre>DestroyNextVM(int $clusterLocation, int $targetApplianceId, string $vmPrefix) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clusterLocation</h4>
+<code>int</code><p>The ID of the cluster location</p></div>
+<div class="subelement argument">
+<h4>$targetApplianceId</h4>
+<code>int</code><p>The ID of the target virtual appliance</p></div>
+<div class="subelement argument">
+<h4>$vmPrefix</h4>
+<code>string</code><p>The prefix for Virtual Machines.</p></div>
+</div></div>
+</div>
 <a name="GetAppliances" id="GetAppliances"></a><div class="element clickable method public GetAppliances" data-toggle="collapse" data-target=".GetAppliances .collapse">
 <h2>Get a list of VM Groups/Appliances</h2>
 <pre>GetAppliances(int $location) : array</pre>
@@ -222,7 +271,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-14T10:00:32+01:00.<br></footer></div>
+            generated on 2012-05-14T21:36:00+01:00.<br></footer></div>
 </div>
 </body>
 </html>
