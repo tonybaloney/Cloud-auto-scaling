@@ -1,4 +1,10 @@
 <?php
+/** 
+ * 'Clock' The process that loops around the checks, triggers and actions.
+ * sends alerts to relevant parties about automatically approved or pending requests.
+ * @package auto-scaler
+ * @todo Setup check externally to this script so it can be monitored.
+ **/
 require( '../all.inc.php');
 require( 'tick.php' ) ;
 require( 'tock.php' ) ;

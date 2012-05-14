@@ -143,7 +143,7 @@ Ext.define('Cloud.TriggerPortlet', {
 							popup.hide(); 
 						}
 					}
-					,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
+					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
 					]
 				}
 			}); 
@@ -188,6 +188,10 @@ Ext.define('Cloud.TriggerPortlet', {
 							triggerId: b.data.triggerId
 						}
 					});
+					Ext.data.StoreManager.lookup('TickLogStore').lastParams = {params: {
+							clusterId: b.data.clusterId,
+							triggerId: b.data.triggerId
+						}};
 					Ext.getCmp('DeleteTrigger').enable();
 					Ext.getCmp('ConfigureTrigger').enable();
 					Ext.get('tick-logs').unmask();

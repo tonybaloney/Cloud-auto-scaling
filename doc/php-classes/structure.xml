@@ -998,7 +998,7 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </interface>
   </file>
-  <file path="Alerts.class.php" hash="709f05afbc8ebdf83c8d14182f4ab307" package="auto-scaler">
+  <file path="Alerts.class.php" hash="a6cb063edbdd7421a7eb8d671d378e0e" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Alerts class
 Static functions for sending email alerts out to the user about events on the system]]></description>
@@ -1015,7 +1015,7 @@ Static functions for sending email alerts out to the user about events on the sy
         <long-description><![CDATA[]]></long-description>
         <tag line="2" name="package" description="auto-scaler"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="16" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="19" package="">
         <name>TriggerScalingAlert</name>
         <type>function</type>
         <docblock line="8">
@@ -1036,80 +1036,83 @@ Static functions for sending email alerts out to the user about events on the sy
           <tag line="8" name="param" description="The approval status (e.g. AUTO_APPROVED)" type="string" variable="$approval">
             <type by_reference="false">string</type>
           </tag>
+          <tag line="8" name="todo" description="Print table or graph of results historically."/>
+          <tag line="8" name="todo" description="List threshold and number of VMs"/>
         </docblock>
-        <argument line="16">
+        <argument line="19">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="16">
+        <argument line="19">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="16">
+        <argument line="19">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="16">
+        <argument line="19">
           <name>$action</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="16">
+        <argument line="19">
           <name>$approval</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="37" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="42" package="">
         <name>ClusterChangeAlert</name>
         <type>function</type>
-        <docblock line="31">
+        <docblock line="34">
           <description><![CDATA[Trigger VM creation/deletion alert.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="31" name="param" description="Customer ID" type="int" variable="$customerId">
+          <tag line="34" name="param" description="Customer ID" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="31" name="param" description="Cluster ID" type="int" variable="$clusterId">
+          <tag line="34" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="31" name="param" description="Trigger ID" type="int" variable="$triggerId">
+          <tag line="34" name="param" description="Trigger ID" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
+          <tag line="34" name="tood" description="implement functionality."/>
         </docblock>
-        <argument line="37">
+        <argument line="42">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="37">
+        <argument line="42">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="37">
+        <argument line="42">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="47" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="52" package="">
         <name>GetEmails</name>
         <type>function</type>
-        <docblock line="41">
+        <docblock line="46">
           <description><![CDATA[Get the emails for this cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="41" name="param" description="Cluster ID" type="int" variable="$clusterId">
+          <tag line="46" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="41" name="access" description="public"/>
-          <tag line="41" name="return" description="List of emails (seperated by semi-colons)" type="string">
+          <tag line="46" name="access" description="public"/>
+          <tag line="46" name="return" description="List of emails (seperated by semi-colons)" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="47">
+        <argument line="52">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -2147,7 +2150,7 @@ TODO: Auth from DB.]]></description>
   <package name="Default" full_name="Default"/>
   <package name="auto-scaler" full_name="auto-scaler"/>
   <namespace name="default" full_name="default"/>
-  <marker count="1">todo</marker>
+  <marker count="3">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

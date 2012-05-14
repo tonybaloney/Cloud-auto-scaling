@@ -5,20 +5,30 @@
  * @package auto-scaler
  */
 
-if (!isset($_GET['form'])) die();
+if (!isset($_GET['form'])) 
+	if (!isset($_POST['form']))
+		die("{success:false,msg:'Request invalid'}");
+	else 
+		$form = $_POST['form'];
+else 
+	$form = $_GET['form'];
 
 include ('../src/all.inc.php');
 
 $res = array( 'success'=>false,'msg'=>'Message not understood');
 
-switch ($_GET['form']){
+switch ($form){
 	case 'ApproveTock':
-		$ta_id = $_POST['id'];
+		$ta_id = $_POST['ta_id'];
 		Trigger::ModifyTockAction($ta_id,'APPROVED');
+		$res['success'] = true;
+		$res['msg'] = "Approved $ta_id";
 		break;
 	case 'DeclineTock':
-		$ta_id = $_POST['id'];
+		$ta_id = $_POST['ta_id'];
 		Trigger::ModifyTockAction($ta_id,'DECLINED');
+		$res['success'] = true;
+		$res['msg'] = "Declined $ta_id";
 		break;
 	case 'AddCluster':
 		Cluster::CreateCluster($_POST['clusterName']);

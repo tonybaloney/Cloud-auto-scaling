@@ -182,6 +182,9 @@ Ext.define('Cloud.ClusterPortlet', {
 								clusterId: b.data.clusterId
 								}
 						});
+						Ext.data.StoreManager.lookup('TockLogStore').lastParams = {params: {
+								clusterId: b.data.clusterId
+								}};
 					}
 					Ext.getCmp('DeleteCluster').enable();
 					Ext.getCmp('ConfigureCluster').enable();

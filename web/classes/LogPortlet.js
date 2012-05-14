@@ -11,9 +11,9 @@ Ext.define('Cloud.TockLogPortlet', {
 				form:'ApproveTock',
 				ta_id:id
 			},
-			success: function(response){
-				var text = response.responseText;
-				// process server response here
+			success: function(form,action){
+				var x = Ext.StoreManager.lookup('TockLogStore');
+				Ext.StoreManager.lookup('TockLogStore').load(x.lastParams);
 			}
 		});
 	},
@@ -26,9 +26,9 @@ Ext.define('Cloud.TockLogPortlet', {
 				form:'DeclineTock',
 				ta_id:id
 			},
-			success: function(response){
-				var text = response.responseText;
-				// process server response here
+			success: function(form,action){
+				var x = Ext.StoreManager.lookup('TockLogStore');
+				Ext.StoreManager.lookup('TockLogStore').load(x.lastParams);
 			}
 		});
 	},
