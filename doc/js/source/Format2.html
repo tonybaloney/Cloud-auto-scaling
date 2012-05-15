@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+GNU General Public License Usage
+This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file.  Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
+describe(&quot;Ext.util.Format&quot;, function() {
+    var num = Ext.util.Format.number,
+        usMoney = Ext.util.Format.usMoney,
+        currency = Ext.util.Format.currency,
+        savedFormatLocale = {
+            thousandSeparator: Ext.util.Format.thousandSeparator,
+            decimalSeparator: Ext.util.Format.decimalSeparator,
+            currencySign: Ext.util.Format.currencySign
+        };
+
+    describe(&quot;usMoney&quot;, function(){
+        it(&quot;should format with 2 decimals, prefixed by a dollar sign&quot;, function() {
+            expect(usMoney(1234.567)).toEqual(&quot;$1,234.57&quot;);
+        });
+        it(&quot;should format with 2 decimals, prefixed by a negative sign, and a dollar sign&quot;, function() {
+            expect(usMoney(-1234.567)).toEqual(&quot;-$1,234.57&quot;);
+        });
+        it(&quot;should format with a comma as a thousand separator&quot;, function() {
+            expect(usMoney(1234567.89)).toEqual(&quot;$1,234,567.89&quot;);
+        });
+    });
+
+    describe(&quot;currency in FR locale&quot;, function(){
+        beforeEach(function() {
+            Ext.apply(Ext.util.Format, {
+                thousandSeparator: '.',
+                decimalSeparator: ',',
+                currencySign: '\u20ac',
+                dateFormat: 'd/m/Y'
+            });
+        });
+        afterEach(function() {
+            Ext.apply(Ext.util.Format, savedFormatLocale);
+        });
+
+        it(&quot;should format with 2 decimals, prefixed by a euro sign&quot;, function() {
+            expect(currency(1234.567)).toEqual(&quot;\u20ac1.234,57&quot;);
+        });
+        it(&quot;should format with 2 decimals, prefixed by a negative sign, and a euro sign&quot;, function() {
+            expect(currency(-1234.567)).toEqual(&quot;-\u20ac1.234,57&quot;);
+        });
+    });
+
+    describe(&quot;number in default (US) locale&quot;, function() {
+        it(&quot;should format with no decimals&quot;, function() {
+            expect(num(1, &quot;0&quot;)).toEqual(&quot;1&quot;);
+        });
+        it(&quot;should format with two decimals&quot;, function() {
+            expect(num(1, &quot;0.00&quot;)).toEqual(&quot;1.00&quot;);
+        });
+        it(&quot;should format+round with two decimals, and no thousand separators&quot;, function() {
+            expect(num(1234.567, &quot;0.00&quot;)).toEqual(&quot;1234.57&quot;);
+        });
+        it(&quot;should format+round with two decimals, and ',' as the thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;,0.00&quot;)).toEqual(&quot;1,234.57&quot;);
+        });
+        it(&quot;should format+round with no decimals, and ',' as the thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;,0&quot;)).toEqual(&quot;1,235&quot;);
+        });
+    });
+
+    describe(&quot;number using FR locale&quot;, function() {
+        var savedFormatLocale = {
+            thousandSeparator: Ext.util.Format.thousandSeparator,
+            decimalSeparator: Ext.util.Format.decimalSeparator,
+            currencySign: Ext.util.Format.currencySign,
+            dateFormat: Ext.util.Format.dateFormat
+        };
+
+        beforeEach(function() {
+            Ext.apply(Ext.util.Format, {
+                thousandSeparator: '.',
+                decimalSeparator: ',',
+                currencySign: '\u20ac',
+                dateFormat: 'd/m/Y'
+            });
+        });
+        afterEach(function() {
+            Ext.apply(Ext.util.Format, savedFormatLocale);
+        });
+
+        it(&quot;should format with no decimals&quot;, function() {
+            expect(num(1, &quot;0&quot;)).toEqual(&quot;1&quot;);
+        });
+        it(&quot;should format with two decimals&quot;, function() {
+            expect(num(1, &quot;0.00&quot;)).toEqual(&quot;1,00&quot;);
+        });
+        it(&quot;should format+round with two decimals, and no thousand separators&quot;, function() {
+            expect(num(1234.567, &quot;0.00&quot;)).toEqual(&quot;1234,57&quot;);
+        });
+        it(&quot;should format+round with two decimals after a ',', and '.' as the thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;,0.00&quot;)).toEqual(&quot;1.234,57&quot;);
+        });
+        it(&quot;should format+round with no decimals, and '.' as the thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;,0&quot;)).toEqual(&quot;1.235&quot;);
+        });
+    });
+
+    // In Ext4, the &quot;/i&quot; suffix allows you to use locale-specific separators in the format string, as opposed
+    // to US/UK conventions. Output however ALWAYS follows the local settings in the Format singleton which may
+    // be overridden by locale files.
+    describe(&quot;number using FR locale with /i&quot;, function() {
+        var savedFormatLocale = {
+            thousandSeparator: Ext.util.Format.thousandSeparator,
+            decimalSeparator: Ext.util.Format.decimalSeparator,
+            currencySign: Ext.util.Format.currencySign,
+            dateFormat: Ext.util.Format.dateFormat
+        };
+
+        // set up the FR formatting locale
+        beforeEach(function() {
+            Ext.apply(Ext.util.Format, {
+                thousandSeparator: '.',
+                decimalSeparator: ',',
+                currencySign: '\u20ac',
+                dateFormat: 'd/m/Y'
+            });
+        });
+        afterEach(function() {
+            Ext.apply(Ext.util.Format, savedFormatLocale);
+        });
+
+        // Demonstrate &quot;Incorrect&quot; use with &quot;/i&quot;. '.' means thousand separator and ',' means decimal in FR locale.
+        // Read carefully. In the formatting strings below, '.' is taken to mean thousand separator, and
+        // ',' is taken to mean decimal separator
+        it(&quot;should format with no decimals&quot;, function() {
+            expect(num(1, &quot;0.00/i&quot;)).toEqual(&quot;1&quot;);
+        });
+        it(&quot;should format+round with no decimals, and '.' as thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;0.00/i&quot;)).toEqual(&quot;1.235&quot;);
+        });
+        it(&quot;should format+round with three decimals after a ',', and '.' as the thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;,0.00/i&quot;)).toEqual(&quot;1.234,567&quot;);
+        });
+        it(&quot;should format+round with one decimal, and no thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;,0/i&quot;)).toEqual(&quot;1234,6&quot;);
+        });
+
+        // Correct usage
+        it(&quot;should format with two decimals&quot;, function() {
+            expect(num(1, &quot;0,00/i&quot;)).toEqual(&quot;1,00&quot;);
+        });
+        it(&quot;should format+round with two decimals, and no thousand separators&quot;, function() {
+            expect(num(1234.567, &quot;0,00/i&quot;)).toEqual(&quot;1234,57&quot;);
+        });
+        it(&quot;should format+round with two decimals after a ',', and '.' as the thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;.0,00/i&quot;)).toEqual(&quot;1.234,57&quot;);
+        });
+        it(&quot;should format+round with no decimals, and '.' as the thousand separator&quot;, function() {
+            expect(num(1234.567, &quot;.0/i&quot;)).toEqual(&quot;1.235&quot;);
+        });
+
+    });
+    
+    it(&quot;should check for a 0 value before appending negative&quot;, function(){
+        expect(num(-2.842170943040401e-14, &quot;0,000.00&quot;)).toEqual('0.00'); 
+    });
+    
+});
+
+</pre>
+</body>
+</html>

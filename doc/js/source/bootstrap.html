@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+GNU General Public License Usage
+This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file.  Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
+(function() {
+    var rootPath =  '../../../../extjs/', 
+        bootstrap;
+
+    bootstrap = this.ExtBootstrap = {
+        rootPath: rootPath,
+
+        disableCaching: window.location.search.match('(\\?|&amp;)disableCacheBuster=true') === null,
+        
+        cacheBuster: function() {
+            return ((this.disableCaching) ? ('?' + (new Date()).getTime()) : '');
+        },
+        
+        loadScript: function(path) {
+            document.write('&lt;script type=&quot;text/javascript&quot; src=&quot;' + rootPath + path + this.cacheBuster() + '&quot;&gt;&lt;/script&gt;');
+        },
+                
+        loadSpecs: function(callback) {
+            ExtBootstrap.afterAllSpecsAreLoaded = callback;
+            ExtBootstrap.pendingSpecs = 0;
+            ExtBootstrap.loadedSpecs = 0;
+            Ext.Array.each(ExtSpecs, function(spec) {
+                ExtBootstrap.pendingSpecs++;
+                Ext.Loader.injectScriptElement(spec + ExtBootstrap.cacheBuster(), ExtBootstrap.afterSpecLoad, ExtBootstrap.afterSpecLoad, ExtBootstrap);
+            });
+        },
+        
+        afterSpecLoad: function() {
+            ExtBootstrap.loadedSpecs++;
+            if (ExtBootstrap.loadedSpecs == ExtBootstrap.pendingSpecs) {
+                ExtBootstrap.afterAllSpecsAreLoaded();
+            }
+        }
+    };
+    
+    bootstrap.loadScript('../testreporter/deploy/testreporter/jasmine.js');
+    bootstrap.loadScript('../platform/core/test/unit/data.js');
+    bootstrap.loadScript('bootstrap/data.js');
+    bootstrap.loadScript('bootstrap/core.js');
+})();
+
+
+</pre>
+</body>
+</html>

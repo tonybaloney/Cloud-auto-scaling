@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+GNU General Public License Usage
+This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file.  Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
+describe(&quot;Ext.String&quot;, function() {
+
+    describe(&quot;ellipsis&quot;, function() {
+        var ellipsis = Ext.String.ellipsis,
+            shortString = &quot;A short string&quot;,
+            longString  = &quot;A somewhat longer string&quot;;
+        
+        it(&quot;should keep short strings intact&quot;, function() {
+            expect(ellipsis(shortString, 100)).toEqual(shortString);
+        });
+        
+        it(&quot;should truncate a longer string&quot;, function() {
+            expect(ellipsis(longString, 10)).toEqual(&quot;A somew...&quot;);
+        });
+        
+        describe(&quot;word break&quot;, function() {
+            var longStringWithDot  = &quot;www.sencha.com&quot;,
+                longStringWithExclamationMark = &quot;Yeah!Yeah!Yeah!&quot;,
+                longStringWithQuestionMark = &quot;Who?When?What?&quot;;
+                           
+            it(&quot;should find a word break on ' '&quot;, function() {
+                expect(ellipsis(longString, 10, true)).toEqual(&quot;A...&quot;);
+            });      
+            
+            it(&quot;should be able to break on '.'&quot;, function() {
+                expect(ellipsis(longStringWithDot, 9, true)).toEqual(&quot;www...&quot;);
+            });  
+            
+            it(&quot;should be able to break on '!'&quot;, function() {
+                expect(ellipsis(longStringWithExclamationMark, 9, true)).toEqual(&quot;Yeah...&quot;);
+            }); 
+            
+            it(&quot;should be able to break on '?'&quot;, function() {
+                expect(ellipsis(longStringWithQuestionMark, 8, true)).toEqual(&quot;Who...&quot;);
+            });       
+        });
+    });
+    
+    describe(&quot;escapeRegex&quot;, function() {
+        var str,
+            escapeRegex = Ext.String.escapeRegex;
+        
+        it(&quot;should escape minus&quot;, function() {
+            str = &quot;12 - 175&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;12 \\- 175&quot;);
+        });
+        
+        it(&quot;should escape dot&quot;, function() {
+            str = &quot;Brian is in the kitchen.&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;Brian is in the kitchen\\.&quot;);
+        });
+        
+        it(&quot;should escape asterisk&quot;, function() {
+            str = &quot;12 * 175&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;12 \\* 175&quot;);
+        });
+        
+        it(&quot;should escape plus&quot;, function() {
+            str = &quot;12 + 175&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;12 \\+ 175&quot;);
+        });
+        
+        it(&quot;should escape question mark&quot;, function() {
+            str = &quot;What else ?&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;What else \\?&quot;);
+        });
+        
+        it(&quot;should escape caret&quot;, function() {
+            str = &quot;^^&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;\\^\\^&quot;);
+        });
+        
+        it(&quot;should escape dollar&quot;, function() {
+            str = &quot;500$&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;500\\$&quot;);
+        });
+        
+        it(&quot;should escape open brace&quot;, function() {
+            str = &quot;something{stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\{stupid&quot;);
+        });
+        
+        it(&quot;should escape close brace&quot;, function() {
+            str = &quot;something}stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\}stupid&quot;);
+        });
+        
+        it(&quot;should escape open bracket&quot;, function() {
+            str = &quot;something[stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\[stupid&quot;);
+        });
+        
+        it(&quot;should escape close bracket&quot;, function() {
+            str = &quot;something]stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\]stupid&quot;);
+        });
+        
+        it(&quot;should escape open parenthesis&quot;, function() {
+            str = &quot;something(stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\(stupid&quot;);
+        });
+        
+        it(&quot;should escape close parenthesis&quot;, function() {
+            str = &quot;something)stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\)stupid&quot;);
+        });
+        
+        it(&quot;should escape vertival bar&quot;, function() {
+            str = &quot;something|stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\|stupid&quot;);
+        });
+        
+        it(&quot;should escape forward slash&quot;, function() {
+            str = &quot;something/stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\/stupid&quot;);
+        });
+        
+        it(&quot;should escape backslash&quot;, function() {
+            str = &quot;something\\stupid&quot;;
+            
+            expect(escapeRegex(str)).toEqual(&quot;something\\\\stupid&quot;);
+        });
+    });
+    
+    describe(&quot;htmlEncode&quot;, function() {
+        var htmlEncode = Ext.String.htmlEncode,
+            str;
+        
+        it(&quot;should replace ampersands&quot;, function() {
+            str = &quot;Fish &amp; Chips&quot;;
+            
+            expect(htmlEncode(str)).toEqual(&quot;Fish &amp;amp; Chips&quot;);
+        });
+        
+        it(&quot;should replace less than&quot;, function() {
+            str = &quot;Fish &gt; Chips&quot;;
+            
+            expect(htmlEncode(str)).toEqual(&quot;Fish &amp;gt; Chips&quot;);
+        });
+        
+        it(&quot;should replace greater than&quot;, function() {
+            str = &quot;Fish &lt; Chips&quot;;
+            
+            expect(htmlEncode(str)).toEqual(&quot;Fish &amp;lt; Chips&quot;);
+        });
+        
+        it(&quot;should replace double quote&quot;, function() {
+            str = 'Fish &quot; Chips';
+            
+            expect(htmlEncode(str)).toEqual(&quot;Fish &amp;quot; Chips&quot;);
+        });
+    });
+    
+    describe(&quot;htmlDecode&quot;, function() {
+        var htmlDecode = Ext.String.htmlDecode,
+            str;
+        
+        it(&quot;should replace ampersands&quot;, function() {
+            str = &quot;Fish &amp;amp; Chips&quot;;
+            
+            expect(htmlDecode(str)).toEqual(&quot;Fish &amp; Chips&quot;);
+        });
+        
+        it(&quot;should replace less than&quot;, function() {
+            str = &quot;Fish &amp;gt; Chips&quot;;
+            
+            expect(htmlDecode(str)).toEqual(&quot;Fish &gt; Chips&quot;);
+        });
+        
+        it(&quot;should replace greater than&quot;, function() {
+            str = &quot;Fish &amp;lt; Chips&quot;;
+            
+            expect(htmlDecode(str)).toEqual(&quot;Fish &lt; Chips&quot;);
+        });
+        
+        it(&quot;should replace double quote&quot;, function() {
+            str = 'Fish &amp;quot; Chips';
+            
+            expect(htmlDecode(str)).toEqual('Fish &quot; Chips');
+        });
+    });
+    
+    describe(&quot;escaping&quot;, function() {
+        var escape = Ext.String.escape;
+        
+        it(&quot;should leave an empty string alone&quot;, function() {
+            expect(escape('')).toEqual('');
+        });
+        
+        it(&quot;should leave a non-empty string without escapable characters alone&quot;, function() {
+            expect(escape('Ed')).toEqual('Ed');
+        });
+        
+        it(&quot;should correctly escape a double backslash&quot;, function() {
+            expect(escape(&quot;\\&quot;)).toEqual(&quot;\\\\&quot;);
+        });
+        
+        it(&quot;should correctly escape a single backslash&quot;, function() {
+            expect(escape('\'')).toEqual('\\\'');
+        });
+        
+        it(&quot;should correctly escape a mixture of escape and non-escape characters&quot;, function() {
+            expect(escape('\'foo\\')).toEqual('\\\'foo\\\\');
+        });
+    });
+    
+    describe(&quot;formatting&quot;, function() {
+        var format = Ext.String.format;
+        
+        it(&quot;should leave a string without format parameters alone&quot;, function() {
+            expect(format('Ed')).toEqual('Ed');
+        });
+        
+        it(&quot;should ignore arguments that don't map to format params&quot;, function() {
+            expect(format(&quot;{0} person&quot;, 1, 123)).toEqual(&quot;1 person&quot;);
+        });
+        
+        it(&quot;should accept several format parameters&quot;, function() {
+            expect(format(&quot;{0} person {1}&quot;, 1, 'came')).toEqual('1 person came');
+        });
+    });
+    
+    describe(&quot;leftPad&quot;, function() {
+        var leftPad = Ext.String.leftPad;
+        
+        it(&quot;should pad the left side of an empty string&quot;, function() {
+            expect(leftPad(&quot;&quot;, 5)).toEqual(&quot;     &quot;);
+        });
+        
+        it(&quot;should pad the left side of a non-empty string&quot;, function() {
+            expect(leftPad(&quot;Ed&quot;, 5)).toEqual(&quot;   Ed&quot;);
+        });
+        
+        it(&quot;should not pad a string where the character count already exceeds the pad count&quot;, function() {
+            expect(leftPad(&quot;Abraham&quot;, 5)).toEqual(&quot;Abraham&quot;);
+        });
+        
+        it(&quot;should allow a custom padding character&quot;, function() {
+            expect(leftPad(&quot;Ed&quot;, 5, &quot;0&quot;)).toEqual(&quot;000Ed&quot;);
+        });
+    });
+    
+    describe(&quot;when toggling between two values&quot;, function() {
+        var toggle = Ext.String.toggle;
+        
+        it(&quot;should use the first toggle value if the string is not already one of the toggle values&quot;, function() {
+            expect(toggle(&quot;Aaron&quot;, &quot;Ed&quot;, &quot;Abe&quot;)).toEqual(&quot;Ed&quot;);
+        });
+        
+        it(&quot;should toggle to the second toggle value if the string is currently the first&quot;, function() {
+            expect(toggle(&quot;Ed&quot;, &quot;Ed&quot;, &quot;Abe&quot;)).toEqual(&quot;Abe&quot;);
+        });
+        
+        it(&quot;should toggle to the first toggle value if the string is currently the second&quot;, function() {
+            expect(toggle(&quot;Abe&quot;, &quot;Ed&quot;, &quot;Abe&quot;)).toEqual(&quot;Ed&quot;);
+        });
+    });
+    
+    describe(&quot;trimming&quot;, function() {
+        var trim = Ext.String.trim;
+        
+        it(&quot;should not modify an empty string&quot;, function() {
+            expect(trim(&quot;&quot;)).toEqual(&quot;&quot;);
+        });
+        
+        it(&quot;should not modify a string with no whitespace&quot;, function() {
+            expect(trim(&quot;Abe&quot;)).toEqual(&quot;Abe&quot;);
+        });
+        
+        it(&quot;should trim a whitespace-only string&quot;, function() {
+            expect(trim(&quot;     &quot;)).toEqual(&quot;&quot;);
+        });
+        
+        it(&quot;should trim leading whitespace&quot;, function() {
+            expect(trim(&quot;  Ed&quot;)).toEqual(&quot;Ed&quot;);
+        });
+        
+        it(&quot;should trim trailing whitespace&quot;, function() {
+            expect(trim(&quot;Ed   &quot;)).toEqual(&quot;Ed&quot;);
+        });
+        
+        it(&quot;should trim leading and trailing whitespace&quot;, function() {
+            expect(trim(&quot;   Ed  &quot;)).toEqual(&quot;Ed&quot;);
+        });
+        
+        it(&quot;should not trim whitespace between words&quot;, function() {
+            expect(trim(&quot;Fish and chips&quot;)).toEqual(&quot;Fish and chips&quot;);
+            expect(trim(&quot;   Fish and chips  &quot;)).toEqual(&quot;Fish and chips&quot;);
+        });
+        
+        it(&quot;should trim tabs&quot;, function() {
+            expect(trim(&quot;\tEd&quot;)).toEqual(&quot;Ed&quot;);
+        });
+        
+        it(&quot;should trim a mixture of tabs and whitespace&quot;, function() {
+            expect(trim(&quot;\tEd   &quot;)).toEqual(&quot;Ed&quot;);
+        });
+    });
+    
+    describe(&quot;urlAppend&quot;, function(){
+        var urlAppend = Ext.String.urlAppend;
+        
+        it(&quot;should leave the string untouched if the second argument is empty&quot;, function(){
+            expect(urlAppend('sencha.com')).toEqual('sencha.com');    
+        });
+        
+        it(&quot;should append a ? if one doesn't exist&quot;, function(){
+            expect(urlAppend('sencha.com', 'foo=bar')).toEqual('sencha.com?foo=bar');
+        });
+        
+        it(&quot;should append any new values with &amp; if a ? exists&quot;, function(){
+            expect(urlAppend('sencha.com?x=y', 'foo=bar')).toEqual('sencha.com?x=y&amp;foo=bar');
+        });
+    });
+    
+    describe(&quot;capitalize&quot;, function(){
+        var capitalize = Ext.String.capitalize;
+        
+        it(&quot;should handle an empty string&quot;, function(){
+            expect(capitalize('')).toEqual('');
+        });
+        
+        it(&quot;should capitalize the first letter of the string&quot;, function(){
+            expect(capitalize('open')).toEqual('Open');
+        });
+        
+        it(&quot;should leave the first letter capitalized if it is already capitalized&quot;, function(){
+            expect(capitalize('Closed')).toEqual('Closed');
+        });
+        
+        it(&quot;should capitalize a single letter&quot;, function(){
+            expect(capitalize('a')).toEqual('A');
+        });
+        
+        it(&quot;should not capitalize even when spaces are included&quot;, function(){
+            expect(capitalize('this is a sentence')).toEqual('This is a sentence');
+        });
+    });
+});
+
+</pre>
+</body>
+</html>
