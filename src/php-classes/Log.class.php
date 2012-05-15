@@ -18,7 +18,9 @@ class Log {
 	/** 
 	 * Get the generic error logs
 	 * @access public
-	 * @param int Customer ID
+	 * @param int $uid Customer ID
+	 * @param int $start Starting row
+	 * @param int $limit Limit the number of results
 	 * @return array The log entries
 	 **/
 	public static function GetErrorLogs( $uid=false,$start=0,$limit=0 ) {
@@ -28,9 +30,15 @@ class Log {
 		return DB::GetData("SELECT `error_log`.* FROM `error_log` WHERE `error_log`.`customerId` = $uid ORDER BY `date` DESC LIMIT $start,$limit");
 	}
 	
+	/**
+	 * How many error log entries are there?
+	 * @param int $uid Customer ID, defaults to current user
+	 * @return int The limit
+	 **/
 	public static function GetErrorLogsLimit($uid=false){
 		if(!$uid) $uid = Auth::GetUID();
-		return DB::GetRecord("SELECT COUNT(1) AS `total` FROM `error_log` WHERE `error_log`.`customerId` = $uid ORDER BY `date` DESC");
+		$rec = DB::GetRecord("SELECT COUNT(1) AS `total` FROM `error_log` WHERE `error_log`.`customerId` = $uid ORDER BY `date` DESC");
+		return $rec['limit'];
 	}
 	
 	/** 
@@ -63,8 +71,9 @@ class Log {
 	 * @param int $customerId The customer
 	 * @param int $clusterId The target cluster
 	 * @param int $triggerId The target trigger
-	 * @param string $hostname The target Virtual Machine Name
-	 * @param string $message Error message
+	 * @param int $vmId The Virtual Machine UID
+	 * @param string $vmName The target Virtual Machine Name
+	 * @param string $result The result string
 	 **/
 	public static function LogTickResult( $customerId, $clusterId, $triggerId, $vmId, $vmName, $result ){
 		$customerId = DB::Sanitise($customerId);
@@ -79,6 +88,8 @@ class Log {
 	/** 
 	 * Get the results in the tick log for a cluster
 	 * @param int $clusterId The ID of the cluster
+	 * @param int $triggerId The ID of the trigger
+	 * @param int $limit the maximum number of rows to return
 	 * @return array The tick_log rows
 	 **/
 	public static function GetTickLog ($clusterId,$triggerId,$limit){

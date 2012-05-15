@@ -1,10 +1,18 @@
 <?php
 /** 
- * Types of error
+ * Backend failure
  * @package auto-scaler
  **/
 define ('CEX_BACKEND_HTTP_FAILURE', 101);
+/** 
+ * Backend not configured correctly
+ * @package auto-scaler
+ **/
 define ('CEX_NO_BACKEND_CONFIGURED', 102);
+/** 
+ * API response was unexpected
+ * @package auto-scaler
+ **/
 define ('CEX_INVALID_API_RESPONSE', 103);
  /** 
  * Holding exception class for errors from Cloud providers..
@@ -35,6 +43,7 @@ class ConnectorException extends Exception {
 	/**
 	 * Create a ConnectorException
 	 * @access public
+	 * @param object $cloud Link to Connector object
 	 * @param string $message The text of the message
 	 * @param int $type One of the CEX exception types
 	 **/

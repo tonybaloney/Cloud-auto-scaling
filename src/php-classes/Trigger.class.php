@@ -228,7 +228,6 @@ class Trigger {
 	/** 
 	 * Get the average result for this trigger
 	 * @access public
-	 * @param string $action One of 'SCALE_UP','SCALE_DOWN'
 	 * @return string Average result
 	 **/
 	public function GetAverageResult ( ) {
@@ -239,7 +238,6 @@ class Trigger {
 	/** 
 	 * Get the results from the trigger
 	 * @access public
-	 * @param string $action One of 'SCALE_UP','SCALE_DOWN'
 	 * @return array Result log
 	 **/
 	public function GetResults ($time) {

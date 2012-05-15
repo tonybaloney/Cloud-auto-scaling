@@ -92,13 +92,14 @@ Ext.define('Ext.app.Portal', {
         Ext.apply(this, {
             layout: {
                 type: 'border',
-                padding: '0 5 5 5' // pad the layout from the window edges
+                padding: '0 0 0 0' // pad the layout from the window edges
             },
             items: [{
                 xtype: 'box',
+				id:'top-header',
                 region: 'north',
                 height: 60,
-                html: 'Cloud autoscaling dashboard'
+                html: '<img src="assets/claranet-white-55.png"/><span style="float:right;top:10px; right:10px; position:relative;">Cloud Autoscaling Dashboard</span>'
             },{
                 xtype: 'container',
                 region: 'center',
@@ -110,22 +111,19 @@ Ext.define('Ext.app.Portal', {
                     maxWidth: 400,
                     split: true,
                     collapsible: false,
-					unstyled: true,
-					border: false,
                     layout: { 
 						type:'vbox',
 						align:'stretch',
 						pack:'start'
 					},
-					dockedItems: [{
-						xtype: 'toolbar',
+					bbar: {
 						items: [{
 							text: 'Configure Cloud API',
 							scope: this,
 							handler: this.ConfigureAPI,
 							iconCls:'icon-configure'
 						}]
-					}],
+					},
                     items: Ext.create('Cloud.ClusterPortlet')
                 },{
                     xtype: 'portalpanel',

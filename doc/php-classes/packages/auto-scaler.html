@@ -20,7 +20,6 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
-<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/auto-scaler.html"><i class="icon-folder-open"></i> auto-scaler</a></li>
 </ul>
 </li>
@@ -32,7 +31,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">30</span></a></li>
+                <span class="label label-info">3</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">3</span>
@@ -63,7 +62,7 @@
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-function"></i> Functions</li>
-<li class="function  "><a href="#cloudErrorHandler" title="cloudErrorHandler :: Custom error logger for PHP that tracks the errors in the database against the user that caused them"><span class="description">Custom error logger for PHP that tracks the errors in the database against the user that caused them</span><pre>cloudErrorHandler</pre></a></li>
+<li class="function  "><a href="#cloudErrorHandler" title="cloudErrorHandler :: Catch PHP errors"><span class="description">Catch PHP errors</span><pre>cloudErrorHandler</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-interface"></i> Interfaces</li>
 <li><a href="#Connector" title="Interface providing a consistent connection between types of cloud interface">Connector</a></li>
@@ -82,7 +81,9 @@ Requirements : pear/Mail">Alerts</a></li>
 <li><a href="#Auth" title="Authentication Class">Auth</a></li>
 <li class="nav-header">
 <i class="icon-custom icon-constant"></i> Constants</li>
-<li class="constant  "><a href="#CEX_BACKEND_HTTP_FAILURE" title="CEX_BACKEND_HTTP_FAILURE :: Types of error"><span class="description">Types of error</span><pre>CEX_BACKEND_HTTP_FAILURE</pre></a></li>
+<li class="constant  "><a href="#CEX_BACKEND_HTTP_FAILURE" title="CEX_BACKEND_HTTP_FAILURE :: Backend failure"><span class="description">Backend failure</span><pre>CEX_BACKEND_HTTP_FAILURE</pre></a></li>
+<li class="constant  "><a href="#CEX_INVALID_API_RESPONSE" title="CEX_INVALID_API_RESPONSE :: API response was unexpected"><span class="description">API response was unexpected</span><pre>CEX_INVALID_API_RESPONSE</pre></a></li>
+<li class="constant  "><a href="#CEX_NO_BACKEND_CONFIGURED" title="CEX_NO_BACKEND_CONFIGURED :: Backend not configured correctly"><span class="description">Backend not configured correctly</span><pre>CEX_NO_BACKEND_CONFIGURED</pre></a></li>
 </ul>
 </div>
 <div class="span8 package-contents">
@@ -96,32 +97,24 @@ Requirements : pear/Mail">Alerts</a></li>
 <h3>
 <i class="icon-custom icon-function"></i> Functions</h3>
 <a name="cloudErrorHandler" id="cloudErrorHandler"></a><div class="element clickable function  cloudErrorHandler" data-toggle="collapse" data-target=".cloudErrorHandler .collapse">
-<h2>Custom error logger for PHP that tracks the errors in the database against the user that caused them</h2>
-<pre>cloudErrorHandler($errno, $errstr, $errfile, $errline) </pre>
+<h2>Catch PHP errors</h2>
+<pre>cloudErrorHandler(int $errno, string $errstr, string $errfile, int $errline) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>package</th>
-<td><a href="..//packages/auto-scaler.html">auto-scaler</a></td>
-</tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$errno</h4>
-<code></code>
-</div>
+<code>int</code><p>The PHP error Number</p></div>
 <div class="subelement argument">
 <h4>$errstr</h4>
-<code></code>
-</div>
+<code>string</code><p>The PHP error string</p></div>
 <div class="subelement argument">
 <h4>$errfile</h4>
-<code></code>
-</div>
+<code>string</code><p>The PHP file that caused the error</p></div>
 <div class="subelement argument">
 <h4>$errline</h4>
-<code></code>
-</div>
+<code>int</code><p>The line in the PHP file that caused the error</p></div>
 </div></div>
 </div>
 <h3>
@@ -195,8 +188,32 @@ Requirements : pear/Mail</p>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
 <a name="CEX_BACKEND_HTTP_FAILURE" id="CEX_BACKEND_HTTP_FAILURE"> </a><div class="element clickable constant  CEX_BACKEND_HTTP_FAILURE" data-toggle="collapse" data-target=".CEX_BACKEND_HTTP_FAILURE .collapse">
-<h2>Types of error</h2>
+<h2>Backend failure</h2>
 <pre>CEX_BACKEND_HTTP_FAILURE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="..//packages/auto-scaler.html">auto-scaler</a></td>
+</tr></table>
+</div></div>
+</div>
+<a name="CEX_INVALID_API_RESPONSE" id="CEX_INVALID_API_RESPONSE"> </a><div class="element clickable constant  CEX_INVALID_API_RESPONSE" data-toggle="collapse" data-target=".CEX_INVALID_API_RESPONSE .collapse">
+<h2>API response was unexpected</h2>
+<pre>CEX_INVALID_API_RESPONSE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="..//packages/auto-scaler.html">auto-scaler</a></td>
+</tr></table>
+</div></div>
+</div>
+<a name="CEX_NO_BACKEND_CONFIGURED" id="CEX_NO_BACKEND_CONFIGURED"> </a><div class="element clickable constant  CEX_NO_BACKEND_CONFIGURED" data-toggle="collapse" data-target=".CEX_NO_BACKEND_CONFIGURED .collapse">
+<h2>Backend not configured correctly</h2>
+<pre>CEX_NO_BACKEND_CONFIGURED </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -212,7 +229,7 @@ Requirements : pear/Mail</p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-15T10:37:09+01:00.<br></footer></div>
+            generated on 2012-05-15T11:38:38+01:00.<br></footer></div>
 </div>
 </body>
 </html>

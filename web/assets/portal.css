@@ -1,9 +1,10 @@
-#app-header {
-    color: #596F8F;
-    font-size: 22px;
-    font-weight: 200;
-    padding: 8px 15px;
-    text-shadow: 0 1px 0 #fff;
+#top-header {
+    font-size: 32px;
+    font-weight: 290;
+    color: white;
+    font-family: Arial;
+    padding: 2px;
+    background: rgb(216,0,26);
 }
 #app-msg {
     background: #D1DDEF;
@@ -17,9 +18,6 @@
 }
 .x-panel-ghost {
     z-index: 1;
-}
-.x-border-layout-ct {
-    background: #DFE8F6;
 }
 .x-portal-body {
     padding: 0 0 0 8px;

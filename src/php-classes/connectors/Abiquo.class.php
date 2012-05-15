@@ -77,6 +77,7 @@ class Abiquo implements Connector{
 	 * @param string $url URL of the Abiquo Server
 	 * @param string $username Username for Abiquo
 	 * @param string $password Password for Abiquo
+	 * @param bool $debugMode Print the API calls to stdout
 	 * @return bool Success or failure on finding server and establishing a login 
 	 * @throws ConnectorException
 	 * @access public
@@ -275,7 +276,7 @@ class Abiquo implements Connector{
 	
 	/**
 	 * Get a list of VDCs in logged in Enterprise
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoVirtualDatacenters () {
@@ -284,8 +285,8 @@ class Abiquo implements Connector{
 	
 	/**
 	 * Get a VDC in logged in Enterprise	 
-	 * @param int $vdc_id ID of the Virtual Data Center
-	 * @return Object SimpleXML Object tree of the result
+	 * @param int $id ID of the Virtual Data Center
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoVirtualDatacenter ($id){
@@ -295,7 +296,7 @@ class Abiquo implements Connector{
 	/**
 	 * Get a list of Private Networks (VLANs) in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoPrivateNetworks ($vdc_id){
@@ -306,21 +307,17 @@ class Abiquo implements Connector{
 	 * Get a specific private network in this enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $pn_id ID of the Private Network
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoPrivateNetwork ($vdc_id, $pn_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$pn_id",'application/vnd.abiquo.vlan+xml');
 	}
 	
-	public function CreateAbiquoVirtualAppliance ($vdc_id, $vapp_name){
-		"<virtualAppliance><name>$vapp_name</name></virtualAppliance>";
-	}
-	
 	/**
 	 * Get a list of Virtual Appliances in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoVirtualAppliances ($vdc_id){
@@ -331,7 +328,7 @@ class Abiquo implements Connector{
 	 * Get a Virtual Appliance in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoVirtualAppliance ($vdc_id,$vapp_id){
@@ -535,11 +532,11 @@ class Abiquo implements Connector{
 	 * @param int $clusterLocation The ID of the cluster location
 	 * @param int $targetApplianceId The ID of the target virtual appliance
 	 * @param int $targetVlanId The ID of the target VLAN
-	 * @param int $templateId The ID to create the VM from
+	 * @param string $templateUrl The REST URL to create the VM from
 	 **/
-	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateUri ) {
+	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateUrl ) {
 		// Get the Virtual Data Center
-		$request = "<virtualMachine><link href=\"".$templateUri."\" rel=\"virtualmachinetemplate\" title=\"Nostalgia\"/></virtualMachine>";
+		$request = "<virtualMachine><link href=\"".$templateUrl."\" rel=\"virtualmachinetemplate\" title=\"Nostalgia\"/></virtualMachine>";
 		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
 		print_r($vm);
 		// @todo establish VM ID

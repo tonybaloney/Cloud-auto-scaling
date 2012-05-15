@@ -22,16 +22,13 @@ function Tock(){
 					if (is_array($triggers)){
 						foreach ($triggers as $trigger) { 
 							// Is there an outstanding record for this (either a pending item or an item that has been declined recently.)
-							$t = ($trigger['scaleUpTime']>$trigger['scaleDownTime']?$trigger['scaleUpTime']:$trigger['scaleDownTime']);
-							$rec=DB::GetRecord("SELECT COUNT(1) as `num` FROM `tock_actions` WHERE `triggerId`=$trigger[triggerId] AND (`approval` IN('PENDING','APPROVED','AUTO_APPROVED') OR (`approval`='DECLINED' AND `date` < SUBDATE(date, INTERVAL $t SECOND)))");
-							$has_outstanding_request = ($rec['num']>0);
 							$triggerCls= new Trigger($trigger['triggerId'],$custId);
-							if(!$has_outstanding_request){
-								$result = $triggerCls->GetAverageResult($t);
-								if ($scaleup > $trigger['upper']) { 
+							if(!$triggerCls->HasPendingRequest()){
+								$result = $triggerCls->GetAverageResult();
+								if ($result > $trigger['upper']) { 
 									// Scale UP!!
 									$triggerCls->Scale('SCALE_UP');
-								} else if ($scaledown < $trigger['lower']) { 
+								} else if ($result < $trigger['lower']) { 
 									// Scale down..
 									$triggerCls->Scale('SCALE_DOWN');
 								}

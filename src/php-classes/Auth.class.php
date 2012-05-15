@@ -33,6 +33,7 @@ class Auth {
 	 * Get the details of the current logged in user
 	 * @static
 	 * @access public
+	 * @param int $uid Customer ID
 	 * @return Array Customer details
 	 */
 	public static function GetCustomer($uid) {
@@ -72,6 +73,7 @@ class Auth {
 	/**
 	 * Get the connection to the cloud backend for this user
 	 * @access public
+	 * @param int $uid The Customer ID
 	 * @return Connector The Cloud object (implements the Connector interface)
 	 **/
 	public static function GetCloudConnection ($uid=false) {

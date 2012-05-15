@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a2" title="">
-  <file path="connectors/Abiquo.class.php" hash="b2d1ffd409f9b338d3c52d0e86945f30" package="auto-scaler">
+  <file path="connectors/Abiquo.class.php" hash="364bf2bed992c1d2033446dbc8cfacde" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Abiquo Class
 PHP Requirements
@@ -11,16 +11,8 @@ PHP Requirements
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
     <markers>
-      <todo line="133">Read headers to establish version.</todo>
+      <todo line="134">Read headers to establish version.</todo>
     </markers>
-    <parse_markers>
-      <error line="75" code="50015">Argument $debugMode is missing from the Docblock of Abiquo()</error>
-      <error line="285" code="50014">Name of argument $id does not match with the DocBlock's name $vdc_id in GetAbiquoVirtualDatacenter()</error>
-      <notice line="285" code="50013">Parameter $vdc_id could not be found in GetAbiquoVirtualDatacenter()</notice>
-      <error line="316" code="50010">No DocBlock was found for method CreateAbiquoVirtualAppliance()</error>
-      <error line="532" code="50014">Name of argument $templateUri does not match with the DocBlock's name $templateId in CreateVM()</error>
-      <notice line="532" code="50013">Parameter $templateId could not be found in CreateVM()</notice>
-    </parse_markers>
     <class final="false" abstract="false" namespace="default" line="17" package="auto-scaler">
       <name>Abiquo</name>
       <full_name>\Abiquo</full_name>
@@ -130,7 +122,7 @@ authenticated request]]></description>
           <tag line="68" name="access" description="private"/>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="84" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="85" package="">
         <name>Abiquo</name>
         <type>function</type>
         <docblock line="75">
@@ -145,6 +137,9 @@ authenticated request]]></description>
           <tag line="75" name="param" description="Password for Abiquo" type="string" variable="$password">
             <type by_reference="false">string</type>
           </tag>
+          <tag line="75" name="param" description="Print the API calls to stdout" type="bool" variable="$debugMode">
+            <type by_reference="false">bool</type>
+          </tag>
           <tag line="75" name="return" description="Success or failure on finding server and establishing a login" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -153,697 +148,683 @@ authenticated request]]></description>
           </tag>
           <tag line="75" name="access" description="public"/>
         </docblock>
-        <argument line="84">
+        <argument line="85">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="84">
+        <argument line="85">
           <name>$username</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="84">
+        <argument line="85">
           <name>$password</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="84">
+        <argument line="85">
           <name>$debugMode</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="122" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="123" package="">
         <name>Authenticate</name>
         <type>function</type>
-        <docblock line="116">
+        <docblock line="117">
           <description><![CDATA[Login to the abiquo server, get the auth token and session (jsession) id
 Store these in the class for later API calls.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="116" name="return" description="Success or failure on finding server and establishing a login" type="bool">
+          <tag line="117" name="return" description="Success or failure on finding server and establishing a login" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="116" name="access" description="private"/>
+          <tag line="117" name="access" description="private"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="158" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="159" package="">
         <name>HttpRequest</name>
         <type>function</type>
-        <docblock line="151">
+        <docblock line="152">
           <description><![CDATA[Execute a HTTP request using CURL]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="151" name="param" description="HTTP URI" type="string" variable="$url">
+          <tag line="152" name="param" description="HTTP URI" type="string" variable="$url">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="151" name="param" description="List of CURL options &lt;link&gt;http://uk3.php.net/manual/en/function.curl-setopt.php&lt;/link&gt;" type="array" variable="$opt">
+          <tag line="152" name="param" description="List of CURL options &lt;link&gt;http://uk3.php.net/manual/en/function.curl-setopt.php&lt;/link&gt;" type="array" variable="$opt">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="151" name="return" description="Response of the CURL request, false on failure, string on success" type="string|bool">
+          <tag line="152" name="return" description="Response of the CURL request, false on failure, string on success" type="string|bool">
             <type by_reference="false">string</type>
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="151" name="access" description="private"/>
+          <tag line="152" name="access" description="private"/>
         </docblock>
-        <argument line="158">
+        <argument line="159">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="158">
+        <argument line="159">
           <name>$opt</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="185" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="186" package="">
         <name>SanitiseForXML</name>
         <type>function</type>
-        <docblock line="179">
+        <docblock line="180">
           <description><![CDATA[Sanitise a string for XML input (remove < and > characters)]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="179" name="param" description="Input string" type="string" variable="$s">
+          <tag line="180" name="param" description="Input string" type="string" variable="$s">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="179" name="return" description="The sanitised string." type="string">
+          <tag line="180" name="return" description="The sanitised string." type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="179" name="access" description="private"/>
+          <tag line="180" name="access" description="private"/>
         </docblock>
-        <argument line="185">
+        <argument line="186">
           <name>$s</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="197" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="198" package="">
         <name>ApiRequest</name>
         <type>function</type>
-        <docblock line="189">
+        <docblock line="190">
           <description><![CDATA[Request to the API, expect XML back and format into assoc array and return]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="189" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
+          <tag line="190" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="189" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
+          <tag line="190" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="189" name="param" description="Additional options for CURL" type="array" variable="$extraOpt">
+          <tag line="190" name="param" description="Additional options for CURL" type="array" variable="$extraOpt">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="189" name="return" description="of the returned data" type="Array">
+          <tag line="190" name="return" description="of the returned data" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="189" name="access" description="private"/>
+          <tag line="190" name="access" description="private"/>
         </docblock>
-        <argument line="197">
+        <argument line="198">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="197">
+        <argument line="198">
           <name>$accept</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="197">
+        <argument line="198">
           <name>$extraOpt</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="227" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="228" package="">
         <name>ApiPOSTRequest</name>
         <type>function</type>
-        <docblock line="219">
+        <docblock line="220">
           <description><![CDATA[Request to the API, expect XML back and format into assoc array and return]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="219" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
+          <tag line="220" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="219" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
+          <tag line="220" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="219" name="param" description="The XML message for the API" type="string" variable="$message">
+          <tag line="220" name="param" description="The XML message for the API" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="219" name="return" description="Object of the returned data" type="Array">
+          <tag line="220" name="return" description="Object of the returned data" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="219" name="access" description="private"/>
+          <tag line="220" name="access" description="private"/>
         </docblock>
-        <argument line="227">
+        <argument line="228">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="227">
+        <argument line="228">
           <name>$accept</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="227">
+        <argument line="228">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="241" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="242" package="">
         <name>xml2array</name>
         <type>function</type>
-        <docblock line="235">
+        <docblock line="236">
           <description><![CDATA[Convert an XML string into an associative array]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="235" name="param" description="XML String" type="string" variable="$xml">
+          <tag line="236" name="param" description="XML String" type="string" variable="$xml">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="235" name="return" description="" type="Array">
+          <tag line="236" name="return" description="" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="235" name="access" description="private"/>
+          <tag line="236" name="access" description="private"/>
         </docblock>
-        <argument line="241">
+        <argument line="242">
           <name>$xml</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="253" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="254" package="">
         <name>sxiToArray</name>
         <type>function</type>
-        <docblock line="246">
+        <docblock line="247">
           <description><![CDATA[Convert a SimpleXMLIterator to an associative array
 TODO: Carry XML element attributes into the structure]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="246" name="param" description="Object" type="\SimpleXMLIterator" variable="$sxi">
+          <tag line="247" name="param" description="Object" type="\SimpleXMLIterator" variable="$sxi">
             <type by_reference="false">\SimpleXMLIterator</type>
           </tag>
-          <tag line="246" name="return" description="" type="Array">
+          <tag line="247" name="return" description="" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="246" name="access" description="private"/>
+          <tag line="247" name="access" description="private"/>
         </docblock>
-        <argument line="253">
+        <argument line="254">
           <name>$sxi</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="281" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="282" package="">
         <name>GetAbiquoVirtualDatacenters</name>
         <type>function</type>
-        <docblock line="276">
+        <docblock line="277">
           <description><![CDATA[Get a list of VDCs in logged in Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="276" name="return" description="SimpleXML Object tree of the result" type="Object">
-            <type by_reference="false">Object</type>
+          <tag line="277" name="return" description="Object tree of the result" type="Array">
+            <type by_reference="false">Array</type>
           </tag>
-          <tag line="276" name="access" description="public"/>
+          <tag line="277" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="291" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="292" package="">
         <name>GetAbiquoVirtualDatacenter</name>
         <type>function</type>
-        <docblock line="285">
+        <docblock line="286">
           <description><![CDATA[Get a VDC in logged in Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="285" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="286" name="param" description="ID of the Virtual Data Center" type="int" variable="$id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="285" name="return" description="SimpleXML Object tree of the result" type="Object">
-            <type by_reference="false">Object</type>
+          <tag line="286" name="return" description="Object tree of the result" type="Array">
+            <type by_reference="false">Array</type>
           </tag>
-          <tag line="285" name="access" description="public"/>
+          <tag line="286" name="access" description="public"/>
         </docblock>
-        <argument line="291">
+        <argument line="292">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="301" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="302" package="">
         <name>GetAbiquoPrivateNetworks</name>
         <type>function</type>
-        <docblock line="295">
+        <docblock line="296">
           <description><![CDATA[Get a list of Private Networks (VLANs) in this Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="295" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="296" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="295" name="return" description="SimpleXML Object tree of the result" type="Object">
-            <type by_reference="false">Object</type>
+          <tag line="296" name="return" description="Object tree of the result" type="Array">
+            <type by_reference="false">Array</type>
           </tag>
-          <tag line="295" name="access" description="public"/>
+          <tag line="296" name="access" description="public"/>
         </docblock>
-        <argument line="301">
+        <argument line="302">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="312" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="313" package="">
         <name>GetAbiquoPrivateNetwork</name>
         <type>function</type>
-        <docblock line="305">
+        <docblock line="306">
           <description><![CDATA[Get a specific private network in this enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="305" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="306" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="305" name="param" description="ID of the Private Network" type="int" variable="$pn_id">
+          <tag line="306" name="param" description="ID of the Private Network" type="int" variable="$pn_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="305" name="return" description="SimpleXML Object tree of the result" type="Object">
-            <type by_reference="false">Object</type>
+          <tag line="306" name="return" description="Object tree of the result" type="Array">
+            <type by_reference="false">Array</type>
           </tag>
-          <tag line="305" name="access" description="public"/>
+          <tag line="306" name="access" description="public"/>
         </docblock>
-        <argument line="312">
+        <argument line="313">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="312">
+        <argument line="313">
           <name>$pn_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="316" package="">
-        <name>CreateAbiquoVirtualAppliance</name>
-        <type>function</type>
-        <argument line="316">
-          <name>$vdc_id</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="316">
-          <name>$vapp_name</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="326" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="323" package="">
         <name>GetAbiquoVirtualAppliances</name>
         <type>function</type>
-        <docblock line="320">
+        <docblock line="317">
           <description><![CDATA[Get a list of Virtual Appliances in this Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="320" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="317" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="320" name="return" description="SimpleXML Object tree of the result" type="Object">
-            <type by_reference="false">Object</type>
+          <tag line="317" name="return" description="Object tree of the result" type="Array">
+            <type by_reference="false">Array</type>
           </tag>
-          <tag line="320" name="access" description="public"/>
+          <tag line="317" name="access" description="public"/>
         </docblock>
-        <argument line="326">
+        <argument line="323">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="337" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="334" package="">
         <name>GetAbiquoVirtualAppliance</name>
         <type>function</type>
-        <docblock line="330">
+        <docblock line="327">
           <description><![CDATA[Get a Virtual Appliance in this Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="330" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="327" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="330" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="327" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="330" name="return" description="SimpleXML Object tree of the result" type="Object">
-            <type by_reference="false">Object</type>
+          <tag line="327" name="return" description="Object tree of the result" type="Array">
+            <type by_reference="false">Array</type>
           </tag>
-          <tag line="330" name="access" description="public"/>
+          <tag line="327" name="access" description="public"/>
         </docblock>
-        <argument line="337">
+        <argument line="334">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="337">
+        <argument line="334">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="348" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="345" package="">
         <name>GetAbiquoIPsUsedInVirtualAppliance</name>
         <type>function</type>
-        <docblock line="341">
+        <docblock line="338">
           <description><![CDATA[Get a list of IPs used in a specified Virtual Appliance]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="341" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="338" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="341" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="338" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="341" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="338" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="341" name="access" description="public"/>
+          <tag line="338" name="access" description="public"/>
         </docblock>
-        <argument line="348">
+        <argument line="345">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="348">
+        <argument line="345">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="359" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="356" package="">
         <name>GetAbiquoVirtualMachines</name>
         <type>function</type>
-        <docblock line="352">
+        <docblock line="349">
           <description><![CDATA[Get a list of Virtual Machines in a specified Virtual Appliance]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="352" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="349" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="352" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="349" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="352" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="349" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="352" name="access" description="public"/>
+          <tag line="349" name="access" description="public"/>
         </docblock>
-        <argument line="359">
+        <argument line="356">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="359">
+        <argument line="356">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="371" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="368" package="">
         <name>GetAbiquoVirtualMachine</name>
         <type>function</type>
-        <docblock line="363">
+        <docblock line="360">
           <description><![CDATA[Get a Virtual Machine in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="363" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="360" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="363" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="360" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="363" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
+          <tag line="360" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="363" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="360" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="363" name="access" description="public"/>
+          <tag line="360" name="access" description="public"/>
         </docblock>
-        <argument line="371">
+        <argument line="368">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="371">
+        <argument line="368">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="371">
+        <argument line="368">
           <name>$vm_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="383" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="380" package="">
         <name>GetAbiquoVirtualMachineNetworks</name>
         <type>function</type>
-        <docblock line="375">
+        <docblock line="372">
           <description><![CDATA[Get a Virtual Machine Networks in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="375" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="372" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="375" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="372" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="375" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
+          <tag line="372" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="375" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="372" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="375" name="access" description="public"/>
+          <tag line="372" name="access" description="public"/>
         </docblock>
-        <argument line="383">
+        <argument line="380">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="383">
+        <argument line="380">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="383">
+        <argument line="380">
           <name>$vm_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="396" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="393" package="">
         <name>TestConnection</name>
         <type>function</type>
-        <docblock line="391">
+        <docblock line="388">
           <description><![CDATA[Test connection to the cloud provider]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="391" name="return" description="Connection successful" type="bool">
+          <tag line="388" name="return" description="Connection successful" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="391" name="access" description="public"/>
+          <tag line="388" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="405" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="402" package="">
         <name>GetLocations</name>
         <type>function</type>
-        <docblock line="400">
+        <docblock line="397">
           <description><![CDATA[Get a list of locations, for multi-regional cloud platforms.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="400" name="return" description="List of locations (Key-Value pair array)" type="array">
+          <tag line="397" name="return" description="List of locations (Key-Value pair array)" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="400" name="access" description="public"/>
+          <tag line="397" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="422" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="419" package="">
         <name>GetPrivateNetworks</name>
         <type>function</type>
-        <docblock line="416">
+        <docblock line="413">
           <description><![CDATA[Get a list of private networks]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="416" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="413" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="416" name="return" description="List of private networks" type="array">
+          <tag line="413" name="return" description="List of private networks" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="416" name="access" description="public"/>
+          <tag line="413" name="access" description="public"/>
         </docblock>
-        <argument line="422">
+        <argument line="419">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="446" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="443" package="">
         <name>GetAppliances</name>
         <type>function</type>
-        <docblock line="440">
+        <docblock line="437">
           <description><![CDATA[Get a list of VM Groups/Appliances]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="440" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="437" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="440" name="return" description="List of appliances" type="array">
+          <tag line="437" name="return" description="List of appliances" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="440" name="access" description="public"/>
+          <tag line="437" name="access" description="public"/>
         </docblock>
-        <argument line="446">
+        <argument line="443">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="468" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="465" package="">
         <name>GetPrivateNetwork</name>
         <type>function</type>
-        <docblock line="461">
+        <docblock line="458">
           <description><![CDATA[Get a list of private networks]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="461" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="458" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="461" name="param" description="Private Network ID" type="int" variable="$networkId">
+          <tag line="458" name="param" description="Private Network ID" type="int" variable="$networkId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="461" name="return" description="List of private networks" type="array">
+          <tag line="458" name="return" description="List of private networks" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="461" name="access" description="public"/>
+          <tag line="458" name="access" description="public"/>
         </docblock>
-        <argument line="468">
+        <argument line="465">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="468">
+        <argument line="465">
           <name>$networkId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="494" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="491" package="">
         <name>GetVirtualMachines</name>
         <type>function</type>
-        <docblock line="487">
+        <docblock line="484">
           <description><![CDATA[Get a list of VM s]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="487" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="484" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="487" name="param" description="Appliance ID" type="int" variable="$appliance">
+          <tag line="484" name="param" description="Appliance ID" type="int" variable="$appliance">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="487" name="return" description="List of virtual machines." type="array">
+          <tag line="484" name="return" description="List of virtual machines." type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="487" name="access" description="public"/>
+          <tag line="484" name="access" description="public"/>
         </docblock>
-        <argument line="494">
+        <argument line="491">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="494">
+        <argument line="491">
           <name>$appliance</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="517" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="514" package="">
         <name>GetVirtualMachineNetworks</name>
         <type>function</type>
-        <docblock line="509">
+        <docblock line="506">
           <description><![CDATA[Get a list of VM s]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="509" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="506" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="509" name="param" description="Appliance ID" type="int" variable="$appliance">
+          <tag line="506" name="param" description="Appliance ID" type="int" variable="$appliance">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="509" name="param" description="VM ID" type="int" variable="$virtualMachine">
+          <tag line="506" name="param" description="VM ID" type="int" variable="$virtualMachine">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="509" name="return" description="List of NICS." type="array">
+          <tag line="506" name="return" description="List of NICS." type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="509" name="access" description="public"/>
+          <tag line="506" name="access" description="public"/>
         </docblock>
-        <argument line="517">
+        <argument line="514">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="517">
+        <argument line="514">
           <name>$appliance</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="517">
+        <argument line="514">
           <name>$virtualMachine</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="540" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="537" package="">
         <name>CreateVM</name>
         <type>function</type>
-        <docblock line="532">
+        <docblock line="529">
           <description><![CDATA[Create a VM]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="532" name="access" description="public"/>
-          <tag line="532" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="529" name="access" description="public"/>
+          <tag line="529" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="532" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="529" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="532" name="param" description="The ID of the target VLAN" type="int" variable="$targetVlanId">
+          <tag line="529" name="param" description="The ID of the target VLAN" type="int" variable="$targetVlanId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="532" name="param" description="The ID to create the VM from" type="int" variable="$templateId">
-            <type by_reference="false">int</type>
+          <tag line="529" name="param" description="The REST URL to create the VM from" type="string" variable="$templateUrl">
+            <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="540">
+        <argument line="537">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="540">
+        <argument line="537">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="540">
+        <argument line="537">
           <name>$targetVlanId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="540">
-          <name>$templateUri</name>
+        <argument line="537">
+          <name>$templateUrl</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="557" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="554" package="">
         <name>DestroyNextVM</name>
         <type>function</type>
-        <docblock line="550">
+        <docblock line="547">
           <description><![CDATA[Destroy the next VM in a cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="550" name="access" description="public"/>
-          <tag line="550" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="547" name="access" description="public"/>
+          <tag line="547" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="550" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="547" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="550" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
+          <tag line="547" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="557">
+        <argument line="554">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="557">
+        <argument line="554">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="557">
+        <argument line="554">
           <name>$vmPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -851,129 +832,137 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </class>
   </file>
-  <file path="ConnectorException.class.php" hash="b082df503e9fab35238a95677f9337d0" package="auto-scaler">
+  <file path="ConnectorException.class.php" hash="f08b96b203742a93e4067a9ef25cdc92" package="auto-scaler">
     <docblock line="2">
-      <description><![CDATA[Types of error]]></description>
+      <description><![CDATA[Backend failure]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
-    <parse_markers>
-      <error line="35" code="50014">Name of argument $cloud does not match with the DocBlock's name $message in ConnectorException()</error>
-      <error line="35" code="50014">Name of argument $message does not match with the DocBlock's name $type in ConnectorException()</error>
-      <error line="35" code="50015">Argument $type is missing from the Docblock of ConnectorException()</error>
-    </parse_markers>
     <constant namespace="default" line="6" package="auto-scaler">
       <name>CEX_BACKEND_HTTP_FAILURE</name>
       <value><![CDATA[101]]></value>
       <docblock line="2">
-        <description><![CDATA[Types of error]]></description>
+        <description><![CDATA[Backend failure]]></description>
         <long-description><![CDATA[]]></long-description>
         <tag line="2" name="package" description="auto-scaler"/>
       </docblock>
     </constant>
-    <constant namespace="default" line="7" package="Default">
+    <constant namespace="default" line="11" package="auto-scaler">
       <name>CEX_NO_BACKEND_CONFIGURED</name>
       <value><![CDATA[102]]></value>
+      <docblock line="7">
+        <description><![CDATA[Backend not configured correctly]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="7" name="package" description="auto-scaler"/>
+      </docblock>
     </constant>
-    <constant namespace="default" line="8" package="Default">
+    <constant namespace="default" line="16" package="auto-scaler">
       <name>CEX_INVALID_API_RESPONSE</name>
       <value><![CDATA[103]]></value>
+      <docblock line="12">
+        <description><![CDATA[API response was unexpected]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="12" name="package" description="auto-scaler"/>
+      </docblock>
     </constant>
-    <class final="false" abstract="false" namespace="default" line="13" package="auto-scaler">
+    <class final="false" abstract="false" namespace="default" line="21" package="auto-scaler">
       <name>ConnectorException</name>
       <full_name>\ConnectorException</full_name>
       <extends>\Exception</extends>
-      <docblock line="9">
+      <docblock line="17">
         <description><![CDATA[Holding exception class for errors from Cloud providers..]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="9" name="package" description="auto-scaler"/>
+        <tag line="17" name="package" description="auto-scaler"/>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="19" package="Default">
+      <property final="false" static="false" visibility="protected" line="27" package="Default">
         <name>$message</name>
         <default><![CDATA[]]></default>
-        <docblock line="14">
+        <docblock line="22">
           <description><![CDATA[Error message]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="14" name="var" description="" type="string">
+          <tag line="22" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="14" name="access" description="protected"/>
+          <tag line="22" name="access" description="protected"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="26" package="Default">
+      <property final="false" static="false" visibility="protected" line="34" package="Default">
         <name>$type</name>
         <default><![CDATA[]]></default>
-        <docblock line="21">
+        <docblock line="29">
           <description><![CDATA[Type of failure]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="21" name="var" description="" type="int">
+          <tag line="29" name="var" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="21" name="access" description="protected"/>
+          <tag line="29" name="access" description="protected"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="33" package="Default">
+      <property final="false" static="false" visibility="protected" line="41" package="Default">
         <name>$cloud</name>
         <default><![CDATA[]]></default>
-        <docblock line="28">
+        <docblock line="36">
           <description><![CDATA[Cloud that failed.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="28" name="var" description="" type="\Connector">
+          <tag line="36" name="var" description="" type="\Connector">
             <type by_reference="false">\Connector</type>
           </tag>
-          <tag line="28" name="access" description="protected"/>
+          <tag line="36" name="access" description="protected"/>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="41" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="50" package="">
         <name>ConnectorException</name>
         <type>function</type>
-        <docblock line="35">
+        <docblock line="43">
           <description><![CDATA[Create a ConnectorException]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="35" name="access" description="public"/>
-          <tag line="35" name="param" description="The text of the message" type="string" variable="$message">
+          <tag line="43" name="access" description="public"/>
+          <tag line="43" name="param" description="Link to Connector object" type="object" variable="$cloud">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="43" name="param" description="The text of the message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="35" name="param" description="One of the CEX exception types" type="int" variable="$type">
+          <tag line="43" name="param" description="One of the CEX exception types" type="int" variable="$type">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="41">
+        <argument line="50">
           <name>$cloud</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="41">
+        <argument line="50">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="41">
+        <argument line="50">
           <name>$type</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="52" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="61" package="">
         <name>GetConnectorErrorMessage</name>
         <type>function</type>
-        <docblock line="47">
+        <docblock line="56">
           <description><![CDATA[Get the error message]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="47" name="access" description="public"/>
-          <tag line="47" name="return" description="The text of the message" type="string">
+          <tag line="56" name="access" description="public"/>
+          <tag line="56" name="return" description="The text of the message" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="61" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="70" package="">
         <name>LogError</name>
         <type>function</type>
-        <docblock line="56">
+        <docblock line="65">
           <description><![CDATA[Log this error]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="56" name="access" description="public"/>
-          <tag line="56" name="return" description="" type="null">
+          <tag line="65" name="access" description="public"/>
+          <tag line="65" name="return" description="" type="null">
             <type by_reference="false">null</type>
           </tag>
         </docblock>
@@ -1353,24 +1342,12 @@ Requirements : pear/Mail]]></description>
       </method>
     </class>
   </file>
-  <file path="Log.class.php" hash="372186fba4dcad9a153bab78ba37fb25" package="auto-scaler">
+  <file path="Log.class.php" hash="db99f8093819f4d5376feaee836040e0" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Logging class]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
-    <parse_markers>
-      <error line="18" code="50015">Argument $start is missing from the Docblock of GetErrorLogs()</error>
-      <error line="18" code="50015">Argument $limit is missing from the Docblock of GetErrorLogs()</error>
-      <error line="31" code="50010">No DocBlock was found for method GetErrorLogsLimit()</error>
-      <error line="60" code="50014">Name of argument $vmId does not match with the DocBlock's name $hostname in LogTickResult()</error>
-      <error line="60" code="50014">Name of argument $vmName does not match with the DocBlock's name $message in LogTickResult()</error>
-      <error line="60" code="50015">Argument $result is missing from the Docblock of LogTickResult()</error>
-      <notice line="60" code="50013">Parameter $hostname could not be found in LogTickResult()</notice>
-      <notice line="60" code="50013">Parameter $message could not be found in LogTickResult()</notice>
-      <error line="79" code="50015">Argument $triggerId is missing from the Docblock of GetTickLog()</error>
-      <error line="79" code="50015">Argument $limit is missing from the Docblock of GetTickLog()</error>
-    </parse_markers>
     <class final="false" abstract="false" namespace="default" line="6" package="auto-scaler">
       <name>Log</name>
       <full_name>\Log</full_name>
@@ -1400,7 +1377,7 @@ Requirements : pear/Mail]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="24" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="26" package="">
         <name>GetErrorLogs</name>
         <type>function</type>
         <docblock line="18">
@@ -1410,198 +1387,223 @@ Requirements : pear/Mail]]></description>
           <tag line="18" name="param" description="Customer ID" type="int" variable="$uid">
             <type by_reference="false">int</type>
           </tag>
+          <tag line="18" name="param" description="Starting row" type="int" variable="$start">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="18" name="param" description="Limit the number of results" type="int" variable="$limit">
+            <type by_reference="false">int</type>
+          </tag>
           <tag line="18" name="return" description="The log entries" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="24">
+        <argument line="26">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
-        <argument line="24">
+        <argument line="26">
           <name>$start</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
-        <argument line="24">
+        <argument line="26">
           <name>$limit</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="31" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="38" package="">
         <name>GetErrorLogsLimit</name>
         <type>function</type>
-        <argument line="31">
+        <docblock line="33">
+          <description><![CDATA[How many error log entries are there?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="33" name="param" description="Customer ID, defaults to current user" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="33" name="return" description="The limit" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="38">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="44" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="52" package="">
         <name>LogTriggerError</name>
         <type>function</type>
-        <docblock line="36">
+        <docblock line="44">
           <description><![CDATA[Log an error in the trigger log]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="36" name="access" description="public"/>
-          <tag line="36" name="param" description="The customer" type="int" variable="$customerId">
+          <tag line="44" name="access" description="public"/>
+          <tag line="44" name="param" description="The customer" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="36" name="param" description="The cluster" type="int" variable="$clusterId">
+          <tag line="44" name="param" description="The cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="36" name="param" description="The trigger" type="int" variable="$triggerId">
+          <tag line="44" name="param" description="The trigger" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="36" name="param" description="Error message" type="string" variable="$message">
+          <tag line="44" name="param" description="Error message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="44">
+        <argument line="52">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="44">
+        <argument line="52">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="44">
+        <argument line="52">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="44">
+        <argument line="52">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="54" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="62" package="">
         <name>LogCustomerError</name>
         <type>function</type>
-        <docblock line="48">
+        <docblock line="56">
           <description><![CDATA[Log an error in the customer generic log]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="48" name="access" description="public"/>
-          <tag line="48" name="param" description="The customer" type="int" variable="$customerId">
+          <tag line="56" name="access" description="public"/>
+          <tag line="56" name="param" description="The customer" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="48" name="param" description="Error message" type="string" variable="$message">
+          <tag line="56" name="param" description="Error message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="54">
+        <argument line="62">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="54">
+        <argument line="62">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="69" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="78" package="">
         <name>LogTickResult</name>
         <type>function</type>
-        <docblock line="60">
+        <docblock line="68">
           <description><![CDATA[Log an SNMP result in the tick_log table]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="60" name="access" description="public"/>
-          <tag line="60" name="param" description="The customer" type="int" variable="$customerId">
+          <tag line="68" name="access" description="public"/>
+          <tag line="68" name="param" description="The customer" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="60" name="param" description="The target cluster" type="int" variable="$clusterId">
+          <tag line="68" name="param" description="The target cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="60" name="param" description="The target trigger" type="int" variable="$triggerId">
+          <tag line="68" name="param" description="The target trigger" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="60" name="param" description="The target Virtual Machine Name" type="string" variable="$hostname">
+          <tag line="68" name="param" description="The Virtual Machine UID" type="int" variable="$vmId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="68" name="param" description="The target Virtual Machine Name" type="string" variable="$vmName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="60" name="param" description="Error message" type="string" variable="$message">
+          <tag line="68" name="param" description="The result string" type="string" variable="$result">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="69">
+        <argument line="78">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="69">
+        <argument line="78">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="69">
+        <argument line="78">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="69">
+        <argument line="78">
           <name>$vmId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="69">
+        <argument line="78">
           <name>$vmName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="69">
+        <argument line="78">
           <name>$result</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="84" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="95" package="">
         <name>GetTickLog</name>
         <type>function</type>
-        <docblock line="79">
+        <docblock line="88">
           <description><![CDATA[Get the results in the tick log for a cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="79" name="param" description="The ID of the cluster" type="int" variable="$clusterId">
+          <tag line="88" name="param" description="The ID of the cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="79" name="return" description="The tick_log rows" type="array">
+          <tag line="88" name="param" description="The ID of the trigger" type="int" variable="$triggerId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="88" name="param" description="the maximum number of rows to return" type="int" variable="$limit">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="88" name="return" description="The tick_log rows" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="84">
+        <argument line="95">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="84">
+        <argument line="95">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="84">
+        <argument line="95">
           <name>$limit</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="96" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="107" package="">
         <name>GetTockLog</name>
         <type>function</type>
-        <docblock line="91">
+        <docblock line="102">
           <description><![CDATA[Get a list of tock_log actions (scale up or down)]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="91" name="param" description="the ID of the cluster" type="int" variable="$clusterId">
+          <tag line="102" name="param" description="the ID of the cluster" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="91" name="return" description="the tock_log rows and the triggerName from triggers, newest first" type="array">
+          <tag line="102" name="return" description="the tock_log rows and the triggerName from triggers, newest first" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="96">
+        <argument line="107">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -1609,16 +1611,14 @@ Requirements : pear/Mail]]></description>
       </method>
     </class>
   </file>
-  <file path="Trigger.class.php" hash="797b32ab3b63d695751c15cea208f3ad" package="auto-scaler">
+  <file path="Trigger.class.php" hash="eca8c29785089ba388ba983af25878fd" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Trigger Class represents a watch (SNMP) on a cluster.]]></description>
       <long-description><![CDATA[<p>A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling</p>]]></long-description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
     <parse_markers>
-      <notice line="228" code="50013">Parameter $action could not be found in GetAverageResult()</notice>
-      <error line="239" code="50014">Name of argument $time does not match with the DocBlock's name $action in GetResults()</error>
-      <notice line="239" code="50013">Parameter $action could not be found in GetResults()</notice>
+      <error line="238" code="50015">Argument $time is missing from the Docblock of GetResults()</error>
     </parse_markers>
     <class final="false" abstract="false" namespace="default" line="7" package="auto-scaler">
       <name>Trigger</name>
@@ -1947,91 +1947,90 @@ Requirements : pear/Mail]]></description>
           <tag line="219" name="access" description="private"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="234" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="233" package="">
         <name>GetAverageResult</name>
         <type>function</type>
         <docblock line="228">
           <description><![CDATA[Get the average result for this trigger]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="228" name="access" description="public"/>
-          <tag line="228" name="param" description="One of 'SCALE_UP','SCALE_DOWN'" type="string" variable="$action">
-            <type by_reference="false">string</type>
-          </tag>
           <tag line="228" name="return" description="Average result" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="245" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="243" package="">
         <name>GetResults</name>
         <type>function</type>
-        <docblock line="239">
+        <docblock line="238">
           <description><![CDATA[Get the results from the trigger]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="239" name="access" description="public"/>
-          <tag line="239" name="param" description="One of 'SCALE_UP','SCALE_DOWN'" type="string" variable="$action">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="239" name="return" description="Result log" type="array">
+          <tag line="238" name="access" description="public"/>
+          <tag line="238" name="return" description="Result log" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="245">
+        <argument line="243">
           <name>$time</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="255" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="253" package="">
         <name>HasPendingRequest</name>
         <type>function</type>
-        <docblock line="250">
+        <docblock line="248">
           <description><![CDATA[Does this trigger have a pending request open?]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="250" name="access" description="public"/>
-          <tag line="250" name="return" description="" type="bool">
+          <tag line="248" name="access" description="public"/>
+          <tag line="248" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
         </docblock>
       </method>
     </class>
   </file>
-  <file path="ErrorLogger.php" hash="69ea18fe39c6281276a7ec2db2e41382" package="auto-scaler">
+  <file path="ErrorLogger.php" hash="7b2d6d5d8254789405e06b05eb6f5004" package="auto-scaler">
     <docblock line="3">
       <description><![CDATA[Custom error logger for PHP that tracks the errors in the database against the user that caused them]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="3" name="package" description="auto-scaler"/>
     </docblock>
-    <parse_markers>
-      <error line="3" code="50015">Argument $errno is missing from the Docblock of cloudErrorHandler()</error>
-      <error line="3" code="50015">Argument $errstr is missing from the Docblock of cloudErrorHandler()</error>
-      <error line="3" code="50015">Argument $errfile is missing from the Docblock of cloudErrorHandler()</error>
-      <error line="3" code="50015">Argument $errline is missing from the Docblock of cloudErrorHandler()</error>
-    </parse_markers>
-    <function namespace="default" line="7" package="auto-scaler">
+    <function namespace="default" line="14" package="auto-scaler">
       <name>cloudErrorHandler</name>
       <type>function</type>
-      <docblock line="3">
-        <description><![CDATA[Custom error logger for PHP that tracks the errors in the database against the user that caused them]]></description>
+      <docblock line="7">
+        <description><![CDATA[Catch PHP errors]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="3" name="package" description="auto-scaler"/>
+        <tag line="7" name="param" description="The PHP error Number" type="int" variable="$errno">
+          <type by_reference="false">int</type>
+        </tag>
+        <tag line="7" name="param" description="The PHP error string" type="string" variable="$errstr">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="7" name="param" description="The PHP file that caused the error" type="string" variable="$errfile">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="7" name="param" description="The line in the PHP file that caused the error" type="int" variable="$errline">
+          <type by_reference="false">int</type>
+        </tag>
       </docblock>
-      <argument line="7">
+      <argument line="14">
         <name>$errno</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="7">
+      <argument line="14">
         <name>$errstr</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="7">
+      <argument line="14">
         <name>$errfile</name>
         <default><![CDATA[]]></default>
         <type/>
       </argument>
-      <argument line="7">
+      <argument line="14">
         <name>$errline</name>
         <default><![CDATA[]]></default>
         <type/>
@@ -2427,15 +2426,11 @@ Requirements : pear/Mail]]></description>
       </method>
     </class>
   </file>
-  <file path="Auth.class.php" hash="1ce62048edf9811c57624238d03f90bc" package="Default">
+  <file path="Auth.class.php" hash="573676ffe1a4a3e26e8bab12b89fa7f1" package="Default">
     <docblock line="2">
       <description><![CDATA[Basic auth class, just provide dummy user context for now as appliance is single user.]]></description>
       <long-description><![CDATA[]]></long-description>
     </docblock>
-    <parse_markers>
-      <error line="32" code="50015">Argument $uid is missing from the Docblock of GetCustomer()</error>
-      <error line="72" code="50015">Argument $uid is missing from the Docblock of GetCloudConnection()</error>
-    </parse_markers>
     <class final="false" abstract="false" namespace="default" line="10" package="auto-scaler">
       <name>Auth</name>
       <full_name>\Auth</full_name>
@@ -2472,7 +2467,7 @@ TODO: Auth from DB.]]></description>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="38" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="39" package="">
         <name>GetCustomer</name>
         <type>function</type>
         <docblock line="32">
@@ -2480,86 +2475,92 @@ TODO: Auth from DB.]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="32" name="static" description=""/>
           <tag line="32" name="access" description="public"/>
+          <tag line="32" name="param" description="Customer ID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
           <tag line="32" name="return" description="Customer details" type="Array">
             <type by_reference="false">Array</type>
           </tag>
         </docblock>
-        <argument line="38">
+        <argument line="39">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="48" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="49" package="">
         <name>GetAllCustomers</name>
         <type>function</type>
-        <docblock line="42">
+        <docblock line="43">
           <description><![CDATA[Get the details of all the customers on the system]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="42" name="static" description=""/>
-          <tag line="42" name="access" description="public"/>
-          <tag line="42" name="return" description="Customer list" type="Array">
+          <tag line="43" name="static" description=""/>
+          <tag line="43" name="access" description="public"/>
+          <tag line="43" name="return" description="Customer list" type="Array">
             <type by_reference="false">Array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="62" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="63" package="">
         <name>SaveDetails</name>
         <type>function</type>
-        <docblock line="52">
+        <docblock line="53">
           <description><![CDATA[Save the details of the current customer]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="52" name="static" description=""/>
-          <tag line="52" name="access" description="public"/>
-          <tag line="52" name="param" description="URL of the Portal API the user wants to call" type="string" variable="$portalAPIUrl">
+          <tag line="53" name="static" description=""/>
+          <tag line="53" name="access" description="public"/>
+          <tag line="53" name="param" description="URL of the Portal API the user wants to call" type="string" variable="$portalAPIUrl">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="52" name="param" description="Username to authenticate on the API with" type="string" variable="$portalUsername">
+          <tag line="53" name="param" description="Username to authenticate on the API with" type="string" variable="$portalUsername">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="52" name="param" description="Password for the API" type="string" variable="$portalPassword">
+          <tag line="53" name="param" description="Password for the API" type="string" variable="$portalPassword">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="52" name="param" description="Type of API (Only 'abiquo' is the current option)" type="string" variable="$apiType">
+          <tag line="53" name="param" description="Type of API (Only 'abiquo' is the current option)" type="string" variable="$apiType">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="52" name="return" description="Success/Failure" type="bool">
+          <tag line="53" name="return" description="Success/Failure" type="bool">
             <type by_reference="false">bool</type>
           </tag>
         </docblock>
-        <argument line="62">
+        <argument line="63">
           <name>$portalAPIUrl</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="63">
           <name>$portalUsername</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="63">
           <name>$portalPassword</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="63">
           <name>$apiType</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="77" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="79" package="">
         <name>GetCloudConnection</name>
         <type>function</type>
-        <docblock line="72">
+        <docblock line="73">
           <description><![CDATA[Get the connection to the cloud backend for this user]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="72" name="access" description="public"/>
-          <tag line="72" name="return" description="The Cloud object (implements the Connector interface)" type="\Connector">
+          <tag line="73" name="access" description="public"/>
+          <tag line="73" name="param" description="The Customer ID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="73" name="return" description="The Cloud object (implements the Connector interface)" type="\Connector">
             <type by_reference="false">\Connector</type>
           </tag>
         </docblock>
-        <argument line="77">
+        <argument line="79">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>

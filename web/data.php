@@ -32,7 +32,7 @@ switch ($_GET['view']){
 	case 'ErrorLog':
 		$data['logs'] = Log::GetErrorLogs(false,$_GET['start'],$_GET['limit']);
 		$limit=Log::GetErrorLogsLimit();
-		$data['total'] = $limit['total'];
+		$data['total'] = $limit;
 		break;
 	case 'Locations':
 		try { 
