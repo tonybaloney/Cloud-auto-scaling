@@ -25,10 +25,9 @@ function Tock(){
 							$t = ($trigger['scaleUpTime']>$trigger['scaleDownTime']?$trigger['scaleUpTime']:$trigger['scaleDownTime']);
 							$rec=DB::GetRecord("SELECT COUNT(1) as `num` FROM `tock_actions` WHERE `triggerId`=$trigger[triggerId] AND (`approval` IN('PENDING','APPROVED','AUTO_APPROVED') OR (`approval`='DECLINED' AND `date` < SUBDATE(date, INTERVAL $t SECOND)))");
 							$has_outstanding_request = ($rec['num']>0);
+							$triggerCls= new Trigger($trigger['triggerId'],$custId);
 							if(!$has_outstanding_request){
-								$scaleup = DB::GetRecord("SELECT AVG(result) FROM tick_log WHERE triggerId=$trigger[triggerId] AND date > SUBDATE(date,INTERVAL $trigger[scaleUpTime] SECOND);" ) ;
-								$scaledown = DB::GetRecord("SELECT AVG(result) FROM tick_log WHERE triggerId=$trigger[triggerId] AND date > SUBDATE(date,INTERVAL $trigger[scaleDownTime] SECOND);" ) ;
-								$triggerCls= new Trigger($trigger['triggerId'],$custId);
+								$result = $triggerCls->GetAverageResult($t);
 								if ($scaleup > $trigger['upper']) { 
 									// Scale UP!!
 									$triggerCls->Scale('SCALE_UP');

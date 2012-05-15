@@ -1227,121 +1227,125 @@ TODO: Carry XML element attributes into the structure]]></description>
       </method>
     </interface>
   </file>
-  <file path="Alerts.class.php" hash="a6cb063edbdd7421a7eb8d671d378e0e" package="auto-scaler">
+  <file path="Alerts.class.php" hash="532683fed92f0f0825ffa8f93f9ea07c" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Alerts class
-Static functions for sending email alerts out to the user about events on the system]]></description>
+Static functions for sending email alerts out to the user about events on the system
+Requirements : pear/Mail_Mime
+Requirements : pear/Mail]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
-    <class final="false" abstract="false" namespace="default" line="7" package="auto-scaler">
+    <class final="false" abstract="false" namespace="default" line="9" package="auto-scaler">
       <name>Alerts</name>
       <full_name>\Alerts</full_name>
       <extends/>
       <docblock line="2">
         <description><![CDATA[Alerts class
-Static functions for sending email alerts out to the user about events on the system]]></description>
+Static functions for sending email alerts out to the user about events on the system
+Requirements : pear/Mail_Mime
+Requirements : pear/Mail]]></description>
         <long-description><![CDATA[]]></long-description>
         <tag line="2" name="package" description="auto-scaler"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="19" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="21" package="">
         <name>TriggerScalingAlert</name>
         <type>function</type>
-        <docblock line="8">
+        <docblock line="10">
           <description><![CDATA[Trigger scaling alert]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="8" name="param" description="Customer ID" type="int" variable="$customerId">
+          <tag line="10" name="param" description="Customer ID" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="8" name="param" description="Cluster ID" type="int" variable="$clusterId">
+          <tag line="10" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="8" name="param" description="Trigger ID" type="int" variable="$triggerId">
+          <tag line="10" name="param" description="Trigger ID" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="8" name="param" description="Scaling action (SCALE_UP,SCALE_DOWN)" type="string" variable="$action">
+          <tag line="10" name="param" description="Scaling action (SCALE_UP,SCALE_DOWN)" type="string" variable="$action">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="8" name="param" description="The approval status (e.g. AUTO_APPROVED)" type="string" variable="$approval">
+          <tag line="10" name="param" description="The approval status (e.g. AUTO_APPROVED)" type="string" variable="$approval">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="8" name="todo" description="Print table or graph of results historically."/>
-          <tag line="8" name="todo" description="List threshold and number of VMs"/>
+          <tag line="10" name="todo" description="Print table or graph of results historically."/>
+          <tag line="10" name="todo" description="List threshold and number of VMs"/>
         </docblock>
-        <argument line="19">
+        <argument line="21">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="19">
+        <argument line="21">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="19">
+        <argument line="21">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="19">
+        <argument line="21">
           <name>$action</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="19">
+        <argument line="21">
           <name>$approval</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="42" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="65" package="">
         <name>ClusterChangeAlert</name>
         <type>function</type>
-        <docblock line="34">
+        <docblock line="57">
           <description><![CDATA[Trigger VM creation/deletion alert.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="34" name="param" description="Customer ID" type="int" variable="$customerId">
+          <tag line="57" name="param" description="Customer ID" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="34" name="param" description="Cluster ID" type="int" variable="$clusterId">
+          <tag line="57" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="34" name="param" description="Trigger ID" type="int" variable="$triggerId">
+          <tag line="57" name="param" description="Trigger ID" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="34" name="tood" description="implement functionality."/>
+          <tag line="57" name="tood" description="implement functionality."/>
         </docblock>
-        <argument line="42">
+        <argument line="65">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="42">
+        <argument line="65">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="42">
+        <argument line="65">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="52" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="75" package="">
         <name>GetEmails</name>
         <type>function</type>
-        <docblock line="46">
+        <docblock line="69">
           <description><![CDATA[Get the emails for this cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="46" name="param" description="Cluster ID" type="int" variable="$clusterId">
+          <tag line="69" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="46" name="access" description="public"/>
-          <tag line="46" name="return" description="List of emails (seperated by semi-colons)" type="string">
+          <tag line="69" name="access" description="public"/>
+          <tag line="69" name="return" description="List of emails (seperated by semi-colons)" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="52">
+        <argument line="75">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -1605,31 +1609,16 @@ Static functions for sending email alerts out to the user about events on the sy
       </method>
     </class>
   </file>
-  <file path="Trigger.class.php" hash="6880642a7b2a2a7ccb5ea0ae52fdcb4f" package="auto-scaler">
+  <file path="Trigger.class.php" hash="797b32ab3b63d695751c15cea208f3ad" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Trigger Class represents a watch (SNMP) on a cluster.]]></description>
       <long-description><![CDATA[<p>A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling</p>]]></long-description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
     <parse_markers>
-      <error line="8" code="50010">No DocBlock was found for method CreateTrigger()</error>
-      <error line="17" code="50010">No DocBlock was found for method GetTriggers()</error>
-      <error line="21" code="50010">No DocBlock was found for method GetTriggersForCluster()</error>
-      <error line="26" code="50018">No DocBlock was found for property $triggerId</error>
-      <error line="27" code="50018">No DocBlock was found for property $triggerName</error>
-      <error line="28" code="50018">No DocBlock was found for property $clusterId</error>
-      <error line="29" code="50018">No DocBlock was found for property $clusterName</error>
-      <error line="30" code="50018">No DocBlock was found for property $upper</error>
-      <error line="31" code="50018">No DocBlock was found for property $lower</error>
-      <error line="32" code="50018">No DocBlock was found for property $scaleDownTime</error>
-      <error line="33" code="50018">No DocBlock was found for property $scaleUpTime</error>
-      <error line="34" code="50018">No DocBlock was found for property $oid</error>
-      <error line="35" code="50018">No DocBlock was found for property $communityString</error>
-      <error line="36" code="50018">No DocBlock was found for property $vmPrefix</error>
-      <error line="37" code="50018">No DocBlock was found for property $triggerApproval</error>
-      <error line="38" code="50018">No DocBlock was found for property $customerId</error>
-      <error line="40" code="50010">No DocBlock was found for method Trigger()</error>
-      <error line="62" code="50010">No DocBlock was found for method Save()</error>
+      <notice line="228" code="50013">Parameter $action could not be found in GetAverageResult()</notice>
+      <error line="239" code="50014">Name of argument $time does not match with the DocBlock's name $action in GetResults()</error>
+      <notice line="239" code="50013">Parameter $action could not be found in GetResults()</notice>
     </parse_markers>
     <class final="false" abstract="false" namespace="default" line="7" package="auto-scaler">
       <name>Trigger</name>
@@ -1640,167 +1629,370 @@ Static functions for sending email alerts out to the user about events on the sy
         <long-description><![CDATA[<p>A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling</p>]]></long-description>
         <tag line="2" name="package" description="auto-scaler"/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="26" package="Default">
+      <property final="false" static="false" visibility="private" line="53" package="Default">
         <name>$triggerId</name>
         <default><![CDATA[]]></default>
+        <docblock line="48">
+          <description><![CDATA[The trigger ID]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="48" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="48" name="access" description="private"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="27" package="Default">
+      <property final="false" static="false" visibility="public" line="60" package="Default">
         <name>$triggerName</name>
         <default><![CDATA[]]></default>
+        <docblock line="55">
+          <description><![CDATA[The trigger name]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="55" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="28" package="Default">
+      <property final="false" static="false" visibility="public" line="67" package="Default">
         <name>$clusterId</name>
         <default><![CDATA[]]></default>
+        <docblock line="62">
+          <description><![CDATA[The cluster ID this trigger belongs to]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="62" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="29" package="Default">
-        <name>$clusterName</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="30" package="Default">
+      <property final="false" static="false" visibility="public" line="74" package="Default">
         <name>$upper</name>
         <default><![CDATA[]]></default>
+        <docblock line="69">
+          <description><![CDATA[The upper trigger limit]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="69" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="69" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="31" package="Default">
+      <property final="false" static="false" visibility="public" line="81" package="Default">
         <name>$lower</name>
         <default><![CDATA[]]></default>
+        <docblock line="76">
+          <description><![CDATA[The lower trigger limit]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="76" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="76" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="32" package="Default">
+      <property final="false" static="false" visibility="public" line="88" package="Default">
         <name>$scaleDownTime</name>
         <default><![CDATA[]]></default>
+        <docblock line="83">
+          <description><![CDATA[The trigger name]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="83" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="83" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="33" package="Default">
+      <property final="false" static="false" visibility="public" line="95" package="Default">
         <name>$scaleUpTime</name>
         <default><![CDATA[]]></default>
+        <docblock line="90">
+          <description><![CDATA[The time window for scale up events, in seconds]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="90" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="90" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="34" package="Default">
+      <property final="false" static="false" visibility="public" line="102" package="Default">
         <name>$oid</name>
         <default><![CDATA[]]></default>
+        <docblock line="97">
+          <description><![CDATA[The time window for scale down events, in seconds]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="97" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="97" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="35" package="Default">
+      <property final="false" static="false" visibility="public" line="109" package="Default">
         <name>$communityString</name>
         <default><![CDATA[]]></default>
+        <docblock line="104">
+          <description><![CDATA[The SNMP v2 community string]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="104" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="104" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="36" package="Default">
+      <property final="false" static="false" visibility="public" line="116" package="Default">
         <name>$vmPrefix</name>
         <default><![CDATA[]]></default>
+        <docblock line="111">
+          <description><![CDATA[The vm prefix for new Virtual Machines, monitored ones or deleted ones]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="111" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="37" package="Default">
+      <property final="false" static="false" visibility="public" line="123" package="Default">
         <name>$triggerApproval</name>
         <default><![CDATA[]]></default>
+        <docblock line="118">
+          <description><![CDATA[Approval method, either 'Automatic' or 'Manual']]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="118" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="118" name="access" description="public"/>
+        </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="38" package="Default">
+      <property final="false" static="false" visibility="public" line="130" package="Default">
         <name>$customerId</name>
         <default><![CDATA[]]></default>
+        <docblock line="125">
+          <description><![CDATA[The customer id]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="125" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="125" name="access" description="public"/>
+        </docblock>
       </property>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="8" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="16" package="">
         <name>CreateTrigger</name>
         <type>function</type>
-        <argument line="8">
+        <docblock line="8">
+          <description><![CDATA[Create a new trigger]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="8" name="access" description="public"/>
+          <tag line="8" name="static" description=""/>
+          <tag line="8" name="param" description="The metric to use" type="string" variable="$metric">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="8" name="param" description="The cluster in which this trigger is located" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="8" name="return" description="The Trigger, returns false on failure" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="16">
           <name>$metric</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="8">
+        <argument line="16">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="17" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="32" package="">
         <name>GetTriggers</name>
         <type>function</type>
-        <argument line="17">
+        <docblock line="26">
+          <description><![CDATA[Get all of the triggers]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="26" name="param" description="Only get triggers for this user" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="26" name="access" description="public"/>
+          <tag line="26" name="return" description="List of triggers" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="32">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="21" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="43" package="">
         <name>GetTriggersForCluster</name>
         <type>function</type>
-        <argument line="21">
+        <docblock line="37">
+          <description><![CDATA[Get triggers for a specific cluster]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="param" description="The cluster ID" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="37" name="access" description="public"/>
+          <tag line="37" name="return" description="List of triggers" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="43">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="40" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="137" package="">
         <name>Trigger</name>
         <type>function</type>
-        <argument line="40">
+        <docblock line="132">
+          <description><![CDATA[Fetch the trigger from the DB]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="132" name="param" description="The trigger ID" type="int" variable="$id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="132" name="param" description="The User ID to filter by, defaults to the current user" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="137">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="40">
+        <argument line="137">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="62" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="162" package="">
         <name>Save</name>
         <type>function</type>
+        <docblock line="158">
+          <description><![CDATA[Save the data in this class back to the database]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="158" name="access" description="public"/>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="83" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="183" package="">
         <name>Scale</name>
         <type>function</type>
-        <docblock line="78">
+        <docblock line="178">
           <description><![CDATA[Scale this trigger up or down]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="78" name="access" description="public"/>
-          <tag line="78" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
+          <tag line="178" name="access" description="public"/>
+          <tag line="178" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="83">
+        <argument line="183">
           <name>$direction</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="96" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="196" package="">
         <name>CompleteScale</name>
         <type>function</type>
-        <docblock line="91">
+        <docblock line="191">
           <description><![CDATA[Scale this trigger up or down]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="91" name="access" description="public"/>
-          <tag line="91" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
+          <tag line="191" name="access" description="public"/>
+          <tag line="191" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="96">
+        <argument line="196">
           <name>$direction</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="113" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="213" package="">
         <name>ModifyTockAction</name>
         <type>function</type>
-        <docblock line="106">
+        <docblock line="206">
           <description><![CDATA[Modify the approval status of a 'tock action']]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="106" name="access" description="public"/>
-          <tag line="106" name="static" description=""/>
-          <tag line="106" name="param" description="The tock action ID" type="int" variable="$ta_id">
+          <tag line="206" name="access" description="public"/>
+          <tag line="206" name="static" description=""/>
+          <tag line="206" name="param" description="The tock action ID" type="int" variable="$ta_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="106" name="param" description="the new approval status e.g. APPROVED" type="string" variable="$newApprovalStatus">
+          <tag line="206" name="param" description="the new approval status e.g. APPROVED" type="string" variable="$newApprovalStatus">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="113">
+        <argument line="213">
           <name>$ta_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="113">
+        <argument line="213">
           <name>$newApprovalStatus</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="224" package="">
+        <name>GetTimeWindow</name>
+        <type>function</type>
+        <docblock line="219">
+          <description><![CDATA[Get the time window of this trigger (the scale up or down time, whichever is the largest)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="219" name="return" description="Window in seconds" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="219" name="access" description="private"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="234" package="">
+        <name>GetAverageResult</name>
+        <type>function</type>
+        <docblock line="228">
+          <description><![CDATA[Get the average result for this trigger]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="228" name="access" description="public"/>
+          <tag line="228" name="param" description="One of 'SCALE_UP','SCALE_DOWN'" type="string" variable="$action">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="228" name="return" description="Average result" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="245" package="">
+        <name>GetResults</name>
+        <type>function</type>
+        <docblock line="239">
+          <description><![CDATA[Get the results from the trigger]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="239" name="access" description="public"/>
+          <tag line="239" name="param" description="One of 'SCALE_UP','SCALE_DOWN'" type="string" variable="$action">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="239" name="return" description="Result log" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="245">
+          <name>$time</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="255" package="">
+        <name>HasPendingRequest</name>
+        <type>function</type>
+        <docblock line="250">
+          <description><![CDATA[Does this trigger have a pending request open?]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="250" name="access" description="public"/>
+          <tag line="250" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
       </method>
     </class>
   </file>
