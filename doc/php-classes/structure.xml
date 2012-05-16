@@ -1342,7 +1342,7 @@ Requirements : pear/Mail]]></description>
       </method>
     </class>
   </file>
-  <file path="Log.class.php" hash="db99f8093819f4d5376feaee836040e0" package="auto-scaler">
+  <file path="Log.class.php" hash="7e2516d276ea6f3609b33d58e632efc0" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Logging class]]></description>
       <long-description><![CDATA[]]></long-description>

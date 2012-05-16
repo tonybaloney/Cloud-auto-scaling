@@ -3,11 +3,15 @@
  */
 Ext.define('Cloud.ErrorLogPortlet', {
     extend: 'Ext.grid.Panel',
-    height: 300,
     initComponent: function(){
         Ext.apply(this, {
             height: this.height,
+			flex:1,
+			title: 'Error Logs',
+			iconCls:'icon-error-logs',
             store: 'ErrorLogStore',
+			border:false,
+			autoScroll:true,
             stripeRows: true,
             columnLines: true,
             columns: [{

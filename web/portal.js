@@ -104,9 +104,12 @@ Ext.define('Ext.app.Portal', {
                 xtype: 'container',
                 region: 'center',
                 layout: 'border',
+				defaults: { 
+					border:false
+				} ,
                 items: [{
                     region: 'west',
-                    width: 200,
+                    width: "20%",
                     minWidth: 150,
                     maxWidth: 400,
                     split: true,
@@ -126,31 +129,41 @@ Ext.define('Ext.app.Portal', {
 					},
                     items: Ext.create('Cloud.ClusterPortlet')
                 },{
-                    xtype: 'portalpanel',
                     region: 'center',
-                    items: [{
-                        items: [{
-                            title: 'Triggers',
-							iconCls:'icon-trigger',
-							id:'trigger-grid',
-                            items: Ext.create('Cloud.TriggerPortlet')
-                        },{
-							title: 'Tock Logs (Scaling actions)',
-							iconCls: 'icon-tock-logs',
-							id: 'tock-logs',
-							items: Ext.create('Cloud.TockLogPortlet') 
-						}]
-                    },{
-                        items: [{
-                            title: 'Tick Logs (Trigger results)',
-							iconCls:'icon-chart',
-							id:'tick-logs',
-                            items: Ext.create('Cloud.TickLogPortlet')
-                        },{
-							title: 'Error Logs',
-							iconCls:'icon-error-logs',
-							items: Ext.create('Cloud.ErrorLogPortlet') 
-						}]
+					layout: { 
+						type:'fit'
+					},
+                    items: [
+						{layout: { 
+							type:'vbox',
+							align:'stretch',
+							pack:'start'
+						},
+                        items: [
+							Ext.create('Cloud.TriggerPortlet'),
+							Ext.create('Cloud.TockLogPortlet')
+						]
+					}]
+				},
+				{
+					region: 'east',
+					width: "55%",
+					layout: 'fit',
+					minWidth: 250,
+					split: true,
+					resizable: true,
+					items: [{layout: { 
+							type:'vbox',
+							align:'stretch',
+							pack:'start'
+						},
+						defaults: { 
+							border:false,
+						},
+                        items: [
+							Ext.create('Cloud.TickLogPortlet'),
+							Ext.create('Cloud.ErrorLogPortlet') 
+						]
                     }]
                 }]
             }]

@@ -33,11 +33,15 @@ Ext.define('Cloud.TockLogPortlet', {
 		});
 	},
     extend: 'Ext.grid.Panel',
-    height: 300,
     initComponent: function(){
         Ext.apply(this, {
             height: this.height,
+			flex:1,
             store: 'TockLogStore',
+			title: 'Tock Logs (Scaling actions)',
+			iconCls: 'icon-tock-logs',
+			id: 'tock-logs',
+			border:false,
             stripeRows: true,
             columnLines: true,
 			listeners: {

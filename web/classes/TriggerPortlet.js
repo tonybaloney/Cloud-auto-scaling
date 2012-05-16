@@ -3,7 +3,6 @@
  */
 Ext.define('Cloud.TriggerPortlet', {
     extend: 'Ext.grid.Panel',
-    height: 300,
 	CreateTrigger : function (sender,event,triggerRecord/* If record is given this is an edit not a create */)	{
 		var popup = new Ext.Window({	
 			layout:'fit',
@@ -175,9 +174,33 @@ Ext.define('Cloud.TriggerPortlet', {
 				]
 		});
         Ext.apply(this, {
-            //height: 300,
             height: this.height,
+			id:'trigger-grid',
+			flex:1,
+			title: 'Triggers',
+			iconCls:'icon-trigger',
             store: 'TriggerStore',
+			border:false,
+			tools:[
+				{
+					type:'help',
+					tooltip: 'Get Help',
+					handler: function(event, toolEl, panel){
+						// show help here
+						Ext.create('Ext.window.Window', {
+							title: 'Help',
+							height: 600,
+							width: 600,
+							layout: 'fit',
+							autoScroll: true,
+							loader: {
+							  url: '/doc/trigger.md',
+							  renderer: 'html',
+							  autoLoad: true
+							  }
+						}).show();
+					}
+				}],
             stripeRows: true,
             columnLines: true,
 			listeners: {

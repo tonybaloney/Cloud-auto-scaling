@@ -38,7 +38,7 @@ class Log {
 	public static function GetErrorLogsLimit($uid=false){
 		if(!$uid) $uid = Auth::GetUID();
 		$rec = DB::GetRecord("SELECT COUNT(1) AS `total` FROM `error_log` WHERE `error_log`.`customerId` = $uid ORDER BY `date` DESC");
-		return $rec['limit'];
+		return $rec['total'];
 	}
 	
 	/** 

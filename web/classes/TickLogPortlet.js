@@ -9,10 +9,14 @@ Ext.define('Cloud.TickLogPortlet', {
 		
 	},
     extend: 'Ext.grid.Panel',
-    height: 300,
     initComponent: function(){
         Ext.apply(this, {
+			title: 'Tick Logs (Trigger results)',
+			iconCls:'icon-chart',
+			border:false,
+			id:'tick-logs',
             height: this.height,
+			flex:1,
             store: 'TickLogStore',
             stripeRows: true,
             columnLines: true,
