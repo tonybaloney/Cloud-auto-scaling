@@ -115,3 +115,15 @@ Copyright (c) 2004-2009 Michel Fortin
 Original Markdown
 Copyright (c) 2004-2006 John Gruber  
 <http://daringfireball.net/projects/markdown/>
+
+JpGraph
+-------------
+This package contains the JpGraph PHP library Pro version 3.5.x
+
+The library is Copyright (C) 2000-2010 Asial Corporatoin and
+released under dual license QPL 1.0 for open source and educational
+use and JpGraph Professional License for commercial use. 
+
+Please see full license details at 
+http://jpgraph.net/pro/
+http://jpgraph.net/download/
