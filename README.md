@@ -36,8 +36,8 @@ Runs on a basic LAMP server
 
 Requirements:
  * HTTP Server ( No apache/httpd requirements in this codebase)
- * MySQL 5.x Server
- * PHP >5.1
+ * MySQL >5.1 Server
+ * PHP >5.3
  * ExtJS >4.0 for frontend
 
 PHP Requirements :
@@ -46,8 +46,30 @@ PHP Requirements :
 * php_json
 * php_mysql
 * php_simplexml
+* php_gd
 
+PEAR Requirements : 
 
+* Mail
+* Mail_Mime
+
+License
+-----------
+
+This project is licensed under the LGPL license. See 'COPYING' for details
+
+Cloud auto-scaling is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Cloud auto-scaling is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with Cloud auto-scaling.  If not, see <http://www.gnu.org/licenses/>.
 
 
 

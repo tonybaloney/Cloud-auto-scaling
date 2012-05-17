@@ -33,8 +33,6 @@ function Tock(){
 									$triggerCls->Scale('SCALE_DOWN');
 								}
 							}
-							// Purge old data
-							DB::Query("DELETE FROM `tick_log` WHERE `date` < SUBDATE(date,INTERVAL $t SECOND) AND `triggerId`=$trigger[triggerId]");
 						}
 					}
 				}

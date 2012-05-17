@@ -13,4 +13,5 @@ include ( 'php-classes/Trigger.class.php');
 include ( 'php-classes/Log.class.php');
 include ( 'php-classes/ErrorLogger.php');
 include ( 'php-classes/Alerts.class.php');
+include ( 'php-classes/Charts.class.php');
 ?>

@@ -22,21 +22,18 @@ class Alerts {
 		$emails = Alerts::GetEmails($clusterId);
 		$trigger = new Trigger($triggerId,$customerId);
 		$cluster = new Cluster($clusterId,$customerId);
-		if ($action=='SCALE_UP') {
-			$val = DB::GetRecord("SELECT AVG(result) AS `result` FROM tick_log WHERE triggerId=$triggerId AND date > SUBDATE(date,INTERVAL ".$trigger->scaleUpTime." SECOND);" ) ;
-			$records = DB::GetData("SELECT result,date FROM tick_log WHERE triggerId=$triggerId AND date > SUBDATE(date),INTERVAL ".$trigger->scaleUpTime." SECOND);" ) ;
-		} else {
-			$val = DB::GetRecord("SELECT AVG(result) AS `result` FROM tick_log WHERE triggerId=$triggerId AND date > SUBDATE(date,INTERVAL ".$trigger->scaleDownTime." SECOND);" ) ;
-			$records = DB::GetData("SELECT result,date FROM tick_log WHERE triggerId=$triggerId AND date > SUBDATE(date,INTERVAL ".$trigger->scaleUpTime." SECOND);" ) ;
-		}
+		$fname = uniqid().'.jpg';
+		$val = $trigger->GetAverageResult();
+		$records = $trigger->GetResults();
+		
 		$subject = $action." '".$cluster->clusterName."' on the trigger '".$trigger->triggerName."' is ".$approval;
 		$msg = "Hi,\nThis is the auto-scaling system; there is a trigger watching the cluster called '$cluster->clusterName' which has decided to $action.\n";
-		$msg .= "The trigger that watches the cluster has detected the SNMP OID ".$trigger->oid." across your cluster to having a value of ".$val['result'].".";
-		$msg_html = "<body>".nl2br($msg);
-		$msg_html .= "<table><thead><tr><th>Date</th><th>Result</th></tr></thead><tbody>";
+		$msg .= "The trigger that watches the cluster has detected the SNMP OID ".$trigger->oid." across your cluster to having a value of $val.";
+		$msg_html = "<body>".nl2br($msg)."<br/><img src='$fname'/>";
+		$msg_html .= "<table><thead><tr><th>Date</th><th>VM Name</th><th>Result</th></tr></thead><tbody>";
 		foreach ($records as $record){
-			$msg .= "$record[date] : $record[result] \n";
-			$msg_html .= "<tr><td>$record[date]</td><td>$record[result]</td></tr>\n";
+			$msg .= "$record[date] : $record[vmName] : $record[result] \n";
+			$msg_html .= "<tr><td>$record[date]</td><td>$record[vmName]</td><td>$record[result]</td></tr>\n";
 		}
 		$msg_html .= "</tbody></table>";
 		
@@ -45,10 +42,12 @@ class Alerts {
 		$mime = new Mail_mime(array('eol'=>"\n"));
 		$mime->setTXTBody($msg);
 		$mime->setHTMLBody($msg_html);
-		$mime->addHTMLImage('/tmp/test.jpg','image/jpeg');
+		
+		Charts::TriggerGraph($trigger,'/tmp/'.$fname);
+		$mime->addHTMLImage('/tmp/'.$fname,'image/jpeg');
 		$mime->setSubject($subject);
 		$body = $mime->get();
-		$hdrs = $mime->headers($hdrs);
+		$hdrs = $mime->headers();
 
 		$mail =& Mail::factory('mail');
 		$mail->send($emails, $hdrs, $body);
@@ -60,10 +59,28 @@ class Alerts {
 	 * @param int $clusterId Cluster ID
 	 * @param int $triggerId Trigger ID
 	 * 
-	 * @tood implement functionality.
+	 * @todo implement functionality.
 	 **/
 	 public static function ClusterChangeAlert( $customerId, $clusterId, $triggerId ) {
-	 
+		include ('Mail.php');
+		include ('Mail/mime.php');
+		$mime = new Mail_mime(array('eol'=>"\n"));
+		$emails = Alerts::GetEmails($clusterId);
+		
+		$msg = "Cluster has changed";
+		$msg_html=nl2br($msg);
+		
+		$mime->setTXTBody($msg);
+		$mime->setHTMLBody($msg_html);
+		
+		Charts::TriggerGraph($trigger,'/tmp/'.$fname); 
+		$mime->addHTMLImage('/tmp/'.$fname,'image/jpeg');
+		$mime->setSubject($subject);
+		$body = $mime->get();
+		$hdrs = $mime->headers();
+
+		$mail =& Mail::factory('mail');
+		$mail->send($emails, $hdrs, $body);	 
 	 }
 	 
 	/** 

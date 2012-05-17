@@ -231,17 +231,22 @@ class Trigger {
 	 * @return string Average result
 	 **/
 	public function GetAverageResult ( ) {
-		$val = DB::GetRecord("SELECT AVG(result) AS `result` FROM tick_log WHERE triggerId=".$this->triggerId." AND date > SUBDATE(date,INTERVAL ".$this->GetTimeWindow()." SECOND);" ) ;
-		return $val;
+		$val = DB::GetRecord("SELECT AVG(result) AS `result` FROM tick_log WHERE triggerId=".$this->triggerId." ;" ) ;
+		return $val['result'];
 	}
 	
 	/** 
 	 * Get the results from the trigger
 	 * @access public
+	 * @param bool $desc List results newest first (defaults false)
 	 * @return array Result log
 	 **/
-	public function GetResults ($time) {
-		$records = DB::GetData("SELECT result,date FROM tick_log WHERE triggerId=".$this->triggerId." AND date > SUBDATE(date,INTERVAL ".$this->GetTimeWindow()." SECOND);" ) ;
+	public function GetResults ($desc=false) {
+		if($desc)
+			$order = 'DESC';
+		else 
+			$order = 'ASC';
+		$records = DB::GetData("SELECT result,date,vmName FROM tick_log WHERE triggerId=".$this->triggerId." ORDER BY `date` $order;" ) ;
 		return $records;
 	}
 	
@@ -251,7 +256,7 @@ class Trigger {
 	 * @return bool 
 	 **/
 	public function HasPendingRequest(){
-		$rec=DB::GetRecord("SELECT COUNT(1) as `num` FROM `tock_actions` WHERE `triggerId`=".$this->triggerId." AND (`approval` IN('PENDING','APPROVED','AUTO_APPROVED') OR (`approval`='DECLINED' AND `date` < SUBDATE(date, INTERVAL ".$this->GetTimeWindow()." SECOND)))");
+		$rec=DB::GetRecord("SELECT COUNT(1) as `num` FROM `tock_actions` WHERE `triggerId`=".$this->triggerId." AND (`approval` IN('PENDING','APPROVED','AUTO_APPROVED') OR (`approval`='DECLINED'))");
 		return ($rec['num']>0);
 	}
 }

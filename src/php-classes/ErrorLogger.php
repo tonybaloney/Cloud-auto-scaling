@@ -12,6 +12,7 @@
   * @param int $errline The line in the PHP file that caused the error
   **/
 function cloudErrorHandler ($errno, $errstr, $errfile, $errline){
+	if($errno==E_STRICT) return;
 	$message= "<b>PHP ERROR</b> [$errno] $errstr<br />";
     $message.= "Error on line $errline in file $errfile";
 	Log::LogCustomerError(Auth::GetUID(), $message);
