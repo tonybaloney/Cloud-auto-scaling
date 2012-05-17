@@ -50,7 +50,7 @@ class Alerts {
 		$hdrs = $mime->headers();
 
 		$mail =& Mail::factory('mail');
-		$mail->send($emails, $hdrs, $body);
+		//$mail->send($emails, $hdrs, $body);
 		}
 	 
 	/** 

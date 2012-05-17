@@ -2,7 +2,7 @@ Ext.define('Ext.app.Portal', {
 
     extend: 'Ext.container.Viewport',
 
-    uses: ['Ext.app.PortalPanel', 'Ext.app.PortalColumn', 'Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Ext.app.TickLogPortlet', 'Cloud.TockLogPortlet','Cloud.ErrorLogPortlet'],
+    uses: ['Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Cloud.TickLogPortlet', 'Cloud.TockLogPortlet','Cloud.ErrorLogPortlet'],
 	ConfigureAPI : function (){
 		var me = Ext.data.StoreManager.lookup('CustomerStore').getAt(0);
 		var popup = new Ext.Window({

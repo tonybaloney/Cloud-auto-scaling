@@ -27,18 +27,15 @@
 	<script type="text/javascript" src="classes/TickLogPortlet.js"></script>
 	<script type="text/javascript" src="classes/ErrorLogPortlet.js"></script>
     <script type="text/javascript" src="classes/ChartPortlet.js"></script>
-    <script type="text/javascript" src="classes/PortalColumn.js"></script>
-    <script type="text/javascript" src="classes/PortalPanel.js"></script>
-    <script type="text/javascript" src="classes/Portlet.js"></script>
 
     <script type="text/javascript" src="portal.js"></script>
 
     <script type="text/javascript">
-        Ext.onReady(function(){
-            Ext.create('Ext.app.Portal');
-			Ext.get('tock-logs').mask("Select a cluster.","x-cust-mask");
-			Ext.get('trigger-grid').mask("Select a cluster.","x-cust-mask");
-			Ext.get('tick-logs').mask("Select a trigger.","x-cust-mask");
+       Ext.onReady(function(){
+       Ext.create('Ext.app.Portal');
+	Ext.get('tock-logs').mask("Select a cluster.","x-cust-mask");
+	Ext.get('trigger-grid').mask("Select a cluster.","x-cust-mask");
+	Ext.get('tick-logs').mask("Select a trigger.","x-cust-mask");
         });
     </script>
 </head>

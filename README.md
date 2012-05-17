@@ -71,5 +71,29 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with Cloud auto-scaling.  If not, see <http://www.gnu.org/licenses/>.
 
+Credits
+===============
 
+ExtJS license
+----------------
+This project uses ExtJS but does not contain ExtJS source code.
 
+Ext JS - JavaScript Library
+Copyright (c) 2006-2011, Sencha Inc.
+All rights reserved.
+licensing@sencha.com
+
+http://www.sencha.com/license
+
+This version of Ext JS is licensed under the terms of the Open Source GPL 3.0 license. 
+
+Fugue
+-----------
+
+This Project uses the 'fugue' icon set produced by Yusuke Kamiyamane
+
+Copyright (C) 2010 Yusuke Kamiyamane. All rights reserved.
+The icons are licensed under a Creative Commons Attribution
+3.0 license. [http://creativecommons.org/licenses/by/3.0/]
+
+[http://p.yusukekamiyamane.com/]
