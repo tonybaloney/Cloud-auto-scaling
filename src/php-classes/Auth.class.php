@@ -1,7 +1,11 @@
 <?php
-/**
- * Basic auth class, just provide dummy user context for now as appliance is single user.
- */
+ /**
+  * Auth.class.php 
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 
 /** 
  * Authentication Class

@@ -1,4 +1,12 @@
 <?php
+ /**
+  * Trigger.class.php
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
+
 /** 
  * Trigger Class represents a watch (SNMP) on a cluster.
  * A trigger contains the SNMP configuration and the action/approval settings for any auto-scaling

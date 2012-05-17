@@ -1,4 +1,12 @@
 <?php 
+ /**
+  * Charts.class.php
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
+
 /**
  * Charts class for producing graphs of results
  * @package auto-scaler

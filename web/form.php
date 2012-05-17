@@ -1,10 +1,12 @@
 <?php 
 /**
- * Signpost for POST requests from the frontend
- * all are of the format ?form.php?form=[Add|Save][Cluster|Trigger|Customer]
- * @package auto-scaler
- */
-
+  * Signpost for POST requests from the frontend
+  * all are of the format ?form.php?form=[Add|Save][Cluster|Trigger|Customer]
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 if (!isset($_GET['form'])) 
 	if (!isset($_POST['form']))
 		die("{success:false,msg:'Request invalid'}");

@@ -1,10 +1,11 @@
 <?php
-
-/** 
- * 'tock' - the process that reviews the results from the triggers and creates actions.
- * @package auto-scaler
- **/
-
+ /**
+  * 'tock' - the process that reviews the results from the triggers and creates actions.
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 function Tock(){
 	// Get Every customer
 	$customers = Auth::GetAllCustomers();

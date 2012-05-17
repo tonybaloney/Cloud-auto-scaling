@@ -1,14 +1,16 @@
 <?php
-
-/** 
- * 'Tick' - PHP version
- * A script to iterate through a list of: 
- * Customers 
- * -> Clusters
- * --> Triggers
- * Collect the performance data for each server in a cluster, log to the DB
- **/
-
+/**
+  * 'Tick' - PHP version
+  * A script to iterate through a list of: 
+  * Customers 
+  * -> Clusters
+  * --> Triggers
+  * Collect the performance data for each server in a cluster, log to the DB
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 function Tick () {
 	$customers = Auth::GetAllCustomers();
 	$result_count=0;

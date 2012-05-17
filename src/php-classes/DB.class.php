@@ -1,7 +1,14 @@
 <?php
-// quick db class.
+ /**
+  * DB.class.php
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 
 /** 
+ * DB class
  * @package auto-scaler
  */
 class DB { 
@@ -11,7 +18,8 @@ class DB {
 	 * @return MySQLResource
 	 **/
 	public static function Connect(){
-		return mysql_connect( 'localhost','scaler','scaler' );
+		include_once('db_settings.inc.php');
+		return mysql_connect( DB_HOST , DB_USERNAME , DB_PASSWORD );
 	}
 	
 	/** 

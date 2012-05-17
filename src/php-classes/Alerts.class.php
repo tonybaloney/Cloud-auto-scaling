@@ -1,4 +1,12 @@
 <?php
+ /**
+  * Alerts.class.php
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
+  
 /**
  * Alerts class
  * Static functions for sending email alerts out to the user about events on the system

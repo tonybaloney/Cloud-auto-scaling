@@ -97,3 +97,21 @@ The icons are licensed under a Creative Commons Attribution
 3.0 license. [http://creativecommons.org/licenses/by/3.0/]
 
 [http://p.yusukekamiyamane.com/]
+
+Markdown
+----------------
+This project uses a tool to convert Markdown to HTML inline for documentation.
+
+Markdown Extra Math - PHP Markdown Extra with additional syntax for jsMath equations
+Copyright (c) 2008-2009 Dr. Drang
+<http://www.leancrew.com/all-this/>
+
+Markdown Extra  -  A text-to-HTML conversion tool for web writers
+
+PHP Markdown & Extra
+Copyright (c) 2004-2009 Michel Fortin  
+<http://michelf.com/projects/php-markdown/>
+
+Original Markdown
+Copyright (c) 2004-2006 John Gruber  
+<http://daringfireball.net/projects/markdown/>

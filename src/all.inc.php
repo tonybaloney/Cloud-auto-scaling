@@ -1,8 +1,11 @@
 <?php
-/**
- * Include all of the classes needed to interact with the system
- * @package auto-scaler
- */
+ /**
+  * Include all classes to interact with the system
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 include ( 'php-classes/DB.class.php');
 include ( 'php-classes/Auth.class.php');
 include ( 'php-classes/Connector.interface.php');

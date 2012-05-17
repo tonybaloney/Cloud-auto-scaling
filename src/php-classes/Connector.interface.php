@@ -1,8 +1,12 @@
 <?php
-/**
- * Connector Interface
- * @package auto-scaler
- */
+ /**
+  * Connector.interface.php
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
+  
 /**
  * Interface providing a consistent connection between types of cloud interface
  * @package auto-scaler

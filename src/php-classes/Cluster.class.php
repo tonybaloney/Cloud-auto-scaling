@@ -1,8 +1,11 @@
 <?php
-/** 
- * PHP Requirements - N/A
- * @package auto-scaler
- */
+ /**
+  * Cluster.class.php
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
  
 /** 
  * Cluster class, represents a Virtual Appliance on which you add/remove Virtual Machines according to the metrics

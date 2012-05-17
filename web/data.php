@@ -1,8 +1,11 @@
 <?php
-/** 
- * Load database views into JSON for frontend 
- * @package auto-scaler
- */
+/**
+  * Load database views into JSON for frontend
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 
 if (!isset($_GET['view'])) die();
 

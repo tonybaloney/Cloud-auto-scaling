@@ -1,6 +1,10 @@
-/*
- * Define the data set for the Log class, reflects the view in the DB.
- */
+ /**
+  * Location Model and View 
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 Ext.define('Location', {
 	extend: 'Ext.data.Model',
 	fields: [

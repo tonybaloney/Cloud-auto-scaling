@@ -1,4 +1,12 @@
 <?php
+ /**
+  * Log.class.php 
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
+
 /**
  * Logging class
  * @package auto-scaler

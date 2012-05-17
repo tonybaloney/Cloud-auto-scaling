@@ -1,6 +1,10 @@
-/*
- * Define the data set for the Log class, reflects the view in the DB.
- */
+ /**
+  * Tock Log Model and View
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 Ext.define('TockLog', {
 	extend: 'Ext.data.Model',
 	fields: [

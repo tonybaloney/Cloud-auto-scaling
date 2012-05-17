@@ -1,3 +1,10 @@
+/**
+  * Portal, container class for the frontend
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 Ext.define('Ext.app.Portal', {
 
     extend: 'Ext.container.Viewport',
@@ -99,7 +106,7 @@ Ext.define('Ext.app.Portal', {
 				id:'top-header',
                 region: 'north',
                 height: 60,
-                html: '<img src="assets/claranet-white-55.png"/><span style="float:right;top:10px; right:10px; position:relative;">Cloud Autoscaling Dashboard</span>'
+                html: '<img src="assets/logo.png"/><span style="float:right;top:10px; right:10px; position:relative;">Cloud Autoscaling Dashboard</span>'
             },{
                 xtype: 'container',
                 region: 'center',

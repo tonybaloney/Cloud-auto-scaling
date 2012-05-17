@@ -1,9 +1,12 @@
 <?php
+ /**
+  * Custom error logger for PHP that tracks the errors in the database against the user that caused them
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 
-/**
- * Custom error logger for PHP that tracks the errors in the database against the user that caused them
- * @package auto-scaler
- **/
  /**
   * Catch PHP errors
   * @param int $errno The PHP error Number

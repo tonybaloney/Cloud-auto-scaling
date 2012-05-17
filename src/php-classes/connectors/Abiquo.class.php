@@ -1,12 +1,16 @@
 <?php
-/**
- * Abiquo Class
- * PHP Requirements 
- * - PHP-CURL (for requesting API HTTP)
- * - PHP-PCRE (for preg_match)
- * - PHP-SIMPLEXML (for decoding XML responses)
- * @package auto-scaler
- */
+/** 
+  * Abiquo Class
+  * PHP Requirements 
+  * - PHP-CURL (for requesting API HTTP)
+  * - PHP-PCRE (for preg_match)
+  * - PHP-SIMPLEXML (for decoding XML responses)
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
+
 /**
  * Class for talking to the Abiquo API, added support for Abiquo v2 as well, combined to the same class.
  * Usage :

@@ -1,6 +1,10 @@
-/*
- * Grid of triggers available to this user and dialogs to create and edit triggers.
- */
+ /**
+  * Grid of Tock actions 
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 Ext.define('Cloud.TockLogPortlet', {
 	ApproveTockAction: function (sender,event){
 		var b=sender.ownerCt.ownerCt.selModel.getSelection();
