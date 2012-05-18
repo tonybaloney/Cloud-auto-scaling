@@ -21,7 +21,8 @@ class Cluster {
 	 */
 	public static function CreateCluster ( $name ) {
 		$name = DB::Sanitise($name);
-		$res = DB::Query ( "INSERT INTO `clusters` (`clusterName`) VALUES ('$name')" );
+		$uid = Auth::GetUID();
+		$res = DB::Query ( "INSERT INTO `clusters` (`clusterName`,`customerId`,`dateCreated`) VALUES ('$name',$uid,NOW())" );
 		if ($res)
 			return new Cluster (mysql_insert_id());
 		else 

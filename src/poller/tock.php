@@ -19,7 +19,7 @@ function Tock(){
 			$clusters = Cluster::GetClusters($custId);
 			if (is_array($clusters)){
 				foreach ($clusters as $cluster){
-					$triggers = Trigger::GetTriggersForCluster($cluster['clusterId']);
+					$triggers = Trigger::GetTriggersForCluster($cluster['clusterId'],$custId);
 					if (is_array($triggers)){
 						foreach ($triggers as $trigger) { 
 							// Is there an outstanding record for this (either a pending item or an item that has been declined recently.)

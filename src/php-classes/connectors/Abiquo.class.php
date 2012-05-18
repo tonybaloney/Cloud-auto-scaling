@@ -172,7 +172,7 @@ class Abiquo implements Connector{
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
 		if ($result===false)
-			throw new ConnectorException( $this, "Failure from cURL speaking to backend, curl error-".curl_errno()." (".curl_error($ch).") on URL '$url' with options - ".var_export($opt,true),CEX_INVALID_API_RESPONSE);
+			throw new ConnectorException( $this, "Failure from cURL speaking to backend, curl error-".curl_errno($ch)." (".curl_error($ch).") on URL '$url' with options - ".var_export($opt,true),CEX_INVALID_API_RESPONSE);
 		if ($this->debugMode){
 			echo "<tr><td>Result</td><td><pre>".htmlspecialchars($result)."</pre></td></tr>";
 			echo "</table>";
@@ -395,7 +395,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 **/
 	public function TestConnection() { 
-		return ($this->ApiRequest('cloud/')!=false);
+		return ($this->ApiRequest('cloud/','application/xml')!=false);
 	}
 	
 	/**

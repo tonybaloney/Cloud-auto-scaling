@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \DB</title>
+<title>phpDocumentor » \Charts</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -58,16 +58,12 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#Connect" title="Connect :: Connect to the database"><span class="description">Connect to the database</span><pre>Connect()</pre></a></li>
-<li class="method public "><a href="#GetData" title="GetData :: Run an SQL query and return an array of the results"><span class="description">Run an SQL query and return an array of the results</span><pre>GetData()</pre></a></li>
-<li class="method public "><a href="#GetRecord" title="GetRecord :: Return an assoc array from a SQL query with 1 row"><span class="description">Return an assoc array from a SQL query with 1 row</span><pre>GetRecord()</pre></a></li>
-<li class="method public "><a href="#Query" title="Query :: Run an SQL Query"><span class="description">Run an SQL Query</span><pre>Query()</pre></a></li>
-<li class="method public "><a href="#Sanitise" title="Sanitise :: Connect to the database"><span class="description">Connect to the database</span><pre>Sanitise()</pre></a></li>
+<li class="method public "><a href="#TriggerGraph" title="TriggerGraph :: Draw a graph of the trigger results and output to the file (as JPEG)"><span class="description">Draw a graph of the trigger results and output to the file (as JPEG)</span><pre>TriggerGraph()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CDB" id="\DB"></a><div href="../classes/DB.html" class="element class">
-<p class="short_description">DB class</p>
+<a name="%5CCharts" id="\Charts"></a><div href="../classes/Charts.html" class="element class">
+<p class="short_description">Charts class for producing graphs of results</p>
 <div class="details">
 <p class="long_description"></p>
 <table class="table table-bordered"><tr>
@@ -76,87 +72,29 @@
 </tr></table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a name="Connect" id="Connect"></a><div class="element clickable method public Connect" data-toggle="collapse" data-target=".Connect .collapse">
-<h2>Connect to the database</h2>
-<pre>Connect() : \MySQLResource</pre>
+<a name="TriggerGraph" id="TriggerGraph"></a><div class="element clickable method public TriggerGraph" data-toggle="collapse" data-target=".TriggerGraph .collapse">
+<h2>Draw a graph of the trigger results and output to the file (as JPEG)</h2>
+<pre>TriggerGraph(object $trigger, string $outputFilename) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
-<table class="table table-bordered"><tr>
+<table class="table table-bordered">
+<tr>
 <th>access</th>
 <td>public</td>
-</tr></table>
-<h3>Returns</h3>
-<div class="subelement response"><code>\MySQLResource</code></div>
-</div></div>
-</div>
-<a name="GetData" id="GetData"></a><div class="element clickable method public GetData" data-toggle="collapse" data-target=".GetData .collapse">
-<h2>Run an SQL query and return an array of the results</h2>
-<pre>GetData(string $sql) : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>access</th>
-<td>public</td>
-</tr></table>
+</tr>
+<tr>
+<th>static</th>
+<td></td>
+</tr>
+</table>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$sql</h4>
-<code>string</code><p>Query</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>array</code></div>
-</div></div>
-</div>
-<a name="GetRecord" id="GetRecord"></a><div class="element clickable method public GetRecord" data-toggle="collapse" data-target=".GetRecord .collapse">
-<h2>Return an assoc array from a SQL query with 1 row</h2>
-<pre>GetRecord(string $sql) : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
-<h3>Parameters</h3>
+<h4>$trigger</h4>
+<code>object</code><p>Trigger class object</p></div>
 <div class="subelement argument">
-<h4>$sql</h4>
-<code>string</code><p>SQL query</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>Single row as array</div>
-</div></div>
-</div>
-<a name="Query" id="Query"></a><div class="element clickable method public Query" data-toggle="collapse" data-target=".Query .collapse">
-<h2>Run an SQL Query</h2>
-<pre>Query(string $sql) : resource</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>access</th>
-<td>public</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$sql</h4>
-<code>string</code><p>SQL Query</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>resource</code></div>
-</div></div>
-</div>
-<a name="Sanitise" id="Sanitise"></a><div class="element clickable method public Sanitise" data-toggle="collapse" data-target=".Sanitise .collapse">
-<h2>Connect to the database</h2>
-<pre>Sanitise(string $data) : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>access</th>
-<td>public</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$data</h4>
-<code>string</code><p>String to sanitise</p></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>string</code></div>
+<h4>$outputFilename</h4>
+<code>string</code><p>Filename to store the JPEG file</p></div>
 </div></div>
 </div>
 </div>

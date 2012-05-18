@@ -16,7 +16,10 @@ switch ($_GET['view']){
 		$data = Cluster::GetClusters();
 		break;
 	case 'Trigger':
-		$data = Trigger::GetTriggers();
+		if(isset($_GET['clusterId']))
+			$data = Trigger::GetTriggersForCluster($_GET['clusterId']);
+		else
+			$data = Trigger::GetTriggers();
 		break;
 	case 'Customer':
 		$data[] = Auth::GetMe();

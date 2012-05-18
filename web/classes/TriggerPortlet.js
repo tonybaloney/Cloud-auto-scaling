@@ -7,6 +7,21 @@
   **/
 Ext.define('Cloud.TriggerPortlet', {
     extend: 'Ext.grid.Panel',
+	DeleteTrigger: function (sender,event){
+		var b=sender.ownerCt.ownerCt.selModel.getSelection();
+		var id = b[0].raw.triggerId;
+		Ext.Ajax.request({
+			url: 'form.php',
+			params: {
+				form:'DeleteTrigger',
+				triggerId:id
+			},
+			success: function(form,action){
+				var x = Ext.StoreManager.lookup('TriggerStore');
+				Ext.StoreManager.lookup('TriggerStore').load(x.lastParams);
+			}
+		});
+	},
 	CreateTrigger : function (sender,event,triggerRecord/* If record is given this is an edit not a create */)	{
 		var popup = new Ext.Window({	
 			layout:'fit',
@@ -138,7 +153,8 @@ Ext.define('Cloud.TriggerPortlet', {
 								success: function(form, action) {
 								   Ext.Msg.alert('Success', action.result.msg);
 								   // refresh store.
-								   Ext.data.StoreManager.lookup('TriggerStore').load();
+								   var x = Ext.StoreManager.lookup('TriggerStore');
+									Ext.StoreManager.lookup('TriggerStore').load(x.lastParams);
 								},
 								failure: function(form, action) {
 									Ext.Msg.alert('Failure', action.result.msg);
@@ -271,7 +287,7 @@ Ext.define('Cloud.TriggerPortlet', {
 					id:'DeleteTrigger',
 					disabled:true,
                     scope: this,
-                    handler: this.onDeleteClick,
+                    handler: this.DeleteTrigger,
 					iconCls:'icon-delete-trigger'
                 },
 				{

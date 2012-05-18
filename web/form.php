@@ -33,9 +33,22 @@ switch ($form){
 		$res['msg'] = "Declined $ta_id";
 		break;
 	case 'AddCluster':
-		Cluster::CreateCluster($_POST['clusterName']);
-		$res['success'] = true;
-		$res['msg'] = "Cluster created successfully";
+		$cluster = Cluster::CreateCluster($_POST['clusterName']);
+		if ($cluster===false){
+			$res['success'] = false;
+			$res['msg'] = "Failed to create cluster, could not connect or auth to DB.";	
+		} else {
+			$cluster->clusterLocation=$_POST['clusterLocation'];
+			$cluster->minServers=$_POST['minServers'];
+			$cluster->maxServers=$_POST['maxServers'];
+			$cluster->targetVlanId=$_POST['targetVlanId'];
+			$cluster->targetApplianceId=$_POST['targetApplianceId'];
+			$cluster->clusterEmailAlerts=$_POST['clusterEmailAlerts'];
+			$cluster->Save();
+			$res['success'] = true;
+			$res['msg'] = "Cluster created successfully";
+		}
+		
 		break;
 	case 'SaveCluster':
 		$cluster = new Cluster($_POST['clusterId']);
@@ -96,6 +109,12 @@ switch ($form){
 			$res['success'] = false;
 			$res['msg'] = "Could not find trigger, deleted in another session?";
 		}
+		break;
+	case 'DeleteTrigger':
+		$triggerId = $_POST['triggerId'];
+		Trigger::DeleteTrigger($triggerId);
+		$res['success'] = true;
+		$res['msg'] = "Trigger deleted.";
 		break;
 	case 'SaveCustomer':
 		Auth::SaveDetails($_POST['portalAPIUrl'],$_POST['portalUsername'],$_POST['portalPassword'],$_POST['apiType']);

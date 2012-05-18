@@ -19,6 +19,11 @@ Ext.define('Cloud.ErrorLogPortlet', {
 			autoScroll:true,
             stripeRows: true,
             columnLines: true,
+			listeners: {
+				'itemdblclick': function (t,rec){
+					Ext.Msg.alert("Error message",rec.data.message);
+				}
+			},
             columns: [{
                 text   : 'Date',
                 flex: 1,

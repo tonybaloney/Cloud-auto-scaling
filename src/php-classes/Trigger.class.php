@@ -32,6 +32,21 @@ class Trigger {
 	}
 	
 	/** 
+	 * Delete a trigger
+	 * @param int $triggerId The trigger  ID
+	 * @param int $uid Filter by user, default to current user
+	 * @static
+	 * @access public
+	 **/
+	public static function DeleteTrigger ($triggerId, $uid = false){
+		$triggerId = DB::Sanitise($triggerId);
+		if(!$uid) $uid = Auth::GetUID();
+		DB::Query("DELETE FROM `triggers` WHERE `triggerId` = $triggerId;");
+		DB::Query("DELETE FROM `tick_log` WHERE `triggerId` = $triggerId;");
+		DB::Query("DELETE FROM `tock_actions` WHERE `triggerId` = $triggerId;");
+	}
+	
+	/** 
 	 * Get all of the triggers 
 	 * @param int $uid Only get triggers for this user
 	 * @access public
@@ -45,12 +60,14 @@ class Trigger {
 	/**
 	 * Get triggers for a specific cluster
 	 * @param int $clusterId The cluster ID
+	 * @param int $uid Only get triggers for this user, defaults to current user
 	 * @access public
 	 * @return array List of triggers 
 	 **/
-	public static function GetTriggersForCluster($clusterId){
+	public static function GetTriggersForCluster($clusterId,$uid=false){
 		$clusterId = DB::Sanitise($clusterId);
-		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.clusterId = $clusterId;");
+		if(!$uid) $uid = Auth::GetUID();
+		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.clusterId = $clusterId AND clusters.customerId=$uid");
 	}
 	
 	/** 

@@ -30,7 +30,7 @@ function Tick () {
 					$applianceId = $cluster['targetApplianceId'];
 					$pnId = $cluster['targetVlanId'];
 
-					$triggers = Trigger::GetTriggersForCluster($cluster['clusterId']);
+					$triggers = Trigger::GetTriggersForCluster($cluster['clusterId'],$custId);
 					// 1: Get a list of each VM in the target appliance
 					$vms = $cloud->GetVirtualMachines($location,$applianceId);
 					if (is_array($vms)){

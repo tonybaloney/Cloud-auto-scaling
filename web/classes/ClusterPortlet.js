@@ -38,7 +38,7 @@ Ext.define('Cloud.ClusterPortlet', {
 		var popup = new Ext.Window({
 			layout:'fit',
 			width:263,
-			height:430,
+			height:482,
 			closeAction:'hide',
 			iconCls:'icon-cluster',
 			plain: true,
@@ -153,7 +153,7 @@ Ext.define('Cloud.ClusterPortlet', {
 							popup.hide(); 
 						}
 					}
-					/* ,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size */
+					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
 				]
 			}
 		  }); 
@@ -179,6 +179,9 @@ Ext.define('Cloud.ClusterPortlet', {
 								clusterId: b.data.clusterId
 								}
 						});
+						Ext.data.StoreManager.lookup('TriggerStore').lastParams = {params: {
+								clusterId: b.data.clusterId
+								}};
 						Ext.get('tock-logs').unmask();
 						Ext.get('trigger-grid').unmask();
 						Ext.data.StoreManager.lookup('TockLogStore').load({
@@ -232,4 +235,3 @@ Ext.define('Cloud.ClusterPortlet', {
         this.callParent(arguments); // complete panel constructor
     }
 });
-

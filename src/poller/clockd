@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 /** 
   * 'Clock' The process that loops around the checks, triggers and actions.

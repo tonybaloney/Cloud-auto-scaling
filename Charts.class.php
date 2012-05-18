@@ -1,12 +1,4 @@
 <?php 
- /**
-  * Charts.class.php
-  * @copyright Anthony Shaw, 2012
-  * @license LGPL
-  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
-  * @package auto-scaler
-  **/
-
 /**
  * Charts class for producing graphs of results
  * @package auto-scaler
@@ -20,13 +12,11 @@ class Charts{
 	 * @static
 	 **/
 	public static function TriggerGraph ($trigger,$outputFilename) {
-		require_once (SCALE_PATH.'jpgraph/src/jpgraph.php');
-		require_once (SCALE_PATH.'jpgraph/src/jpgraph_line.php');
+		require_once ('../src/jpgraph/src/jpgraph.php');
+		require_once ('../src/jpgraph/src/jpgraph_line.php');
 	
 		$results=array();
-		$records=$trigger->GetResults();
-		if(count($records)==0) return;
-		foreach($records as $r)
+		foreach($trigger->GetResults() as $r)
 			$results[] = $r['result'];
 		$data1y=$results;
 		$data2y=array_fill(0,count($results),$trigger->lower);
@@ -42,6 +32,7 @@ class Charts{
 		$graph->SetTheme($theme_class);
 		$graph->yaxis->scale->SetGrace(10,10);
 		$graph->ygrid->SetFill(false);
+		$graph->xaxis->HideTicks();
 		$graph->xaxis->HideLabels();
 
 		// Create the plots
@@ -60,7 +51,7 @@ class Charts{
 		$graph->Add($b3plot);
 		$graph->Add($b4plot);
 
-		$graph->title->Set("'".$trigger->triggerName."' SNMP Results from ".$records[0]['date']." to ".$records[count($records)-1]['date']);
+		$graph->title->Set("'".$trigger->triggerName."' SNMP Results..");
 
 		// Display the graph
 		$graph->StrokeStore($outputFilename);

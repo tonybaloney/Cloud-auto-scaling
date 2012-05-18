@@ -23,11 +23,11 @@ class Alerts {
 	 * @param string $action Scaling action (SCALE_UP,SCALE_DOWN)
 	 * @param string $approval The approval status (e.g. AUTO_APPROVED)
 	 *
-	 * @todo Print table or graph of results historically.
-	 * @todo List threshold and number of VMs
+	 * @todo Explain actions and next steps.
 	 **/
 	 public static function TriggerScalingAlert ($customerId,$clusterId, $triggerId, $action, $approval){
 		$emails = Alerts::GetEmails($clusterId);
+		if(trim($emails)=='') return;
 		$trigger = new Trigger($triggerId,$customerId);
 		$cluster = new Cluster($clusterId,$customerId);
 		$fname = uniqid().'.jpg';
@@ -58,7 +58,7 @@ class Alerts {
 		$hdrs = $mime->headers();
 
 		$mail =& Mail::factory('mail');
-		//$mail->send($emails, $hdrs, $body);
+		$mail->send($emails, $hdrs, $body);
 		}
 	 
 	/** 
