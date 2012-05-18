@@ -227,6 +227,7 @@ class Trigger {
 	public function CompleteScale($direction){
 		$cloud = Auth::GetCloudConnection($this->customerId);
 		$cluster = new Cluster($this->clusterId, $this->customerId);
+		$trigger = new Trigger($this->triggerId, $this->customerId);
 		if ($direction=='SCALE_UP'){
 			$cloud->CreateVM ( $cluster->clusterLocation, $cluster->targetApplianceId, $cluster->targetVlanId, $cluster->templateId );
 		} else { 
