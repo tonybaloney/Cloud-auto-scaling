@@ -2262,7 +2262,7 @@ Requirements : pear/Mail]]></description>
       </method>
     </class>
   </file>
-  <file path="Cluster.class.php" hash="cd839203154e2be63be1b4cdbe7e8f7d" package="auto-scaler">
+  <file path="Cluster.class.php" hash="8f7a934dc2503f2493c8bc59fb63d3f7" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Cluster.class.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -2365,46 +2365,46 @@ Requirements : pear/Mail]]></description>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="98" package="Default">
-        <name>$targetVlanName</name>
+        <name>$targetSecondaryVlanId</name>
         <default><![CDATA[]]></default>
         <docblock line="93">
-          <description><![CDATA[Target VLAN Name]]></description>
+          <description><![CDATA[Target VLAN ID (ID in backend, will lookup on name change)]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="93" name="var" description="" type="string">
-            <type by_reference="false">string</type>
+          <tag line="93" name="var" description="" type="int">
+            <type by_reference="false">int</type>
           </tag>
           <tag line="93" name="access" description="public"/>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="105" package="Default">
-        <name>$targetApplianceId</name>
+        <name>$targetVlanName</name>
         <default><![CDATA[]]></default>
         <docblock line="100">
-          <description><![CDATA[Target Virtual Appliance ID]]></description>
+          <description><![CDATA[Target VLAN Name]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="100" name="var" description="" type="int">
-            <type by_reference="false">int</type>
+          <tag line="100" name="var" description="" type="string">
+            <type by_reference="false">string</type>
           </tag>
           <tag line="100" name="access" description="public"/>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="112" package="Default">
-        <name>$targetApplianceName</name>
+        <name>$targetApplianceId</name>
         <default><![CDATA[]]></default>
         <docblock line="107">
-          <description><![CDATA[Target Virtual Appliance Name]]></description>
+          <description><![CDATA[Target Virtual Appliance ID]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="107" name="var" description="" type="string">
-            <type by_reference="false">string</type>
+          <tag line="107" name="var" description="" type="int">
+            <type by_reference="false">int</type>
           </tag>
           <tag line="107" name="access" description="public"/>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="119" package="Default">
-        <name>$targetVdcName</name>
+        <name>$targetApplianceName</name>
         <default><![CDATA[]]></default>
         <docblock line="114">
-          <description><![CDATA[Name of the Virtual Data Center]]></description>
+          <description><![CDATA[Target Virtual Appliance Name]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="114" name="var" description="" type="string">
             <type by_reference="false">string</type>
@@ -2413,34 +2413,34 @@ Requirements : pear/Mail]]></description>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="126" package="Default">
-        <name>$targetVdcId</name>
+        <name>$targetVdcName</name>
         <default><![CDATA[]]></default>
         <docblock line="121">
-          <description><![CDATA[ID of the VDC]]></description>
+          <description><![CDATA[Name of the Virtual Data Center]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="121" name="var" description="" type="int">
-            <type by_reference="false">int</type>
+          <tag line="121" name="var" description="" type="string">
+            <type by_reference="false">string</type>
           </tag>
           <tag line="121" name="access" description="public"/>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="133" package="Default">
-        <name>$dateCreated</name>
+        <name>$targetVdcId</name>
         <default><![CDATA[]]></default>
         <docblock line="128">
-          <description><![CDATA[Date/Time the cluster was created]]></description>
+          <description><![CDATA[ID of the VDC]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="128" name="var" description="" type="string">
-            <type by_reference="false">string</type>
+          <tag line="128" name="var" description="" type="int">
+            <type by_reference="false">int</type>
           </tag>
           <tag line="128" name="access" description="public"/>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="140" package="Default">
-        <name>$dateChanged</name>
+        <name>$dateCreated</name>
         <default><![CDATA[]]></default>
         <docblock line="135">
-          <description><![CDATA[Date the cluster was last changed]]></description>
+          <description><![CDATA[Date/Time the cluster was created]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="135" name="var" description="" type="string">
             <type by_reference="false">string</type>
@@ -2449,15 +2449,27 @@ Requirements : pear/Mail]]></description>
         </docblock>
       </property>
       <property final="false" static="false" visibility="public" line="147" package="Default">
-        <name>$clusterEmailAlerts</name>
+        <name>$dateChanged</name>
         <default><![CDATA[]]></default>
         <docblock line="142">
-          <description><![CDATA[E-mail address(es) to send alerts to, seperated by a semicolon]]></description>
+          <description><![CDATA[Date the cluster was last changed]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="142" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
           <tag line="142" name="access" description="public"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="154" package="Default">
+        <name>$clusterEmailAlerts</name>
+        <default><![CDATA[]]></default>
+        <docblock line="149">
+          <description><![CDATA[E-mail address(es) to send alerts to, seperated by a semicolon]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="149" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="149" name="access" description="public"/>
         </docblock>
       </property>
       <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="22" package="">
@@ -2503,41 +2515,41 @@ Requirements : pear/Mail]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="156" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="163" package="">
         <name>Cluster</name>
         <type>function</type>
-        <docblock line="149">
+        <docblock line="156">
           <description><![CDATA[Create a cluster object from the DB]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="149" name="param" description="The ID of the cluster" type="int" variable="$id">
+          <tag line="156" name="param" description="The ID of the cluster" type="int" variable="$id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="149" name="param" description="limit to a specific user ID" type="int" variable="$uid">
+          <tag line="156" name="param" description="limit to a specific user ID" type="int" variable="$uid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="149" name="access" description="public"/>
-          <tag line="149" name="return" description="the cluster object" type="object">
+          <tag line="156" name="access" description="public"/>
+          <tag line="156" name="return" description="the cluster object" type="object">
             <type by_reference="false">object</type>
           </tag>
         </docblock>
-        <argument line="156">
+        <argument line="163">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="156">
+        <argument line="163">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="183" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="191" package="">
         <name>Save</name>
         <type>function</type>
-        <docblock line="179">
+        <docblock line="187">
           <description><![CDATA[Save this object back to the database]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="179" name="access" description="public"/>
+          <tag line="187" name="access" description="public"/>
         </docblock>
       </method>
     </class>

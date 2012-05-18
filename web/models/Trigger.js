@@ -13,8 +13,8 @@ Ext.define('Trigger', {
 		{name: 'triggerName', type: 'string'}, // Name/Type of the trigger
 		{name: 'clusterId', type: 'int'}, // Internal cluster ID
 		{name: 'clusterName', type: 'string'},	// Name of the cluster
-		{name: 'upper', type: 'int'}, // Upper threshold to scale up, either CPU load av or RAM usage %
-		{name: 'lower', type: 'int'}, // lower threshold to scale down, either CPU load av or RAM usage %
+		{name: 'upper', type: 'float'}, // Upper threshold to scale up, either CPU load av or RAM usage %
+		{name: 'lower', type: 'float'}, // lower threshold to scale down, either CPU load av or RAM usage %
 		{name: 'scaleUpTime', type: 'int'}, // Time in seconds to allow for a scale-up
 		{name: 'scaleDownTime', type: 'int'}, // Time in seconds to allow for a scale-up
 		{name: 'oid', type: 'string'},

@@ -42,6 +42,7 @@ switch ($form){
 			$cluster->minServers=$_POST['minServers'];
 			$cluster->maxServers=$_POST['maxServers'];
 			$cluster->targetVlanId=$_POST['targetVlanId'];
+			$cluster->targetSecondaryVlanId=$_POST['targetSecondaryVlanId'];
 			$cluster->targetApplianceId=$_POST['targetApplianceId'];
 			$cluster->clusterEmailAlerts=$_POST['clusterEmailAlerts'];
 			$cluster->Save();
@@ -59,6 +60,7 @@ switch ($form){
 			$cluster->minServers=$_POST['minServers'];
 			$cluster->maxServers=$_POST['maxServers'];
 			$cluster->targetVlanId=$_POST['targetVlanId'];
+			$cluster->targetSecondaryVlanId=$_POST['targetSecondaryVlanId'];
 			$cluster->targetApplianceId=$_POST['targetApplianceId'];
 			$cluster->clusterEmailAlerts=$_POST['clusterEmailAlerts'];
 			$cluster->Save();

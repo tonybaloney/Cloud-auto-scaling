@@ -118,6 +118,19 @@ Ext.define('Cloud.ClusterPortlet', {
 					},
 					{
 						xtype:'combo',
+						name:'targetSecondaryVlanId',
+						fieldLabel:'Target VLAN (2)',
+						allowBlank:false,
+						value: (clusterRecord?clusterRecord.data.targetSecondaryVlanId:''),
+						displayField: 'networkDescription',
+						valueField: 'networkId',
+						store: 'PrivateNetworkStore',
+						queryMode: 'local',
+						typeAhead: true,
+						allowBlank: false
+					},
+					{
+						xtype:'combo',
 						name:'targetApplianceId',
 						fieldLabel:'Target Appliance',
 						allowBlank:false,

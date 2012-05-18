@@ -15,6 +15,7 @@ Ext.define('Cluster', {
 		{name: 'minServers', type: 'int'}, // Minimum number of servers required in cluster
 		{name: 'maxServers', type: 'int'}, // Maximum number of servers required in cluster
 		{name: 'targetVlanId', type: 'int'}, // Target VLAN ID (ID in backend, will lookup on name change)
+		{name: 'targetSecondaryVlanId', type: 'int'}, // Target VLAN ID (ID in backend, will lookup on name change)
 		{name: 'targetVlanName', type: 'string'}, // Target VLAN Name
 		{name: 'targetApplianceId', type: 'int'}, // Target Virtual Appliance ID, 
 		{name: 'targetApplianceName', type: 'string'}, // Target Virtual Appliance Name

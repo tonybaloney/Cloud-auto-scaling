@@ -91,6 +91,13 @@ class Cluster {
 	public $targetVlanId;
 
 	/**
+	 * Target VLAN ID (ID in backend, will lookup on name change)
+	 * @var int
+	 * @access public
+	 */
+	public $targetSecondaryVlanId;
+	
+	/**
 	 * Target VLAN Name
 	 * @var string
 	 * @access public
@@ -166,6 +173,7 @@ class Cluster {
 		$this->minServers=$data['minServers'];
 		$this->maxServers=$data['maxServers'];
 		$this->targetVlanId=$data['targetVlanId'];
+		$this->targetSecondaryVlanId=$data['targetSecondaryVlanId'];
 		$this->targetVlanName=$data['targetVlanName'];
 		$this->targetApplianceId=$data['targetApplianceId'];
 		$this->targetVdcName=$data['targetVdcName'];
@@ -188,6 +196,7 @@ class Cluster {
 			minServers='".DB::Sanitise($this->minServers)."',
 			maxServers='".DB::Sanitise($this->maxServers)."',
 			targetVlanId='".DB::Sanitise($this->targetVlanId)."',
+			targetSecondaryVlanId='".DB::Sanitise($this->targetSecondaryVlanId)."',
 			targetVlanName='".DB::Sanitise($this->targetVlanName)."',
 			targetApplianceId='".DB::Sanitise($this->targetApplianceId)."',
 			targetApplianceName='".DB::Sanitise($this->targetApplianceName)."',
