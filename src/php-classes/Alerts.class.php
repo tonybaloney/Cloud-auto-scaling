@@ -45,8 +45,8 @@ class Alerts {
 		}
 		$msg_html .= "</tbody></table>";
 		
-		include ('Mail.php');
-		include ('Mail/mime.php');
+		include_once ('Mail.php');
+		include_once ('Mail/mime.php');
 		$mime = new Mail_mime(array('eol'=>"\n"));
 		$mime->setTXTBody($msg);
 		$mime->setHTMLBody($msg_html);
@@ -69,20 +69,27 @@ class Alerts {
 	 * 
 	 * @todo implement functionality.
 	 **/
-	 public static function ClusterChangeAlert( $customerId, $clusterId, $triggerId ) {
-		include ('Mail.php');
-		include ('Mail/mime.php');
+	 public static function ClusterChangeAlert( $customerId, $clusterId, $triggerId, $action ) {
+		include_once ('Mail.php');
+		include_once ('Mail/mime.php');
 		$mime = new Mail_mime(array('eol'=>"\n"));
 		$emails = Alerts::GetEmails($clusterId);
 		
-		$msg = "Cluster has changed";
-		$msg_html=nl2br($msg);
+		if(trim($emails)=='') return;
+		$trigger = new Trigger($triggerId,$customerId);
+		$cluster = new Cluster($clusterId,$customerId);
+		$fname = uniqid().'.jpg';
+		$val = $trigger->GetAverageResult();
+		$records = $trigger->GetResults();
+		
+		$subject = $action." '".$cluster->clusterName."' on the trigger '".$trigger->triggerName."' has completed";
+		$msg = "Hi,\nThis is the auto-scaling system; there is a trigger watching the cluster called '$cluster->clusterName' which has decided to $action.\n";
+		$msg .= "The trigger that watches the cluster has detected the SNMP OID ".$trigger->oid." across your cluster to having a value of $val.";
+		$msg_html = "<body>".nl2br($msg);
 		
 		$mime->setTXTBody($msg);
 		$mime->setHTMLBody($msg_html);
-		
-		Charts::TriggerGraph($trigger,'/tmp/'.$fname); 
-		$mime->addHTMLImage('/tmp/'.$fname,'image/jpeg');
+
 		$mime->setSubject($subject);
 		$body = $mime->get();
 		$hdrs = $mime->headers();

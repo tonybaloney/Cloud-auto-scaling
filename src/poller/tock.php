@@ -27,10 +27,10 @@ function Tock(){
 							if(!$triggerCls->HasPendingRequest()){
 								$result = $triggerCls->GetAverageResult();
 								if ($result > $trigger['upper']) { 
-									// Scale UP!!
+									echo ' Scale UP!!';
 									$triggerCls->Scale('SCALE_UP');
 								} else if ($result < $trigger['lower']) { 
-									// Scale down..
+									echo ' Scale down :-(';
 									$triggerCls->Scale('SCALE_DOWN');
 								}
 							}

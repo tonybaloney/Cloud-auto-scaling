@@ -154,6 +154,13 @@ class Cluster {
 	public $clusterEmailAlerts; 
 	 
 	/**
+	 * Number of VMs in cluster
+	 * @var int
+	 * @access public
+	 **/
+	public $clusterVmCount;
+	
+	/**
 	 * Create a cluster object from the DB
 	 * @param int $id The ID of the cluster
 	 * @param int $uid limit to a specific user ID
@@ -182,6 +189,7 @@ class Cluster {
 		$this->dateCreated=$data['dateCreated'];
 		$this->dateChanged=$data['dateChanged'];
 		$this->clusterEmailAlerts=$data['clusterEmailAlerts'];
+		$this->clusterVmCount=$data['clusterVmCount'];
 	}
 	
 	/**
