@@ -22,6 +22,11 @@ define ('CEX_NO_BACKEND_CONFIGURED', 102);
  * @package auto-scaler
  **/
 define ('CEX_INVALID_API_RESPONSE', 103);
+/**
+ * No target VM
+ * @package auto-scaler
+ **/
+define ('CEX_NO_TARGET_VM',104);
  /** 
  * Holding exception class for errors from Cloud providers..
  * @package auto-scaler

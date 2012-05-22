@@ -374,6 +374,18 @@ class Abiquo implements Connector{
 	}
 	
 	/**
+	 * Undeploy a Virtual Machine in this VDC/VAPP
+	 * @param int $vdc_id ID of the Virtual Data Center
+	 * @param int $vapp_id ID of the Virtual Appliance
+	 * @param int $vm_id ID of the Virtual Machine
+	 * @return Array
+	 * @access public
+	 */
+	public function UndeployAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/undeploy",'application/vnd.abiquo.acceptedrequest+xml');
+	}
+	
+	/**
 	 * Get a Virtual Machine Networks in this VDC/VAPP
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
@@ -543,7 +555,7 @@ class Abiquo implements Connector{
 		$request = "<virtualMachine><link href=\"".$templateUrl."\" rel=\"virtualmachinetemplate\" title=\"Nostalgia\"/></virtualMachine>";
 		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
 		print_r($vm);
-		// @todo establish VM ID
+		// TODO: establish VM ID
 		$vm = 1;
 		$this->ApiRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines/$vmId/action/deploy",'application/vnd.abiquo.acceptedrequest+xml');
 	}
@@ -556,6 +568,16 @@ class Abiquo implements Connector{
 	 * @param string $vmPrefix The prefix for Virtual Machines.
 	 **/
 	public function DestroyNextVM ( $clusterLocation, $targetApplianceId, $vmPrefix ) {
-	
+		$vms = $this->GetVirtualMachines($clusterLocation,$targetApplianceId);
+		$undeploy=false;
+		foreach ($vms as $vm){
+			// TODO: Check time stamp of VM is >55mins
+			if ((substr($vm['vmName'],0,strlen($vmPrefix))==$vmPrefix) && !$undeploy) { 
+				$this->UndeployAbiquoVirtualMachine($clusterLocation,$targetApplianceId,$vm['vmId']);
+				$undeploy=true;
+			}
+		}
+		if(!$undeploy)
+			throw new ConnectorException($this,'Could not find any target VM\'s to undeploy.',CEX_NO_TARGET_VM);
 	}
 }

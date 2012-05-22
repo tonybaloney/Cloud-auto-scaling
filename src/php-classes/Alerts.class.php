@@ -23,7 +23,7 @@ class Alerts {
 	 * @param string $action Scaling action (SCALE_UP,SCALE_DOWN)
 	 * @param string $approval The approval status (e.g. AUTO_APPROVED)
 	 *
-	 * @todo Explain actions and next steps.
+	 * TODO: Explain actions and next steps.
 	 **/
 	 public static function TriggerScalingAlert ($customerId,$clusterId, $triggerId, $action, $approval){
 		$emails = Alerts::GetEmails($clusterId);
@@ -66,8 +66,9 @@ class Alerts {
 	 * @param int $customerId Customer ID
 	 * @param int $clusterId Cluster ID
 	 * @param int $triggerId Trigger ID
+	 * @param string $action The change action (SCALE_UP or SCALE_DOWN)
 	 * 
-	 * @todo implement functionality.
+	 * TODO: implement functionality.
 	 **/
 	 public static function ClusterChangeAlert( $customerId, $clusterId, $triggerId, $action ) {
 		include_once ('Mail.php');
@@ -96,6 +97,10 @@ class Alerts {
 
 		$mail =& Mail::factory('mail');
 		$mail->send($emails, $hdrs, $body);	 
+	 }
+	 
+	 public function FloorCeilingAlert( $customerId, $clusterId, $triggerId ) { 
+		// TODO: implement.
 	 }
 	 
 	/** 

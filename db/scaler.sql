@@ -40,6 +40,7 @@ CREATE TABLE `clusters` (
   `clusterVmCount` int(11) DEFAULT NULL,
   `clusterEmailAlerts` varchar(255) DEFAULT NULL,
   `targetSecondaryVlanId` int(11) DEFAULT NULL,
+  `holdTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`clusterId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -74,7 +75,7 @@ CREATE TABLE `error_log` (
   `message` blob,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`errorId`)
-) ENGINE=MyISAM AUTO_INCREMENT=1077 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1093 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +112,7 @@ CREATE TABLE `tick_log` (
   `vmName` varchar(255) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`tl_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3675 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3864 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,4 +165,4 @@ CREATE TABLE `triggers` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-18 18:06:30
+-- Dump completed on 2012-05-22 12:08:24

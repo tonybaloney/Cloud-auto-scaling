@@ -161,6 +161,13 @@ class Cluster {
 	public $clusterVmCount;
 	
 	/**
+	 * Date/Time stamp in the future at which the cluster is on hold until
+	 * @var string 
+	 * @access public
+	 **/
+	public $holdTime;
+	
+	/**
 	 * Create a cluster object from the DB
 	 * @param int $id The ID of the cluster
 	 * @param int $uid limit to a specific user ID
@@ -190,6 +197,7 @@ class Cluster {
 		$this->dateChanged=$data['dateChanged'];
 		$this->clusterEmailAlerts=$data['clusterEmailAlerts'];
 		$this->clusterVmCount=$data['clusterVmCount'];
+		$this->holdTime=$data['holdTime'];
 	}
 	
 	/**
@@ -211,7 +219,39 @@ class Cluster {
 			targetVdcId='".DB::Sanitise($this->targetVdcId)."',
 			targetVdcName='".DB::Sanitise($this->targetVdcName)."',
 			clusterEmailAlerts='".DB::Sanitise($this->clusterEmailAlerts)."',
+			holdTime='".DB::Sanitise($this->holdTime)."',
 			dateChanged=NOW() WHERE clusterId = $this->clusterId";
 		DB::Query($q);
+	}
+	
+	/** 
+	 * Is this cluster on hold from any action?
+	 * @access public
+	 * @return bool
+	 **/
+	public function OnHold(){
+		if(!$this->holdTime) return false;
+		else {
+			$holdTimestamp = strtotime($this->holdTime);
+			return (time()<$holdTimestamp);
+		}
+	}
+	
+	/**
+	 * Reset the hold time
+	 **/
+	public function ResetHold(){
+		$this->holdTime = 0;
+		$this->Save();
+	}
+	
+	/**
+	 * Set the hold time on the cluster
+	 * @access public
+	 * @param int $future the number of seconds to hold the cluster
+	 **/
+	public function SetHold($future=300){
+		$this->holdTime = time() + $future;
+		$this->Save();
 	}
 }

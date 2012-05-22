@@ -34,7 +34,6 @@
 	<script type="text/javascript" src="classes/LogPortlet.js"></script>
 	<script type="text/javascript" src="classes/TickLogPortlet.js"></script>
 	<script type="text/javascript" src="classes/ErrorLogPortlet.js"></script>
-    <script type="text/javascript" src="classes/ChartPortlet.js"></script>
 
     <script type="text/javascript" src="portal.js"></script>
 

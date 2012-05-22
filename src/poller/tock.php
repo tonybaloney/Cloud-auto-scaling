@@ -14,24 +14,27 @@ function Tock(){
 	if (is_array($customers)){
 		foreach ($customers as $customer){
 			$custId = $customer['customerId'];
-			$cloud = Auth::GetCloudConnection($custId);
 			// Get clusters
 			$clusters = Cluster::GetClusters($custId);
 			if (is_array($clusters)){
 				foreach ($clusters as $cluster){
-					$triggers = Trigger::GetTriggersForCluster($cluster['clusterId'],$custId);
-					if (is_array($triggers)){
-						foreach ($triggers as $trigger) { 
-							// Is there an outstanding record for this (either a pending item or an item that has been declined recently.)
-							$triggerCls= new Trigger($trigger['triggerId'],$custId);
-							if(!$triggerCls->HasPendingRequest()){
-								$result = $triggerCls->GetAverageResult();
-								if ($result > $trigger['upper']) { 
-									echo ' Scale UP!!';
-									$triggerCls->Scale('SCALE_UP');
-								} else if ($result < $trigger['lower']) { 
-									echo ' Scale down :-(';
-									$triggerCls->Scale('SCALE_DOWN');
+					$clusterCls = new Cluster($cluster['clusterId']);
+					if(!$clusterCls->OnHold()) { // Cluster is not on hold
+						$triggers = Trigger::GetTriggersForCluster($cluster['clusterId'],$custId);
+						if (is_array($triggers)){
+							foreach ($triggers as $trigger) { 
+								// Is there an outstanding record for this (either a pending item or an item that has been declined recently.)
+								$triggerCls= new Trigger($trigger['triggerId'],$custId);
+								if(!$triggerCls->HasPendingRequest()){									 
+									$clusterCls->ResetHold();
+									$result = $triggerCls->GetAverageResult();
+									if ($result > $trigger['upper']) { 
+										echo ' Scale UP!!';
+										$triggerCls->Scale('SCALE_UP');
+									} else if ($result < $trigger['lower']) { 
+										echo ' Scale down :-(';
+										$triggerCls->Scale('SCALE_DOWN');
+									}
 								}
 							}
 						}

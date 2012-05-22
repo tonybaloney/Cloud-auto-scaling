@@ -7,7 +7,7 @@
   * @license LGPL
   * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
   * @package auto-scaler
-  * @todo Setup check externally to this script so it can be monitored.
+  * TODO: Setup check externally to this script so it can be monitored.
   **/
 require( '../all.inc.php');
 require( 'tick.php' ) ;
@@ -30,20 +30,23 @@ while (1==1){
 	
 	// Loop through the tick process
 	// Break the loop on either the 5th iteration or when a tick takes longer than 60 seconds
+	$t1 = time();
 	while(!$tock_ready){
-		$t1 = time();
 		Tick();
 		$tick_count++;
 		$t2 = time();
-		if($t2-$t1>60){
+		if($t2-$t1>(TICK_INTERVAL*7)){
 			$tock_ready=true;
 		} else if ($tick_count>=5)
 			$tock_ready=true;
 		else
-			sleep(5);
+			sleep(TICK_INTERVAL);
 	}
 	Tock();
 	// Run the tock process to determine actions to take on these results
+	// TODO: check for trigger conflicts
+	// TODO: raise error about trigger conflict
+	// TODO: delete defunct triggers
 	$res = DB::GetData( "SELECT `tock_actions`.*,`clusters`.`customerId` FROM `tock_actions` INNER JOIN `clusters` ON `tock_actions`.`clusterId` = `clusters`.`clusterId` WHERE `approval` IN ('APPROVED','AUTO_APPROVED')");
 	foreach ($res as $action){
 		$id = $action['ta_id'];
@@ -51,6 +54,8 @@ while (1==1){
 		try { 
 			$trigger->CompleteScale($action['action']);
 			Alerts::ClusterChangeAlert($action['customerId'],$action['clusterId'],$action['triggerId'],$action['action']);
+			$clusterCls=new Cluster($action['clusterId']);
+			$clusterCls->SetHold();
 		} catch ( ConnectorException $cex ){
 			echo "Failure in API call. Logged to records.\n";
 		}	

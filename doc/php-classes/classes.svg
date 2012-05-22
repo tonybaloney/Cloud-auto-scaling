@@ -21,14 +21,14 @@
 </g>
 <!-- \\Abiquo -->
 <g id="node2" class="node"><title>\\Abiquo</title>
-<a xlink:href="connectors.Abiquo.class.html" xlink:title="Abiquo" target="_parent">
+<a xlink:href="php-classes.connectors.Abiquo.class.html" xlink:title="Abiquo" target="_parent">
 <polygon fill="none" stroke="black" points="277,-522 221,-522 221,-486 277,-486 277,-522"/>
 <text text-anchor="middle" x="249" y="-501.1" font-family="Courier,monospace" font-size="11.00">Abiquo</text>
 </a>
 </g>
 <!-- \\Connector -->
 <g id="node4" class="node"><title>\\Connector</title>
-<a xlink:href="Connector.interface.html" xlink:title="Connector" target="_parent">
+<a xlink:href="php-classes.Connector.interface.html" xlink:title="Connector" target="_parent">
 <polygon fill="none" stroke="black" points="93,-522 17,-522 17,-486 93,-486 93,-522"/>
 <text text-anchor="middle" x="55" y="-501.1" font-family="Courier,monospace" font-size="11.00">Connector</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- \\ConnectorException -->
 <g id="node3" class="node"><title>\\ConnectorException</title>
-<a xlink:href="ConnectorException.class.html" xlink:title="ConnectorException" target="_parent">
+<a xlink:href="php-classes.ConnectorException.class.html" xlink:title="ConnectorException" target="_parent">
 <polygon fill="none" stroke="black" points="318,-468 180,-468 180,-432 318,-432 318,-468"/>
 <text text-anchor="middle" x="249" y="-447.1" font-family="Courier,monospace" font-size="11.00">ConnectorException</text>
 </a>
@@ -57,49 +57,49 @@
 </g>
 <!-- \\Alerts -->
 <g id="node5" class="node"><title>\\Alerts</title>
-<a xlink:href="Alerts.class.html" xlink:title="Alerts" target="_parent">
+<a xlink:href="php-classes.Alerts.class.html" xlink:title="Alerts" target="_parent">
 <polygon fill="none" stroke="black" points="277,-414 221,-414 221,-378 277,-378 277,-414"/>
 <text text-anchor="middle" x="249" y="-393.1" font-family="Courier,monospace" font-size="11.00">Alerts</text>
 </a>
 </g>
 <!-- \\Log -->
 <g id="node6" class="node"><title>\\Log</title>
-<a xlink:href="Log.class.html" xlink:title="Log" target="_parent">
+<a xlink:href="php-classes.Log.class.html" xlink:title="Log" target="_parent">
 <polygon fill="none" stroke="black" points="276,-360 222,-360 222,-324 276,-324 276,-360"/>
 <text text-anchor="middle" x="249" y="-339.1" font-family="Courier,monospace" font-size="11.00">Log</text>
 </a>
 </g>
 <!-- \\Trigger -->
 <g id="node7" class="node"><title>\\Trigger</title>
-<a xlink:href="Trigger.class.html" xlink:title="Trigger" target="_parent">
+<a xlink:href="php-classes.Trigger.class.html" xlink:title="Trigger" target="_parent">
 <polygon fill="none" stroke="black" points="281,-306 217,-306 217,-270 281,-270 281,-306"/>
 <text text-anchor="middle" x="249" y="-285.1" font-family="Courier,monospace" font-size="11.00">Trigger</text>
 </a>
 </g>
 <!-- \\Charts -->
 <g id="node8" class="node"><title>\\Charts</title>
-<a xlink:href="Charts.class.html" xlink:title="Charts" target="_parent">
+<a xlink:href="php-classes.Charts.class.html" xlink:title="Charts" target="_parent">
 <polygon fill="none" stroke="black" points="277,-252 221,-252 221,-216 277,-216 277,-252"/>
 <text text-anchor="middle" x="249" y="-231.1" font-family="Courier,monospace" font-size="11.00">Charts</text>
 </a>
 </g>
 <!-- \\DB -->
 <g id="node9" class="node"><title>\\DB</title>
-<a xlink:href="DB.class.html" xlink:title="DB" target="_parent">
+<a xlink:href="php-classes.DB.class.html" xlink:title="DB" target="_parent">
 <polygon fill="none" stroke="black" points="276,-198 222,-198 222,-162 276,-162 276,-198"/>
 <text text-anchor="middle" x="249" y="-177.1" font-family="Courier,monospace" font-size="11.00">DB</text>
 </a>
 </g>
 <!-- \\Cluster -->
 <g id="node10" class="node"><title>\\Cluster</title>
-<a xlink:href="Cluster.class.html" xlink:title="Cluster" target="_parent">
+<a xlink:href="php-classes.Cluster.class.html" xlink:title="Cluster" target="_parent">
 <polygon fill="none" stroke="black" points="281,-144 217,-144 217,-108 281,-108 281,-144"/>
 <text text-anchor="middle" x="249" y="-123.1" font-family="Courier,monospace" font-size="11.00">Cluster</text>
 </a>
 </g>
 <!-- \\Auth -->
 <g id="node11" class="node"><title>\\Auth</title>
-<a xlink:href="Auth.class.html" xlink:title="Auth" target="_parent">
+<a xlink:href="php-classes.Auth.class.html" xlink:title="Auth" target="_parent">
 <polygon fill="none" stroke="black" points="276,-90 222,-90 222,-54 276,-54 276,-90"/>
 <text text-anchor="middle" x="249" y="-69.1" font-family="Courier,monospace" font-size="11.00">Auth</text>
 </a>

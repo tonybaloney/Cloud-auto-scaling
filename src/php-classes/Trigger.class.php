@@ -211,7 +211,8 @@ class Trigger {
 		$cluster = new Cluster($this->clusterId,$this->customerId);
 		// Check limits
 		if (($direction=='SCALE_UP' && ($cluster->clusterVmCount+1 > $cluster->maxServers)) OR ($direction == 'SCALE_DOWN' && ($cluster->clusterVmCount-1 < $cluster->minServers))){
-			// @todo flag a message to the user that this cluster cannot scale up or down beyond the boundaries. Must not continually send!!
+			Alerts::FloorCeilingAlert($this->customerId,$this->clusterId,$this->triggerId);
+			$cluster->SetHold();
 		} else {
 			Alerts::TriggerScalingAlert($this->customerId,$this->clusterId,$this->triggerId,$direction,$approval);
 			// Create the item in tock actions.

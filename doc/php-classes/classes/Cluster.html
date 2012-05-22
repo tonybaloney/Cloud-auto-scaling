@@ -32,10 +32,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">1</span></a></li>
+                <span class="label label-info">2</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">3</span>
+                <span class="label label-info">4</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -61,15 +61,20 @@
 <li class="method public "><a href="#Cluster" title="Cluster :: Create a cluster object from the DB"><span class="description">Create a cluster object from the DB</span><pre>Cluster()</pre></a></li>
 <li class="method public "><a href="#CreateCluster" title="CreateCluster :: Create a new cluster"><span class="description">Create a new cluster</span><pre>CreateCluster()</pre></a></li>
 <li class="method public "><a href="#GetClusters" title="GetClusters :: Get a list of clusters on the system for the specified user"><span class="description">Get a list of clusters on the system for the specified user</span><pre>GetClusters()</pre></a></li>
+<li class="method public "><a href="#OnHold" title="OnHold :: Is this cluster on hold from any action?"><span class="description">Is this cluster on hold from any action?</span><pre>OnHold()</pre></a></li>
+<li class="method public "><a href="#ResetHold" title="ResetHold :: Reset the hold time"><span class="description">Reset the hold time</span><pre>ResetHold()</pre></a></li>
 <li class="method public "><a href="#Save" title="Save :: Save this object back to the database"><span class="description">Save this object back to the database</span><pre>Save()</pre></a></li>
+<li class="method public "><a href="#SetHold" title="SetHold :: Set the hold time on the cluster"><span class="description">Set the hold time on the cluster</span><pre>SetHold()</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties</li>
 <li class="property public "><a href="#%24clusterEmailAlerts" title="$clusterEmailAlerts :: E-mail address(es) to send alerts to, seperated by a semicolon"><span class="description">E-mail address(es) to send alerts to, seperated by a semicolon</span><pre>$clusterEmailAlerts</pre></a></li>
 <li class="property public "><a href="#%24clusterLocation" title="$clusterLocation :: ID of the cluster location on the cloud"><span class="description">ID of the cluster location on the cloud</span><pre>$clusterLocation</pre></a></li>
 <li class="property public "><a href="#%24clusterName" title="$clusterName :: Friendly name of the cluster"><span class="description">Friendly name of the cluster</span><pre>$clusterName</pre></a></li>
+<li class="property public "><a href="#%24clusterVmCount" title="$clusterVmCount :: Number of VMs in cluster"><span class="description">Number of VMs in cluster</span><pre>$clusterVmCount</pre></a></li>
 <li class="property public "><a href="#%24customerId" title="$customerId :: UID of the user/customer"><span class="description">UID of the user/customer</span><pre>$customerId</pre></a></li>
 <li class="property public "><a href="#%24dateChanged" title="$dateChanged :: Date the cluster was last changed"><span class="description">Date the cluster was last changed</span><pre>$dateChanged</pre></a></li>
 <li class="property public "><a href="#%24dateCreated" title="$dateCreated :: Date/Time the cluster was created"><span class="description">Date/Time the cluster was created</span><pre>$dateCreated</pre></a></li>
+<li class="property public "><a href="#%24holdTime" title="$holdTime :: Date/Time stamp in the future at which the cluster is on hold until"><span class="description">Date/Time stamp in the future at which the cluster is on hold until</span><pre>$holdTime</pre></a></li>
 <li class="property public "><a href="#%24maxServers" title="$maxServers :: Maximum number of servers required in cluster"><span class="description">Maximum number of servers required in cluster</span><pre>$maxServers</pre></a></li>
 <li class="property public "><a href="#%24minServers" title="$minServers :: Minimum number of servers required in cluster"><span class="description">Minimum number of servers required in cluster</span><pre>$minServers</pre></a></li>
 <li class="property public "><a href="#%24targetApplianceId" title="$targetApplianceId :: Target Virtual Appliance ID"><span class="description">Target Virtual Appliance ID</span><pre>$targetApplianceId</pre></a></li>
@@ -167,6 +172,26 @@
 <code>array</code>List of cluster records</div>
 </div></div>
 </div>
+<a name="OnHold" id="OnHold"></a><div class="element clickable method public OnHold" data-toggle="collapse" data-target=".OnHold .collapse">
+<h2>Is this cluster on hold from any action?</h2>
+<pre>OnHold() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a name="ResetHold" id="ResetHold"></a><div class="element clickable method public ResetHold" data-toggle="collapse" data-target=".ResetHold .collapse">
+<h2>Reset the hold time</h2>
+<pre>ResetHold() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+</div>
 <a name="Save" id="Save"></a><div class="element clickable method public Save" data-toggle="collapse" data-target=".Save .collapse">
 <h2>Save this object back to the database</h2>
 <pre>Save() </pre>
@@ -177,6 +202,22 @@
 <th>access</th>
 <td>public</td>
 </tr></table>
+</div></div>
+</div>
+<a name="SetHold" id="SetHold"></a><div class="element clickable method public SetHold" data-toggle="collapse" data-target=".SetHold .collapse">
+<h2>Set the hold time on the cluster</h2>
+<pre>SetHold(int $future) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$future</h4>
+<code>int</code><p>the number of seconds to hold the cluster</p></div>
 </div></div>
 </div>
 <h3>
@@ -217,6 +258,18 @@
 </tr></table>
 </div></div>
 </div>
+<a name="%24clusterVmCount" id="$clusterVmCount"> </a><div class="element clickable property public $clusterVmCount" data-toggle="collapse" data-target=".$clusterVmCount .collapse">
+<h2>Number of VMs in cluster</h2>
+<pre>$clusterVmCount : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
 <a name="%24customerId" id="$customerId"> </a><div class="element clickable property public $customerId" data-toggle="collapse" data-target=".$customerId .collapse">
 <h2>UID of the user/customer</h2>
 <pre>$customerId : int</pre>
@@ -244,6 +297,18 @@
 <a name="%24dateCreated" id="$dateCreated"> </a><div class="element clickable property public $dateCreated" data-toggle="collapse" data-target=".$dateCreated .collapse">
 <h2>Date/Time the cluster was created</h2>
 <pre>$dateCreated : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24holdTime" id="$holdTime"> </a><div class="element clickable property public $holdTime" data-toggle="collapse" data-target=".$holdTime .collapse">
+<h2>Date/Time stamp in the future at which the cluster is on hold until</h2>
+<pre>$holdTime : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -380,7 +445,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-18T18:06:30+01:00.<br></footer></div>
+            generated on 2012-05-22T12:08:24+01:00.<br></footer></div>
 </div>
 </body>
 </html>

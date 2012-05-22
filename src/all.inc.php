@@ -6,7 +6,19 @@
   * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
   * @package auto-scaler
   **/
+  
+ /**
+  * Path to the scaling class and poller code
+  * @package auto-scaler
+  **/
 define('SCALE_PATH','/usr/local/src/cloud-scale/src/');
+
+/**
+ * Interval between tick cycles
+ * @package auto-scaler
+ **/
+define('TICK_INTERVAL',5);
+
 include ( SCALE_PATH.'php-classes/DB.class.php');
 include ( SCALE_PATH.'php-classes/Auth.class.php');
 include ( SCALE_PATH.'php-classes/Connector.interface.php');
