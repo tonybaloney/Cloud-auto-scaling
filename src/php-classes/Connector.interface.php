@@ -77,8 +77,9 @@ interface Connector {
 	 * @param int $targetApplianceId The ID of the target virtual appliance
 	 * @param int $targetVlanId The ID of the target VLAN
 	 * @param int $templateId The ID to create the VM from
+	 * @param string $vmname The name of the new VM.
 	 **/
-	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateId );
+	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateUrl, $vmname ) ;
 	
 	/**
 	 * Destroy the next VM in a cluster

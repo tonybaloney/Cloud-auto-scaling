@@ -15,9 +15,13 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">/*
- * Grid of triggers available to this user and dialogs to create and edit triggers.
- */
+  <pre class="prettyprint lang-js"><span id='Cloud-TickLogPortlet'> /**
+</span>  * Grid of trigger results
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 Ext.define('Cloud.TickLogPortlet', {
 	ApproveTockAction: function (sender,event){
 	
@@ -26,10 +30,14 @@ Ext.define('Cloud.TickLogPortlet', {
 		
 	},
     extend: 'Ext.grid.Panel',
-    height: 300,
     initComponent: function(){
         Ext.apply(this, {
+			title: 'Tick Logs (Trigger results)',
+			iconCls:'icon-chart',
+			border:false,
+			id:'tick-logs',
             height: this.height,
+			flex:1,
             store: 'TickLogStore',
             stripeRows: true,
             columnLines: true,

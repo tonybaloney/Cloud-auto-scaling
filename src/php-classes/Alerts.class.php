@@ -22,8 +22,6 @@ class Alerts {
 	 * @param int $triggerId Trigger ID
 	 * @param string $action Scaling action (SCALE_UP,SCALE_DOWN)
 	 * @param string $approval The approval status (e.g. AUTO_APPROVED)
-	 *
-	 * TODO: Explain actions and next steps.
 	 **/
 	 public static function TriggerScalingAlert ($customerId,$clusterId, $triggerId, $action, $approval){
 		$emails = Alerts::GetEmails($clusterId);
@@ -44,7 +42,7 @@ class Alerts {
 			$msg_html .= "<tr><td>$record[date]</td><td>$record[vmName]</td><td>$record[result]</td></tr>\n";
 		}
 		$msg_html .= "</tbody></table>";
-		
+		// TODO: Explain actions and next steps.
 		include_once ('Mail.php');
 		include_once ('Mail/mime.php');
 		$mime = new Mail_mime(array('eol'=>"\n"));
@@ -67,8 +65,6 @@ class Alerts {
 	 * @param int $clusterId Cluster ID
 	 * @param int $triggerId Trigger ID
 	 * @param string $action The change action (SCALE_UP or SCALE_DOWN)
-	 * 
-	 * TODO: implement functionality.
 	 **/
 	 public static function ClusterChangeAlert( $customerId, $clusterId, $triggerId, $action ) {
 		include_once ('Mail.php');
@@ -82,7 +78,7 @@ class Alerts {
 		$fname = uniqid().'.jpg';
 		$val = $trigger->GetAverageResult();
 		$records = $trigger->GetResults();
-		
+		// TODO: implement functionality.
 		$subject = $action." '".$cluster->clusterName."' on the trigger '".$trigger->triggerName."' has completed";
 		$msg = "Hi,\nThis is the auto-scaling system; there is a trigger watching the cluster called '$cluster->clusterName' which has decided to $action.\n";
 		$msg .= "The trigger that watches the cluster has detected the SNMP OID ".$trigger->oid." across your cluster to having a value of $val.";
@@ -99,6 +95,12 @@ class Alerts {
 		$mail->send($emails, $hdrs, $body);	 
 	 }
 	 
+	 /** 
+	 * Trigger warning about the VM limit being reached
+	 * @param int $customerId Customer ID
+	 * @param int $clusterId Cluster ID
+	 * @param int $triggerId Trigger ID
+	 **/
 	 public function FloorCeilingAlert( $customerId, $clusterId, $triggerId ) { 
 		// TODO: implement.
 	 }

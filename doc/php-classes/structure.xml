@@ -1275,7 +1275,7 @@ TODO: Carry XML element attributes into the structure]]></description>
     </interface>
     <source>eJzVVl9P2zAQf24+xT3wUKrQbDxu0wCBVFUrVSVY3024JhaObdlOSzXtu+8cp2lSaEWHhrSXKInv7vfn7Fy+XehcR5AMBhHAAK6VlJg6ZYZcOjQLluKwCqC1y1TpteFZ7uBKulzJNdzlbBXD+afP5yFC8BSlRZiMZpPum9w5/SVJVqvVMJPlUJksqZdsIjIthu7ZwWj6EyZoLRoYoUTDBMzKB4qDSYgNNTVLn1iGwEqnzmzKBBq/MEjoGlVKBjDe0Adt1JI/cpkBg1RJy61D6fytV8qVhAd0K0QJbq3RglpAKlT5CI0D0V5Qgmyitt7Br6hHNCDqUeI92g6YU+ByrCECN6rkIy8NutIQHaXEppjPsGWakimLUoQwVj2Crpzxr4hFLzzBopQhycNua/RPv0a9ilRVYoSOzBDkhFcrVMp8kI1hQeSLUjh+ZjCjV9SAmqhgjhYLO+xQZcawNTVnpxD0f+D6bM5ESfYzbkLc6RH0ieFkW+0Qe234kjkESU1U5skGEM0MK3wH4WTDCjYFYXxzQMRuPTiO9SykTzfZ/Qb/H4loBdXZ40eoWUBN4wMVtwTHLUaHxM9vYWRUqW1ypbXgTBLue7vImkpHqtlSeGPriP1ftqvhCA3oYVFLblxJR7Jgac4lbs7iW6XNQ/ptnd3tVEPmFD5cbCts2eHo8Q46Mh1f373LhVfOaduMeJdRdydcG/QHhxHPPSQ64lJR0uwxjU33uffA6wgToVptvqIv0h0zWWuD0jHvFgjrzS5pROwpNBdM7qsxn1xNX6Zh4cdAC5hmWRos8LnUrIVRxT7vg1kU1H/hRPyKuLjLM+7gd9twQ7POqHVFQiL9RxAIl37cB5j/pDckwv+lnCyLmcEFf65K6HDrB3O9c+G2ffxfc7r2Y0pWHGN3g+s/Ab+ji+9/AAnBROw=</source>
   </file>
-  <file path="php-classes/Alerts.class.php" hash="26347726a30077a07877f7037945736c" package="auto-scaler">
+  <file path="php-classes/Alerts.class.php" hash="c2b4177a40ab2d6f05777e2fd1b02fac" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Alerts.class.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1285,11 +1285,10 @@ TODO: Carry XML element attributes into the structure]]></description>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
     <markers>
-      <todo line="103">implement.</todo>
+      <todo line="45">Explain actions and next steps.</todo>
+      <todo line="81">implement functionality.</todo>
+      <todo line="105">implement.</todo>
     </markers>
-    <parse_markers>
-      <error line="102" code="50010">No DocBlock was found for method FloorCeilingAlert()</error>
-    </parse_markers>
     <class final="false" abstract="false" namespace="default" line="17" package="auto-scaler">
       <name>Alerts</name>
       <full_name>\Alerts</full_name>
@@ -1302,7 +1301,7 @@ Requirements : pear/Mail]]></description>
         <long-description><![CDATA[]]></long-description>
         <tag line="10" name="package" description="auto-scaler"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="28" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="26" package="">
         <name>TriggerScalingAlert</name>
         <type>function</type>
         <docblock line="18">
@@ -1320,117 +1319,130 @@ Requirements : pear/Mail]]></description>
           <tag line="18" name="param" description="Scaling action (SCALE_UP,SCALE_DOWN)" type="string" variable="$action">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="18" name="param" description="The approval status (e.g. AUTO_APPROVED) TODO: Explain actions and next steps." type="string" variable="$approval">
+          <tag line="18" name="param" description="The approval status (e.g. AUTO_APPROVED)" type="string" variable="$approval">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="28">
+        <argument line="26">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="28">
+        <argument line="26">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="28">
+        <argument line="26">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="28">
+        <argument line="26">
           <name>$action</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="28">
+        <argument line="26">
           <name>$approval</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="73" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="69" package="">
         <name>ClusterChangeAlert</name>
         <type>function</type>
-        <docblock line="64">
+        <docblock line="62">
           <description><![CDATA[Trigger VM creation/deletion alert.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="64" name="param" description="Customer ID" type="int" variable="$customerId">
+          <tag line="62" name="param" description="Customer ID" type="int" variable="$customerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="64" name="param" description="Cluster ID" type="int" variable="$clusterId">
+          <tag line="62" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="64" name="param" description="Trigger ID" type="int" variable="$triggerId">
+          <tag line="62" name="param" description="Trigger ID" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="64" name="param" description="The change action (SCALE_UP or SCALE_DOWN) TODO: implement functionality." type="string" variable="$action">
+          <tag line="62" name="param" description="The change action (SCALE_UP or SCALE_DOWN)" type="string" variable="$action">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="73">
+        <argument line="69">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="73">
+        <argument line="69">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="73">
+        <argument line="69">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="73">
+        <argument line="69">
           <name>$action</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="102" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="104" package="">
         <name>FloorCeilingAlert</name>
         <type>function</type>
-        <argument line="102">
+        <docblock line="98">
+          <description><![CDATA[Trigger warning about the VM limit being reached]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="98" name="param" description="Customer ID" type="int" variable="$customerId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="98" name="param" description="Cluster ID" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="98" name="param" description="Trigger ID" type="int" variable="$triggerId">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="104">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="102">
+        <argument line="104">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="102">
+        <argument line="104">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="112" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="114" package="">
         <name>GetEmails</name>
         <type>function</type>
-        <docblock line="106">
+        <docblock line="108">
           <description><![CDATA[Get the emails for this cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="106" name="param" description="Cluster ID" type="int" variable="$clusterId">
+          <tag line="108" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="106" name="access" description="public"/>
-          <tag line="106" name="return" description="List of emails (seperated by semi-colons)" type="string">
+          <tag line="108" name="access" description="public"/>
+          <tag line="108" name="return" description="List of emails (seperated by semi-colons)" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="112">
+        <argument line="114">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <source>eJztV21v00gQ/tz8ilFUnZ0qtQ8+hiZcaUKplDZVE+AkQGVjb2Nz9trsrhsixH+/mV2v81YO7oROfECqmt2ZZ+dtZ59JTp6WSdmC8OioBXAEpxmXWgVRxpQKjAaFf0RFuZLpItFwKnRSiBVME7bswuPfHz22iCyNuFAcxufX421JonXZC8PlchksRBUUchHWKhVmizIL9CcN51cvYcyV4hLOueCSZXBdzREHY4u1NksW/cUWHFili2MVMQyWFEch/m+ZFFwGYDKg/VQzjXbuKhHptBAK7goJios4FQvgOUszYPZIUWnQBeiEQ0WRsDlJ+D0XpBRGoVZK85zs3vCPVSp5brQ9KDmT4SVau71Mc/5PgNZXM6FETNwuic/QOsC08D+emeENLDAsQlPsJmqjQWuS5ZAKDYdRpXSRc3kRw1m9hIvhPixDpUXZ1UMgbT0iyPneBikEYCCHzFQWpi4wu/WnZ6fj0e3L665dDCevrzoPHi9LWdzjlc+wwM1G4b1VCnweLAI4fTmb3J5eX99MXo2GxogtyWQ46cHoU5mxVNR+FTARg+DYVZhXqQJCYmEPoLQdpbYbwuVWR28qD/5GHbvrYnU3atJ1eXfXGXQ+tw4ODk1TKejXt9jrnXM9MjJ/barzBKHpnY/2cr8+0un3Pa8DkutKCtI7b2hL8KWL1N8IYiNOY9E5qE/Ul7vhd//EnWA5R3wl0o9p7HcCL/hQLjyjo4voN0kfDzCT03t8ngt+w1WVad+akDwqZKx2oRajLIhwqpp/4JEmnK1d0AavHbjojgf14gojCtqee3SuCgRt7NcLB00VoNZdhIkqVwv01H6Rdt+KWYIA/CNzzZuj7rMP+gkpJCcEa9wtmY4SwtAhV1c8lvEYvAdj9mCZpFECCVMQ8yiNEYmM4pJ9K9pNYAFGNtvITSdMW49cbTm0tjSWjYyhYnp1eQ2TiyFsVqNIY6wli2SB7LEqKtmcR/8JuzfvErAyFYfiDuhigyaY20TndM/tk3kRrwbtQGSP59g0qOoEKJTh4CTNsVYy6nu2X7xwsHOcEjrRbJ7xwQmGyWL8kLQcDJnmJyEuaPPqEqhSzd72iN2GdCB0h20s5AQZmzMsq980GtakXpsnty5pLX0To893yLpuf5+T102JNI7fQX0pe5lQ7PFgyx7GFm9Ja6t78tq2lVNWtZMv+xULbZ74aUrXrp9KKvD+Yn5biIiD79HcoHHsWdrYV4Y5Tp014pC2NQeYoUR7n0nJVr7Hi8zrD9oYU2cNPh4ormd/zp5hNPbmt1UvZpfjRmfid6/6LGGG5Wp2OpesTBqK6nqhzsvQC2zbbBplcUxGL3JkE38b1vVSkoYfSr7wdgKZWg7xHZlYNRWRaMXCFtwxUxJLtZZTZ3FpCMnYpOHf/81UqNe7w1daSKwPiZ1XXJJXETuORrYnm/hBLjv1rT40p7HTI+xbevlhzDNuho0Z2sHPNLWJhKKECfoysjO4Ab8p7c7ujbmb5mVmvt40sxQpVa++OXDr2M+MUzMj/c0KdOEbAxc68Pn/fiLfP9N/jfUfOdZp+kUFNRqOv/avsf6jxrq7uv9M/T8zJxMdg2Vlx0EN+TzPikKe8bT5rv9d3EOUg9YOwnCX+4LGVTMA8ImYG605g35vaurT2vK/YHUWRfijuM7BiiyLOBIfp0rTxdeufMVLfMbUUvMV/sjN0+OoyPA3Ucdx8lcouWEz8DfjsUS7FvRh+KzXmzKR6lTxXeYjvugTwHAEUYffno7Go7MZvK+Rxoml0Pfw/GZy2Whw//rF6GbUCC7i9/21g7bxUCdPjt54+ya9dwj60vrSejr4G+UoXUI=</source>
+    <source>eJztV21v2zYQ/hz/ioMRTHLgSFs/urG7NHbTAE4cxE47oA1SWmIsdhKlklRco+h/3x0pyXacdt2wlwIbEMTi3cN7JZ+Tjp4VSdGC8OCgBXAAxylXRgdRyrQOrAaFP0d5sVJikRg4libJ5QqmCVt24cmPPz1xiFREXGoO49PL8bYkMaboheFyuQwWsgxytQgrlQ7TRZEG5qOB04trGHOtuYJTLrliKVyWc8TB2GGdzYJFv7IFB1aa/FBHDIMlxUGI/1s2hToDsBnQemqYQTt3pYyMyKWGu1yB5jIWcgE8YyIF5rbkpQGTg0k4lBQJm5OE33NJSmkVeqUNz8juFf9QCsUzq+1BwZkKz9Ha7bnI+NcArS9mQonYuOskPkFrD9PC/7hnhh1YYFiEptht1FaD1hTLQEgD+1GpTZ5xdRbDSfUIZ8NdWIpKh3JPj4GM84ig2vc2SCMAA9lntrIwrQNzS396cjwe3V5fdt3DcPL6ovPo9qJQ+T22fIYFbhYa+1Zq8HmwCOD4eja5Pb68vJq8Gg2tESzVHhTujOjtFtfRVvHYWoK/UZnuOv3uRpbdOpPuOqbOp9be3r49Jhr6VV96vVNuRlbmr011niJU3PloL/OrLZ1+3/M6oLgplSR97Q1tSb6sI/U3gtiI01qsHVQ7qnZt+N3dcSdZxhFfSvFBxH4n8IL3xcKzOiptv0n6cICZHN/jhVvwK67L1PjOhOJRrmL9EOow2oEIp8v5ex4ZwrnaBW3w2kEd3eGgerjAiIK2V1+jugoEbexXDzVUaEBt3QgbVaYX6Kn9UnTfylmCAPwjc80tovPkruhTUihOCNa4WzITJYShTXVdcVvKY/AejdmDZSKiBBKmIeaRiBGJHFEn+1a2m8ACjGy2kZtJmHEeud5y6GwZLBsZQ8X04vwSJmdD2KxGLmKsJYtUjnywykvV7Ef/Cbu3Nw2wMiWH/A6osUETzG1iMupz+2iex6tBO5DpkzkeGlR1AhSqcHAkMqyVivqeOy9eOHiwnRI6Mmye8sERhsli/FH0OBgyw49CfKDFq3OgSjVrd0bcMqQNYb3ZxUJOkIM5w7L6zUHDmlTP9sqtS1pJ38To8wZ5tF7fZ+R1U6Ks4xuomrKTCcUeD7bsYWzxlrSyuiOvbDs5ZVU5+bxbsdDlib+2dBYWhjCbDCc9GH0sUiZkxZGYtozxWuMExM4WOiAGkdjnmN/mMuLgezQxaBB7jl52lWGG82aN2KdlxRV2HNHaZ0qxle/xPPX6gzbG3lmDDweam9kvs+cYtTsh26qXs/Nxo7N51rf/JGGWDSsWO1WsSBoq63qhyYrQC9zx2jTK4piMnmXIOv42rOsJkobvC77wHgQydVzj16Tj1FRsoh8HW/CawZJY6bWcTiBXlrisTRr7/R9shXq9O+xGrrA+JK694iN5lXHN5TgVyCb+kMtO1f3HJjTeiAjPN3U4jHnK7VCy4zr4nuY1kVWUMEmvIQ9GNuA70oOp/bWBW8V0Yo3ZGelvZtaF3xm40IFP//TR//aZ/h8b6w1XiaxI7etr02gcsGYV/M1zn8ZjlJNvnI/t/+f+XzX361e2P8353zMZEw+Do2PY4eMlU9KWzX7QUeWRoVORCQNzTgr7MsLjf4WcN3m1IdQXaZ6rEy6a75dv4lOiUXj0BgdNdZri4LW3pah4kL6KDV2tyvIfSJJFEX66Vzk4kWPGeuCMhTZ0VitXvuYFUhPdgvkKP8UzcRjlKb4NNXPmC2OmYWjwN+Nxw2Mt6MPwea83ZVIYoflDNicO7BPA8h7Rod+ejsajkxm8q5DWiRsL7+DF1eS80eD69cvR1agRnMXv+msHbeuhSp4cvfF2TXo3CPrc+tx6NvgNp8WUYQ==</source>
   </file>
   <file path="php-classes/Log.class.php" hash="8a3c7f6e35c362847bf2722154402157" package="auto-scaler">
     <docblock line="2">
@@ -2913,7 +2925,7 @@ Collect the performance data for each server in a cluster, log to the DB]]></des
   <package name="Default" full_name="Default"/>
   <package name="auto-scaler" full_name="auto-scaler"/>
   <namespace name="default" full_name="default"/>
-  <marker count="4">todo</marker>
+  <marker count="6">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

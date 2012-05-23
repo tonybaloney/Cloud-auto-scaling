@@ -374,6 +374,18 @@ class Abiquo implements Connector{
 	}
 	
 	/**
+	 * deploy a Virtual Machine in this VDC/VAPP
+	 * @param int $vdc_id ID of the Virtual Data Center
+	 * @param int $vapp_id ID of the Virtual Appliance
+	 * @param int $vm_id ID of the Virtual Machine
+	 * @return Array
+	 * @access public
+	 */
+	public function DeployAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/deploy",'application/vnd.abiquo.acceptedrequest+xml');
+	}
+	
+	/**
 	 * Undeploy a Virtual Machine in this VDC/VAPP
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
@@ -549,15 +561,14 @@ class Abiquo implements Connector{
 	 * @param int $targetApplianceId The ID of the target virtual appliance
 	 * @param int $targetVlanId The ID of the target VLAN
 	 * @param string $templateUrl The REST URL to create the VM from
+	 * @param string $vmname The name of the new VM.
 	 **/
-	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateUrl ) {
+	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateUrl, $vmname ) {
 		// Get the Virtual Data Center
-		$request = "<virtualMachine><link href=\"".$templateUrl."\" rel=\"virtualmachinetemplate\" title=\"Nostalgia\"/></virtualMachine>";
+		$request = "<virtualMachine><link href=\"".$templateUrl."\" rel=\"virtualmachinetemplate\" title=\"$vmname\"/></virtualMachine>";
 		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
-		print_r($vm);
-		// TODO: establish VM ID
-		$vm = 1;
-		$this->ApiRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines/$vmId/action/deploy",'application/vnd.abiquo.acceptedrequest+xml');
+		$vmId = $vm['virtualmachine']['id'][0];
+		$this->DeployAbiquoVirtualMachine($clusterLocation,$targetApplianceId,$vmId);
 	}
 	
 	/**
@@ -573,7 +584,7 @@ class Abiquo implements Connector{
 		foreach ($vms as $vm){
 			// TODO: Check time stamp of VM is >55mins
 			if ((substr($vm['vmName'],0,strlen($vmPrefix))==$vmPrefix) && !$undeploy) { 
-				$this->UndeployAbiquoVirtualMachine($clusterLocation,$targetApplianceId,$vm['vmId']);
+				$this->UndeployAbiquoVirtualMachine($clusterLocation,$targetApplianceId,$vm['vmId'][0]);
 				$undeploy=true;
 			}
 		}

@@ -29,10 +29,8 @@ function Tock(){
 									$clusterCls->ResetHold();
 									$result = $triggerCls->GetAverageResult();
 									if ($result > $trigger['upper']) { 
-										echo ' Scale UP!!';
 										$triggerCls->Scale('SCALE_UP');
 									} else if ($result < $trigger['lower']) { 
-										echo ' Scale down :-(';
 										$triggerCls->Scale('SCALE_DOWN');
 									}
 								}

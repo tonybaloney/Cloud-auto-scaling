@@ -15,9 +15,13 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">/*
- * Grid of clusters available to this user and dialogs to create and edit clusters.
- */
+  <pre class="prettyprint lang-js"><span id='Cloud-ClusterPortlet'> /**
+</span>  * Grid of clusters available to this user and dialogs to create and edit clusters.
+  * @copyright Anthony Shaw, 2012
+  * @license LGPL
+  * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+  * @package auto-scaler
+  **/
 Ext.define('Cloud.ClusterPortlet', {
     extend: 'Ext.grid.Panel', // Extend from basic panel
 	
@@ -51,7 +55,7 @@ Ext.define('Cloud.ClusterPortlet', {
 		var popup = new Ext.Window({
 			layout:'fit',
 			width:263,
-			height:430,
+			height:482,
 			closeAction:'hide',
 			iconCls:'icon-cluster',
 			plain: true,
@@ -131,6 +135,19 @@ Ext.define('Cloud.ClusterPortlet', {
 					},
 					{
 						xtype:'combo',
+						name:'targetSecondaryVlanId',
+						fieldLabel:'Target VLAN (2)',
+						allowBlank:false,
+						value: (clusterRecord?clusterRecord.data.targetSecondaryVlanId:''),
+						displayField: 'networkDescription',
+						valueField: 'networkId',
+						store: 'PrivateNetworkStore',
+						queryMode: 'local',
+						typeAhead: true,
+						allowBlank: false
+					},
+					{
+						xtype:'combo',
 						name:'targetApplianceId',
 						fieldLabel:'Target Appliance',
 						allowBlank:false,
@@ -166,7 +183,7 @@ Ext.define('Cloud.ClusterPortlet', {
 							popup.hide(); 
 						}
 					}
-					/* ,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size */
+					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
 				]
 			}
 		  }); 
@@ -192,6 +209,9 @@ Ext.define('Cloud.ClusterPortlet', {
 								clusterId: b.data.clusterId
 								}
 						});
+						Ext.data.StoreManager.lookup('TriggerStore').lastParams = {params: {
+								clusterId: b.data.clusterId
+								}};
 						Ext.get('tock-logs').unmask();
 						Ext.get('trigger-grid').unmask();
 						Ext.data.StoreManager.lookup('TockLogStore').load({
@@ -244,8 +264,6 @@ Ext.define('Cloud.ClusterPortlet', {
         });
         this.callParent(arguments); // complete panel constructor
     }
-});
-
-</pre>
+});</pre>
 </body>
 </html>
