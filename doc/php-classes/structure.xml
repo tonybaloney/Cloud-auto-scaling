@@ -2189,23 +2189,27 @@ Requirements : pear/Mail]]></description>
     </class>
     <source>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</source>
   </file>
-  <file path="php-classes/db_settings.inc.php" hash="0d9daebe75f193f01f5f2ccf47257260" package="Default">
+  <file path="php-classes/db_settings.inc.php" hash="2f129e9ae8cac1af4d4ceaec4b943643" package="Default">
     <parse_markers>
       <error line="1" code="50007">No page-level DocBlock was found in file php-classes/db_settings.inc.php</error>
     </parse_markers>
     <constant namespace="default" line="2" package="Default">
+      <name>DB_NAME</name>
+      <value><![CDATA['scaler']]></value>
+    </constant>
+    <constant namespace="default" line="3" package="Default">
       <name>DB_HOST</name>
       <value><![CDATA['localhost']]></value>
     </constant>
-    <constant namespace="default" line="3" package="Default">
+    <constant namespace="default" line="4" package="Default">
       <name>DB_USERNAME</name>
       <value><![CDATA['scaler']]></value>
     </constant>
-    <constant namespace="default" line="4" package="Default">
+    <constant namespace="default" line="5" package="Default">
       <name>DB_PASSWORD</name>
       <value><![CDATA['scaler']]></value>
     </constant>
-    <source>eJyzsS/IKOBKSU3LzEvVUHdxivfwDw5R11HPyU9OzMnILy5R17RGlg4Ndg3yc/R1BSopBqpILUKTD3AMDg73D3JBkbe3AwB/rx8j</source>
+    <source>eJyzsS/IKOBKSU3LzEvVUHdxivdz9HVV11EvTk7MSS1S17RGlvPwDw4ByuXkAyUz8otL0KRDg12D8GkPcAwODvcPckGRt7cDAFadJ2w=</source>
   </file>
   <file path="php-classes/ErrorLogger.php" hash="a64a7409838b599026e4b303798ba630" package="auto-scaler">
     <docblock line="2">
@@ -2305,117 +2309,118 @@ Requirements : pear/Mail]]></description>
     </class>
     <source>eJyVVdtu2zgQfY6+YiAEkBTYkm/AArt1ukbaOijUwFgnT0FgMBItqWVELUlVMYL+e4ekJNvZeNE+OKZnzpy5T969r/IKHIguLhyAC7jKiVAyTBiRMkSVEf6d8GoniixXsChVzssdrHPSDGAyGk8sghUJLSWFeLmKjyW5UtWfUdQ0TZiVdchFFrUqGbGsYqF6VrC8uYOYSkkFLGlJBWGwqh8RB7HFWs6KJN9IRoHUig9lQhgVWnEROY5JoIsfTPyw5QIqwdM6KcoMMkGqXALfgqCyZko6JymR0DJYuhdwzpAf/6LFB0EaIJZNk6mcgsLiZBh7SwykTIHXqqoVKG4Q24JR8ImEz6uPy8AQoWtBnoA/fqWJgvOO47b9tgFY7SFeIhCzObf8n5C3JE8U+gc6lIoLatxqb8a3ZSBJgkWGypTWiqQiyr4x6TOrASuEbV0mquBlF9PS5Ox3oQ5exRDAi3N2Jui/dSHohpcJZry+WsQfN6vF7XXofa1M0SIpkqh96xHzgr9+12zDipL2tmh93lZ+ToQgO98woizhIpXzLt7h5ZKqfyzQQoqtn/C6VH6HDebzUYBtVLUoNQAniJIk7/WAHTwX2L+9y/sHmKPs3rO/vQfjOyWKjHfzDtTLJjsb4gabwvzRoHdvYMFgHyvjDRVBbzj9ZcO6qg4NZ79siNVZfMfdy6gtkh8gi4M8UQRXWAdlZ8o2Dm5zitutGg64NAwrgyNHWEN2EtpepjoEuydzKGkDZn78P0ajwQw/nl4523yLGl6uqVrrFfRdRZ8VNtnVEaAe/T7RjVmJuWa6KwuMVBJ2qxWvKIzMP7Q5crIjz4UcXppdN3gMK6H+eDQYj46BmShSg/ikS7clTNIjwLNlui5SGpNHysxU/adeFeN4a9DqcayfbS1inOAV/vTbUbHEFmJ8xjSjeEZ8cK9YLdX+urgQgAVPTvJNOr7JG3yxniwMDflyztI93/Qk37Tjm77Bd6cH7i2+2Um+Wcc3e4OvHcI2X/Dd8P9mNHQD9KjZbOXDMNTnl6QpFP35xYatrg86t0hTvy32UUetfHJCPj0hn7XyA4UqVDtdvusdJtA+bvBehq4H65svK2hvEmwFfwIEt8fmfvRw72G1qPcQujqTA9WrszUc99B+BD8UsmJkt9/Zwy1Rgn+ja/1/wn99xTG/H84P5/3lTxkokZI=</source>
   </file>
-  <file path="php-classes/DB.class.php" hash="9bee1c2f90ad2545383ae979005c6f84" package="auto-scaler">
+  <file path="php-classes/DB.class.php" hash="c982f20c802abd63d3998443d58192e0" package="auto-scaler">
     <docblock line="2">
-      <description><![CDATA[DB.class.php]]></description>
+      <description><![CDATA[DB.class.php
+Requires DB_NAME,DB_HOST,DB_USERNAME and DB_PASSWORD to be defined.]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="copyright" description="Anthony Shaw, 2012"/>
       <tag line="2" name="license" description="LGPL"/>
       <tag line="2" name="license" description="http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License"/>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
-    <class final="false" abstract="false" namespace="default" line="14" package="auto-scaler">
+    <class final="false" abstract="false" namespace="default" line="15" package="auto-scaler">
       <name>DB</name>
       <full_name>\DB</full_name>
       <extends/>
-      <docblock line="10">
+      <docblock line="11">
         <description><![CDATA[DB class]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="10" name="package" description="auto-scaler"/>
+        <tag line="11" name="package" description="auto-scaler"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="20" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="21" package="">
         <name>Connect</name>
         <type>function</type>
-        <docblock line="15">
+        <docblock line="16">
           <description><![CDATA[Connect to the database]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="15" name="access" description="public"/>
-          <tag line="15" name="return" description="" type="\MySQLResource">
+          <tag line="16" name="access" description="public"/>
+          <tag line="16" name="return" description="" type="\MySQLResource">
             <type by_reference="false">\MySQLResource</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="31" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="32" package="">
         <name>Query</name>
         <type>function</type>
-        <docblock line="25">
+        <docblock line="26">
           <description><![CDATA[Run an SQL Query]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="25" name="access" description="public"/>
-          <tag line="25" name="param" description="SQL Query" type="string" variable="$sql">
+          <tag line="26" name="access" description="public"/>
+          <tag line="26" name="param" description="SQL Query" type="string" variable="$sql">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="25" name="return" description="" type="resource">
+          <tag line="26" name="return" description="" type="resource">
             <type by_reference="false">resource</type>
           </tag>
         </docblock>
-        <argument line="31">
+        <argument line="32">
           <name>$sql</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="45" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="46" package="">
         <name>GetData</name>
         <type>function</type>
-        <docblock line="39">
+        <docblock line="40">
           <description><![CDATA[Run an SQL query and return an array of the results]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="39" name="access" description="public"/>
-          <tag line="39" name="param" description="Query" type="string" variable="$sql">
+          <tag line="40" name="access" description="public"/>
+          <tag line="40" name="param" description="Query" type="string" variable="$sql">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="39" name="return" description="" type="array">
+          <tag line="40" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="45">
+        <argument line="46">
           <name>$sql</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="58" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="59" package="">
         <name>GetRecord</name>
         <type>function</type>
-        <docblock line="53">
+        <docblock line="54">
           <description><![CDATA[Return an assoc array from a SQL query with 1 row]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="53" name="param" description="SQL query" type="string" variable="$sql">
+          <tag line="54" name="param" description="SQL query" type="string" variable="$sql">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="53" name="return" description="Single row as array" type="array">
+          <tag line="54" name="return" description="Single row as array" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="58">
+        <argument line="59">
           <name>$sql</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="69" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="70" package="">
         <name>Sanitise</name>
         <type>function</type>
-        <docblock line="63">
+        <docblock line="64">
           <description><![CDATA[Connect to the database]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="63" name="access" description="public"/>
-          <tag line="63" name="param" description="String to sanitise" type="string" variable="$data">
+          <tag line="64" name="access" description="public"/>
+          <tag line="64" name="param" description="String to sanitise" type="string" variable="$data">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="63" name="return" description="" type="string">
+          <tag line="64" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="69">
+        <argument line="70">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <source>eJyVlF1P2zAUhq+TX3EmVSKpuha4LNugrKi7KF/N0C4QqlzntIkW7NR2FCrEf9+xHSAV4+uqjc/r1+d9cpxvh2VWhjDodkOALoyP+7xgWvfdKi0ccVluVL7KDIyEyaTYQJKxugf7u3v7XlHkHIVGmE4uptsrmTHlcDCo67q/ElVfqtWgKelBsSqLvrkzMDm7gilqjQomKFCxAi6qBelg6rXes2T8L1shsMrIr5qzApUtdAdhSM1D6JoH13z4qp7UTmGl9xAGbmdA8p9SCOQGjASTIaTMsAWjBK54xDinBqF0bfklhaZSAk43yeV0hlpWiqOt0AmB14E2zNDPshLc5FI8nhHF92EQ5IIXVYpzKThGO+lirtGYXKx0nyqW/k58QLLmmNuNXhdz3hhQ9/Nf58lv6Nl/V8nJ7Gx0euKfLkZJ8ud8Nga7/SEMWhlnlQAmgBqGywrV5vVwJVPslvpX1BB06OjnTVvp1ceCu42RN4rBph8fD4dPOGxOH1BjQSvpItrxL8wz6Kzhe0Ng7fp+tLLFfBl96axjSHOEyItQKamiuM2vs36LhndlIoVGTutMKbYBuXTjQDmrwuhP8HrJyhm+A2qCZkyTB5H1cGPSoaMpveXlKbqKo2JnlErO10Oss7zAqKNk/QRsiYZnc5p4ySPrFcek83uvb0hlxQdBC5SttFh5VM9UrFHDZqnkLbAWwDo3GewBOb41Rev/k4GEVAXa3XTKR2nNkEuVtnDZ9j2uhuUzsHbC692bFwPx6U/Adj73OhL/QBaaidzkGreSeu07sZJmJ02B9XS5tj4DChkNOd2QEufe0St7W7fK3/+H8PDHP4bVzNA=</source>
+    <source>eJyVlNtO4zAQhq+bp5iVKpFU3Ra4hGU5bFH3opyaRXuBUOU60ybaYCe2o2yFePcd2wESsZyurHj++T3zeZxvh0VaBDAeDAKAAUxORjxnWo/cLm3MsawyhZoii/Pjs9MhrT8v4l92vY5P53YPmEhs/PI4jn9fzCdgJCwRElxlApOR8znistiobJ0aOBYmlWIDccrqIexu7+x6RZ5xFBphNr2cdXdSY4q98biu69FaVCOp1uMmpMf5ushH5q+B6fk1zFBrVDBFgYrlcFktSQczr/WeBeN/2BqBVUZ+1ZzlqGxgMA4CggCBgwAOQvCqntROYaX3EPRcZo/kP6QQyI0lYFJCwAxbMurABY8Y51QgFK4sv6XQVErA2Sa+ms1Ry0pxtBE6oed1oA0ztKwqwU0mxeMZYXQf9HqZ4HmV4EIKjuFWslxoNCYTaz2iiL3FrWifZM0xdxtd5gveGEBzlzCE9m0OO3dp0x+CXqvHeSXoxoEKhqsK1eb15gqm2B3Vr6gg6NPRz0md7tXHGneJoTeKwHY/Odnbe8Jh+/QNasxpJ1mGzdC6UL+EgwZA6cp+dLLBbBV+6ZcRJBlC6EWolFRh1MbXL9+C4V3tW2jktM+UYhuQKzcN1GaVG/0JXC9ROcN3OE3RTGjwILQebkr69gUfgMXlIbqIo2JHlELO1zOs0yzHsK9k/QRshYanCxp4yUPrFUWk87k3t6Sy4v1eC5SNtFh5VM9UrFHDZqXkHbAWwDozKewAOb41ROX/yUBMqhxtNp3yUVpz5FIlLVy2fI+rYfkMrN3hzfbti4H49B+g25+7jth/kIVmIjOZxk6nXvtOW3GTSVNgPV1fnb+AQkZDTn+0Ahfe0SuHnUfln/9DcPj9Hx8A4ao=</source>
   </file>
   <file path="php-classes/Cluster.class.php" hash="c6a2a2efbe1ecd578d21fd500682df4a" package="auto-scaler">
     <docblock line="2">
