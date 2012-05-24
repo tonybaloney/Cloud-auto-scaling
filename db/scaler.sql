@@ -24,19 +24,16 @@ DROP TABLE IF EXISTS `clusters`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `clusters` (
   `clusterId` int(11) NOT NULL AUTO_INCREMENT,
-  `customerId` int(11) DEFAULT NULL,
+  `customerId` int(11) NOT NULL,
   `clusterName` varchar(50) DEFAULT NULL,
-  `clusterLocation` int(11) DEFAULT NULL,
+  `clusterLocation` varchar(50) DEFAULT NULL,
   `minServers` smallint(5) unsigned DEFAULT NULL,
   `maxServers` smallint(5) unsigned DEFAULT NULL,
-  `targetVlanId` int(10) unsigned DEFAULT NULL,
-  `targetVlanName` varchar(50) DEFAULT NULL,
-  `targetApplianceId` int(10) unsigned DEFAULT NULL,
+  `targetVlanId` varchar(50) DEFAULT NULL,
+  `targetApplianceId` varchar(50) DEFAULT NULL,
   `targetApplianceName` varchar(50) DEFAULT NULL,
   `dateCreated` datetime DEFAULT NULL,
   `dateChanged` datetime DEFAULT NULL,
-  `targetVdcId` int(11) DEFAULT NULL,
-  `targetVdcName` varchar(50) DEFAULT NULL,
   `clusterVmCount` int(11) DEFAULT NULL,
   `clusterEmailAlerts` varchar(255) DEFAULT NULL,
   `targetSecondaryVlanId` int(11) DEFAULT NULL,
@@ -79,23 +76,6 @@ CREATE TABLE `error_log` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `log`
---
-
-DROP TABLE IF EXISTS `log`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `log` (
-  `logId` int(11) NOT NULL AUTO_INCREMENT,
-  `customerId` int(11) DEFAULT NULL,
-  `clusterId` int(11) DEFAULT NULL,
-  `triggerId` int(11) DEFAULT NULL,
-  `message` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`logId`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `tick_log`
 --
 
@@ -107,8 +87,8 @@ CREATE TABLE `tick_log` (
   `customerId` int(11) DEFAULT NULL,
   `clusterId` int(11) DEFAULT NULL,
   `triggerId` int(11) DEFAULT NULL,
-  `result` int(11) DEFAULT NULL,
-  `vmId` int(11) DEFAULT NULL,
+  `result` float unsigned DEFAULT NULL,
+  `vmId` varchar(50) DEFAULT NULL,
   `vmName` varchar(255) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`tl_id`)
@@ -144,10 +124,10 @@ CREATE TABLE `triggers` (
   `triggerId` int(11) NOT NULL AUTO_INCREMENT,
   `triggerName` varchar(255) DEFAULT NULL,
   `clusterId` int(11) DEFAULT NULL,
-  `lower` float DEFAULT NULL,
-  `upper` float DEFAULT NULL,
-  `scaleUpTime` int(11) DEFAULT NULL,
-  `scaleDownTime` int(11) DEFAULT NULL,
+  `lower` float unsigned DEFAULT NULL,
+  `upper` float unsigned DEFAULT NULL,
+  `scaleUpTime` int(10) unsigned DEFAULT NULL,
+  `scaleDownTime` int(10) unsigned DEFAULT NULL,
   `oid` varchar(100) DEFAULT NULL,
   `communityString` varchar(255) DEFAULT NULL,
   `vmPrefix` varchar(50) DEFAULT NULL,
@@ -165,4 +145,4 @@ CREATE TABLE `triggers` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-22 13:35:02
+-- Dump completed on 2012-05-24 16:48:15

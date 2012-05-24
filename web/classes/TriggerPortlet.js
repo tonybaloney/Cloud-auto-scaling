@@ -88,6 +88,8 @@ Ext.define('Cloud.TriggerPortlet', {
 							name:'lower',
 							value: (triggerRecord?triggerRecord.data.lower:0),
 							fieldLabel: 'Lower Limit',
+							allowDecimals:true,
+							minValue:0,
 							allowBlank: false
 						},
 						{
@@ -95,6 +97,8 @@ Ext.define('Cloud.TriggerPortlet', {
 							name:'upper',
 							value: (triggerRecord?triggerRecord.data.upper:0),
 							fieldLabel: 'Upper Limit',
+							allowDecimals:true,
+							minValue:0,
 							allowBlank: false
 						},
 						{
@@ -102,6 +106,7 @@ Ext.define('Cloud.TriggerPortlet', {
 							name:'scaleUpTime',
 							value: (triggerRecord?triggerRecord.data.scaleUpTime:120),
 							fieldLabel: 'Scale Up Time (sec)',
+							minValue:1,
 							allowBlank: false
 						},
 						{
@@ -109,6 +114,7 @@ Ext.define('Cloud.TriggerPortlet', {
 							name:'scaleDownTime',
 							value: (triggerRecord?triggerRecord.data.scaleDownTime:120),
 							fieldLabel: 'Scale Down Time (sec)',
+							minValue:1,
 							allowBlank: false
 						}
 					]},{

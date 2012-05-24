@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a2" title="">
-  <file path="php-classes/connectors/Abiquo.class.php" hash="455e7a43335d5ce96c0e2bf1817a81ed" package="auto-scaler">
+  <file path="php-classes/connectors/Abiquo.class.php" hash="0f62cf1679a73f524fbff87f9b627476" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Abiquo Class
 PHP Requirements
@@ -15,8 +15,7 @@ PHP Requirements
     </docblock>
     <markers>
       <todo line="138">Read headers to establish version.</todo>
-      <todo line="558">establish VM ID</todo>
-      <todo line="574">Check time stamp of VM is &gt;55mins</todo>
+      <todo line="585">Check time stamp of VM is &gt;55mins</todo>
     </markers>
     <class final="false" abstract="false" namespace="default" line="21" package="auto-scaler">
       <name>Abiquo</name>
@@ -570,10 +569,10 @@ TODO: Carry XML element attributes into the structure]]></description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="384" package="">
-        <name>UndeployAbiquoVirtualMachine</name>
+        <name>DeployAbiquoVirtualMachine</name>
         <type>function</type>
         <docblock line="376">
-          <description><![CDATA[Undeploy a Virtual Machine in this VDC/VAPP]]></description>
+          <description><![CDATA[deploy a Virtual Machine in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="376" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
@@ -606,10 +605,10 @@ TODO: Carry XML element attributes into the structure]]></description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="396" package="">
-        <name>GetAbiquoVirtualMachineNetworks</name>
+        <name>UndeployAbiquoVirtualMachine</name>
         <type>function</type>
         <docblock line="388">
-          <description><![CDATA[Get a Virtual Machine Networks in this VDC/VAPP]]></description>
+          <description><![CDATA[Undeploy a Virtual Machine in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="388" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
@@ -620,8 +619,8 @@ TODO: Carry XML element attributes into the structure]]></description>
           <tag line="388" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="388" name="return" description="SimpleXML Object tree of the result" type="Object">
-            <type by_reference="false">Object</type>
+          <tag line="388" name="return" description="" type="Array">
+            <type by_reference="false">Array</type>
           </tag>
           <tag line="388" name="access" description="public"/>
         </docblock>
@@ -641,238 +640,282 @@ TODO: Carry XML element attributes into the structure]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="409" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="408" package="">
+        <name>GetAbiquoVirtualMachineNetworks</name>
+        <type>function</type>
+        <docblock line="400">
+          <description><![CDATA[Get a Virtual Machine Networks in this VDC/VAPP]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="400" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="400" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="400" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="400" name="return" description="SimpleXML Object tree of the result" type="Object">
+            <type by_reference="false">Object</type>
+          </tag>
+          <tag line="400" name="access" description="public"/>
+        </docblock>
+        <argument line="408">
+          <name>$vdc_id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="408">
+          <name>$vapp_id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="408">
+          <name>$vm_id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="421" package="">
         <name>TestConnection</name>
         <type>function</type>
-        <docblock line="404">
+        <docblock line="416">
           <description><![CDATA[Test connection to the cloud provider]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="404" name="return" description="Connection successful" type="bool">
+          <tag line="416" name="return" description="Connection successful" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="404" name="access" description="public"/>
+          <tag line="416" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="418" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="430" package="">
         <name>GetLocations</name>
         <type>function</type>
-        <docblock line="413">
+        <docblock line="425">
           <description><![CDATA[Get a list of locations, for multi-regional cloud platforms.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="413" name="return" description="List of locations (Key-Value pair array)" type="array">
+          <tag line="425" name="return" description="List of locations (Key-Value pair array)" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="413" name="access" description="public"/>
+          <tag line="425" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="435" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="447" package="">
         <name>GetPrivateNetworks</name>
         <type>function</type>
-        <docblock line="429">
+        <docblock line="441">
           <description><![CDATA[Get a list of private networks]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="429" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="441" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="429" name="return" description="List of private networks" type="array">
+          <tag line="441" name="return" description="List of private networks" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="429" name="access" description="public"/>
+          <tag line="441" name="access" description="public"/>
         </docblock>
-        <argument line="435">
+        <argument line="447">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="459" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="471" package="">
         <name>GetAppliances</name>
         <type>function</type>
-        <docblock line="453">
+        <docblock line="465">
           <description><![CDATA[Get a list of VM Groups/Appliances]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="453" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="465" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="453" name="return" description="List of appliances" type="array">
+          <tag line="465" name="return" description="List of appliances" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="453" name="access" description="public"/>
+          <tag line="465" name="access" description="public"/>
         </docblock>
-        <argument line="459">
+        <argument line="471">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="481" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="493" package="">
         <name>GetPrivateNetwork</name>
         <type>function</type>
-        <docblock line="474">
+        <docblock line="486">
           <description><![CDATA[Get a list of private networks]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="474" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="486" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="474" name="param" description="Private Network ID" type="int" variable="$networkId">
+          <tag line="486" name="param" description="Private Network ID" type="int" variable="$networkId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="474" name="return" description="List of private networks" type="array">
+          <tag line="486" name="return" description="List of private networks" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="474" name="access" description="public"/>
+          <tag line="486" name="access" description="public"/>
         </docblock>
-        <argument line="481">
+        <argument line="493">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="481">
+        <argument line="493">
           <name>$networkId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="507" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="519" package="">
         <name>GetVirtualMachines</name>
         <type>function</type>
-        <docblock line="500">
+        <docblock line="512">
           <description><![CDATA[Get a list of VM s]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="500" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="512" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="500" name="param" description="Appliance ID" type="int" variable="$appliance">
+          <tag line="512" name="param" description="Appliance ID" type="int" variable="$appliance">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="500" name="return" description="List of virtual machines." type="array">
+          <tag line="512" name="return" description="List of virtual machines." type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="500" name="access" description="public"/>
+          <tag line="512" name="access" description="public"/>
         </docblock>
-        <argument line="507">
+        <argument line="519">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="507">
+        <argument line="519">
           <name>$appliance</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="530" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="542" package="">
         <name>GetVirtualMachineNetworks</name>
         <type>function</type>
-        <docblock line="522">
+        <docblock line="534">
           <description><![CDATA[Get a list of VM s]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="522" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="534" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="522" name="param" description="Appliance ID" type="int" variable="$appliance">
+          <tag line="534" name="param" description="Appliance ID" type="int" variable="$appliance">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="522" name="param" description="VM ID" type="int" variable="$virtualMachine">
+          <tag line="534" name="param" description="VM ID" type="int" variable="$virtualMachine">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="522" name="return" description="List of NICS." type="array">
+          <tag line="534" name="return" description="List of NICS." type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="522" name="access" description="public"/>
+          <tag line="534" name="access" description="public"/>
         </docblock>
-        <argument line="530">
+        <argument line="542">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="530">
+        <argument line="542">
           <name>$appliance</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="530">
+        <argument line="542">
           <name>$virtualMachine</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="553" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="566" package="">
         <name>CreateVM</name>
         <type>function</type>
-        <docblock line="545">
+        <docblock line="557">
           <description><![CDATA[Create a VM]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="545" name="access" description="public"/>
-          <tag line="545" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="557" name="access" description="public"/>
+          <tag line="557" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="545" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="557" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="545" name="param" description="The ID of the target VLAN" type="int" variable="$targetVlanId">
+          <tag line="557" name="param" description="The ID of the target VLAN" type="int" variable="$targetVlanId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="545" name="param" description="The REST URL to create the VM from" type="string" variable="$templateUrl">
+          <tag line="557" name="param" description="The REST URL to create the VM from" type="string" variable="$templateUrl">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="557" name="param" description="The name of the new VM." type="string" variable="$vmname">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="553">
+        <argument line="566">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="553">
+        <argument line="566">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="553">
+        <argument line="566">
           <name>$targetVlanId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="553">
+        <argument line="566">
           <name>$templateUrl</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
+        <argument line="566">
+          <name>$vmname</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="570" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="581" package="">
         <name>DestroyNextVM</name>
         <type>function</type>
-        <docblock line="563">
+        <docblock line="574">
           <description><![CDATA[Destroy the next VM in a cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="563" name="access" description="public"/>
-          <tag line="563" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="574" name="access" description="public"/>
+          <tag line="574" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="563" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="574" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="563" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
+          <tag line="574" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="570">
+        <argument line="581">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="570">
+        <argument line="581">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="570">
+        <argument line="581">
           <name>$vmPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <source>eJztXG1z2ziS/mz/CsTlGkoJLSbZ2i+xpVmNrCS6lS2dZHunykmpYBKWuObbkpRs327++3U3AL6JUmzH49m5vVRNIhGNRqNfnm40oTn6OVpEu9br12yXsdese+X+YxmynseThB6MP4/ZRPxj6cbCF0GaSLIDfH7QO58MWeM6jFkMFCJJ3WDOuuMB+3x2Nm4WCMe9SV8SRrGYz3ye2ovi+HRwMh72fz1R3Bxhhw7ywiexSKIwSEQiJ/zFDqP72J0vUtYN0kUY3LPpgt+a7P3bd+8lhefaAiaw4afxsPxkkabRB8u6vb1tzYNlK4znlhpKLG8eea30LmWfTs/ZUCSJiNknEYiYe2y8vAI6NpS0kmfE7Rs+F4wv0/AgsbknYhx4be2iNneBhJTIcEMp925wP2nI0oXQSgZNmYw7jnBYsoyiME6JWI2u3jOesFvheSazQ//KDYBOMUi4L5iN7Fu40HmCgnzAj/u8zQJxq5g0DLVjccf9yBMtYGTxyDVMYwn7g38i4HEbxo7RPJTTDzqfRHrhxumSe8c85bDjVMRJQ47X7xr2TMJo0V1cS3pLLwwCYadh/E+2u4N62UF5wW3Ca6kK8BbYFKeJJvOXScqi0A1SvdU4DFPWQKGtJk3+y4rHLElj0Kf8zm0brAWe5a54KvCZtbujvrH9ZewdwtK0OKMJF7AdNwxYsPSvwMYgiBQ75w7Lb2Jd4i2lnq0kw0O1Ck1VmkAtB2isRhDGPve8e2DOhM9dD20NgfC0TSm2dUtqiz6Fr55b4vsLT8D3weALsKhr8xSVl4Y3IoDYTJcx+qUbZHEKzhreuOIpyxPT0tr/Ne1Pp4PRKRsc54tdx6GvPIb8B5QBJmD8GhwVIomWuF56JnEoyA1TFU49RTjACLSyC8opONNZHs59DBQgBxWAtOTfbkIe8HjPEhmvQWYMueCxuFrOmR86AidjiFGUyH0ljAdOjpgZXNixAGs1wEqfz06GBZe7CkPvQQI5uOwJrFoyTy8WOMoD2FiS8sAWWVzn5gmv/g4IIFeJeMx9pXSKzRIWyDlTMmctvY6mc/0hx8s6eu3ObKw/1NOjFgpbZOOYAEjBE4CcR6pMUidcqo1IZ5Qzp9LlGPC+hsBexqCFgF27AeUw7Z1gGLAQh0SSLPA5Z144B4tIfukiDm8LcNm/s0WEkVa2DuUh7ZkyKV0vA5tCUqmvQXo1c22ZuSLM4i7bIK0Hztpk/9zd2dlHbz3oFIdLRt+xLPaREEu6lNwVWs8O4xhk9u6ByL1mjWR5BQZokBQH78x3TfaqzQzLaJJgrTZ8PMwXRB9oS5guPNT2bZewTg9ndm0XIAsUuSPFHJJete8rb9JzuwU8wKSmJ0HWI/qVTH3MgdzHVPIDTMWUV7Qg0ZYiHpdYOXaCQsmlgKW0SX06ldpykxmPY37foMnNJtqiZuDSWFWZGF8v3369NDw3uDG+qok74OCC2wv2sFlYYezjRzWbFqYHl0YsPCBog+lyMDKkr+AfUHyc4mbFXeSBizTArKaauojFNYh0qEmLaCZtBlMv7XAZpA35pXnw7mtGLrVXgUD88203+/sbE+i7UhoKHip71uOnIa1hsr1euPQcFkA5kVuxjNmUWDDkNYK29sxe/9fZ4PSiOxwcz2BoNulPx6PTaV/uDmXRoqAD/n6ifJNuPJG4lKxBEgwrzGooBVO2xbnfipBeCh6VZGUMmWyuYgRzqqoAMChUZmSNv6tPTebK8mMK2xc4BTaFXBeqaiUc9jjm6wxhW78NsG5N6jl2FlCBNSga9sMoBWeVMUi2xePOaHw2+9gdDEen/clkNGHtDkvjpTBL46PhcPS34ajXPcPSpY7kc7973K+fjWen7vnZZxzEZ/h59kt3OuiVyM6n/cn4b8dIVQHNlvHBaFWQEmc2sXDZ2QeHyiHqMxwPJrJ2aLAckVuG7YVLx1Lo4eTAZTDIIaiZJsux82x0PPoArscdtoC/EDHBgXLXVgVyK0fhcuUM8rwv4DfUVLEw0GbhFXC4x/pCQBEKxr7l91gtOCGdpoDVq12CohRkCxjw2bOmIj3oUQn6ofHz+Ag10mm9/rnZxm8r7i3l10MELjjUJvScPt/PHH5P9F9u3zRNVh7ofHHeNA8Kz/wQzp9EWnx6L3hMpMXpi3ApH34ozneDZSrWHidw+A2cNRb/EwZSLmsPFZ+fo2cQPA2tAhPNa+7TAJyYKWe67bf4r8oMDT14aeBWVQ6QNfsMn0B1uJMloeIA5QIMfaO5W8BpiQPgURlfUnICiWbflaBey0mX9oPjMr+szt7Oc99980bjXh2wsZ9+YlWORbCT8NC/E/YSK1hqWegyGop29C8MtU1lK5GfTwbFcYIKGR1DF7iAo1KHJCT0T9gRZseOOpEvb/7UihZRKxCp5fMAoswSgaUBqWXDIgeJSGEukh1ZNLcEkVKcfxFSTvThS5XStK7ajanqPIROiaKm3kqYZYrHgGUBNPJqU2ICJUEyd6WclAWGsBch2ztCXBAA8TFARftdhxw6G4s7R6kDRaWXRDxov+8cLd53CqcJtfCRBY+PrNTBv+I6Fh2wjiSA//ZaVHvubZ9BRh2jLQViXWE2nJVmEIhhDAUL7NRE1G6usUNf3Ifiq83QfDM3cFMqgykO6ZG0qC7s7IVUXHVcjmikn/TPzienZ5Pu6fRjf2JSxpCRDbG+9FK9nABfxplZaanG2+02OUDz4fXJR5VtqQqx0ZeSSHDdwrriNgQYHCZwWSbiOIwP9lpShjgOQhKitcca+cMwVg+b6HPI0EDFGOzWhVJCB8gB26Dp7aXP9/1NmndC6sisegQYCqZdpD64mrBd7tkLDqW5UhuZF0k2+IxFXpwbnrYKaTMRmRFUoCqG1UprysE/sNzjOhyxKsKWpxtESwitWPjhSrAjKnE6DKXjNjpmsw6VEjagacWORgkpqFeRqEUd9bD1mMDXEsM5kHq1uKg8EeQLzWIReVAtwDkw/9LYT0yjY5jGT/P00IDUahzhFw+/rGGyhhbdLMUuKXgE+CopB72PNCL7Z9hSCSGHJaGtAFi2QEiezU0H6jpquG/cup7HrsASUQSOnfdZuePEVIBmzcpa1aP2AP6oF9Tr9cdnH1QdRBYtZpaadCHu0piPYHrXcVxUMxw+dUDg9DwLqU11aZ4SKWuKYY220ZY7rK7mjdy89JMgLjdiFoSqNAlepiamJdeK4nxcrm90SVosdqXczdKU3mj010EfyaloaWc1MZUHLeOQ5RVIPphXH6pkVvCiFUIgWlTDzBfxXEisyqk0PNdW2hlaYUrK02cJtyV+7UsfyZjc+d57lTtiVd7RjFd5s4D+0d2Ah6H9LxLPmePKM6nyMyi54AEFehmWQQqVhQDPH3JCzoCQhDvcLR/fn0FIlQjLcj5Qwm//qfijZ/uwAva3cDpuUH+nF1dy1Rr8GVFX93lgaDyanm2EIi3O9xCodz49G51M+v993p+eUdgjW6OECfjk46A/PJ7SuVmx3lWBrr1UNQpzeKyKpIK17DbgvHCcTfGwilpU2pXeEUgHcXnqQkIn4essAYFFc6frKbybz9neqc/0WsAK+IiAwCBf37lMviCc0ku6X31vABUFT7FAQ7JDJCsrAuachV3JCT6vdYyyjWueJ0PNk23bvOwa9ODBPe1ayHeGDE6ysXsFp7JEao+6uBDMdkptrFxt68uNCq8anqy46n6l5njmdVJHEB0N0udBJxa3buDAc/WdMCn/GkBWaDSV/7rXjVcyb9yIe0AqOCcmDUkHDxpNdDOJ3rjmZWHka0kAwlVgJgkWPOktXA/AImhsmH35NU8jlR0edKB2hakgZcYa4VmlIDBHu7Bw3kgoTz3o5IaD7WJXAVamOAOF6MYxsbvEka9tMCqMNGg4zxWYz1RrGGmbnbeqPVCzn1IGRmpTlQbULjDaHb1EZZdyn7TJjbw3TFUKYuxbMVJ4NSjwdQJnnmoDXBz30JmxMTmXb0vzbu9mbE1jIXKAxQz38JdBW949sEapZl+Hu83NP9OADOWpd8DWKnBaspHXKhC9ARgx1kBC6gP0sEkNO6Vkie/f9iGx6xepgql9MNwI69FSL605qMxcp7lVdXubVGfBVGtvo/7WJmzTovaqsUKuU5HehvENGPZi2D1NmrLV7iZrTlbQ7cqxZ7+zfpX4ufRKqCdrWE63FKAHiu8WpXs82Oqu1Ba4BuF1jlA8MwWL51BwYVIUlOdULPyiBsnsYSq5ntkuluS63TwPCQOt2C6ywTsIyR8kANSKBbmfKwTUEM84fxd5ctKt+F1V9fNqujgJBKqfla39wtbJ40EL9+xWsjTnh5urYK1N8TEY0y0kyrcZpsHXDQp9acspm2XF/LMaEfZ+DlsfBJutyX57c1qcxLLcaEsgutFjwO4EKnA3kFD3n2ZUtbRWwQvGpR7y1dLfjVNN+BBQVfvJIBWKZeuiOx6/sAWLc/z6GUrS38viawY3paQvZ3dLLvhQ89db/zxwROSF9/9nXKCm1bLNunr//9YmtpZKys22lm1B4agW62NCPTv7/DEN/oIxrzX17+MY6hxj2WFw7c6XMfnFlowQuHZ9GnjNpoL2/oENUKhrfHua/YRCstXNSmyS5HfP8d2BLd+ZyDv56oYd7BUvT61cp3KGobsivXxGfll+g4HqLITL5jwa6tJH5Q7Oejup0jwiTbxSNxO21zxeKOckJr2T8MGf3INYzOW7UrVdj6f4QqZyjVC+kRlWGbHGX8X9wQU2CVnE3VjSNR+hBJBwmHNTOnjs/V91MSAptlc33gl+wM1earrCaNZsVfzzXilDaywToNbSG+0OTrk0XIeuBpvM0Go6xfthsoGLBPK6GJAUrr6uXXJItpuy0khJ1uBHr820fHSzeqNFq/zY40y43oLS63/HopWJhXk/bFe1lYdZU96L1nMGzro1yxSbTFql68oXjwVS9SqylvqEJzcFUh+/1tF9ApXd8vsC6Vw9Ieoy8bFI7Nilt8B1Esv7ReuytfYs/TiTA18CE/Mf8NyLE/YpDpdRYuX9mh/13jzbPNJvSy2jB7rsWrfpOZ12VWH+KO/N1FDjv1UScmBNlLtvlWwKeTOnS+gbEv6oF/wAfhWIsnCtNnhfEOwKjmMWJFJv2R8EewUOBQaP9iX6GdssVs8O/x8T/0iY+MQIyAK10Ere6vv6Z1m6Cm89zvcrLaOy82fCbHf+tbZT7v05h+dCUrXKozx+5W8G0JW/HTlX/m8Fmb+NkxRPrCWN4XpbPel00Jv+kPfUVItFJzKrEjUf7lTr9WTBt8wq3x8vNV37cZDq2ps9DAfH+WBUHQSps1GI4if6lv7FMZh5gw1LvlE57NAdt7y3oUazc+Ha9JTH80K1BQm7zECOZ+DEN3ZVJOGFx4NNPPDVfd2dsFT4eLYV57FHEyd4uw0v0MNp35bKoDbNCV3W3+TEUm1A1FjTiVmzTbMssVkWQ3pK4Teztb0odCR5vbHN9o7Krtuhn8Iw/J1o+8se5KYC+9belz0WCw8Gyp0XTQPDqZt6AghOQ8Apb+7yL3tW58iqLEJX8/dXfh52lbuGW9pCFSXV9YfWtPbUtwPUFTK1upry5126JvLpe/Yju/xHdQrn1Abf0V4f0/h6jh1iL2yQvd56lkYplDhpHN6TX+HNOdwnveNS8v5Bol6H78ofg5O7d8Qikh+xiVV9j9faFLlKH6egiseEb7aurmn8cvZZK2aqbNe5ynyj++Gyc1f4YSFmFViEsokv803mtb2FsG8gan28ycn9SNUFbsI6f/6z72J/U6at7H8esPIvdc3y1XxrwjNPBI1sW81mu51/wd/6vcokU+fgLBy2v2f4/r5NJQykPv2b9lwLeMm8lL/wgmcuynfvt8vr7Ub+g3D8dTPjwX2WF06+GPRzWs2zZdB99tPR7Kw7+dQ/m12cyCD6tvu/9dSEzA==</source>
+    <source>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</source>
   </file>
   <file path="php-classes/ConnectorException.class.php" hash="7f589db38227d8590b1622ed18c309e0" package="auto-scaler">
     <docblock line="2">
@@ -1024,7 +1067,7 @@ TODO: Carry XML element attributes into the structure]]></description>
     </class>
     <source>eJyVVF1P4kAUfW5/xQ0xEQi2wu4TrB8IiGQrEEGzb2Rsh7ZrmWmmU5EY//ve6bQFVtbVl6a9H+fce+ZMf1zEQWyCXa+bAHXoccaoK7kYvLg0liFnlhuRJLGyKiy4dHm8EaEfSOgyGXC2gVlA1g1onTZbuiIKXcoSCs5w6uxHAinjtm2v12vLZ6nFhW/nqcSO/Diy5IuE4fgeHJokVMCQMipIBNP0EevA0bUaMybuE/EpkFTyk8QlERUqUbdNE5cBE2uusIQyD5YkjFJBzX+2qS6PLkNGoXrcG/xaXHV7Pwfj/uJmPp8urrsj5/5ucNyA5mmz1nkHz7gEl7Nl6COJh69CoITR5gt840lJ2ZuMr0dD5OtnhK0dwu50BIImMVdarkkCKaMvMXJR7wtco/FD1xn1F4i2uBvMppPxTO/2TVMpqDEHSYRPJTzcfm2NefduOJgvHm6PG83T74gIxfQ3PPJC5gMtnAWZs2DJBVAhuMBXwVfQi3jqQSz4c+hRkVjWxwNokPe+RR6Jp5PANvIKppFNYyDiQFHCCo2GsFnk8pkISKTAIfU3cV1Mq1GkFtnIGI0yAEd5P3RMYwd7vokp8GVpvBI9ZPLT0FKBdGAPWGsjAyIzbOpZW+xSgk8zuBlaSaEZBCUSZT6g6D5udiV1KCaCrIA//sb6AtUJ2RNIvoXJ87sdWuutiPOAgsRjU9JJfN87HN2CAubKTBgt6tB6O65S2aTcVv85lilzs+QBn1T1xI1yjoZmqGV+MY5kECYn53qrs3y9DuThYvSzsrtMZVOeaSy0h2HbMCPPuCFmteGVPmr+iPvQv9pyOdzP3FnF62O87Z7OEG+k6qDvzXvgXASVqWCFzB+oe0gppNqKpehudX011yUHr+h7tA5lUCBCu2Lty2NVgOCPcufmc49CWaUUsipW5e9tUYddtf63J0ujSAUOLLNVFF5xdvxst/HRSxPJV1TvV4VuKoN2Gxe/H/WrtUZxkB8oUYNs5jfz4vwPq9I+uA==</source>
   </file>
-  <file path="php-classes/Connector.interface.php" hash="4070d2960204239c7d604070d0b36aad" package="auto-scaler">
+  <file path="php-classes/Connector.interface.php" hash="ebaa3bb2a86d33bdcb1e370ff56f420e" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Connector.interface.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1033,6 +1076,10 @@ TODO: Carry XML element attributes into the structure]]></description>
       <tag line="2" name="license" description="http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License"/>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
+    <parse_markers>
+      <error line="73" code="50014">Name of argument $templateUrl does not match with the DocBlock's name $templateId in CreateVM()</error>
+      <notice line="73" code="50013">Parameter $templateId could not be found in CreateVM()</notice>
+    </parse_markers>
     <interface namespace="default" line="14" package="auto-scaler">
       <name>Connector</name>
       <full_name>\Connector</full_name>
@@ -1198,7 +1245,7 @@ TODO: Carry XML element attributes into the structure]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="81" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="82" package="">
         <name>CreateVM</name>
         <type>function</type>
         <docblock line="73">
@@ -1217,63 +1264,71 @@ TODO: Carry XML element attributes into the structure]]></description>
           <tag line="73" name="param" description="The ID to create the VM from" type="int" variable="$templateId">
             <type by_reference="false">int</type>
           </tag>
+          <tag line="73" name="param" description="The name of the new VM." type="string" variable="$vmname">
+            <type by_reference="false">string</type>
+          </tag>
         </docblock>
-        <argument line="81">
+        <argument line="82">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="81">
+        <argument line="82">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="81">
+        <argument line="82">
           <name>$targetVlanId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="81">
-          <name>$templateId</name>
+        <argument line="82">
+          <name>$templateUrl</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="82">
+          <name>$vmname</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="90" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="91" package="">
         <name>DestroyNextVM</name>
         <type>function</type>
-        <docblock line="83">
+        <docblock line="84">
           <description><![CDATA[Destroy the next VM in a cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="83" name="access" description="public"/>
-          <tag line="83" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="84" name="access" description="public"/>
+          <tag line="84" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="83" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="84" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="83" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
+          <tag line="84" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="90">
+        <argument line="91">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="90">
+        <argument line="91">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="90">
+        <argument line="91">
           <name>$vmPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </interface>
-    <source>eJzVVl9P2zAQf24+xT3wUKrQbDxu0wCBVFUrVSVY3024JhaObdlOSzXtu+8cp2lSaEWHhrSXKInv7vfn7Fy+XehcR5AMBhHAAK6VlJg6ZYZcOjQLluKwCqC1y1TpteFZ7uBKulzJNdzlbBXD+afP5yFC8BSlRZiMZpPum9w5/SVJVqvVMJPlUJksqZdsIjIthu7ZwWj6EyZoLRoYoUTDBMzKB4qDSYgNNTVLn1iGwEqnzmzKBBq/MEjoGlVKBjDe0Adt1JI/cpkBg1RJy61D6fytV8qVhAd0K0QJbq3RglpAKlT5CI0D0V5Qgmyitt7Br6hHNCDqUeI92g6YU+ByrCECN6rkIy8NutIQHaXEppjPsGWakimLUoQwVj2Crpzxr4hFLzzBopQhycNua/RPv0a9ilRVYoSOzBDkhFcrVMp8kI1hQeSLUjh+ZjCjV9SAmqhgjhYLO+xQZcawNTVnpxD0f+D6bM5ESfYzbkLc6RH0ieFkW+0Qe234kjkESU1U5skGEM0MK3wH4WTDCjYFYXxzQMRuPTiO9SykTzfZ/Qb/H4loBdXZ40eoWUBN4wMVtwTHLUaHxM9vYWRUqW1ypbXgTBLue7vImkpHqtlSeGPriP1ftqvhCA3oYVFLblxJR7Jgac4lbs7iW6XNQ/ptnd3tVEPmFD5cbCts2eHo8Q46Mh1f373LhVfOaduMeJdRdydcG/QHhxHPPSQ64lJR0uwxjU33uffA6wgToVptvqIv0h0zWWuD0jHvFgjrzS5pROwpNBdM7qsxn1xNX6Zh4cdAC5hmWRos8LnUrIVRxT7vg1kU1H/hRPyKuLjLM+7gd9twQ7POqHVFQiL9RxAIl37cB5j/pDckwv+lnCyLmcEFf65K6HDrB3O9c+G2ffxfc7r2Y0pWHGN3g+s/Ab+ji+9/AAnBROw=</source>
+    <source>eJzVVk9v2jAUP5NP8Q49UJSGrcdtWlu1EkKjCGktdzd9JFYd27IdKJr23fcch5DQgsqqVdoFhfi9379nY75d6FxHMBwMIoABXCspMXXKJFw6NAuWYlIV0NplqvTa8Cx3cCVdruQafuZsFcP5p8/noULwFKVFmIxmk+6b3Dn9ZThcrVZJJstEmWxYL9mhyLRI3LOD0fQeJmgtGhihRMMEzMoHqoNJqA2YmqVPLENgpVNnNmUCjV8YDOkzqpwMYLyRD9qoJX/kMgMGqZKWW4fS+UfvlCsJD+hWiBLcWqMFtYBUqPIRmgSivaRE2VRts4NfUY9kQNSjxju0HTKnwOVYUwRthOQrLw260pAcpcQGzHfYMk0plEUpQhmrvoKukvGvSEUvfINFKUOTp91i9E+/Rr1KVAUxQkdhCErCuxUqZb7IxrAg8UUpHD8zmNErGkAtVDBHi4VNOlKZMWxNw9kBgv4PXJ/NmSgpfsZNqDs9Qj4pnGzRDqnXhi+ZQ5A0RGWebCDRzLDCTxBONqpgAwjjmwMmdvHgONWz0D7ddPcb/n9kolVUd48foVYBtYwPdNwyHLcUHTI/v4WRUaW2wyutBWeSeN87RdYgHelmK+GNoyP1fzmuRiM0pIdNLblxJR3JgqU5l7g5i2+1Ng/tt3V3d1KNmFP4cLOtsmVHo+c7mMh0fP3zXSm8ck7bYcS7iro74dqgPziMdO4R0TGXipLuHtPEdJf7DLyPcCNUq82v6It2x0zW2qB0zLsAYb3ZJY2JPUBzweQ+jPnkavqyDQt/DbSI6S5LQwS+l4a1MKpo91ln/MV7siwkK7Bqqx5qNokr6kr2TSvES7D9F9nFr8QRd53FW8X3RsSNiJ0NfkMXpVHrWg/9CSE+Lv1/hcD4nwx2m/TM4II/VxA6PPpbvd72cNv+7Xgt9DqPKUVxTPINr4/3d3Tx/Q++dViG</source>
   </file>
   <file path="php-classes/Alerts.class.php" hash="c2b4177a40ab2d6f05777e2fd1b02fac" package="auto-scaler">
     <docblock line="2">
@@ -1717,7 +1772,7 @@ Requirements : pear/Mail]]></description>
     </class>
     <source>eJy1V21v2kgQ/gy/Yi6qhB35IO3H5LiUBi6lIpAD0up0Op03ZjFW/YLW69Ko6n+/2Te8GAiuLv0C9swzs7Mzz+yOf7ter9ZN6JyfNwHOYZSF7SAmed5GMUjR2yBbP7EoXHHopXyVpU8wW5GNB28uXr9RiDgKaJpTGN3ej3YlK87Xl53OZrNph2nRzljY0aq8E4fruM2/crgdP8CI5jllcEtTykgM98Uj4mCksMrnmgSfSUiBFDz7NQ9ITJlQnHeaTRm+jD6M0hDkDppHbYSJhAgD+NZsoDk0G4i/pRz4ikIhYnGA47ZDfHIhzsJcIt6SIMBQYS0DVKI1YSSBKOVwU+Q8S9Bi2FcqRnnBUiCMkSeYo2d0BDRFx1T6w0gayhXknHD8WxZpwKMsFbFgeLkDr4po0V2SGNPpimgb0dL5RQhdqYIu9Aq+urxEg4dh33GvEKLX7b+T4j7hxDmbDUaDmzn4GILfPvd8vbvcb+unMUmo5wcxbkKKzaOQ+/DHdHKnjGE4Hg+m8GEyHEPpBSb2W9s8Dhd+Vy1pSXY8bBeUHvaXtzyUEvj0fjAdgJHrvAtFV2blTKThe7NxoLih4BhmmjKWsbqVlZneK6+lx/IxDjPxKyjIss0eJI6SiCOnxa8IJC2SR3SWLYHRvIh5/hKcGYhdVYnjqfC6F54KontRn0raVFBpRtKIRzl1lEyplcNdtZSdJKIswL+KjppepcgU2AIdKDNMpn0k0ru/wF8QjiztD2Y3MBreDee6JHrHO3yQeX6fbSAheJpteWCSjKmnokCMXp+igQcLuiSidsAzCArG0Ic8PnZqKUxlJUUoP1BDyRWnrKNbt2aMBqjQWZ/SIGOLbd5vJg/jufPahd4MGzbjJPZfMvtndt1FIH+35CKtf/Y6Uhy/JNUFiFLZFObMxTXrtGUZlEywed3HmZNDwdTbHmp7QkmUfrNROcqwu18lGJK4V2SlQL+dKCzudq48KivHjt6zQvSsQLxyLexYEOk7nUPjdnvUvVwy/2cCTOtIs2oCrI0KDlvRKCqX50upUnQ3llWclkuQ0PxZUPbknA3Hs8F0jpfQfLJDesfmuAe+NhePkt8ufOyNHgazaulaZqGWB+PJJ8d14erABaRLNRvf3esTf0v6KPgsQgBOHmP683iPB2KIt2BN+ivwgS6Q4C+Jxn2MGC9wZrsjwSpKKTzs3o6GMV8SMUfYnquGQn/IUudKWOpHpanRb5jXqTSp22xiV54J1tuu7f4oI8u87yGNRgHLnFeBW40CynxXMUJo1DK9+wAhNpeC3EsVosTP9ojhZ7VFrIHMs8Y7zxdxyT85O3qqfTxfLXW0j05UpaV30/JkkwmBcthynxn39Gxlt5q87Jd4bpGjrbDbN8O+mNJ47ZujxB/rnng7BSbka5QUiT0NZhs5Tqg79MhQuD0yBPr0SCE6QZw/Fv88K8V6Yvv2c6irNlsF1RoSzWBYMlBPJtanQNcuV2/cB/tLo2vX5rlpUYZztT8nCh4RnNxyLmua6bQTmdocHPlVCcUakE+LbJO6z3CJH+fSToElczKrwHhvLGw+yV5fsiwxgtyDlG4oBrmMWF5jxpxne4Qw927N+h+qWk5jGnAxVmLwOkWVj03f2oKv92Ch7U9DYyQ+DG1M22aeAVlCTZHdII4ypiRFxaDkiKHF9+b17/8BT2KIEw==</source>
   </file>
-  <file path="php-classes/Trigger.class.php" hash="34ae18a7a5745d1d0c6522c304b790d7" package="auto-scaler">
+  <file path="php-classes/Trigger.class.php" hash="3785c6490f68143322211c3c2d5b2969" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Trigger.class.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -2132,7 +2187,7 @@ Requirements : pear/Mail]]></description>
         </docblock>
       </method>
     </class>
-    <source>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</source>
+    <source>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</source>
   </file>
   <file path="php-classes/db_settings.inc.php" hash="0d9daebe75f193f01f5f2ccf47257260" package="Default">
     <parse_markers>
@@ -2898,7 +2953,7 @@ Collect the performance data for each server in a cluster, log to the DB]]></des
     </function>
     <source>eJyNVl1PGzkUfU5+xV2ElAkNCfQx3dCmSZdGCigLlH1AFRjHSax67FnbE0Ar/vtef8xkZgir5SGM7evjc4/Ptf3752yTtQdHR22AI+jccPqrA8ew+L6ALdOGK+kHxmCo5pkFq4BbpollYDda5esNEBDcWFCrIfjYSW6sSnFyaB6fwURgF3aENnbcaL5eFx0TJQSjCL1hkDG9UjolkjJYEksAW8AI3YBhGgkBl7geDXg9EGrtGLmZ068e7AtV2QuibyyMpd0o+QLXG/LUg48npx9DhOCUScNgfr6Y13s21mbDweDp6am/lnlf6fUgDpmBWGeib58tnF/+gDkzyAfOmUQpBCzyR4yDeYgNmBmhv8iaAcmtOjaUCKbdwNEAf4PeR+DUhlUuqfU64yxCKUJD5gHb7+I4mGJeQEm68E+7dUhL7Ucwzu1mODxndixEuSdJ9xOGaWZyYe+pyqUdnWDPYIDJWCBCQAnRb7f4ChJu7onW5CXZgXe7uFYLt8bvTGUAiIGy5YMCpdkS+ZQDd53ia7bs/PwUooTKl1XSE9cxUVIyn2UScbo+PNKlha8CQmggSPRbxAnddYBGYjEm5FXLrAD1iYVGDCpIOPNJZp+U/oXu9O51hPv9MipSQLdSPwSzKSS304n7j34eP/K/c9UN4Ydl0KhcEPUKH/M4FkXz4Lfz8aUHXGi+dWV5GbnsAydZJrgrrrghBb4leo0+2Y2WKxxmcm/srSAyhMU4G0saY2N1e/mLSv9D6ShD8iYth9OrbY/P7HQYPFkcL+EcuL1waTnRAxEoc4pEtqkJfNE/x2eIcMu1zYm4wNlcMjRCIXGvqkexcN0ZCFaYAqFlnt5jzwh84YTROK01/Toc/pkz/ZIc/FhMxzff4KEwzwNcf7spm7fpxM1+cCQjIPz1/dvVbsJs+TAqRSr7fh6Ua+386SY7a27TkiXSZPY/JYgOeU+JHqLddbap25ZySTQmMfaS0+scjyi2HK2IMKwc5auKaG79nWpVup6Z44sfeGBBGeJlbyxRQQhlpKTlMmfuxGdy6RzhnFEUmvt7BYasoDrxkGdeaWbvOpLT2aK0dp0b7BzsCMYGdGtgLk9jtaRplkSVLknK0L7lDNe30GzFn10vBguGh9eewW4XRiM4qWXZKo5mpPzFyDRDgyeYQW8HQFWa5pLbl2vskmtXOeWY4rUt2wkbQX/DBf2+NRZ16s7xKr2+vFhAjC2v1X49tLg7MqK9y9hzJtSSJR3o9OJYg0FRUmh2pjlNagh3p06IBp0WkhkO8cddbVc+Onnn9ui9c5qUmsSP0Lszdq++fW84NVIIxmqwjND3TGulEzioyscNSCWPY849oERKhapqvM6BoHtJuLyN30XTgwg2POi/4R44QpNTsyKtzlkzpHrRf/hQH32ttvZUjrfFbC2xQuCRUZIb9+bDxPAIXirmErTIHxWDJ2433i6FvbFBwtVYFBLF6iVcmn7NT1UOle/dZ/nV2AEut0Tw5X1IMCm1eW219+XzTnhA978V/H3BGBMh23sD8GCov6pGJ+7SrVvkYMqXXjWGsuELz+DjGR+oxm2gWeWiWoCmD5MNQ7OgcCu+znV4FTjrFK8NGl9HWzwN+u52eHUPS3DPRlfNkWXhyJVWaVgAn9Tjxex/vi6buaKijaSuGGV8y5Z7FyTSreWWnH7FIhAiEv189i8Dza5F</source>
   </file>
-  <file path="poller/tock.php" hash="eeec2d259afad39762aeb190ac123ba8" package="auto-scaler">
+  <file path="poller/tock.php" hash="d4d57dd531fdbadd2320e3aa9473de6a" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA['tock' - the process that reviews the results from the triggers and creates actions.]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -2919,13 +2974,13 @@ Collect the performance data for each server in a cluster, log to the DB]]></des
         <tag line="2" name="package" description="auto-scaler"/>
       </docblock>
     </function>
-    <source>eJyNVO9P2zAQ/Zz+FYeElKSiDeNjC2VVxwCpgoof2gc0IZNcmwhjZ7ZDViH+953jJE3GtO1D03Pu3XvPZ1+OT/M0H0A0HA4AhuAbGT/7MAKTIuRKxqg1xcyAwtcMS10lFOqCGw1rJV+qF0Zlmw0qDUwkECtkBimOTSaFHlfEn2OZbwmVGpgLk0qxhduUlQdwdPjpyCF4FqPQCMvz1bL/JjUmn0RRWZbjjSjGUm2iOqUjvsn52Pw0cH51D0uyiwrOUaBiHFbFE+Fg6bCOM2fxM9sgsMLIkY4ZR2UTw2iwLkTlGO6oB0H4NvCiiKgMnL2i2kJcaCNfCO3tN6GGE5gXJp1MCDbnfNG8D8IpwVybHmNZCHNyOG35GOctG7XHy9YQZPqRKcW2wY48tBa8taR2xil0EsA0tKsK5CxdJuSnTTz4TXSZ+N+nFlXrx5wSxOMK6wWVLlxY7aaOdVAzhxXBb05rjDPas9qQVk7doga1igtuNQWWjW5bRs5dYI07YSsd7HVKR7NrcSF5EoQhvAFtrCaBTIOQBugYU0q7Wm+/vaAncOfCapd1rL9K9VcTB70ufGhEw940oteL3WxQL+qF9dwg7alcVnOl6FYKkIXRhuYoExsatFiqBIiM8rSzADOLAwY5OkRm8AUoTYVVWM1qSlJPiAISjHkmMLFEKAzfjsNWtvFCzXTHUDejdfzg18EfO1CfyI5kNLtgeuVs3eCPArWhw3lr0N5uw17vHG9Qo3FHOe1A3PDYC92VsHNG00gDfFPlezX2UJq6Gey2UeQ5KrpJ3aZ7HsapBB9u7ScA7ld7e36HyuupVpjAv13Ml2eP9yu/K/oOyOkT1dU+7mhzWf5LO5GlgMko+E/9L9ffrvoOBh+iJqj/3V/1tA/6vQ/eB6ezX5bHxHU=</source>
+    <source>eJyVVN9P2zAQfk7/ipuElKSiDeORQlnVMUCqoOKH9oAmZJJrEmHszHbIKsT/vnOcpMmYJu2h6Tn33Xff3flyfFpkxQii8XgEMAbfyPjZhwmYDKFQMkatyWYGFL7mWOnaoVCX3GjYKPlSvzAqT1NUGphIIFbIDJIdm1wKPa2Jv8Sy2BIqM7AQJpNiC7cZq/bh8ODzoUPwPEahEVbn69XwTWZMcRRFVVVNU1FOpUqjxqUjnhZ8an4ZOL+6hxXJRQXnKFAxDuvyiXCwcljHWbD4maUIrDRyomPGUVnHOBptSlErhjvqQRC+jbwoIioDZ6+othCX2sgXQnt7ranhBBalyY6OCLbgfNm+D8IZwVybHmNZCnNyMOv4GOcdG7XHyzcQ5PqRKcW2wY48tBK8jaR2xhn0HMA0dKca5CRdJqSnczz4rXWZ+D9mFtXkjzk5iMcFNgcKXTqzrqaxddAwhzXBH0objBM6kNqS1krdoQF1GZfc5hRYtXm7MFLuDCvcJbapg0+90Mn8WlxIngRhCG9AhTUkkGsQ0gCNMSO3i/X2ugt6AnfOrKtsbP1Nqn+K2B904UMjWva2EYNe7HaDetEcrOYWaadyWe+VolspQJZGG9qjXKS0aLFUCRAZ+amyAHOLAwYFOkRu8AXITYG1We9qRqmeEAUkGPNcYGKJUBi+nYZd2lYLNdONoWlGp/jBb4y/dqCZyI5kMr9geu1k3eDPErWh4by1aG9XsDeY4w1qNG6Usx7ELY+90P0Uds9oG2mBb2r/IMYOpY2bw66MsihQ0U3qN31Q/2R+az8EgX+7XKzOHu/Xfp/2HZDTR6jPftxj57L6L/av19+vhvyjD1ZrNP/ur37aB/3eR++j0/lv7Gm3fw==</source>
   </file>
   <package name="" full_name=""/>
   <package name="Default" full_name="Default"/>
   <package name="auto-scaler" full_name="auto-scaler"/>
   <namespace name="default" full_name="default"/>
-  <marker count="6">todo</marker>
+  <marker count="5">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

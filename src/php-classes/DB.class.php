@@ -1,6 +1,7 @@
 <?php
  /**
   * DB.class.php
+  * Requires DB_NAME,DB_HOST,DB_USERNAME and DB_PASSWORD to be defined.
   * @copyright Anthony Shaw, 2012
   * @license LGPL
   * @license http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License
@@ -30,7 +31,7 @@ class DB {
 	 **/
 	public static function Query( $sql ) {
 		DB::Connect();
-		mysql_selectdb('scaler');
+		mysql_selectdb(DB_NAME);
 		$q = mysql_query ( $sql );
 		if(!$q) die (mysql_error());
 		return $q;
