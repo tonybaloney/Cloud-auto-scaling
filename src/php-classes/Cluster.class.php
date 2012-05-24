@@ -98,13 +98,6 @@ class Cluster {
 	public $targetSecondaryVlanId;
 	
 	/**
-	 * Target VLAN Name
-	 * @var string
-	 * @access public
-	 */
-	public $targetVlanName; 
-	
-	/**
 	 * Target Virtual Appliance ID
 	 * @var int
 	 * @access public
@@ -117,20 +110,6 @@ class Cluster {
 	 * @access public
 	 */	
 	public $targetApplianceName;
-	
-	/**
-	 * Name of the Virtual Data Center
-	 * @var string
-	 * @access public
-	 */	
-	public $targetVdcName; 
-	
-	/**
-	 * ID of the VDC
-	 * @var int
-	 * @access public
-	 */	
-	public $targetVdcId; 
 	
 	/**
 	 * Date/Time the cluster was created 
@@ -188,10 +167,7 @@ class Cluster {
 		$this->maxServers=$data['maxServers'];
 		$this->targetVlanId=$data['targetVlanId'];
 		$this->targetSecondaryVlanId=$data['targetSecondaryVlanId'];
-		$this->targetVlanName=$data['targetVlanName'];
 		$this->targetApplianceId=$data['targetApplianceId'];
-		$this->targetVdcName=$data['targetVdcName'];
-		$this->targetVdcId=$data['targetVdcId'];
 		$this->targetApplianceName=$data['targetApplianceName'];
 		$this->dateCreated=$data['dateCreated'];
 		$this->dateChanged=$data['dateChanged'];
@@ -213,11 +189,8 @@ class Cluster {
 			maxServers='".DB::Sanitise($this->maxServers)."',
 			targetVlanId='".DB::Sanitise($this->targetVlanId)."',
 			targetSecondaryVlanId='".DB::Sanitise($this->targetSecondaryVlanId)."',
-			targetVlanName='".DB::Sanitise($this->targetVlanName)."',
 			targetApplianceId='".DB::Sanitise($this->targetApplianceId)."',
 			targetApplianceName='".DB::Sanitise($this->targetApplianceName)."',
-			targetVdcId='".DB::Sanitise($this->targetVdcId)."',
-			targetVdcName='".DB::Sanitise($this->targetVdcName)."',
 			clusterEmailAlerts='".DB::Sanitise($this->clusterEmailAlerts)."',
 			holdTime='".DB::Sanitise($this->holdTime)."',
 			dateChanged=NOW() WHERE clusterId = $this->clusterId";
