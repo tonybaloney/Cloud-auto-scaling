@@ -80,12 +80,12 @@ class Auth {
 	 * @param int $uid The Customer ID
 	 * @return Connector The Cloud object (implements the Connector interface)
 	 **/
-	public static function GetCloudConnection ($uid=false) {
+	public static function GetCloudConnection ($uid=false,$debug=false) {
 		if(!$uid) $me = Auth::GetMe();
 		else $me = Auth::GetCustomer($uid);
 		switch ( $me['apiType'] ) {
 			case 'abiquo':
-				$cloud = new Abiquo($me['portalAPIUrl'],$me['portalUsername'],$me['portalPassword']);
+				$cloud = new Abiquo($me['portalAPIUrl'],$me['portalUsername'],$me['portalPassword'],$debug);
 				break;
 			default:
 				die ('Cloud proxy not recognised.');

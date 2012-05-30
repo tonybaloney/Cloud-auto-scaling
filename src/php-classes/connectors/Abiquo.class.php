@@ -130,24 +130,26 @@ class Abiquo implements Connector{
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HEADER => true,
 			CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+			CURLOPT_HTTPHEADER => array('Accept: application/vnd.abiquo.virtualdatacenters+xml; version=2.0'),
 			CURLOPT_USERPWD => $this->username.':'.$this->password
 			);
 
-		$res = $this->HttpRequest( $this->url.'cloud/virtualdatacenters' , $opt ) ;
+		$res = $this->HttpRequest( $this->url.'cloud/virtualdatacenters/' , $opt ) ;
 		
 		// TODO: Read headers to establish version.
 		$this->abiquo_version = 2; 
 		
 		// There's probably an easier way of doing this!
-		$pattern  = "/Set-Cookie:(?P<name>.*?)=(?P<value>.*?); expires=(?P<expiry_dayname>\w+), (?P<expiry_day>\d+)-(?P<expiry_month>\w+)-(?P<expiry_year>\d+) (?P<expiry_hour>\d+):(?P<expiry_minute>\d+):(?P<expiry_second>\d+) (?P<expiry_zone>\w+)/";
+		$pattern  = "/Set-Cookie:(?P<name>.*?)=(?P<value>.*?); .*/";
 		preg_match_all($pattern,$res,$matches);
 		$i=0;
 		foreach($matches['name'] as $cookie_name)
 		{
+			$cookie_name = trim($cookie_name);
 			if ($cookie_name == 'auth')
-				$this->token = $matches['values'][$i];
-			if ($cookie_name == 'JSESSIONID')
-				$this->sessionid = $matches['values'][$i];
+				$this->token = $matches['value'][$i];
+			if ($cookie_name == 'JSESSIONID') 
+				$this->sessionid = $matches['value'][$i];
 			$i++;
 		}
 		return ($this->token && $this->sessionid);
@@ -172,7 +174,7 @@ class Abiquo implements Connector{
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
 		if ($result===false)
-			throw new ConnectorException( $this, "Failure from cURL speaking to backend, curl error-".curl_errno($ch)." (".curl_error($ch).") on URL '$url' with options - ".var_export($opt,true),CEX_INVALID_API_RESPONSE);
+			throw new ConnectorException( $this, "Failure from cURL speaking to backend, curl error-".curl_errno($ch)." (".curl_error($ch).") on URL '$url' with options - ".var_export($opt,true)."\n Got result: ".$result,CEX_INVALID_API_RESPONSE);
 		if ($this->debugMode){
 			echo "<tr><td>Result</td><td><pre>".htmlspecialchars($result)."</pre></td></tr>";
 			echo "</table>";
@@ -284,7 +286,7 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetAbiquoVirtualDatacenters () {
-		return $this->ApiRequest('cloud/virtualdatacenters','application/vnd.abiquo.datacenters+xml');
+		return $this->ApiRequest('cloud/virtualdatacenters','application/vnd.abiquo.virtualdatacenters+xml');
 	}
 	
 	/**
