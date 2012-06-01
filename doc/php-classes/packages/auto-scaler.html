@@ -32,10 +32,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">3</span></a></li>
+                <span class="label label-info">6</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">5</span>
+                <span class="label label-info">11</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -73,6 +73,10 @@
 <li class="nav-header">
 <i class="icon-custom icon-class"></i> Classes</li>
 <li><a href="#Abiquo" title="Class for talking to the Abiquo API, added support for Abiquo v2 as well, combined to the same class.">Abiquo</a></li>
+<li><a href="#Vmc" title="Class for talking to the Cloud-Foundry through the VMC CLI
+Usage :
+$a= new Vmc('api.cloudfoundry.com','user','password');
+$a-&gt;GetVirtualDatacenters();">Vmc</a></li>
 <li><a href="#ConnectorException" title="Holding exception class for errors from Cloud providers..">ConnectorException</a></li>
 <li><a href="#Alerts" title="Alerts class
 Static functions for sending email alerts out to the user about events on the system
@@ -254,6 +258,16 @@ Requirements : pear/Mail</p>
 <div class="details collapse"></div>
 <a href="../classes/Trigger.html" class="more">« More »</a>
 </div>
+<a name="Vmc" id="Vmc"></a><div class="element ajax clickable class" href="../classes/Vmc.html">
+<h1>Vmc<a href="../classes/Vmc.html">¶</a>
+</h1>
+<p class="short_description">Class for talking to the Cloud-Foundry through the VMC CLI
+Usage :
+$a= new Vmc('api.cloudfoundry.com','user','password');
+$a->GetVirtualDatacenters();</p>
+<div class="details collapse"></div>
+<a href="../classes/Vmc.html" class="more">« More »</a>
+</div>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
 <a name="CEX_BACKEND_HTTP_FAILURE" id="CEX_BACKEND_HTTP_FAILURE"> </a><div class="element clickable constant  CEX_BACKEND_HTTP_FAILURE" data-toggle="collapse" data-target=".CEX_BACKEND_HTTP_FAILURE .collapse">
@@ -310,7 +324,7 @@ Requirements : pear/Mail</p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-05-24T19:06:17+01:00.<br></footer></div>
+            generated on 2012-06-01T18:13:49+01:00.<br></footer></div>
 </div>
 </body>
 </html>

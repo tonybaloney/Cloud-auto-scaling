@@ -146,6 +146,13 @@ class Cluster {
 	 **/
 	public $holdTime;
 	
+	/** 
+	 * The template URL to create new images from
+	 * @var string
+	 * @access public
+	 **/
+	public $templateUrl;
+	
 	/**
 	 * Create a cluster object from the DB
 	 * @param int $id The ID of the cluster
@@ -174,6 +181,7 @@ class Cluster {
 		$this->clusterEmailAlerts=$data['clusterEmailAlerts'];
 		$this->clusterVmCount=$data['clusterVmCount'];
 		$this->holdTime=$data['holdTime'];
+		$this->templateUrl=$data['templateUrl'];
 	}
 	
 	/**
@@ -193,8 +201,18 @@ class Cluster {
 			targetApplianceName='".DB::Sanitise($this->targetApplianceName)."',
 			clusterEmailAlerts='".DB::Sanitise($this->clusterEmailAlerts)."',
 			holdTime='".DB::Sanitise($this->holdTime)."',
+			templateUrl='".DB::Sanitise($this->templateUrl)."',
 			dateChanged=NOW() WHERE clusterId = $this->clusterId";
 		DB::Query($q);
+	}
+	
+	/**
+	 * Destroy this cluster
+	 * @access public
+	 **/
+	public function Delete() {
+		DB::Query ("DELETE FROM `clusters` WHERE clusterId = $this->clusterId");
+		DB::Query ("DELETE FROM `triggers` WHERE clusterId = $this->clusterId");
 	}
 	
 	/** 

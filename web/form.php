@@ -45,6 +45,7 @@ switch ($form){
 			$cluster->targetSecondaryVlanId=$_POST['targetSecondaryVlanId'];
 			$cluster->targetApplianceId=$_POST['targetApplianceId'];
 			$cluster->clusterEmailAlerts=$_POST['clusterEmailAlerts'];
+			$cluster->templateUrl=$_POST['templateUrl'];
 			$cluster->Save();
 			$res['success'] = true;
 			$res['msg'] = "Cluster created successfully";
@@ -63,6 +64,7 @@ switch ($form){
 			$cluster->targetSecondaryVlanId=$_POST['targetSecondaryVlanId'];
 			$cluster->targetApplianceId=$_POST['targetApplianceId'];
 			$cluster->clusterEmailAlerts=$_POST['clusterEmailAlerts'];
+			$cluster->templateUrl=$_POST['templateUrl'];
 			$cluster->Save();
 			$res['success'] = true;
 			$res['msg'] = "Cluster modified successfully";
@@ -71,6 +73,17 @@ switch ($form){
 			$res['msg'] = "Could not find cluster, deleted in another session?";
 		}
 		break;
+	case 'DeleteCluster':
+		$cluster = new Cluster($_POST['id']);
+		if ($cluster)	{
+			$cluster->Delete();
+			$res['success'] = true;
+			$res['msg'] = "Cluster deleted successfully";
+		} else {
+			$res['success'] = false;
+			$res['msg'] = "Could not find cluster, deleted in another session?";
+		}
+		break;	
 	case 'AddTrigger':
 		$t = Trigger::CreateTrigger($_POST['triggerName'],$_POST['clusterId']);
 		if ($t){

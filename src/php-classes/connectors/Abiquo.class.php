@@ -104,8 +104,7 @@ class Abiquo implements Connector{
 				foreach ($vdcs['virtualDatacenter'][0]['link'] as $link){
 					if ($link['rel'] == 'enterprise') {
 						$parts = explode('/',$link['href']);
-						$enterpriseId = $parts[count($parts)-1];
-						$this->enterpriseId;
+						$this->enterpriseId = $parts[count($parts)-1];
 					}
 				}
 			} else {
@@ -408,7 +407,16 @@ class Abiquo implements Connector{
 	 * @access public
 	 */
 	public function GetAbiquoVirtualMachineNetworks($vdc_id,$vapp_id,$vm_id){
-		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/network/configurations",'application/vnd.abiquo.nics+xml');
+		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/network/nics",'application/vnd.abiquo.nics+xml');
+	}
+	
+	/**
+	 * Get a list of templates from Abiquo for this enterprise
+	 * @access public
+	 * @return array of response
+	 **/
+	public function GetAbiquoEnterpriseTemplates () {
+		return $this->ApiRequest("admin/enterprises/$this->enterpriseId/appslib/templateDefinitions",'application/vnd.abiquo.templatedefinitions+xml');
 	}
 	
 	/**
@@ -564,8 +572,9 @@ class Abiquo implements Connector{
 	 * @param int $targetVlanId The ID of the target VLAN
 	 * @param string $templateUrl The REST URL to create the VM from
 	 * @param string $vmname The name of the new VM.
+	 * TODO: Create Virtual NICs
 	 **/
-	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $templateUrl, $vmname ) {
+	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $targetSecondaryVlanId, $templateUrl, $vmname ) {
 		// Get the Virtual Data Center
 		$request = "<virtualMachine><link href=\"".$templateUrl."\" rel=\"virtualmachinetemplate\" title=\"$vmname\"/></virtualMachine>";
 		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
@@ -592,5 +601,21 @@ class Abiquo implements Connector{
 		}
 		if(!$undeploy)
 			throw new ConnectorException($this,'Could not find any target VM\'s to undeploy.',CEX_NO_TARGET_VM);
+	}
+	
+	public function GetTemplates ( ){
+		$templ = $this->GetAbiquoEnterpriseTemplates();
+		$results=array();
+		if (is_array($templ)){
+			foreach ($templ['templateDefinition'] as $template) {
+				$results[] = array (
+					'name' => $template['name'][0],
+					'description' => $template['description'][0],
+					'url' => $template['url'][0],
+					'icon' => $template['iconUrl'][0]
+					);
+			}
+		}
+		return $results;
 	}
 }

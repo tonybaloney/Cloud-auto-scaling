@@ -230,7 +230,7 @@ class Trigger {
 		$cluster = new Cluster($this->clusterId, $this->customerId);
 		$trigger = new Trigger($this->triggerId, $this->customerId);
 		if ($direction=='SCALE_UP'){
-			$cloud->CreateVM ( $cluster->clusterLocation, $cluster->targetApplianceId, $cluster->targetVlanId, $cluster->templateId, $trigger->vmPrefix.uniqid() );
+			$cloud->CreateVM ( $cluster->clusterLocation, $cluster->targetApplianceId, $cluster->targetVlanId, $cluster->targetSecondaryVlanId, $cluster->templateUrl, $trigger->vmPrefix.uniqid() );
 		} else { 
 			$cloud->DestroyNextVM ( $cluster->clusterLocation, $cluster->targetApplianceId, $trigger->vmPrefix ) ;
 		}	

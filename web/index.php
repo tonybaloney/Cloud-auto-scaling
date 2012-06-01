@@ -28,6 +28,7 @@
 	<script type="text/javascript" src="models/Location.js"></script>	
 	<script type="text/javascript" src="models/PrivateNetwork.js"></script>	
 	<script type="text/javascript" src="models/VirtualAppliance.js"></script>	
+	<script type="text/javascript" src="models/Template.js"></script>
     <!-- Portlets for the dashboard -->
     <script type="text/javascript" src="classes/TriggerPortlet.js"></script>
 	<script type="text/javascript" src="classes/ClusterPortlet.js"></script>

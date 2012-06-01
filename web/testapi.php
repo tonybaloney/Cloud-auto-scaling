@@ -9,5 +9,5 @@
  ini_set('display_errors','On'); 
 require('../src/all.inc.php'); 
 $cloud = Auth::GetCloudConnection(false,true);
-
+print_r($cloud->GetTemplates());
 ?>

@@ -48,6 +48,14 @@ switch ($_GET['view']){
 			die ($cex->GetConnectorErrorMessage());
 		}
 		break;
+	case 'Templates':
+		try { 
+			$cloud = Auth::GetCloudConnection();
+			$data = $cloud->GetTemplates();
+		} catch (ConnectorException $cex){
+			die ($cex->GetConnectorErrorMessage());
+		}
+		break;
 	case 'PrivateNetworks':
 		if(isset($_GET['location'])) {
 			try { 

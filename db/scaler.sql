@@ -39,7 +39,7 @@ CREATE TABLE `clusters` (
   `targetSecondaryVlanId` int(11) DEFAULT NULL,
   `holdTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`clusterId`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `error_log` (
   `message` blob,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`errorId`)
-) ENGINE=MyISAM AUTO_INCREMENT=1093 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1168 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `tick_log` (
   `vmName` varchar(255) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`tl_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3864 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=375921 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `triggers` (
   `vmPrefix` varchar(50) DEFAULT NULL,
   `triggerApproval` enum('Manual','Automatic') DEFAULT NULL,
   PRIMARY KEY (`triggerId`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -145,4 +145,4 @@ CREATE TABLE `triggers` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-24 19:06:17
+-- Dump completed on 2012-06-01 18:13:49

@@ -21,6 +21,21 @@ Ext.define('Cloud.ClusterPortlet', {
 		});
 	},
 	
+	DeleteCluster : function (sender,event,clusterRecord/* If record is given this is an edit not a create */){
+		if(clusterRecord){
+			Ext.Ajax.request({
+			url: 'form.php',
+			params: {
+				form:'DeleteCluster',
+				id:clusterRecord.data.clusterId
+			},
+			success: function(form,action){
+				Ext.data.StoreManager.lookup('ClusterStore').load();
+				Ext.data.StoreManager.lookup('TriggerStore').load();
+			}
+			});
+		}
+	},
 	// Create cluster dialog combined with edit cluster dialog, pass cluster record to edit, null to create
 	CreateCluster : function (sender,event,clusterRecord/* If record is given this is an edit not a create */){
 		if(clusterRecord){
@@ -37,8 +52,8 @@ Ext.define('Cloud.ClusterPortlet', {
 		}
 		var popup = new Ext.Window({
 			layout:'fit',
-			width:263,
-			height:482,
+			width:379,
+			height:319,
 			closeAction:'hide',
 			iconCls:'icon-cluster',
 			plain: true,
@@ -48,7 +63,7 @@ Ext.define('Cloud.ClusterPortlet', {
 				xtype:'form',
 				url: (clusterRecord?'form.php?form=SaveCluster':'form.php?form=AddCluster'),
 				layout: {
-					type: 'vbox',
+					type: 'hbox',
 					align: 'stretch'
 				},
 				border: false,
@@ -59,95 +74,123 @@ Ext.define('Cloud.ClusterPortlet', {
 					labelStyle: 'font-weight:bold'
 				},
 				defaults: {
-					margins: '0 0 10 0'
+					border: false,
+					xtype: 'panel',
+					flex: 1,
+					layout: 'anchor'				
 				},
 				items: [
 					{
-						xtype:'hiddenfield',
-						name:'clusterId',
-						value: (clusterRecord?clusterRecord.data.clusterId:null)
-					},
-					{
-						xtype:'textfield',
-						name:'clusterName',
-						fieldLabel: 'Cluster Name',
-						allowBlank: false,
-						value: (clusterRecord?clusterRecord.data.clusterName:'')
-					},
-					{
-						xtype:'combo',
-						name:'clusterLocation',
-						fieldLabel: 'Location',
-						displayField: 'locationName',
-						valueField: 'clusterLocation',
-						value: (clusterRecord?clusterRecord.data.clusterLocation:null),
-						listeners: {
-							'select': this.updateLocationFilters
+					items:[
+						{
+							xtype:'hiddenfield',
+							name:'clusterId',
+							value: (clusterRecord?clusterRecord.data.clusterId:null)
 						},
-						store: 'LocationStore',
-						queryMode: 'local',
-						typeAhead: true,
-						allowBlank: false
-					},
-					{
-						xtype:'numberfield',
-						name:'minServers',
-						fieldLabel:'Minimum VM\'s',
-						allowBlank:false,
-						value: (clusterRecord?clusterRecord.data.minServers:1)
-					},
-					{
-						xtype:'numberfield',
-						name: 'maxServers',
-						fieldLabel:'Maximum VM\'s',
-						allowBlank:false,
-						value: (clusterRecord?clusterRecord.data.maxServers:1)
-					},
-					{
-						xtype:'combo',
-						name:'targetVlanId',
-						fieldLabel:'Target VLAN',
-						allowBlank:false,
-						value: (clusterRecord?clusterRecord.data.targetVlanId:''),
-						displayField: 'networkDescription',
-						valueField: 'networkId',
-						store: 'PrivateNetworkStore',
-						queryMode: 'local',
-						typeAhead: true,
-						allowBlank: false
-					},
-					{
-						xtype:'combo',
-						name:'targetSecondaryVlanId',
-						fieldLabel:'Target VLAN (2)',
-						allowBlank:false,
-						value: (clusterRecord?clusterRecord.data.targetSecondaryVlanId:''),
-						displayField: 'networkDescription',
-						valueField: 'networkId',
-						store: 'PrivateNetworkStore',
-						queryMode: 'local',
-						typeAhead: true,
-						allowBlank: false
-					},
-					{
-						xtype:'combo',
-						name:'targetApplianceId',
-						fieldLabel:'Target Appliance',
-						allowBlank:false,
-						value: (clusterRecord?clusterRecord.data.targetApplianceId:''),
-						displayField: 'applianceName',
-						valueField: 'applianceId',
-						store: 'VirtualApplianceStore',
-						queryMode: 'local',
-						typeAhead: true,
-						allowBlank: false
-					},
-					{
-						xtype:'textfield', 
-						name:'clusterEmailAlerts',
-						fieldLabel:'Alert Email',
-						allowBlank:true,
-						value: (clusterRecord?clusterRecord.data.clusterEmailAlerts:'')
+						{
+							xtype:'textfield',
+							name:'clusterName',
+							fieldLabel: 'Cluster Name',
+							allowBlank: false,
+							value: (clusterRecord?clusterRecord.data.clusterName:'')
+						},
+						{
+							xtype:'combo',
+							name:'clusterLocation',
+							fieldLabel: 'Location',
+							displayField: 'locationName',
+							valueField: 'clusterLocation',
+							value: (clusterRecord?clusterRecord.data.clusterLocation:null),
+							listeners: {
+								'select': this.updateLocationFilters
+							},
+							store: 'LocationStore',
+							queryMode: 'local',
+							typeAhead: true,
+							allowBlank: false
+						},
+						{
+							xtype:'numberfield',
+							name:'minServers',
+							fieldLabel:'Minimum VM\'s',
+							allowBlank:false,
+							value: (clusterRecord?clusterRecord.data.minServers:1)
+						},
+						{
+							xtype:'numberfield',
+							name: 'maxServers',
+							fieldLabel:'Maximum VM\'s',
+							allowBlank:false,
+							value: (clusterRecord?clusterRecord.data.maxServers:1)
+						},
+						{
+							xtype:'textfield', 
+							name:'clusterEmailAlerts',
+							fieldLabel:'Alert Email',
+							allowBlank:true,
+							value: (clusterRecord?clusterRecord.data.clusterEmailAlerts:'')
+						}
+						]
+					},{
+						items:[	
+							{
+								xtype:'combo',
+								name:'targetVlanId',
+								fieldLabel:'Target VLAN',
+								allowBlank:false,
+								value: (clusterRecord?clusterRecord.data.targetVlanId:''),
+								displayField: 'networkDescription',
+								valueField: 'networkId',
+								store: 'PrivateNetworkStore',
+								queryMode: 'local',
+								typeAhead: true,
+								allowBlank: false
+							},
+							{
+								xtype:'combo',
+								name:'targetSecondaryVlanId',
+								fieldLabel:'Target VLAN (2)',
+								allowBlank:false,
+								value: (clusterRecord?clusterRecord.data.targetSecondaryVlanId:''),
+								displayField: 'networkDescription',
+								valueField: 'networkId',
+								store: 'PrivateNetworkStore',
+								queryMode: 'local',
+								typeAhead: true,
+								allowBlank: true
+							},
+							{
+								xtype:'combo',
+								name:'targetApplianceId',
+								fieldLabel:'Target Appliance',
+								allowBlank:false,
+								value: (clusterRecord?clusterRecord.data.targetApplianceId:''),
+								displayField: 'applianceName',
+								valueField: 'applianceId',
+								store: 'VirtualApplianceStore',
+								queryMode: 'local',
+								typeAhead: true,
+								allowBlank: false
+							},
+							{
+								xtype:'combo',
+								name:'templateUrl',
+								fieldLabel:'Template',
+								allowBlank:false,
+								value: (clusterRecord?clusterRecord.data.templateUrl:''),
+								displayField: 'name',
+								valueField: 'url',
+								store: 'TemplateStore',
+								queryMode: 'local',
+								typeAhead: true,
+								allowBlank: false,
+								listConfig: {
+									getInnerTpl: function() {
+										return '<p><img src="{icon}" width=32 height=32/><b>{name}</b></p>{description}' ;
+									}
+								}
+							}
+						]
 					}
 				],
 				buttons: [
@@ -161,9 +204,12 @@ Ext.define('Cloud.ClusterPortlet', {
 								   // refresh store.
 								   Ext.data.StoreManager.lookup('ClusterStore').load();
 								   Ext.data.StoreManager.lookup('TriggerStore').load();
+								   popup.hide(); 
 								},
-								failure: function(form, action) {}}); 
-							popup.hide(); 
+								failure: function(form, action) {
+									Ext.Msg.alert("Failure", action.result.msg);
+								}}); 
+							
 						}
 					}
 					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 
@@ -230,7 +276,9 @@ Ext.define('Cloud.ClusterPortlet', {
 					id:'DeleteCluster',
 					disabled:true,
                     scope: this,
-                    handler: this.onDeleteClick,
+                    handler: function() { 
+						this.DeleteCluster(this,null,(this.selModel.selected.length>0?this.selModel.selected.items[0]:null)) 
+					},
 					iconCls:'icon-delete-cluster'
 					
                 },{
