@@ -32,10 +32,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">6</span></a></li>
+                <span class="label label-info">8</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">11</span>
+                <span class="label label-info">10</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -59,6 +59,7 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#ClusterChangeAlert" title="ClusterChangeAlert :: Trigger VM creation/deletion alert."><span class="description">Trigger VM creation/deletion alert.</span><pre>ClusterChangeAlert()</pre></a></li>
+<li class="method public "><a href="#ConflictAlert" title="ConflictAlert :: Trigger warning about 2 triggers raising events at the same time"><span class="description">Trigger warning about 2 triggers raising events at the same time</span><pre>ConflictAlert()</pre></a></li>
 <li class="method public "><a href="#FloorCeilingAlert" title="FloorCeilingAlert :: Trigger warning about the VM limit being reached"><span class="description">Trigger warning about the VM limit being reached</span><pre>FloorCeilingAlert()</pre></a></li>
 <li class="method public "><a href="#GetEmails" title="GetEmails :: Get the emails for this cluster"><span class="description">Get the emails for this cluster</span><pre>GetEmails()</pre></a></li>
 <li class="method public "><a href="#TriggerScalingAlert" title="TriggerScalingAlert :: Trigger scaling alert"><span class="description">Trigger scaling alert</span><pre>TriggerScalingAlert()</pre></a></li>
@@ -100,6 +101,18 @@ Requirements : pear/Mail</p>
 </div>
 </div></div>
 </div>
+<a name="ConflictAlert" id="ConflictAlert"></a><div class="element clickable method public ConflictAlert" data-toggle="collapse" data-target=".ConflictAlert .collapse">
+<h2>Trigger warning about 2 triggers raising events at the same time</h2>
+<pre>ConflictAlert(int $clusterId) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clusterId</h4>
+<code>int</code><p>Cluster ID</p></div>
+</div></div>
+</div>
 <a name="FloorCeilingAlert" id="FloorCeilingAlert"></a><div class="element clickable method public FloorCeilingAlert" data-toggle="collapse" data-target=".FloorCeilingAlert .collapse">
 <h2>Trigger warning about the VM limit being reached</h2>
 <pre>FloorCeilingAlert(int $customerId, int $clusterId, int $triggerId) </pre>
@@ -115,7 +128,7 @@ Requirements : pear/Mail</p>
 <code>int</code><p>Cluster ID</p></div>
 <div class="subelement argument">
 <h4>$triggerId</h4>
-<code>int</code><p>Trigger ID</p></div>
+<code>int</code><p>Trigger ID TODO: implement code</p></div>
 </div></div>
 </div>
 <a name="GetEmails" id="GetEmails"></a><div class="element clickable method public GetEmails" data-toggle="collapse" data-target=".GetEmails .collapse">
@@ -170,7 +183,7 @@ Requirements : pear/Mail</p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-06-01T18:13:49+01:00.<br></footer></div>
+            generated on 2012-06-06T14:03:12+01:00.<br></footer></div>
 </div>
 </body>
 </html>

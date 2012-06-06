@@ -100,9 +100,9 @@ class Alerts {
 	 * @param int $customerId Customer ID
 	 * @param int $clusterId Cluster ID
 	 * @param int $triggerId Trigger ID
+	 * TODO: implement code
 	 **/
 	 public function FloorCeilingAlert( $customerId, $clusterId, $triggerId ) { 
-		// TODO: implement.
 	 }
 	 
 	/** 
@@ -115,6 +115,14 @@ class Alerts {
 		$clusterId= DB::Sanitise($clusterId);
 		$rec=DB::GetRecord("SELECT `clusterEmailAlerts` FROM `clusters` WHERE `clusterId`=$clusterId");
 		return $rec['clusterEmailAlerts'];
+	}
+	
+	/** 
+	 * Trigger warning about 2 triggers raising events at the same time
+	 * @param int $clusterId Cluster ID
+	 **/
+	public function ConflictAlert( $clusterId ) {
+		
 	}
 }
 ?>

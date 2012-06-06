@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a2" title="">
-  <file path="php-classes/connectors/Abiquo.class.php" hash="343bd3db9102a79a3302f624c9895dec" package="auto-scaler">
+  <file path="php-classes/connectors/Abiquo.class.php" hash="afca22be828dd6e362d02b106332464d" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Abiquo Class
 PHP Requirements
@@ -14,9 +14,15 @@ PHP Requirements
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
     <markers>
-      <todo line="139">Read headers to establish version.</todo>
-      <todo line="587">Check time stamp of VM is &gt;55mins</todo>
+      <todo line="138">Read headers to establish version.</todo>
+      <todo line="597">Check time stamp of VM is &gt;55mins</todo>
     </markers>
+    <parse_markers>
+      <error line="567" code="50014">Name of argument $targetSecondaryVlanId does not match with the DocBlock's name $templateUrl in CreateVM()</error>
+      <error line="567" code="50014">Name of argument $templateUrl does not match with the DocBlock's name $vmname in CreateVM()</error>
+      <error line="567" code="50015">Argument $vmname is missing from the Docblock of CreateVM()</error>
+      <error line="607" code="50010">No DocBlock was found for method GetTemplates()</error>
+    </parse_markers>
     <class final="false" abstract="false" namespace="default" line="21" package="auto-scaler">
       <name>Abiquo</name>
       <full_name>\Abiquo</full_name>
@@ -173,749 +179,770 @@ authenticated request]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="127" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="126" package="">
         <name>Authenticate</name>
         <type>function</type>
-        <docblock line="121">
+        <docblock line="120">
           <description><![CDATA[Login to the abiquo server, get the auth token and session (jsession) id
 Store these in the class for later API calls.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="121" name="return" description="Success or failure on finding server and establishing a login" type="bool">
+          <tag line="120" name="return" description="Success or failure on finding server and establishing a login" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="121" name="access" description="private"/>
+          <tag line="120" name="access" description="private"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="165" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="164" package="">
         <name>HttpRequest</name>
         <type>function</type>
-        <docblock line="158">
+        <docblock line="157">
           <description><![CDATA[Execute a HTTP request using CURL]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="158" name="param" description="HTTP URI" type="string" variable="$url">
+          <tag line="157" name="param" description="HTTP URI" type="string" variable="$url">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="158" name="param" description="List of CURL options &lt;link&gt;http://uk3.php.net/manual/en/function.curl-setopt.php&lt;/link&gt;" type="array" variable="$opt">
+          <tag line="157" name="param" description="List of CURL options &lt;link&gt;http://uk3.php.net/manual/en/function.curl-setopt.php&lt;/link&gt;" type="array" variable="$opt">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="158" name="return" description="Response of the CURL request, false on failure, string on success" type="string|bool">
+          <tag line="157" name="return" description="Response of the CURL request, false on failure, string on success" type="string|bool">
             <type by_reference="false">string</type>
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="158" name="access" description="private"/>
+          <tag line="157" name="access" description="private"/>
         </docblock>
-        <argument line="165">
+        <argument line="164">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="165">
+        <argument line="164">
           <name>$opt</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="192" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="191" package="">
         <name>SanitiseForXML</name>
         <type>function</type>
-        <docblock line="186">
+        <docblock line="185">
           <description><![CDATA[Sanitise a string for XML input (remove < and > characters)]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="186" name="param" description="Input string" type="string" variable="$s">
+          <tag line="185" name="param" description="Input string" type="string" variable="$s">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="186" name="return" description="The sanitised string." type="string">
+          <tag line="185" name="return" description="The sanitised string." type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="186" name="access" description="private"/>
+          <tag line="185" name="access" description="private"/>
         </docblock>
-        <argument line="192">
+        <argument line="191">
           <name>$s</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="204" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="203" package="">
         <name>ApiRequest</name>
         <type>function</type>
-        <docblock line="196">
+        <docblock line="195">
           <description><![CDATA[Request to the API, expect XML back and format into assoc array and return]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="196" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
+          <tag line="195" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="196" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
+          <tag line="195" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="196" name="param" description="Additional options for CURL" type="array" variable="$extraOpt">
+          <tag line="195" name="param" description="Additional options for CURL" type="array" variable="$extraOpt">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="196" name="return" description="of the returned data" type="Array">
+          <tag line="195" name="return" description="of the returned data" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="196" name="access" description="private"/>
+          <tag line="195" name="access" description="private"/>
         </docblock>
-        <argument line="204">
+        <argument line="203">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="204">
+        <argument line="203">
           <name>$accept</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="204">
+        <argument line="203">
           <name>$extraOpt</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="234" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="233" package="">
         <name>ApiPOSTRequest</name>
         <type>function</type>
-        <docblock line="226">
+        <docblock line="225">
           <description><![CDATA[Request to the API, expect XML back and format into assoc array and return]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="226" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
+          <tag line="225" name="param" description="URI to request (will be appended to the address of the API)" type="string" variable="$url">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="226" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
+          <tag line="225" name="param" description="The ACCEPT: header for HTTP request" type="string" variable="$accept">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="226" name="param" description="The XML message for the API" type="string" variable="$message">
+          <tag line="225" name="param" description="The XML message for the API" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="226" name="return" description="Object of the returned data" type="Array">
+          <tag line="225" name="return" description="Object of the returned data" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="226" name="access" description="private"/>
+          <tag line="225" name="access" description="private"/>
         </docblock>
-        <argument line="234">
+        <argument line="233">
           <name>$url</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="234">
+        <argument line="233">
           <name>$accept</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="234">
+        <argument line="233">
           <name>$message</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="248" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="247" package="">
         <name>xml2array</name>
         <type>function</type>
-        <docblock line="242">
+        <docblock line="241">
           <description><![CDATA[Convert an XML string into an associative array]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="242" name="param" description="XML String" type="string" variable="$xml">
+          <tag line="241" name="param" description="XML String" type="string" variable="$xml">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="242" name="return" description="" type="Array">
+          <tag line="241" name="return" description="" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="242" name="access" description="private"/>
+          <tag line="241" name="access" description="private"/>
         </docblock>
-        <argument line="248">
+        <argument line="247">
           <name>$xml</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="260" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="259" package="">
         <name>sxiToArray</name>
         <type>function</type>
-        <docblock line="253">
+        <docblock line="252">
           <description><![CDATA[Convert a SimpleXMLIterator to an associative array
 TODO: Carry XML element attributes into the structure]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="253" name="param" description="Object" type="\SimpleXMLIterator" variable="$sxi">
+          <tag line="252" name="param" description="Object" type="\SimpleXMLIterator" variable="$sxi">
             <type by_reference="false">\SimpleXMLIterator</type>
           </tag>
-          <tag line="253" name="return" description="" type="Array">
+          <tag line="252" name="return" description="" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="253" name="access" description="private"/>
+          <tag line="252" name="access" description="private"/>
         </docblock>
-        <argument line="260">
+        <argument line="259">
           <name>$sxi</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="288" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="287" package="">
         <name>GetAbiquoVirtualDatacenters</name>
         <type>function</type>
-        <docblock line="283">
+        <docblock line="282">
           <description><![CDATA[Get a list of VDCs in logged in Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="283" name="return" description="Object tree of the result" type="Array">
+          <tag line="282" name="return" description="Object tree of the result" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="283" name="access" description="public"/>
+          <tag line="282" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="298" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="297" package="">
         <name>GetAbiquoVirtualDatacenter</name>
         <type>function</type>
-        <docblock line="292">
+        <docblock line="291">
           <description><![CDATA[Get a VDC in logged in Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="292" name="param" description="ID of the Virtual Data Center" type="int" variable="$id">
+          <tag line="291" name="param" description="ID of the Virtual Data Center" type="int" variable="$id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="292" name="return" description="Object tree of the result" type="Array">
+          <tag line="291" name="return" description="Object tree of the result" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="292" name="access" description="public"/>
+          <tag line="291" name="access" description="public"/>
         </docblock>
-        <argument line="298">
+        <argument line="297">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="308" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="307" package="">
         <name>GetAbiquoPrivateNetworks</name>
         <type>function</type>
-        <docblock line="302">
+        <docblock line="301">
           <description><![CDATA[Get a list of Private Networks (VLANs) in this Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="302" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="301" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="302" name="return" description="Object tree of the result" type="Array">
+          <tag line="301" name="return" description="Object tree of the result" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="302" name="access" description="public"/>
+          <tag line="301" name="access" description="public"/>
         </docblock>
-        <argument line="308">
+        <argument line="307">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="319" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="318" package="">
         <name>GetAbiquoPrivateNetwork</name>
         <type>function</type>
-        <docblock line="312">
+        <docblock line="311">
           <description><![CDATA[Get a specific private network in this enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="312" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="311" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="312" name="param" description="ID of the Private Network" type="int" variable="$pn_id">
+          <tag line="311" name="param" description="ID of the Private Network" type="int" variable="$pn_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="312" name="return" description="Object tree of the result" type="Array">
+          <tag line="311" name="return" description="Object tree of the result" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="312" name="access" description="public"/>
+          <tag line="311" name="access" description="public"/>
         </docblock>
-        <argument line="319">
+        <argument line="318">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="319">
+        <argument line="318">
           <name>$pn_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="329" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="328" package="">
         <name>GetAbiquoVirtualAppliances</name>
         <type>function</type>
-        <docblock line="323">
+        <docblock line="322">
           <description><![CDATA[Get a list of Virtual Appliances in this Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="323" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="322" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="323" name="return" description="Object tree of the result" type="Array">
+          <tag line="322" name="return" description="Object tree of the result" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="323" name="access" description="public"/>
+          <tag line="322" name="access" description="public"/>
         </docblock>
-        <argument line="329">
+        <argument line="328">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="340" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="339" package="">
         <name>GetAbiquoVirtualAppliance</name>
         <type>function</type>
-        <docblock line="333">
+        <docblock line="332">
           <description><![CDATA[Get a Virtual Appliance in this Enterprise]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="333" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="332" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="333" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="332" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="333" name="return" description="Object tree of the result" type="Array">
+          <tag line="332" name="return" description="Object tree of the result" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="333" name="access" description="public"/>
+          <tag line="332" name="access" description="public"/>
         </docblock>
-        <argument line="340">
+        <argument line="339">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="340">
+        <argument line="339">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="351" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="350" package="">
         <name>GetAbiquoIPsUsedInVirtualAppliance</name>
         <type>function</type>
-        <docblock line="344">
+        <docblock line="343">
           <description><![CDATA[Get a list of IPs used in a specified Virtual Appliance]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="344" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="343" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="344" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="343" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="344" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="343" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="344" name="access" description="public"/>
+          <tag line="343" name="access" description="public"/>
         </docblock>
-        <argument line="351">
+        <argument line="350">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="351">
+        <argument line="350">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="362" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="361" package="">
         <name>GetAbiquoVirtualMachines</name>
         <type>function</type>
-        <docblock line="355">
+        <docblock line="354">
           <description><![CDATA[Get a list of Virtual Machines in a specified Virtual Appliance]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="355" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="354" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="355" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="354" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="355" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="354" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="355" name="access" description="public"/>
+          <tag line="354" name="access" description="public"/>
         </docblock>
-        <argument line="362">
+        <argument line="361">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="362">
+        <argument line="361">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="374" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="373" package="">
         <name>GetAbiquoVirtualMachine</name>
         <type>function</type>
-        <docblock line="366">
+        <docblock line="365">
           <description><![CDATA[Get a Virtual Machine in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="366" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="365" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="366" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="365" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="366" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
+          <tag line="365" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="366" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="365" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="366" name="access" description="public"/>
+          <tag line="365" name="access" description="public"/>
         </docblock>
-        <argument line="374">
+        <argument line="373">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="374">
+        <argument line="373">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="374">
+        <argument line="373">
           <name>$vm_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="386" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="385" package="">
         <name>DeployAbiquoVirtualMachine</name>
         <type>function</type>
-        <docblock line="378">
+        <docblock line="377">
           <description><![CDATA[deploy a Virtual Machine in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="378" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="377" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="378" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="377" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="378" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
+          <tag line="377" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="378" name="return" description="" type="Array">
+          <tag line="377" name="return" description="" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="378" name="access" description="public"/>
+          <tag line="377" name="access" description="public"/>
         </docblock>
-        <argument line="386">
+        <argument line="385">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="386">
+        <argument line="385">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="386">
+        <argument line="385">
           <name>$vm_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="398" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="397" package="">
         <name>UndeployAbiquoVirtualMachine</name>
         <type>function</type>
-        <docblock line="390">
+        <docblock line="389">
           <description><![CDATA[Undeploy a Virtual Machine in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="390" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="389" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="390" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="389" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="390" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
+          <tag line="389" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="390" name="return" description="" type="Array">
+          <tag line="389" name="return" description="" type="Array">
             <type by_reference="false">Array</type>
           </tag>
-          <tag line="390" name="access" description="public"/>
+          <tag line="389" name="access" description="public"/>
         </docblock>
-        <argument line="398">
+        <argument line="397">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="398">
+        <argument line="397">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="398">
+        <argument line="397">
           <name>$vm_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="410" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="409" package="">
         <name>GetAbiquoVirtualMachineNetworks</name>
         <type>function</type>
-        <docblock line="402">
+        <docblock line="401">
           <description><![CDATA[Get a Virtual Machine Networks in this VDC/VAPP]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="402" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
+          <tag line="401" name="param" description="ID of the Virtual Data Center" type="int" variable="$vdc_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="402" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
+          <tag line="401" name="param" description="ID of the Virtual Appliance" type="int" variable="$vapp_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="402" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
+          <tag line="401" name="param" description="ID of the Virtual Machine" type="int" variable="$vm_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="402" name="return" description="SimpleXML Object tree of the result" type="Object">
+          <tag line="401" name="return" description="SimpleXML Object tree of the result" type="Object">
             <type by_reference="false">Object</type>
           </tag>
-          <tag line="402" name="access" description="public"/>
+          <tag line="401" name="access" description="public"/>
         </docblock>
-        <argument line="410">
+        <argument line="409">
           <name>$vdc_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="410">
+        <argument line="409">
           <name>$vapp_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="410">
+        <argument line="409">
           <name>$vm_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="423" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="418" package="">
+        <name>GetAbiquoEnterpriseTemplates</name>
+        <type>function</type>
+        <docblock line="413">
+          <description><![CDATA[Get a list of templates from Abiquo for this enterprise]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="413" name="access" description="public"/>
+          <tag line="413" name="return" description="of response" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="431" package="">
         <name>TestConnection</name>
         <type>function</type>
-        <docblock line="418">
+        <docblock line="426">
           <description><![CDATA[Test connection to the cloud provider]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="418" name="return" description="Connection successful" type="bool">
+          <tag line="426" name="return" description="Connection successful" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="418" name="access" description="public"/>
+          <tag line="426" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="432" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="440" package="">
         <name>GetLocations</name>
         <type>function</type>
-        <docblock line="427">
+        <docblock line="435">
           <description><![CDATA[Get a list of locations, for multi-regional cloud platforms.]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="427" name="return" description="List of locations (Key-Value pair array)" type="array">
+          <tag line="435" name="return" description="List of locations (Key-Value pair array)" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="427" name="access" description="public"/>
+          <tag line="435" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="449" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="457" package="">
         <name>GetPrivateNetworks</name>
         <type>function</type>
-        <docblock line="443">
+        <docblock line="451">
           <description><![CDATA[Get a list of private networks]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="443" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="451" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="443" name="return" description="List of private networks" type="array">
+          <tag line="451" name="return" description="List of private networks" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="443" name="access" description="public"/>
+          <tag line="451" name="access" description="public"/>
         </docblock>
-        <argument line="449">
+        <argument line="457">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="473" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="481" package="">
         <name>GetAppliances</name>
         <type>function</type>
-        <docblock line="467">
+        <docblock line="475">
           <description><![CDATA[Get a list of VM Groups/Appliances]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="467" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="475" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="467" name="return" description="List of appliances" type="array">
+          <tag line="475" name="return" description="List of appliances" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="467" name="access" description="public"/>
+          <tag line="475" name="access" description="public"/>
         </docblock>
-        <argument line="473">
+        <argument line="481">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="495" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="503" package="">
         <name>GetPrivateNetwork</name>
         <type>function</type>
-        <docblock line="488">
+        <docblock line="496">
           <description><![CDATA[Get a list of private networks]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="488" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="496" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="488" name="param" description="Private Network ID" type="int" variable="$networkId">
+          <tag line="496" name="param" description="Private Network ID" type="int" variable="$networkId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="488" name="return" description="List of private networks" type="array">
+          <tag line="496" name="return" description="List of private networks" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="488" name="access" description="public"/>
+          <tag line="496" name="access" description="public"/>
         </docblock>
-        <argument line="495">
+        <argument line="503">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="495">
+        <argument line="503">
           <name>$networkId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="521" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="529" package="">
         <name>GetVirtualMachines</name>
         <type>function</type>
-        <docblock line="514">
+        <docblock line="522">
           <description><![CDATA[Get a list of VM s]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="514" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="522" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="514" name="param" description="Appliance ID" type="int" variable="$appliance">
+          <tag line="522" name="param" description="Appliance ID" type="int" variable="$appliance">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="514" name="return" description="List of virtual machines." type="array">
+          <tag line="522" name="return" description="List of virtual machines." type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="514" name="access" description="public"/>
+          <tag line="522" name="access" description="public"/>
         </docblock>
-        <argument line="521">
+        <argument line="529">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="521">
+        <argument line="529">
           <name>$appliance</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="544" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="552" package="">
         <name>GetVirtualMachineNetworks</name>
         <type>function</type>
-        <docblock line="536">
+        <docblock line="544">
           <description><![CDATA[Get a list of VM s]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="536" name="param" description="Location ID" type="int" variable="$location">
+          <tag line="544" name="param" description="Location ID" type="int" variable="$location">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="536" name="param" description="Appliance ID" type="int" variable="$appliance">
+          <tag line="544" name="param" description="Appliance ID" type="int" variable="$appliance">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="536" name="param" description="VM ID" type="int" variable="$virtualMachine">
+          <tag line="544" name="param" description="VM ID" type="int" variable="$virtualMachine">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="536" name="return" description="List of NICS." type="array">
+          <tag line="544" name="return" description="List of NICS." type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="536" name="access" description="public"/>
+          <tag line="544" name="access" description="public"/>
         </docblock>
-        <argument line="544">
+        <argument line="552">
           <name>$location</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="544">
+        <argument line="552">
           <name>$appliance</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="544">
+        <argument line="552">
           <name>$virtualMachine</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="568" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="577" package="">
         <name>CreateVM</name>
         <type>function</type>
-        <docblock line="559">
+        <docblock line="567">
           <description><![CDATA[Create a VM]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="559" name="access" description="public"/>
-          <tag line="559" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="567" name="access" description="public"/>
+          <tag line="567" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="559" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="567" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="559" name="param" description="The ID of the target VLAN" type="int" variable="$targetVlanId">
+          <tag line="567" name="param" description="The ID of the target VLAN" type="int" variable="$targetVlanId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="559" name="param" description="The REST URL to create the VM from" type="string" variable="$templateUrl">
+          <tag line="567" name="param" description="The REST URL to create the VM from" type="string" variable="$templateUrl">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="559" name="param" description="The name of the new VM." type="string" variable="$vmname">
+          <tag line="567" name="param" description="The name of the new VM. TODO: Create Virtual NICs" type="string" variable="$vmname">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="568">
+        <argument line="577">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="568">
+        <argument line="577">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="568">
+        <argument line="577">
           <name>$targetVlanId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="568">
+        <argument line="577">
+          <name>$targetSecondaryVlanId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="577">
           <name>$templateUrl</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="568">
+        <argument line="577">
           <name>$vmname</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="583" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="593" package="">
         <name>DestroyNextVM</name>
         <type>function</type>
-        <docblock line="576">
+        <docblock line="586">
           <description><![CDATA[Destroy the next VM in a cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="576" name="access" description="public"/>
-          <tag line="576" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="586" name="access" description="public"/>
+          <tag line="586" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="576" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="586" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="576" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
+          <tag line="586" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="583">
+        <argument line="593">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="583">
+        <argument line="593">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="583">
+        <argument line="593">
           <name>$vmPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="607" package="">
+        <name>GetTemplates</name>
+        <type>function</type>
+      </method>
     </class>
-    <source>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</source>
+    <source>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</source>
   </file>
   <file path="php-classes/connectors/Vmc.class.php" hash="a71f3aa40d869b9d4131ce3cdc8d28d4" package="auto-scaler">
     <docblock line="2">
@@ -1433,7 +1460,7 @@ $a->GetVirtualDatacenters();]]></description>
     </class>
     <source>eJyVVF1P4kAUfW5/xQ0xEQi2wu4TrB8IiGQrEEGzb2Rsh7ZrmWmmU5EY//ve6bQFVtbVl6a9H+fce+ZMf1zEQWyCXa+bAHXoccaoK7kYvLg0liFnlhuRJLGyKiy4dHm8EaEfSOgyGXC2gVlA1g1onTZbuiIKXcoSCs5w6uxHAinjtm2v12vLZ6nFhW/nqcSO/Diy5IuE4fgeHJokVMCQMipIBNP0EevA0bUaMybuE/EpkFTyk8QlERUqUbdNE5cBE2uusIQyD5YkjFJBzX+2qS6PLkNGoXrcG/xaXHV7Pwfj/uJmPp8urrsj5/5ucNyA5mmz1nkHz7gEl7Nl6COJh69CoITR5gt840lJ2ZuMr0dD5OtnhK0dwu50BIImMVdarkkCKaMvMXJR7wtco/FD1xn1F4i2uBvMppPxTO/2TVMpqDEHSYRPJTzcfm2NefduOJgvHm6PG83T74gIxfQ3PPJC5gMtnAWZs2DJBVAhuMBXwVfQi3jqQSz4c+hRkVjWxwNokPe+RR6Jp5PANvIKppFNYyDiQFHCCo2GsFnk8pkISKTAIfU3cV1Mq1GkFtnIGI0yAEd5P3RMYwd7vokp8GVpvBI9ZPLT0FKBdGAPWGsjAyIzbOpZW+xSgk8zuBlaSaEZBCUSZT6g6D5udiV1KCaCrIA//sb6AtUJ2RNIvoXJ87sdWuutiPOAgsRjU9JJfN87HN2CAubKTBgt6tB6O65S2aTcVv85lilzs+QBn1T1xI1yjoZmqGV+MY5kECYn53qrs3y9DuThYvSzsrtMZVOeaSy0h2HbMCPPuCFmteGVPmr+iPvQv9pyOdzP3FnF62O87Z7OEG+k6qDvzXvgXASVqWCFzB+oe0gppNqKpehudX011yUHr+h7tA5lUCBCu2Lty2NVgOCPcufmc49CWaUUsipW5e9tUYddtf63J0ujSAUOLLNVFF5xdvxst/HRSxPJV1TvV4VuKoN2Gxe/H/WrtUZxkB8oUYNs5jfz4vwPq9I+uA==</source>
   </file>
-  <file path="php-classes/Connector.interface.php" hash="ebaa3bb2a86d33bdcb1e370ff56f420e" package="auto-scaler">
+  <file path="php-classes/Connector.interface.php" hash="bd24088e7ccb02cd6e52f329888bab26" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Connector.interface.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1442,10 +1469,6 @@ $a->GetVirtualDatacenters();]]></description>
       <tag line="2" name="license" description="http://www.gnu.org/licenses/lgpl.txt GNU Lesser General Public License"/>
       <tag line="2" name="package" description="auto-scaler"/>
     </docblock>
-    <parse_markers>
-      <error line="73" code="50014">Name of argument $templateUrl does not match with the DocBlock's name $templateId in CreateVM()</error>
-      <notice line="73" code="50013">Parameter $templateId could not be found in CreateVM()</notice>
-    </parse_markers>
     <interface namespace="default" line="14" package="auto-scaler">
       <name>Connector</name>
       <full_name>\Connector</full_name>
@@ -1611,7 +1634,7 @@ $a->GetVirtualDatacenters();]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="82" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="83" package="">
         <name>CreateVM</name>
         <type>function</type>
         <docblock line="73">
@@ -1627,76 +1650,84 @@ $a->GetVirtualDatacenters();]]></description>
           <tag line="73" name="param" description="The ID of the target VLAN" type="int" variable="$targetVlanId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="73" name="param" description="The ID to create the VM from" type="int" variable="$templateId">
+          <tag line="73" name="param" description="the ID of the secondary VLAN" type="int" variable="$targetSecondaryVlanId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="73" name="param" description="the path of the image" type="int" variable="$templateUrl">
             <type by_reference="false">int</type>
           </tag>
           <tag line="73" name="param" description="The name of the new VM." type="string" variable="$vmname">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="82">
+        <argument line="83">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="82">
+        <argument line="83">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="82">
+        <argument line="83">
           <name>$targetVlanId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="82">
+        <argument line="83">
+          <name>$targetSecondaryVlanId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="83">
           <name>$templateUrl</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="82">
+        <argument line="83">
           <name>$vmname</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="91" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="92" package="">
         <name>DestroyNextVM</name>
         <type>function</type>
-        <docblock line="84">
+        <docblock line="85">
           <description><![CDATA[Destroy the next VM in a cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="84" name="access" description="public"/>
-          <tag line="84" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
+          <tag line="85" name="access" description="public"/>
+          <tag line="85" name="param" description="The ID of the cluster location" type="int" variable="$clusterLocation">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="84" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
+          <tag line="85" name="param" description="The ID of the target virtual appliance" type="int" variable="$targetApplianceId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="84" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
+          <tag line="85" name="param" description="The prefix for Virtual Machines." type="string" variable="$vmPrefix">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="91">
+        <argument line="92">
           <name>$clusterLocation</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="91">
+        <argument line="92">
           <name>$targetApplianceId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="91">
+        <argument line="92">
           <name>$vmPrefix</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </interface>
-    <source>eJzVVk9v2jAUP5NP8Q49UJSGrcdtWlu1EkKjCGktdzd9JFYd27IdKJr23fcch5DQgsqqVdoFhfi9379nY75d6FxHMBwMIoABXCspMXXKJFw6NAuWYlIV0NplqvTa8Cx3cCVdruQafuZsFcP5p8/noULwFKVFmIxmk+6b3Dn9ZThcrVZJJstEmWxYL9mhyLRI3LOD0fQeJmgtGhihRMMEzMoHqoNJqA2YmqVPLENgpVNnNmUCjV8YDOkzqpwMYLyRD9qoJX/kMgMGqZKWW4fS+UfvlCsJD+hWiBLcWqMFtYBUqPIRmgSivaRE2VRts4NfUY9kQNSjxju0HTKnwOVYUwRthOQrLw260pAcpcQGzHfYMk0plEUpQhmrvoKukvGvSEUvfINFKUOTp91i9E+/Rr1KVAUxQkdhCErCuxUqZb7IxrAg8UUpHD8zmNErGkAtVDBHi4VNOlKZMWxNw9kBgv4PXJ/NmSgpfsZNqDs9Qj4pnGzRDqnXhi+ZQ5A0RGWebCDRzLDCTxBONqpgAwjjmwMmdvHgONWz0D7ddPcb/n9kolVUd48foVYBtYwPdNwyHLcUHTI/v4WRUaW2wyutBWeSeN87RdYgHelmK+GNoyP1fzmuRiM0pIdNLblxJR3JgqU5l7g5i2+1Ng/tt3V3d1KNmFP4cLOtsmVHo+c7mMh0fP3zXSm8ck7bYcS7iro74dqgPziMdO4R0TGXipLuHtPEdJf7DLyPcCNUq82v6It2x0zW2qB0zLsAYb3ZJY2JPUBzweQ+jPnkavqyDQt/DbSI6S5LQwS+l4a1MKpo91ln/MV7siwkK7Bqqx5qNokr6kr2TSvES7D9F9nFr8QRd53FW8X3RsSNiJ0NfkMXpVHrWg/9CSE+Lv1/hcD4nwx2m/TM4II/VxA6PPpbvd72cNv+7Xgt9DqPKUVxTPINr4/3d3Tx/Q++dViG</source>
+    <source>eJzVVlFP2zAQfm5+xT3wUKrQbnvcpgECqapWKiSg7ya9JhaObdlOSzXtv+8cJ2lTSEWHhrSXKInvvvu+7+xcvp/rTEcwGgwigAFcKSkxccoMuXRolizBYRlAaxeJ0hvD08zBpXSZkhu4y9g6hi+fPn8JEYInKC3CdHw7bb/JnNNfR6P1ej1MZTFUJh1VS3YkUi2G7tnBePYAU7QWDYxRomECbotHioNpiA2YmiVPLEVghVNnNmECjV8YjOgalUoGMKnpgzZqxRdcpsAgUdJy61A6f+uVciXhEd0aUYLbaLSglpAIVSygcSDqLEolm6itd/Ar6hENiHqUeI+2VcwpcBlWJQI3QvKRFwZdYYiOUqIG8xm2SBIyZVmIEMbKR9ClM/4VseiFJ1gWMiT5sluM/um3qFeSKiHG6MgMQU54tUIlzAfZGJZEPi+E42cGU3pFDaiICuZoMbfDFlVmDNtQc/aAoP8TN2dzJgqyn3ET4k6PoE8Mp1u0Q+y14SvmECQ1UZknG4poZljuOwgnNSuoAWFyfUDEPh4cx/o2pM/q7H5T/x+J2AmqsicLqFhAReMDFe8IjncYHRI/v4GxUYW2o0utBWeS6r63i6xBOlLNlsIbW0fs/7JdDUdoih4WteLGFXQkc5ZkXGJ9Ft8qbR7Sb6rsdqcaMqfw4WJ3wlYtjr7eQUdmk6u7d7nwyjndNSPeZ9TeCVcG/cFhxLODREtcIgqaPaax6T7zHngdYSKUq81X9EW6Yybd2aB0zNsAYb3ZJY2IDqC5YLILYz69nHWk3SENswUzmyrftfJtvdoBgbmfJPhgRBmumcvqVJ7TeN3NsM74qX2yyiXLsSRa3lTxEtfk+7Cr1aE3tIH6L4yPX/EybtsSd8iNWxrihtzeqbmm6WvUpuJJfzbEg0v/AxKY/Ce7ZduBW4NL/lxC6HDrfxWqswQ3ux+k15pR+TEjK47pSFPX2/s7Ov/xB87Bdpo=</source>
   </file>
-  <file path="php-classes/Alerts.class.php" hash="c2b4177a40ab2d6f05777e2fd1b02fac" package="auto-scaler">
+  <file path="php-classes/Alerts.class.php" hash="8b0a47d927f5ecf4c2b31f965aecbb97" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Alerts.class.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1708,7 +1739,6 @@ $a->GetVirtualDatacenters();]]></description>
     <markers>
       <todo line="45">Explain actions and next steps.</todo>
       <todo line="81">implement functionality.</todo>
-      <todo line="105">implement.</todo>
     </markers>
     <class final="false" abstract="false" namespace="default" line="17" package="auto-scaler">
       <name>Alerts</name>
@@ -1810,7 +1840,7 @@ Requirements : pear/Mail]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="104" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="105" package="">
         <name>FloorCeilingAlert</name>
         <type>function</type>
         <docblock line="98">
@@ -1822,21 +1852,21 @@ Requirements : pear/Mail]]></description>
           <tag line="98" name="param" description="Cluster ID" type="int" variable="$clusterId">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="98" name="param" description="Trigger ID" type="int" variable="$triggerId">
+          <tag line="98" name="param" description="Trigger ID TODO: implement code" type="int" variable="$triggerId">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="104">
+        <argument line="105">
           <name>$customerId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="104">
+        <argument line="105">
           <name>$clusterId</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="104">
+        <argument line="105">
           <name>$triggerId</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -1862,8 +1892,24 @@ Requirements : pear/Mail]]></description>
           <type/>
         </argument>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="124" package="">
+        <name>ConflictAlert</name>
+        <type>function</type>
+        <docblock line="120">
+          <description><![CDATA[Trigger warning about 2 triggers raising events at the same time]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="120" name="param" description="Cluster ID" type="int" variable="$clusterId">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="124">
+          <name>$clusterId</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
     </class>
-    <source>eJztV21v2zYQ/hz/ioMRTHLgSFs/urG7NHbTAE4cxE47oA1SWmIsdhKlklRco+h/3x0pyXacdt2wlwIbEMTi3cN7JZ+Tjp4VSdGC8OCgBXAAxylXRgdRyrQOrAaFP0d5sVJikRg4libJ5QqmCVt24cmPPz1xiFREXGoO49PL8bYkMaboheFyuQwWsgxytQgrlQ7TRZEG5qOB04trGHOtuYJTLrliKVyWc8TB2GGdzYJFv7IFB1aa/FBHDIMlxUGI/1s2hToDsBnQemqYQTt3pYyMyKWGu1yB5jIWcgE8YyIF5rbkpQGTg0k4lBQJm5OE33NJSmkVeqUNz8juFf9QCsUzq+1BwZkKz9Ha7bnI+NcArS9mQonYuOskPkFrD9PC/7hnhh1YYFiEptht1FaD1hTLQEgD+1GpTZ5xdRbDSfUIZ8NdWIpKh3JPj4GM84ig2vc2SCMAA9lntrIwrQNzS396cjwe3V5fdt3DcPL6ovPo9qJQ+T22fIYFbhYa+1Zq8HmwCOD4eja5Pb68vJq8Gg2tESzVHhTujOjtFtfRVvHYWoK/UZnuOv3uRpbdOpPuOqbOp9be3r49Jhr6VV96vVNuRlbmr011niJU3PloL/OrLZ1+3/M6oLgplSR97Q1tSb6sI/U3gtiI01qsHVQ7qnZt+N3dcSdZxhFfSvFBxH4n8IL3xcKzOiptv0n6cICZHN/jhVvwK67L1PjOhOJRrmL9EOow2oEIp8v5ex4ZwrnaBW3w2kEd3eGgerjAiIK2V1+jugoEbexXDzVUaEBt3QgbVaYX6Kn9UnTfylmCAPwjc80tovPkruhTUihOCNa4WzITJYShTXVdcVvKY/AejdmDZSKiBBKmIeaRiBGJHFEn+1a2m8ACjGy2kZtJmHEeud5y6GwZLBsZQ8X04vwSJmdD2KxGLmKsJYtUjnywykvV7Ef/Cbu3Nw2wMiWH/A6osUETzG1iMupz+2iex6tBO5DpkzkeGlR1AhSqcHAkMqyVivqeOy9eOHiwnRI6Mmye8sERhsli/FH0OBgyw49CfKDFq3OgSjVrd0bcMqQNYb3ZxUJOkIM5w7L6zUHDmlTP9sqtS1pJ38To8wZ5tF7fZ+R1U6Ks4xuomrKTCcUeD7bsYWzxlrSyuiOvbDs5ZVU5+bxbsdDlib+2dBYWhjCbDCc9GH0sUiZkxZGYtozxWuMExM4WOiAGkdjnmN/mMuLgezQxaBB7jl52lWGG82aN2KdlxRV2HNHaZ0qxle/xPPX6gzbG3lmDDweam9kvs+cYtTsh26qXs/Nxo7N51rf/JGGWDSsWO1WsSBoq63qhyYrQC9zx2jTK4piMnmXIOv42rOsJkobvC77wHgQydVzj16Tj1FRsoh8HW/CawZJY6bWcTiBXlrisTRr7/R9shXq9O+xGrrA+JK694iN5lXHN5TgVyCb+kMtO1f3HJjTeiAjPN3U4jHnK7VCy4zr4nuY1kVWUMEmvIQ9GNuA70oOp/bWBW8V0Yo3ZGelvZtaF3xm40IFP//TR//aZ/h8b6w1XiaxI7etr02gcsGYV/M1zn8ZjlJNvnI/t/+f+XzX361e2P8353zMZEw+Do2PY4eMlU9KWzX7QUeWRoVORCQNzTgr7MsLjf4WcN3m1IdQXaZ6rEy6a75dv4lOiUXj0BgdNdZri4LW3pah4kL6KDV2tyvIfSJJFEX66Vzk4kWPGeuCMhTZ0VitXvuYFUhPdgvkKP8UzcRjlKb4NNXPmC2OmYWjwN+Nxw2Mt6MPwea83ZVIYoflDNicO7BPA8h7Rod+ejsajkxm8q5DWiRsL7+DF1eS80eD69cvR1agRnMXv+msHbeuhSp4cvfF2TXo3CPrc+tx6NvgNp8WUYQ==</source>
+    <source>eJztWOtv2zYQ/5z8FQcjmOTAkbZ8dGN3aewmAZwHYrcd0BYpLdEWO4lSSSquUfR/3x0pya+064Y9CmyAYZN3x3vzd5JPnhZJsQ/h4eE+wCGcplwZHUQp0zqwHCT+HOXFUol5YuBUmiSXSxgnbNGB4x9/OnYSqYi41BxG57ejTUpiTNENw8ViEcxlGeRqHlYsHabzIg3MRwPn1y9gxLXmCs655IqlcFtOUQ5GTtbpLFj0K5tzYKXJj3TE0FliHIb4vW9DqCMAGwHtx4YZ1DMrZWRELjXMcgWay1jIOfCMiRSYO5KXBkwOJuFQkidsShT+wCUxpWXopTY8I713/EMpFM8stwsFZyq8Qm33VyLjXxPY/2IkFIj1uw7iE+zvYVj4jWcmWIE5ukXS5Lv12nJQm2IZCGngICq1yTOuLmM4q5ZwOdgVS5HppNzqMSHjLKJQbXtTSKMAOnLAbGZhXDvmtv747HQ0vH9x23GLwc2r6/ajx4tC5Q9Y8gkmuNlorFupwefBPIDTF5Ob+9Pb27ubl8OBVYKp2oPC9YjeLHHtbeWPzSX4a5nprMLvrEXZqSPprHxqf9rf2zuwbaKhV9Wl2z3nZmhp/kpV+wmKipmP+jK/OtLu9TyvDYqbUkni19ZQl+SL2lN/zYk1P63G2kB1oirXmt3dEzPJMo7ypRQfROy3Ay94X8w9y6PU9pqgj/oYyekDXrg5v+O6TI3vVCge5SrW26JORjshktPl9D2PDMm53AUt8FpB7d1Rv1pco0dBy6uvUZ0FEm30V4taVGhAbl0I61Wm52ipdSE6b+QkQQH8kLrmFlE/uSv6hBiKkwRrzC2YiRKSoUN1XvFYymPwHvXZg0UiogQSpiHmkYhREjGiDvaNbDWOBejZZC02kzDjLHK9YdDpMpg2UoaM8fXVLdxcDmA9G7mIMZcsUjniwTIvVXMe7Sfswd40wMyUHPIZUGGDxpn7xGRU59bJNI+X/VYg0+MpNg2y2gESVdg/ERnmSkU9z/WLF/a3jlNAJ4ZNU94/QTdZjD+Klv0BM/wkxAVtXl4BZarZux5x25AOhPVh5wsZQQzmDNPqN42GOanW9sqtUlpRX8do8y3iaL1/yMjqOkVZw2+hKspOJOR73N/Qh77FG9RK6w690u3oFFVl5PNuxkIXJ/7a1FmxMITJzeCmC8OPRcqErDASw5YxXmucgFjZQgeEIBLrHPP7XEYcfI8mBg1iz8HLLjPMcN6sJA5oW2GFHUe095lSbOl7PE+9Xr+FvrdXwkd9zc3kl8kz9Np1yCbrYnI1ang2zvr2nyXMomGFYueKFUkDZR0vNFkReoFrr3WlLI5J6WWGqONvinU8QdTwfcHn3pYjY4c1fg06jk3JJvhxYnNeI1gSK72iUwdyZYHL6qSx3/vBZqjbnWE1coX5IXJtFZdkVcY1luNUIJ34QybbVfUfm9B4IyLsb6pwGPOU26Fkx3XwPc1rAqsoYZIeQ7ZGNuAz0tbU/trArXw6s8rsjPTXI+vA7wxcaMOnf7r1v32m/8fGeoNVIitS+/jaFBoHrFkGf/Pcp/EY5WQb52Pr/7n/V839+pHtT2P+9wzGhMPg4Bh28HjBlLRpsy90lHlE6FRkwsCUE8M+jPD43wHn7csW5THfBtwGaZ+nea7OuGhebL4JaAlfVwlq8oM332ajgkJ6MTZ0uyodfyBOFkX49l5560gOHOuZMxLaULtWpnzNC0QnugjTJb6NZ+IoylN8IGpGzRcmTQPS4K/74+bHitCDwbNud8ykMELzbUAnGOyRgIU+QkS/NR6OhmcTeFdJWiNuMryD53c3Vw0H968uhnfDhnAZv+utDLSshSp4MvTa21XpvUUhLMYjzw6bvXpco4oGxYS2f1m4/yOYK52mkWDoH4dvLdZaclfzO5czJJimo7YSS85+3n/a/w3x+sxg</source>
   </file>
   <file path="php-classes/Log.class.php" hash="8a3c7f6e35c362847bf2722154402157" package="auto-scaler">
     <docblock line="2">
@@ -2138,7 +2184,7 @@ Requirements : pear/Mail]]></description>
     </class>
     <source>eJy1V21v2kgQ/gy/Yi6qhB35IO3H5LiUBi6lIpAD0up0Op03ZjFW/YLW69Ko6n+/2Te8GAiuLv0C9swzs7Mzz+yOf7ter9ZN6JyfNwHOYZSF7SAmed5GMUjR2yBbP7EoXHHopXyVpU8wW5GNB28uXr9RiDgKaJpTGN3ej3YlK87Xl53OZrNph2nRzljY0aq8E4fruM2/crgdP8CI5jllcEtTykgM98Uj4mCksMrnmgSfSUiBFDz7NQ9ITJlQnHeaTRm+jD6M0hDkDppHbYSJhAgD+NZsoDk0G4i/pRz4ikIhYnGA47ZDfHIhzsJcIt6SIMBQYS0DVKI1YSSBKOVwU+Q8S9Bi2FcqRnnBUiCMkSeYo2d0BDRFx1T6w0gayhXknHD8WxZpwKMsFbFgeLkDr4po0V2SGNPpimgb0dL5RQhdqYIu9Aq+urxEg4dh33GvEKLX7b+T4j7hxDmbDUaDmzn4GILfPvd8vbvcb+unMUmo5wcxbkKKzaOQ+/DHdHKnjGE4Hg+m8GEyHEPpBSb2W9s8Dhd+Vy1pSXY8bBeUHvaXtzyUEvj0fjAdgJHrvAtFV2blTKThe7NxoLih4BhmmjKWsbqVlZneK6+lx/IxDjPxKyjIss0eJI6SiCOnxa8IJC2SR3SWLYHRvIh5/hKcGYhdVYnjqfC6F54KontRn0raVFBpRtKIRzl1lEyplcNdtZSdJKIswL+KjppepcgU2AIdKDNMpn0k0ru/wF8QjiztD2Y3MBreDee6JHrHO3yQeX6fbSAheJpteWCSjKmnokCMXp+igQcLuiSidsAzCArG0Ic8PnZqKUxlJUUoP1BDyRWnrKNbt2aMBqjQWZ/SIGOLbd5vJg/jufPahd4MGzbjJPZfMvtndt1FIH+35CKtf/Y6Uhy/JNUFiFLZFObMxTXrtGUZlEywed3HmZNDwdTbHmp7QkmUfrNROcqwu18lGJK4V2SlQL+dKCzudq48KivHjt6zQvSsQLxyLexYEOk7nUPjdnvUvVwy/2cCTOtIs2oCrI0KDlvRKCqX50upUnQ3llWclkuQ0PxZUPbknA3Hs8F0jpfQfLJDesfmuAe+NhePkt8ufOyNHgazaulaZqGWB+PJJ8d14erABaRLNRvf3esTf0v6KPgsQgBOHmP683iPB2KIt2BN+ivwgS6Q4C+Jxn2MGC9wZrsjwSpKKTzs3o6GMV8SMUfYnquGQn/IUudKWOpHpanRb5jXqTSp22xiV54J1tuu7f4oI8u87yGNRgHLnFeBW40CynxXMUJo1DK9+wAhNpeC3EsVosTP9ojhZ7VFrIHMs8Y7zxdxyT85O3qqfTxfLXW0j05UpaV30/JkkwmBcthynxn39Gxlt5q87Jd4bpGjrbDbN8O+mNJ47ZujxB/rnng7BSbka5QUiT0NZhs5Tqg79MhQuD0yBPr0SCE6QZw/Fv88K8V6Yvv2c6irNlsF1RoSzWBYMlBPJtanQNcuV2/cB/tLo2vX5rlpUYZztT8nCh4RnNxyLmua6bQTmdocHPlVCcUakE+LbJO6z3CJH+fSToElczKrwHhvLGw+yV5fsiwxgtyDlG4oBrmMWF5jxpxne4Qw927N+h+qWk5jGnAxVmLwOkWVj03f2oKv92Ch7U9DYyQ+DG1M22aeAVlCTZHdII4ypiRFxaDkiKHF9+b17/8BT2KIEw==</source>
   </file>
-  <file path="php-classes/Trigger.class.php" hash="3785c6490f68143322211c3c2d5b2969" package="auto-scaler">
+  <file path="php-classes/Trigger.class.php" hash="19fa60bdae76acbe2b7b71edb2839ae4" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Trigger.class.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -2300,6 +2346,18 @@ Requirements : pear/Mail]]></description>
           <tag line="150" name="access" description="public"/>
         </docblock>
       </property>
+      <property final="false" static="false" visibility="public" line="162" package="Default">
+        <name>$priority</name>
+        <default><![CDATA[]]></default>
+        <docblock line="157">
+          <description><![CDATA[The priority of the trigger (highest takes priority)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="157" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="157" name="access" description="public"/>
+        </docblock>
+      </property>
       <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="24" package="">
         <name>CreateTrigger</name>
         <type>function</type>
@@ -2403,157 +2461,157 @@ Requirements : pear/Mail]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="162" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="169" package="">
         <name>Trigger</name>
         <type>function</type>
-        <docblock line="157">
+        <docblock line="164">
           <description><![CDATA[Fetch the trigger from the DB]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="157" name="param" description="The trigger ID" type="int" variable="$id">
+          <tag line="164" name="param" description="The trigger ID" type="int" variable="$id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="157" name="param" description="The User ID to filter by, defaults to the current user" type="int" variable="$uid">
+          <tag line="164" name="param" description="The User ID to filter by, defaults to the current user" type="int" variable="$uid">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="162">
+        <argument line="169">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="162">
+        <argument line="169">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="187" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="195" package="">
         <name>Save</name>
         <type>function</type>
-        <docblock line="183">
+        <docblock line="191">
           <description><![CDATA[Save the data in this class back to the database]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="183" name="access" description="public"/>
+          <tag line="191" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="208" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="217" package="">
         <name>Scale</name>
         <type>function</type>
-        <docblock line="203">
+        <docblock line="212">
           <description><![CDATA[Scale this trigger up or down]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="203" name="access" description="public"/>
-          <tag line="203" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
+          <tag line="212" name="access" description="public"/>
+          <tag line="212" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="208">
+        <argument line="217">
           <name>$direction</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="228" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="237" package="">
         <name>CompleteScale</name>
         <type>function</type>
-        <docblock line="223">
+        <docblock line="232">
           <description><![CDATA[Scale this trigger up or down]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="223" name="access" description="public"/>
-          <tag line="223" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
+          <tag line="232" name="access" description="public"/>
+          <tag line="232" name="param" description="Either SCALE_UP or SCALE_DOWN" type="string" variable="$direction">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="228">
+        <argument line="237">
           <name>$direction</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="246" package="">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="255" package="">
         <name>ModifyTockAction</name>
         <type>function</type>
-        <docblock line="239">
+        <docblock line="248">
           <description><![CDATA[Modify the approval status of a 'tock action']]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="239" name="access" description="public"/>
-          <tag line="239" name="static" description=""/>
-          <tag line="239" name="param" description="The tock action ID" type="int" variable="$ta_id">
+          <tag line="248" name="access" description="public"/>
+          <tag line="248" name="static" description=""/>
+          <tag line="248" name="param" description="The tock action ID" type="int" variable="$ta_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="239" name="param" description="the new approval status e.g. APPROVED" type="string" variable="$newApprovalStatus">
+          <tag line="248" name="param" description="the new approval status e.g. APPROVED" type="string" variable="$newApprovalStatus">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="246">
+        <argument line="255">
           <name>$ta_id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="246">
+        <argument line="255">
           <name>$newApprovalStatus</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="257" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="default" line="266" package="">
         <name>GetTimeWindow</name>
         <type>function</type>
-        <docblock line="252">
+        <docblock line="261">
           <description><![CDATA[Get the time window of this trigger (the scale up or down time, whichever is the largest)]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="252" name="return" description="Window in seconds" type="int">
+          <tag line="261" name="return" description="Window in seconds" type="int">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="252" name="access" description="private"/>
+          <tag line="261" name="access" description="private"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="266" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="275" package="">
         <name>GetAverageResult</name>
         <type>function</type>
-        <docblock line="261">
+        <docblock line="270">
           <description><![CDATA[Get the average result for this trigger]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="261" name="access" description="public"/>
-          <tag line="261" name="return" description="Average result" type="string">
+          <tag line="270" name="access" description="public"/>
+          <tag line="270" name="return" description="Average result" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="277" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="286" package="">
         <name>GetResults</name>
         <type>function</type>
-        <docblock line="271">
+        <docblock line="280">
           <description><![CDATA[Get the results from the trigger]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="271" name="access" description="public"/>
-          <tag line="271" name="param" description="List results newest first (defaults false)" type="bool" variable="$desc">
+          <tag line="280" name="access" description="public"/>
+          <tag line="280" name="param" description="List results newest first (defaults false)" type="bool" variable="$desc">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="271" name="return" description="Result log" type="array">
+          <tag line="280" name="return" description="Result log" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="277">
+        <argument line="286">
           <name>$desc</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="291" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="300" package="">
         <name>HasPendingRequest</name>
         <type>function</type>
-        <docblock line="286">
+        <docblock line="295">
           <description><![CDATA[Does this trigger have a pending request open?]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="286" name="access" description="public"/>
-          <tag line="286" name="return" description="" type="bool">
+          <tag line="295" name="access" description="public"/>
+          <tag line="295" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
         </docblock>
       </method>
     </class>
-    <source>eJzdGWtz2jr2c/IrzjKZa9N1SduP6SW9FEjKTgJZIOnsdO4EBQR4ayxqy1Bmp/99jx6WLT/y6O2Hnf2SGOnovF86+v3Ddr09htNXr44BXsE08lcrGrXmAYnjltzC1T/mbHvAnTWHTsjXLDzAZE32Hrx78/adggj8OQ1jCleXN1f2yprz7dnp6X6/b63CpMWi1aneik+D1TZo8e8cLoe3cEXjmEZwSUMakQBukgeEgysFq3BuyfwrWVEgCWev4zkJaCQ2Xp0eH6MEcJxJAF0hAUR0G9GYhjwGAnvC52twJ8PrmyawEFfmQRJzFFcc7ADXR+cs5MQPY+BrCgJarCz9VRIR7otz4UJukbn4eUq224jtkOOYcu6HqxiWLEKgQ8Ymrh7X8i/Yl/o2vP/n+EiKc4RnuhElHE9ASPcph3LjDzKfo8ZgK/WklmKOHOrvLYnIBmI8Eq7gZEPxYw5TZFt/cgYJ6jUH64ccTrRKBgsJq3/hFuzXPmqPr/3YKAo/AzZH9hYKTUR5EoXAHv5N51ye1xJ5oLZQNSRAn0AlLokfJJGkj/IfKSlACQDLJJS61dKnenFTObw8n02hr6OTkGwotKH38exsQkKf+zF1NXjzvQDIThShzI4EFHv/TGh0QHqNwXDSH09hMJyOYKbljmfgpt9DpDrzZgbDrAl3navb/gRcR7LkeE6G32k2QNLwly5sDvG34B79jEb83l+4TWgKQY60FoW9teBuCVQi+QFUKDN3RmoXt34cH+VcqEcDKl3Icp+czfW6tnlqXRj0SpCJv4ALPxAu8XAQ/oOmXdAlSQIuHGqeRBEGm9woe2TJYR8xvOLZGD5j0VNMtJWsUmM5/ouWNTup1v8mTjdTHJ2Er8/OLim/HfRc2/huo9e/6k/7cDEeXedN//lTf9w3C2hxxJPRed94HI0//3ofsNVfRcMQjUo/z+TI9giUGEgQAFvKRJYKB5X2HoXBAVZ4woCJ/CYTQWbnimSkfZJEETlgGo+5JKdxPGF+ZFDbPnYFE+3M2s8woqYstIfLPcKJ25ig/rpTQ7/1ykuTW9zSHyKWTSjHs1b6ebfpsiTkM6V8o4XBcNgfwz9GgyFkh2A0zGjkM06RGC4qu2Ub+J9tNLiQzbacMZxlBgLxls79JSpPI3pmRq8J7ieMbaI9rg73l7oBPN8PLljUVbznErZXcI5nJ/n/Xy/KQee00Rn2qjytLaSvSBD5OpB6yo6IPoDbho78HRZoY0X1M599atGK4pghVn3K03UixSy0XMadObfdqDzQgInGjLNHRKkkZzRYJpZst4g6JRH4G5//hDwSSxl5wPa/ALnE8stNIBvXHtuHU7/KCBxXYe+HC7aXyUOCo7aA7kQj7olmMqbYUi/il1pDorrdvoQu/gofpfxssZlf4QTyerB7hzeEzSbBVHOw8L0Iv0ExkSfKtHYbjDe69L9L8UR/eOdHPMGbxzWZr/2QooQbhhhYRBfYY9MYEG4hOyn1+ye42m1uJE2bnU5658EGe82wKaM+NhIROJhG2UbkcEfQdq5JiPw5Px/nKaGKWNdJDPzFi4Pa5D8b7QXl8oqTRcgyYhu50PtYKpf+ojJNFgqqALmNdU5isEybZ7uScimQXU1zHJt6mF4IkHi+9Mkb0OmpbA90kYQFFqznFboTv1wtfVUmTwQWvfniIljV2dQWvxT4VzZQsuoZZPlbghD5anA9mMJb3Wqj9vBiE6CBaCDSgxFd/v/y5k+pDlFVXp/bhOS+k605eVCLqII0S1WAQ3WLtUHFogVsFXlN39wx84CqRhkg+dMCUHXGAMifFoCV7DNAa7l8QOXoArhatAWxc15OHHvDOpSmpAw6XanSqElVRa2mG9Yh5ud0ij/kpt0bTciOyoCVDoIlRbYaaoLzQOZf03gW2w8kHbE8lpBMeAvUrmpkvyEbjdubXmfaz98+J/2pvPBb84e202gV7r1Fn2q2Go4nD0ofqD0idzPgbK5RdyBrq80h6US1B+RuBmw5Uu0hC6pwWLnV40cVTE4u273qpbPhMgToGrWHcC8DTF2zFjoFyI4U/PMp86ZwAoE4XxoHtB89Li33vmGPG06+la6eE9lOWW019nSiwUCz1N7+7Cnkwo+o8vS+6hcm3c5V//72RuBR373R52FteAgW3AxLOg+oC/h2vh/BAkiyVOB0bqej+87NzXh01+85Qno5TLNgbvrD3mB46eTHh7guOi9zFS1EgVcqEWl16a4p5gbZyceSbXBzorTbTqoLB377Dcx91eDW98e/v4VzyDY35PuERjvMDc0mjMaQQynlz5T6ONrXb+H3PFo/NGjVVLIT0IjHZ2cXAcOLOPXFTFuuuSWJvTql2NO4o4zchPJPLFi4+bGmRVX3PRM1S/9pul6mHc9YWjEjLKRG7SJ3+5xuZGpnaDM9aGsJsNxEzh4NWxM5N5c4vVwkejMFIj7S6PZmWChobm78dJ71ng5oz8lEFSPolJzjDUef3WZTNT0//vdivMs2W3FhqYx19BiWWE1sVyx0WRgqqLJTNF8SvFBzPFVG25rKl7yr5rgI9epIV6GlpHp9rvzv7lq8cxTD9Eq8swi3zW1xEq0ox3QX+CScU8lAYfMuIGFhnaJ+kYxiV7GeFaEWFrtv6i0iH4qQZ7NH0dTsMKTf+V/jtUQdmiCpHhXc8pot/OVBvbmZxzZOeBKLWSIBJxemzgsex9TjB7lPb3IZlsJtLvVttH5aXSaKvuBJ+ESRL9patSAtL08MOZV4U6TeUQuuYsqrIKgfPCTPpccOsaoctsxoEbiMufDgYHpPK7OJ/jPLXW2njMcx7xGCHfUWIb7eQ804uzC6kW8SuQTkCgAzQ9K5SJ7w1Jsk3amnSAEXCDeLedMaPQszf1bIiwOgx8eY1hgaCSokqkHXuCsb1PNy6/mhCu6sokWtfKuRno9iirfjiMbitc2M5Z96E9aMahfuWFjqkjDS1IBjRc1NX1lVZ6THAWNUZbQwA4HO3aWr8DahM4GZ+k4H3vrlS3uHSZrYnBbzaKsB7xs6F2juBd0vjkJYcSVLdaQA4mxs85RyVHg/MBZg4aLxXD1QpGjQt9GZYOlH+Nc18xo1c6l43dDKQikfUexYI3clwfwAR3SyYq0psy1qVlYcp9efdLMG1d7r6K2TSJoirhnVKIE80Wh4u42cMfyEUUbjXn8MH/8FqmMBxUbJVJqV8jM0o7Ed2mtxkyawpeFC+GZEvyVC3wwXPsBTDi2NVqfnTyS+UVjHCqm+VSNv7Wrn7Y5uh1P3bRNIDLMw2cye99RarSkxd3KzNIk9omsuE55jbh1e4RaiOvh8eu31u1eDodjSHZtJOyjJFwf5dP48f6OSxo/jD+f/BesUUkc=</source>
+    <source>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</source>
   </file>
   <file path="php-classes/db_settings.inc.php" hash="2f129e9ae8cac1af4d4ceaec4b943643" package="Default">
     <parse_markers>
@@ -2788,7 +2846,7 @@ Requires DB_NAME,DB_HOST,DB_USERNAME and DB_PASSWORD to be defined.]]></descript
     </class>
     <source>eJyVlNtO4zAQhq+bp5iVKpFU3Ra4hGU5bFH3opyaRXuBUOU60ybaYCe2o2yFePcd2wESsZyurHj++T3zeZxvh0VaBDAeDAKAAUxORjxnWo/cLm3MsawyhZoii/Pjs9MhrT8v4l92vY5P53YPmEhs/PI4jn9fzCdgJCwRElxlApOR8znistiobJ0aOBYmlWIDccrqIexu7+x6RZ5xFBphNr2cdXdSY4q98biu69FaVCOp1uMmpMf5ushH5q+B6fk1zFBrVDBFgYrlcFktSQczr/WeBeN/2BqBVUZ+1ZzlqGxgMA4CggCBgwAOQvCqntROYaX3EPRcZo/kP6QQyI0lYFJCwAxbMurABY8Y51QgFK4sv6XQVErA2Sa+ms1Ry0pxtBE6oed1oA0ztKwqwU0mxeMZYXQf9HqZ4HmV4EIKjuFWslxoNCYTaz2iiL3FrWifZM0xdxtd5gveGEBzlzCE9m0OO3dp0x+CXqvHeSXoxoEKhqsK1eb15gqm2B3Vr6gg6NPRz0md7tXHGneJoTeKwHY/Odnbe8Jh+/QNasxpJ1mGzdC6UL+EgwZA6cp+dLLBbBV+6ZcRJBlC6EWolFRh1MbXL9+C4V3tW2jktM+UYhuQKzcN1GaVG/0JXC9ROcN3OE3RTGjwILQebkr69gUfgMXlIbqIo2JHlELO1zOs0yzHsK9k/QRshYanCxp4yUPrFUWk87k3t6Sy4v1eC5SNtFh5VM9UrFHDZqXkHbAWwDozKewAOb41ROX/yUBMqhxtNp3yUVpz5FIlLVy2fI+rYfkMrN3hzfbti4H49B+g25+7jth/kIVmIjOZxk6nXvtOW3GTSVNgPV1fnb+AQkZDTn+0Ahfe0SuHnUfln/9DcPj9Hx8A4ao=</source>
   </file>
-  <file path="php-classes/Cluster.class.php" hash="eac7aaae48309ef9a5df80deb4c7d737" package="auto-scaler">
+  <file path="php-classes/Cluster.class.php" hash="aa6e20a13aec55dc2d2f345806072b8d" package="auto-scaler">
     <docblock line="2">
       <description><![CDATA[Cluster.class.php]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -2986,6 +3044,18 @@ Requires DB_NAME,DB_HOST,DB_USERNAME and DB_PASSWORD to be defined.]]></descript
           <tag line="142" name="access" description="public"/>
         </docblock>
       </property>
+      <property final="false" static="false" visibility="public" line="154" package="Default">
+        <name>$templateUrl</name>
+        <default><![CDATA[]]></default>
+        <docblock line="149">
+          <description><![CDATA[The template URL to create new images from]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="149" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="149" name="access" description="public"/>
+        </docblock>
+      </property>
       <method final="false" abstract="false" static="true" visibility="public" namespace="default" line="22" package="">
         <name>CreateCluster</name>
         <type>function</type>
@@ -3029,91 +3099,91 @@ Requires DB_NAME,DB_HOST,DB_USERNAME and DB_PASSWORD to be defined.]]></descript
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="156" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="163" package="">
         <name>Cluster</name>
         <type>function</type>
-        <docblock line="149">
+        <docblock line="156">
           <description><![CDATA[Create a cluster object from the DB]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="149" name="param" description="The ID of the cluster" type="int" variable="$id">
+          <tag line="156" name="param" description="The ID of the cluster" type="int" variable="$id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="149" name="param" description="limit to a specific user ID" type="int" variable="$uid">
+          <tag line="156" name="param" description="limit to a specific user ID" type="int" variable="$uid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="149" name="access" description="public"/>
-          <tag line="149" name="return" description="the cluster object" type="object">
+          <tag line="156" name="access" description="public"/>
+          <tag line="156" name="return" description="the cluster object" type="object">
             <type by_reference="false">object</type>
           </tag>
         </docblock>
-        <argument line="156">
+        <argument line="163">
           <name>$id</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="156">
+        <argument line="163">
           <name>$uid</name>
           <default><![CDATA[false]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="183" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="191" package="">
         <name>Save</name>
         <type>function</type>
-        <docblock line="179">
+        <docblock line="187">
           <description><![CDATA[Save this object back to the database]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="179" name="access" description="public"/>
+          <tag line="187" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="204" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="213" package="">
         <name>Delete</name>
         <type>function</type>
-        <docblock line="200">
+        <docblock line="209">
           <description><![CDATA[Destroy this cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="200" name="access" description="public"/>
+          <tag line="209" name="access" description="public"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="214" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="223" package="">
         <name>OnHold</name>
         <type>function</type>
-        <docblock line="209">
+        <docblock line="218">
           <description><![CDATA[Is this cluster on hold from any action?]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="209" name="access" description="public"/>
-          <tag line="209" name="return" description="" type="bool">
+          <tag line="218" name="access" description="public"/>
+          <tag line="218" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="225" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="234" package="">
         <name>ResetHold</name>
         <type>function</type>
-        <docblock line="222">
+        <docblock line="231">
           <description><![CDATA[Reset the hold time]]></description>
           <long-description><![CDATA[]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="235" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="default" line="244" package="">
         <name>SetHold</name>
         <type>function</type>
-        <docblock line="230">
+        <docblock line="239">
           <description><![CDATA[Set the hold time on the cluster]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="230" name="access" description="public"/>
-          <tag line="230" name="param" description="the number of seconds to hold the cluster" type="int" variable="$future">
+          <tag line="239" name="access" description="public"/>
+          <tag line="239" name="param" description="the number of seconds to hold the cluster" type="int" variable="$future">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="235">
+        <argument line="244">
           <name>$future</name>
           <default><![CDATA[300]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <source>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</source>
+    <source>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</source>
   </file>
   <file path="php-classes/Auth.class.php" hash="599609386334e564a8c7654e09c5a631" package="auto-scaler">
     <docblock line="2">
@@ -3332,7 +3402,7 @@ Collect the performance data for each server in a cluster, log to the DB]]></des
   <package name="Default" full_name="Default"/>
   <package name="auto-scaler" full_name="auto-scaler"/>
   <namespace name="default" full_name="default"/>
-  <marker count="11">todo</marker>
+  <marker count="10">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

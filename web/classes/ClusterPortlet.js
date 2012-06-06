@@ -186,7 +186,7 @@ Ext.define('Cloud.ClusterPortlet', {
 								allowBlank: false,
 								listConfig: {
 									getInnerTpl: function() {
-										return '<p><img src="{icon}" width=32 height=32/><b>{name}</b></p>{description}' ;
+										return '<p><img src="{icon}" width=32 height=32 align="left"/><b>{name}</b><br clear="all"/></p>' ;
 									}
 								}
 							}
@@ -208,8 +208,8 @@ Ext.define('Cloud.ClusterPortlet', {
 								},
 								failure: function(form, action) {
 									Ext.Msg.alert("Failure", action.result.msg);
-								}}); 
-							
+								}
+							}); 
 						}
 					}
 					//,{ text:'?',handler:function(){alert(this.up('window').height+'x'+this.up('window').width);}} // Window size 

@@ -54,7 +54,7 @@ class Trigger {
 	 **/
 	public static function GetTriggers($uid=false){
 		if(!$uid) $uid = Auth::GetUID();
-		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.customerId = $uid;");
+		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.customerId = $uid ORDER BY priority ASC;");
 	}
 	
 	/**
@@ -67,7 +67,7 @@ class Trigger {
 	public static function GetTriggersForCluster($clusterId,$uid=false){
 		$clusterId = DB::Sanitise($clusterId);
 		if(!$uid) $uid = Auth::GetUID();
-		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.clusterId = $clusterId AND clusters.customerId=$uid");
+		return DB::GetData("SELECT triggers.*, clusters.clusterName,`clusters`.`clusterVmCount` FROM triggers INNER JOIN `clusters` ON triggers.clusterId = clusters.clusterId WHERE clusters.clusterId = $clusterId AND clusters.customerId=$uid  ORDER BY priority ASC");
 	}
 	
 	/** 
@@ -153,6 +153,13 @@ class Trigger {
 	 * @access public
 	 **/
 	public $customerId;
+
+	/**
+	 * The priority of the trigger (highest takes priority)
+	 * @var int
+	 * @access public
+	 **/
+	public $priority;
 	
 	/** 
 	 * Fetch the trigger from the DB
@@ -178,6 +185,7 @@ class Trigger {
 		$this->vmPrefix = $data['vmPrefix'];
 		$this->triggerApproval = $data['triggerApproval'];
 		$this->oid = $data['oid'];
+		$this->priority = $data['priority'];
 	}
 	
 	/** 
@@ -195,7 +203,8 @@ class Trigger {
 			`communityString`='".DB::Sanitise($this->communityString)."',
 			`oid`='".DB::Sanitise($this->oid)."',
 			`vmPrefix`='".DB::Sanitise($this->vmPrefix)."',
-			`triggerApproval`='".DB::Sanitise($this->triggerApproval)."'
+			`triggerApproval`='".DB::Sanitise($this->triggerApproval)."',
+			`priority`='".DB::Sanitise($this->priority)."'
 			WHERE `triggerId`=".DB::Sanitise($this->triggerId).";";
 		DB::Query($q);
 	}

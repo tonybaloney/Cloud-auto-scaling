@@ -79,6 +79,15 @@ Ext.define('Cloud.TriggerPortlet', {
 							fieldLabel: 'Trigger Name',
 							value: (triggerRecord?triggerRecord.data.triggerName:'cpu'),
 							allowBlank: false
+						},
+						{
+							xtype:'numberfield',
+							name:'priority',
+							value: (triggerRecord?triggerRecord.data.priority:1),
+							fieldLabel: 'Priority (highest first)',
+							allowDecimals:false,
+							minValue:0,
+							allowBlank: false
 						}
 					]},{
 					border: false,
@@ -123,7 +132,7 @@ Ext.define('Cloud.TriggerPortlet', {
 							xtype:'combo',
 							name:'oid',
 							fieldLabel: 'SNMP OID',
-							value: (triggerRecord?triggerRecord.data.oid:'1.1.1.1.1'),
+							value: (triggerRecord?triggerRecord.data.oid:'.1.3.6.1.4.1.2021.10.1.3.1'),
 							displayField:'title',
 							valueField:'oid',
 							store: 'snmpOptions',
@@ -248,8 +257,14 @@ Ext.define('Cloud.TriggerPortlet', {
 			},
             columns: [
 			{
-                text : 'Cluster',
+                text : 'Priority',
                 flex: 1,
+                sortable : true,
+                dataIndex: 'priority'
+            },
+			{
+                text : 'Cluster',
+                flex: 2,
                 sortable : true,
                 dataIndex: 'clusterName'
             },{

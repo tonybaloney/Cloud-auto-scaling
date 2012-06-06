@@ -32,10 +32,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">6</span></a></li>
+                <span class="label label-info">8</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">11</span>
+                <span class="label label-info">10</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -62,6 +62,7 @@
 <li class="method public "><a href="#CreateVM" title="CreateVM :: Create a VM"><span class="description">Create a VM</span><pre>CreateVM()</pre></a></li>
 <li class="method public "><a href="#DeployAbiquoVirtualMachine" title="DeployAbiquoVirtualMachine :: deploy a Virtual Machine in this VDC/VAPP"><span class="description">deploy a Virtual Machine in this VDC/VAPP</span><pre>DeployAbiquoVirtualMachine()</pre></a></li>
 <li class="method public "><a href="#DestroyNextVM" title="DestroyNextVM :: Destroy the next VM in a cluster"><span class="description">Destroy the next VM in a cluster</span><pre>DestroyNextVM()</pre></a></li>
+<li class="method public "><a href="#GetAbiquoEnterpriseTemplates" title="GetAbiquoEnterpriseTemplates :: Get a list of templates from Abiquo for this enterprise"><span class="description">Get a list of templates from Abiquo for this enterprise</span><pre>GetAbiquoEnterpriseTemplates()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoIPsUsedInVirtualAppliance" title="GetAbiquoIPsUsedInVirtualAppliance :: Get a list of IPs used in a specified Virtual Appliance"><span class="description">Get a list of IPs used in a specified Virtual Appliance</span><pre>GetAbiquoIPsUsedInVirtualAppliance()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoPrivateNetwork" title="GetAbiquoPrivateNetwork :: Get a specific private network in this enterprise"><span class="description">Get a specific private network in this enterprise</span><pre>GetAbiquoPrivateNetwork()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoPrivateNetworks" title="GetAbiquoPrivateNetworks :: Get a list of Private Networks (VLANs) in this Enterprise"><span class="description">Get a list of Private Networks (VLANs) in this Enterprise</span><pre>GetAbiquoPrivateNetworks()</pre></a></li>
@@ -76,6 +77,8 @@
 <li class="method public "><a href="#GetLocations" title="GetLocations :: Get a list of locations, for multi-regional cloud platforms."><span class="description">Get a list of locations, for multi-regional cloud platforms.</span><pre>GetLocations()</pre></a></li>
 <li class="method public "><a href="#GetPrivateNetwork" title="GetPrivateNetwork :: Get a list of private networks"><span class="description">Get a list of private networks</span><pre>GetPrivateNetwork()</pre></a></li>
 <li class="method public "><a href="#GetPrivateNetworks" title="GetPrivateNetworks :: Get a list of private networks"><span class="description">Get a list of private networks</span><pre>GetPrivateNetworks()</pre></a></li>
+<li class="method public "><a href="#GetTemplates" title="GetTemplates :: "><span class="description">GetTemplates()
+        </span><pre>GetTemplates()</pre></a></li>
 <li class="method public "><a href="#GetVirtualMachineNetworks" title="GetVirtualMachineNetworks :: Get a list of VM s"><span class="description">Get a list of VM s</span><pre>GetVirtualMachineNetworks()</pre></a></li>
 <li class="method public "><a href="#GetVirtualMachines" title="GetVirtualMachines :: Get a list of VM s"><span class="description">Get a list of VM s</span><pre>GetVirtualMachines()</pre></a></li>
 <li class="method public "><a href="#TestConnection" title="TestConnection :: Test connection to the cloud provider"><span class="description">Test connection to the cloud provider</span><pre>TestConnection()</pre></a></li>
@@ -155,7 +158,7 @@ $a->GetVirtualDatacenters();</p></p>
 </div>
 <a name="CreateVM" id="CreateVM"></a><div class="element clickable method public CreateVM" data-toggle="collapse" data-target=".CreateVM .collapse">
 <h2>Create a VM</h2>
-<pre>CreateVM(int $clusterLocation, int $targetApplianceId, int $targetVlanId, string $templateUrl, string $vmname) </pre>
+<pre>CreateVM(int $clusterLocation, int $targetApplianceId, int $targetVlanId, $targetSecondaryVlanId, string $templateUrl, string $vmname) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -174,11 +177,15 @@ $a->GetVirtualDatacenters();</p></p>
 <h4>$targetVlanId</h4>
 <code>int</code><p>The ID of the target VLAN</p></div>
 <div class="subelement argument">
+<h4>$targetSecondaryVlanId</h4>
+<code></code>
+</div>
+<div class="subelement argument">
 <h4>$templateUrl</h4>
 <code>string</code><p>The REST URL to create the VM from</p></div>
 <div class="subelement argument">
 <h4>$vmname</h4>
-<code>string</code><p>The name of the new VM.</p></div>
+<code>string</code><p>The name of the new VM. TODO: Create Virtual NICs</p></div>
 </div></div>
 </div>
 <a name="DeployAbiquoVirtualMachine" id="DeployAbiquoVirtualMachine"></a><div class="element clickable method public DeployAbiquoVirtualMachine" data-toggle="collapse" data-target=".DeployAbiquoVirtualMachine .collapse">
@@ -225,6 +232,21 @@ $a->GetVirtualDatacenters();</p></p>
 <div class="subelement argument">
 <h4>$vmPrefix</h4>
 <code>string</code><p>The prefix for Virtual Machines.</p></div>
+</div></div>
+</div>
+<a name="GetAbiquoEnterpriseTemplates" id="GetAbiquoEnterpriseTemplates"></a><div class="element clickable method public GetAbiquoEnterpriseTemplates" data-toggle="collapse" data-target=".GetAbiquoEnterpriseTemplates .collapse">
+<h2>Get a list of templates from Abiquo for this enterprise</h2>
+<pre>GetAbiquoEnterpriseTemplates() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of response</div>
 </div></div>
 </div>
 <a name="GetAbiquoIPsUsedInVirtualAppliance" id="GetAbiquoIPsUsedInVirtualAppliance"></a><div class="element clickable method public GetAbiquoIPsUsedInVirtualAppliance" data-toggle="collapse" data-target=".GetAbiquoIPsUsedInVirtualAppliance .collapse">
@@ -511,6 +533,13 @@ $a->GetVirtualDatacenters();</p></p>
 <div class="subelement response">
 <code>array</code>List of private networks</div>
 </div></div>
+</div>
+<a name="GetTemplates" id="GetTemplates"></a><div class="element clickable method public GetTemplates" data-toggle="collapse" data-target=".GetTemplates .collapse">
+<h2>GetTemplates()
+        </h2>
+<pre>GetTemplates() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
 </div>
 <a name="GetVirtualMachineNetworks" id="GetVirtualMachineNetworks"></a><div class="element clickable method public GetVirtualMachineNetworks" data-toggle="collapse" data-target=".GetVirtualMachineNetworks .collapse">
 <h2>Get a list of VM s</h2>
@@ -851,7 +880,7 @@ authenticated request</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-06-01T18:13:49+01:00.<br></footer></div>
+            generated on 2012-06-06T14:03:12+01:00.<br></footer></div>
 </div>
 </body>
 </html>

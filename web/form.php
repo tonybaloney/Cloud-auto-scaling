@@ -96,6 +96,7 @@ switch ($form){
 			$t->communityString = $_POST['communityString'];
 			$t->triggerApproval = $_POST['triggerApproval'];
 			$t->vmPrefix = $_POST['vmPrefix'];
+			$t->priority = $_POST['priority'];
 			$t->Save();
 			$res['success'] = true;
 			$res['msg'] = "Trigger created successfully";
@@ -117,6 +118,7 @@ switch ($form){
 			$t->communityString = $_POST['communityString'];
 			$t->triggerApproval = $_POST['triggerApproval'];
 			$t->vmPrefix = $_POST['vmPrefix'];
+			$t->priority = $_POST['priority'];
 			$t->Save();
 			$res['success'] = true;
 			$res['msg'] = "Trigger modified successfully";

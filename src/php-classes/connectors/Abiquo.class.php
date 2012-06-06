@@ -579,6 +579,7 @@ class Abiquo implements Connector{
 		$request = "<virtualMachine><link href=\"".$templateUrl."\" rel=\"virtualmachinetemplate\" title=\"$vmname\"/></virtualMachine>";
 		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
 		$vmId = $vm['virtualmachine']['id'][0];
+		// Add NICS
 		$this->DeployAbiquoVirtualMachine($clusterLocation,$targetApplianceId,$vmId);
 	}
 	

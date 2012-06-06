@@ -44,10 +44,19 @@ while (1==1){
 	}
 	Tock();
 	// Run the tock process to determine actions to take on these results
-	// TODO: check for trigger conflicts
-	// TODO: raise error about trigger conflict
-	// TODO: delete defunct triggers
-	$res = DB::GetData( "SELECT `tock_actions`.*,`clusters`.`customerId` FROM `tock_actions` INNER JOIN `clusters` ON `tock_actions`.`clusterId` = `clusters`.`clusterId` WHERE `approval` IN ('APPROVED','AUTO_APPROVED')");
+	// check for trigger conflicts
+	$conflicts = DB::GetData("SELECT clusterId, COUNT(clusterId) as cluster_count FROM `tock_actions` WHERE `approval` IN ('APPROVED','AUTO_APPROVED') GROUP BY clusterId HAVING cluster_count > 1");
+	foreach ($conflicts as $conflict){
+		// Get the triggers that have actions by priority (highest first)
+		$triggers = DB::GetData("SELECT * FROM `tock_actions` INNER JOIN triggers ON `tock_actions`.`triggerId` = `triggers`.`triggerId` WHERE `clusterId` = $conflict[clusterId] ORDER BY ");
+		// keep this one
+		$first_id = $triggers[0]['ta_id'];
+		// delete the rest
+		DB::Query("UPDATE `tock_actions` SET `approval` = 'declined' WHERE `ta_id` != $first_id ");
+		Alerts::ConflictAlert($conflict['clusterId']);
+	}
+	
+	$res = DB::GetData( "SELECT `tock_actions`.*,`clusters`.`customerId`,`trigger`.`priority` FROM `tock_actions` INNER JOIN `clusters` ON `tock_actions`.`clusterId` = `clusters`.`clusterId` INNER JOIN `triggers` ON `tock_actions`.`triggerId` = `triggers`.`triggerId` WHERE `approval` IN ('APPROVED','AUTO_APPROVED')");
 	foreach ($res as $action){
 		$id = $action['ta_id'];
 		$trigger = new Trigger ($action['triggerId'],$action['customerId']);
