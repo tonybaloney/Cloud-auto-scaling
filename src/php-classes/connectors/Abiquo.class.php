@@ -345,6 +345,7 @@ class Abiquo implements Connector{
 					'ip'=>$ip['mac'][0],
 					'name'=>$ip['name'][0],
 					'mac'=>$ip['mac'][0],
+					'type'=>'privateip',
 					'link'=>$this->url."cloud/virtualdatacenters/$vdc_id/privatenetworks/$network_id/ips/".$ip['id'][0]
 					);
 			}
