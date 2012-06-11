@@ -239,6 +239,24 @@ class Abiquo implements Connector{
 	}
 	
 	/** 
+	 * Request to the API, expect XML back and format into assoc array and return 
+	 * @param string $url URI to request (will be appended to the address of the API)
+	 * @param string $accept The ACCEPT: header for HTTP request
+	 * @param string $message The XML message for the API
+	 * @param string $content_type the Content-Type header in the HTTP request
+	 * @return Array Object of the returned data
+	 * @access private
+	 */	 
+	private function ApiPUTRequest( $url, $accept, $message, $content_type ) {
+		$opt = array( 
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => $message,
+			CURLOPT_HTTPHEADER => array('Accept:'.$accept,'Content-Type:'.$content_type),
+		);
+		return $this->ApiRequest($url, $accept, $opt);
+	}
+	
+	/** 
 	 * Convert an XML string into an associative array
 	 * @param string $xml XML String
 	 * @return Array
@@ -302,10 +320,54 @@ class Abiquo implements Connector{
 	 * Get a list of Private Networks (VLANs) in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoPrivateNetworks ($vdc_id){
+	private function GetAbiquoPrivateNetworks ($vdc_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks",'application/vnd.abiquo.vlans+xml');
+	}
+	
+	/**
+	 * Get the IP's of a Private Network
+	 * @param int $vdc_id The ID of the Virtual Data Center
+	 * @param int $network_id The ID of the Private Network
+	 * @param bool $free Only search for available IPs
+	 * @access private
+	 * @return Array array of IPs ('id','ip','name','mac','link')
+	 **/
+	private function GetAbiquoPrivateNetworkIps ($vdc_id,$network_id,$free=false){
+		$free = ($free?'true','false'); // bool->string
+		$result = $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$network_id/ips?free=$free",'application/vnd.abiquo.ips+xml;version=2.0');
+		$results=array();
+		if (is_array($result)){
+			foreach ($result['ip'] as $ip) {
+				$results[] = array (
+					'id'=>$ip['id'][0], 
+					'ip'=>$ip['mac'][0],
+					'name'=>$ip['name'][0],
+					'mac'=>$ip['mac'][0],
+					'link'=>$this->url."cloud/virtualdatacenters/$vdc_id/privatenetworks/$network_id/ips/".$ip['id'][0]
+					);
+			}
+		}
+		return $results;
+	}
+	
+	/**
+	 * Set the IPs for a Virtual Machine
+	 * http://wiki.abiquo.com/display/ABI20/VirtualMachineNetworkConfiguration#VirtualMachineNetworkConfiguration-ChangetheassociatedIPs
+	 * @param int $vdc_id ID of the Virtual Data Center
+	 * @param int $vapp_id ID of the Virtual Appliance
+	 * @param int $vm_id ID of the Virtual Machine
+	 * @param array $ips The Array of IPs from GetAbiquoPrivateNetworkIps
+	 * @return Array assoc array of the response
+	 * @access private
+	 **/
+	private function SetVMIPs ( $vdc_id, $vapp_id, $vm_id, $ips ) {
+       $request = '<links>';
+	   foreach ($ips as $ip)
+               $request .= "<link rel=\"$ip[type]\" href=\"$ip[link]\"/>";
+       $request .= '</links>';
+	   return $this->ApiPUTRequest ("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/network/nics",'application/vnd.abiquo.acceptedrequest+xml; version=2.0;',$request,'application/vnd.abiquo.links+xml; version=2.0;');
 	}
 	
 	/**
@@ -344,7 +406,7 @@ class Abiquo implements Connector{
 	 * Get a list of IPs used in a specified Virtual Appliance
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoIPsUsedInVirtualAppliance ($vdc_id, $vapp_id){
@@ -355,7 +417,7 @@ class Abiquo implements Connector{
 	 * Get a list of Virtual Machines in a specified Virtual Appliance
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoVirtualMachines($vdc_id,$vapp_id){
@@ -367,7 +429,7 @@ class Abiquo implements Connector{
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @param int $vm_id ID of the Virtual Machine
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
@@ -403,7 +465,7 @@ class Abiquo implements Connector{
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @param int $vm_id ID of the Virtual Machine
-	 * @return Object SimpleXML Object tree of the result
+	 * @return Array Object tree of the result
 	 * @access public
 	 */
 	public function GetAbiquoVirtualMachineNetworks($vdc_id,$vapp_id,$vm_id){
@@ -570,9 +632,9 @@ class Abiquo implements Connector{
 	 * @param int $clusterLocation The ID of the cluster location
 	 * @param int $targetApplianceId The ID of the target virtual appliance
 	 * @param int $targetVlanId The ID of the target VLAN
+	 * @param int $targetSecondaryVlanId The ID of the target secondary VLAN
 	 * @param string $templateUrl The REST URL to create the VM from
 	 * @param string $vmname The name of the new VM.
-	 * TODO: Create Virtual NICs
 	 **/
 	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $targetSecondaryVlanId, $templateUrl, $vmname ) {
 		// Get the Virtual Data Center
@@ -580,6 +642,21 @@ class Abiquo implements Connector{
 		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
 		$vmId = $vm['virtualmachine']['id'][0];
 		// Add NICS
+		$ips = array();
+		if ($targetVlanId){
+			$primary_ips = $this->GetAbiquoPrivateNetworkIPs($clusterLocation,$targetVlanId,true);
+			if (count($primary_ips) > 0) 
+				throw new ConnectorException( $this, "VLAN is out of available IPs ($targetVlanId)",CEX_INVALID_API_RESPONSE);
+			$ips[] = $primary_ips[0];
+		}
+		if ($targetSecondaryVlanId){
+			$secondary_ips = $this->GetAbiquoPrivateNetworkIPs($clusterLocation,$targetSecondaryVlanId,true);
+			if (count($secondary_ips) > 0) 
+				throw new ConnectorException( $this, "Secondary VLAN is out of available IPs ($targetSecondaryVlanId)",CEX_INVALID_API_RESPONSE);
+			$ips[] = $secondary_ips[0];
+		}
+		$this->SetVMIPs ( $clusterLocation, $targetApplianceId, $vmId, $ips ) ; 
+		// Deploy machine
 		$this->DeployAbiquoVirtualMachine($clusterLocation,$targetApplianceId,$vmId);
 	}
 	
@@ -604,6 +681,10 @@ class Abiquo implements Connector{
 			throw new ConnectorException($this,'Could not find any target VM\'s to undeploy.',CEX_NO_TARGET_VM);
 	}
 	
+	/**
+	 * Get the templates for this enterprise
+	 * @access public 
+	 **/
 	public function GetTemplates ( ){
 		$templ = $this->GetAbiquoEnterpriseTemplates();
 		$results=array();

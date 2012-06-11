@@ -32,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">8</span></a></li>
+                <span class="label label-info">4</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">10</span>
@@ -65,7 +65,6 @@
 <li class="method public "><a href="#GetAbiquoEnterpriseTemplates" title="GetAbiquoEnterpriseTemplates :: Get a list of templates from Abiquo for this enterprise"><span class="description">Get a list of templates from Abiquo for this enterprise</span><pre>GetAbiquoEnterpriseTemplates()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoIPsUsedInVirtualAppliance" title="GetAbiquoIPsUsedInVirtualAppliance :: Get a list of IPs used in a specified Virtual Appliance"><span class="description">Get a list of IPs used in a specified Virtual Appliance</span><pre>GetAbiquoIPsUsedInVirtualAppliance()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoPrivateNetwork" title="GetAbiquoPrivateNetwork :: Get a specific private network in this enterprise"><span class="description">Get a specific private network in this enterprise</span><pre>GetAbiquoPrivateNetwork()</pre></a></li>
-<li class="method public "><a href="#GetAbiquoPrivateNetworks" title="GetAbiquoPrivateNetworks :: Get a list of Private Networks (VLANs) in this Enterprise"><span class="description">Get a list of Private Networks (VLANs) in this Enterprise</span><pre>GetAbiquoPrivateNetworks()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoVirtualAppliance" title="GetAbiquoVirtualAppliance :: Get a Virtual Appliance in this Enterprise"><span class="description">Get a Virtual Appliance in this Enterprise</span><pre>GetAbiquoVirtualAppliance()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoVirtualAppliances" title="GetAbiquoVirtualAppliances :: Get a list of Virtual Appliances in this Enterprise"><span class="description">Get a list of Virtual Appliances in this Enterprise</span><pre>GetAbiquoVirtualAppliances()</pre></a></li>
 <li class="method public "><a href="#GetAbiquoVirtualDatacenter" title="GetAbiquoVirtualDatacenter :: Get a VDC in logged in Enterprise"><span class="description">Get a VDC in logged in Enterprise</span><pre>GetAbiquoVirtualDatacenter()</pre></a></li>
@@ -77,20 +76,25 @@
 <li class="method public "><a href="#GetLocations" title="GetLocations :: Get a list of locations, for multi-regional cloud platforms."><span class="description">Get a list of locations, for multi-regional cloud platforms.</span><pre>GetLocations()</pre></a></li>
 <li class="method public "><a href="#GetPrivateNetwork" title="GetPrivateNetwork :: Get a list of private networks"><span class="description">Get a list of private networks</span><pre>GetPrivateNetwork()</pre></a></li>
 <li class="method public "><a href="#GetPrivateNetworks" title="GetPrivateNetworks :: Get a list of private networks"><span class="description">Get a list of private networks</span><pre>GetPrivateNetworks()</pre></a></li>
-<li class="method public "><a href="#GetTemplates" title="GetTemplates :: "><span class="description">GetTemplates()
-        </span><pre>GetTemplates()</pre></a></li>
+<li class="method public "><a href="#GetTemplates" title="GetTemplates :: Get the templates for this enterprise"><span class="description">Get the templates for this enterprise</span><pre>GetTemplates()</pre></a></li>
 <li class="method public "><a href="#GetVirtualMachineNetworks" title="GetVirtualMachineNetworks :: Get a list of VM s"><span class="description">Get a list of VM s</span><pre>GetVirtualMachineNetworks()</pre></a></li>
 <li class="method public "><a href="#GetVirtualMachines" title="GetVirtualMachines :: Get a list of VM s"><span class="description">Get a list of VM s</span><pre>GetVirtualMachines()</pre></a></li>
 <li class="method public "><a href="#TestConnection" title="TestConnection :: Test connection to the cloud provider"><span class="description">Test connection to the cloud provider</span><pre>TestConnection()</pre></a></li>
 <li class="method public "><a href="#UndeployAbiquoVirtualMachine" title="UndeployAbiquoVirtualMachine :: Undeploy a Virtual Machine in this VDC/VAPP"><span class="description">Undeploy a Virtual Machine in this VDC/VAPP</span><pre>UndeployAbiquoVirtualMachine()</pre></a></li>
 <li class="nav-header private">» Private</li>
 <li class="method private "><a href="#ApiPOSTRequest" title="ApiPOSTRequest :: Request to the API, expect XML back and format into assoc array and return"><span class="description">Request to the API, expect XML back and format into assoc array and return</span><pre>ApiPOSTRequest()</pre></a></li>
+<li class="method private "><a href="#ApiPUTRequest" title="ApiPUTRequest :: Request to the API, expect XML back and format into assoc array and return"><span class="description">Request to the API, expect XML back and format into assoc array and return</span><pre>ApiPUTRequest()</pre></a></li>
 <li class="method private "><a href="#ApiRequest" title="ApiRequest :: Request to the API, expect XML back and format into assoc array and return"><span class="description">Request to the API, expect XML back and format into assoc array and return</span><pre>ApiRequest()</pre></a></li>
 <li class="method private "><a href="#Authenticate" title="Authenticate :: Login to the abiquo server, get the auth token and session (jsession) id
 Store these in the class for later API calls."><span class="description">Login to the abiquo server, get the auth token and session (jsession) id
 Store these in the class for later API calls.</span><pre>Authenticate()</pre></a></li>
+<li class="method private "><a href="#GetAbiquoPrivateNetworkIps" title="GetAbiquoPrivateNetworkIps :: Get the IP's of a Private Network"><span class="description">Get the IP's of a Private Network</span><pre>GetAbiquoPrivateNetworkIps()</pre></a></li>
+<li class="method private "><a href="#GetAbiquoPrivateNetworks" title="GetAbiquoPrivateNetworks :: Get a list of Private Networks (VLANs) in this Enterprise"><span class="description">Get a list of Private Networks (VLANs) in this Enterprise</span><pre>GetAbiquoPrivateNetworks()</pre></a></li>
 <li class="method private "><a href="#HttpRequest" title="HttpRequest :: Execute a HTTP request using CURL"><span class="description">Execute a HTTP request using CURL</span><pre>HttpRequest()</pre></a></li>
 <li class="method private "><a href="#SanitiseForXML" title="SanitiseForXML :: Sanitise a string for XML input (remove &lt; and &gt; characters)"><span class="description">Sanitise a string for XML input (remove &lt; and &gt; characters)</span><pre>SanitiseForXML()</pre></a></li>
+<li class="method private "><a href="#SetVMIPs" title="SetVMIPs :: Set the IPs for a Virtual Machine
+http://wiki.abiquo.com/display/ABI20/VirtualMachineNetworkConfiguration#VirtualMachineNetworkConfiguration-ChangetheassociatedIPs"><span class="description">Set the IPs for a Virtual Machine
+http://wiki.abiquo.com/display/ABI20/VirtualMachineNetworkConfiguration#VirtualMachineNetworkConfiguration-ChangetheassociatedIPs</span><pre>SetVMIPs()</pre></a></li>
 <li class="method private "><a href="#sxiToArray" title="sxiToArray :: Convert a SimpleXMLIterator to an associative array
 TODO: Carry XML element attributes into the structure"><span class="description">Convert a SimpleXMLIterator to an associative array
 TODO: Carry XML element attributes into the structure</span><pre>sxiToArray()</pre></a></li>
@@ -158,7 +162,7 @@ $a->GetVirtualDatacenters();</p></p>
 </div>
 <a name="CreateVM" id="CreateVM"></a><div class="element clickable method public CreateVM" data-toggle="collapse" data-target=".CreateVM .collapse">
 <h2>Create a VM</h2>
-<pre>CreateVM(int $clusterLocation, int $targetApplianceId, int $targetVlanId, $targetSecondaryVlanId, string $templateUrl, string $vmname) </pre>
+<pre>CreateVM(int $clusterLocation, int $targetApplianceId, int $targetVlanId, int $targetSecondaryVlanId, string $templateUrl, string $vmname) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -178,14 +182,13 @@ $a->GetVirtualDatacenters();</p></p>
 <code>int</code><p>The ID of the target VLAN</p></div>
 <div class="subelement argument">
 <h4>$targetSecondaryVlanId</h4>
-<code></code>
-</div>
+<code>int</code><p>The ID of the target secondary VLAN</p></div>
 <div class="subelement argument">
 <h4>$templateUrl</h4>
 <code>string</code><p>The REST URL to create the VM from</p></div>
 <div class="subelement argument">
 <h4>$vmname</h4>
-<code>string</code><p>The name of the new VM. TODO: Create Virtual NICs</p></div>
+<code>string</code><p>The name of the new VM.</p></div>
 </div></div>
 </div>
 <a name="DeployAbiquoVirtualMachine" id="DeployAbiquoVirtualMachine"></a><div class="element clickable method public DeployAbiquoVirtualMachine" data-toggle="collapse" data-target=".DeployAbiquoVirtualMachine .collapse">
@@ -251,7 +254,7 @@ $a->GetVirtualDatacenters();</p></p>
 </div>
 <a name="GetAbiquoIPsUsedInVirtualAppliance" id="GetAbiquoIPsUsedInVirtualAppliance"></a><div class="element clickable method public GetAbiquoIPsUsedInVirtualAppliance" data-toggle="collapse" data-target=".GetAbiquoIPsUsedInVirtualAppliance .collapse">
 <h2>Get a list of IPs used in a specified Virtual Appliance</h2>
-<pre>GetAbiquoIPsUsedInVirtualAppliance(int $vdc_id, int $vapp_id) : Object</pre>
+<pre>GetAbiquoIPsUsedInVirtualAppliance(int $vdc_id, int $vapp_id) : Array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -268,7 +271,7 @@ $a->GetVirtualDatacenters();</p></p>
 <code>int</code><p>ID of the Virtual Appliance</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>Object</code>SimpleXML Object tree of the result</div>
+<code>Array</code>Object tree of the result</div>
 </div></div>
 </div>
 <a name="GetAbiquoPrivateNetwork" id="GetAbiquoPrivateNetwork"></a><div class="element clickable method public GetAbiquoPrivateNetwork" data-toggle="collapse" data-target=".GetAbiquoPrivateNetwork .collapse">
@@ -288,25 +291,6 @@ $a->GetVirtualDatacenters();</p></p>
 <div class="subelement argument">
 <h4>$pn_id</h4>
 <code>int</code><p>ID of the Private Network</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>Array</code>Object tree of the result</div>
-</div></div>
-</div>
-<a name="GetAbiquoPrivateNetworks" id="GetAbiquoPrivateNetworks"></a><div class="element clickable method public GetAbiquoPrivateNetworks" data-toggle="collapse" data-target=".GetAbiquoPrivateNetworks .collapse">
-<h2>Get a list of Private Networks (VLANs) in this Enterprise</h2>
-<pre>GetAbiquoPrivateNetworks(int $vdc_id) : Array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="span8">
-<p class="long_description"></p>
-<table class="table table-bordered"><tr>
-<th>access</th>
-<td>public</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$vdc_id</h4>
-<code>int</code><p>ID of the Virtual Data Center</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>Array</code>Object tree of the result</div>
@@ -389,7 +373,7 @@ $a->GetVirtualDatacenters();</p></p>
 </div>
 <a name="GetAbiquoVirtualMachine" id="GetAbiquoVirtualMachine"></a><div class="element clickable method public GetAbiquoVirtualMachine" data-toggle="collapse" data-target=".GetAbiquoVirtualMachine .collapse">
 <h2>Get a Virtual Machine in this VDC/VAPP</h2>
-<pre>GetAbiquoVirtualMachine(int $vdc_id, int $vapp_id, int $vm_id) : Object</pre>
+<pre>GetAbiquoVirtualMachine(int $vdc_id, int $vapp_id, int $vm_id) : Array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -409,12 +393,12 @@ $a->GetVirtualDatacenters();</p></p>
 <code>int</code><p>ID of the Virtual Machine</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>Object</code>SimpleXML Object tree of the result</div>
+<code>Array</code>Object tree of the result</div>
 </div></div>
 </div>
 <a name="GetAbiquoVirtualMachineNetworks" id="GetAbiquoVirtualMachineNetworks"></a><div class="element clickable method public GetAbiquoVirtualMachineNetworks" data-toggle="collapse" data-target=".GetAbiquoVirtualMachineNetworks .collapse">
 <h2>Get a Virtual Machine Networks in this VDC/VAPP</h2>
-<pre>GetAbiquoVirtualMachineNetworks(int $vdc_id, int $vapp_id, int $vm_id) : Object</pre>
+<pre>GetAbiquoVirtualMachineNetworks(int $vdc_id, int $vapp_id, int $vm_id) : Array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -434,12 +418,12 @@ $a->GetVirtualDatacenters();</p></p>
 <code>int</code><p>ID of the Virtual Machine</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>Object</code>SimpleXML Object tree of the result</div>
+<code>Array</code>Object tree of the result</div>
 </div></div>
 </div>
 <a name="GetAbiquoVirtualMachines" id="GetAbiquoVirtualMachines"></a><div class="element clickable method public GetAbiquoVirtualMachines" data-toggle="collapse" data-target=".GetAbiquoVirtualMachines .collapse">
 <h2>Get a list of Virtual Machines in a specified Virtual Appliance</h2>
-<pre>GetAbiquoVirtualMachines(int $vdc_id, int $vapp_id) : Object</pre>
+<pre>GetAbiquoVirtualMachines(int $vdc_id, int $vapp_id) : Array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="span8">
 <p class="long_description"></p>
@@ -456,7 +440,7 @@ $a->GetVirtualDatacenters();</p></p>
 <code>int</code><p>ID of the Virtual Appliance</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>Object</code>SimpleXML Object tree of the result</div>
+<code>Array</code>Object tree of the result</div>
 </div></div>
 </div>
 <a name="GetAppliances" id="GetAppliances"></a><div class="element clickable method public GetAppliances" data-toggle="collapse" data-target=".GetAppliances .collapse">
@@ -535,11 +519,16 @@ $a->GetVirtualDatacenters();</p></p>
 </div></div>
 </div>
 <a name="GetTemplates" id="GetTemplates"></a><div class="element clickable method public GetTemplates" data-toggle="collapse" data-target=".GetTemplates .collapse">
-<h2>GetTemplates()
-        </h2>
+<h2>Get the templates for this enterprise</h2>
 <pre>GetTemplates() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="span8"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
 </div>
 <a name="GetVirtualMachineNetworks" id="GetVirtualMachineNetworks"></a><div class="element clickable method public GetVirtualMachineNetworks" data-toggle="collapse" data-target=".GetVirtualMachineNetworks .collapse">
 <h2>Get a list of VM s</h2>
@@ -653,6 +642,36 @@ $a->GetVirtualDatacenters();</p></p>
 <code>Array</code>Object of the returned data</div>
 </div></div>
 </div>
+<a name="ApiPUTRequest" id="ApiPUTRequest"></a><div class="element clickable method private ApiPUTRequest" data-toggle="collapse" data-target=".ApiPUTRequest .collapse">
+<h2>Request to the API, expect XML back and format into assoc array and return</h2>
+<pre>ApiPUTRequest(string $url, string $accept, string $message, string $content_type) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$url</h4>
+<code>string</code><p>URI to request (will be appended to the address of the API)</p>
+</div>
+<div class="subelement argument">
+<h4>$accept</h4>
+<code>string</code><p>The ACCEPT: header for HTTP request</p></div>
+<div class="subelement argument">
+<h4>$message</h4>
+<code>string</code><p>The XML message for the API</p></div>
+<div class="subelement argument">
+<h4>$content_type</h4>
+<code>string</code><p>the Content-Type header in the HTTP request</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Array</code>Object of the returned data</div>
+</div></div>
+</div>
 <a name="ApiRequest" id="ApiRequest"></a><div class="element clickable method private ApiRequest" data-toggle="collapse" data-target=".ApiRequest .collapse">
 <h2>Request to the API, expect XML back and format into assoc array and return</h2>
 <pre>ApiRequest(string $url, string $accept, array $extraOpt) : Array</pre>
@@ -695,6 +714,50 @@ Store these in the class for later API calls.</h2>
 <code>bool</code>Success or failure on finding server and establishing a login</div>
 </div></div>
 </div>
+<a name="GetAbiquoPrivateNetworkIps" id="GetAbiquoPrivateNetworkIps"></a><div class="element clickable method private GetAbiquoPrivateNetworkIps" data-toggle="collapse" data-target=".GetAbiquoPrivateNetworkIps .collapse">
+<h2>Get the IP's of a Private Network</h2>
+<pre>GetAbiquoPrivateNetworkIps(int $vdc_id, int $network_id, bool $free) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>The ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$network_id</h4>
+<code>int</code><p>The ID of the Private Network</p></div>
+<div class="subelement argument">
+<h4>$free</h4>
+<code>bool</code><p>Only search for available IPs</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Array</code>array of IPs ('id','ip','name','mac','link')</div>
+</div></div>
+</div>
+<a name="GetAbiquoPrivateNetworks" id="GetAbiquoPrivateNetworks"></a><div class="element clickable method private GetAbiquoPrivateNetworks" data-toggle="collapse" data-target=".GetAbiquoPrivateNetworks .collapse">
+<h2>Get a list of Private Networks (VLANs) in this Enterprise</h2>
+<pre>GetAbiquoPrivateNetworks(int $vdc_id) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Array</code>Object tree of the result</div>
+</div></div>
+</div>
 <a name="HttpRequest" id="HttpRequest"></a><div class="element clickable method private HttpRequest" data-toggle="collapse" data-target=".HttpRequest .collapse">
 <h2>Execute a HTTP request using CURL</h2>
 <pre>HttpRequest(string $url, array $opt) : string | bool</pre>
@@ -735,6 +798,35 @@ Store these in the class for later API calls.</h2>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code>The sanitised string.</div>
+</div></div>
+</div>
+<a name="SetVMIPs" id="SetVMIPs"></a><div class="element clickable method private SetVMIPs" data-toggle="collapse" data-target=".SetVMIPs .collapse">
+<h2>Set the IPs for a Virtual Machine
+http://wiki.abiquo.com/display/ABI20/VirtualMachineNetworkConfiguration#VirtualMachineNetworkConfiguration-ChangetheassociatedIPs</h2>
+<pre>SetVMIPs(int $vdc_id, int $vapp_id, int $vm_id, array $ips) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="span8">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$vdc_id</h4>
+<code>int</code><p>ID of the Virtual Data Center</p></div>
+<div class="subelement argument">
+<h4>$vapp_id</h4>
+<code>int</code><p>ID of the Virtual Appliance</p></div>
+<div class="subelement argument">
+<h4>$vm_id</h4>
+<code>int</code><p>ID of the Virtual Machine</p></div>
+<div class="subelement argument">
+<h4>$ips</h4>
+<code>array</code><p>The Array of IPs from GetAbiquoPrivateNetworkIps</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Array</code>assoc array of the response</div>
 </div></div>
 </div>
 <a name="sxiToArray" id="sxiToArray"></a><div class="element clickable method private sxiToArray" data-toggle="collapse" data-target=".sxiToArray .collapse">
@@ -880,7 +972,7 @@ authenticated request</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a2</a> and<br>
-            generated on 2012-06-06T14:03:12+01:00.<br></footer></div>
+            generated on 2012-06-11T10:28:15+01:00.<br></footer></div>
 </div>
 </body>
 </html>
