@@ -76,6 +76,10 @@ switch ($_GET['view']){
 			}
 		}
 		break;		
+	case 'clockd_status':
+		$process_count = exec ( "ps axc | awk  '{print $5}' | grep clockd | wc -l" ) ;
+		$data['running'] = ($process_count > 0) ;
+		break;
 }
 echo json_encode($data);
 ?>

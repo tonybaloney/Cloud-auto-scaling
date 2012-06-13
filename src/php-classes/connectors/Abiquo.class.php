@@ -335,7 +335,7 @@ class Abiquo implements Connector{
 	 * @return Array array of IPs ('id','ip','name','mac','link')
 	 **/
 	private function GetAbiquoPrivateNetworkIps ($vdc_id,$network_id,$free=false){
-		$free = ($free?'true','false'); // bool->string
+		$free = ($free?'true':'false'); // bool->string
 		$result = $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$network_id/ips?free=$free",'application/vnd.abiquo.ips+xml;version=2.0');
 		$results=array();
 		if (is_array($result)){

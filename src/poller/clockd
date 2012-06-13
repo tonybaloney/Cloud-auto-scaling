@@ -56,7 +56,7 @@ while (1==1){
 		Alerts::ConflictAlert($conflict['clusterId']);
 	}
 	
-	$res = DB::GetData( "SELECT `tock_actions`.*,`clusters`.`customerId`,`trigger`.`priority` FROM `tock_actions` INNER JOIN `clusters` ON `tock_actions`.`clusterId` = `clusters`.`clusterId` INNER JOIN `triggers` ON `tock_actions`.`triggerId` = `triggers`.`triggerId` WHERE `approval` IN ('APPROVED','AUTO_APPROVED')");
+	$res = DB::GetData( "SELECT `tock_actions`.*,`clusters`.`customerId`,`triggers`.`priority` FROM `tock_actions` INNER JOIN `clusters` ON `tock_actions`.`clusterId` = `clusters`.`clusterId` INNER JOIN `triggers` ON `tock_actions`.`triggerId` = `triggers`.`triggerId` WHERE `approval` IN ('APPROVED','AUTO_APPROVED')");
 	foreach ($res as $action){
 		$id = $action['ta_id'];
 		$trigger = new Trigger ($action['triggerId'],$action['customerId']);

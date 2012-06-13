@@ -14,9 +14,9 @@
 
     <link rel="stylesheet" type="text/css" href="resources/css/my-ext-theme.css">
     <link rel="stylesheet" type="text/css" href="assets/portal.css" />
-
-    <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
-    
+	<link rel="stylesheet" type="text/css" href="extjs/src/ux/statusbar/css/statusbar.css" />
+    <script type="text/javascript" src="extjs/ext-all.js"></script>
+    <script type="text/javascript" src="extjs/src/ux/statusbar/StatusBar.js"></script>
     <!-- MVC Views and Models -->
     <script type="text/javascript" src="models/Trigger.js"></script>
     <script type="text/javascript" src="models/Cluster.js"></script>
@@ -40,10 +40,36 @@
 
     <script type="text/javascript">
        Ext.onReady(function(){
-       Ext.create('Ext.app.Portal');
-	Ext.get('tock-logs').mask("Select a cluster.","x-cust-mask");
-	Ext.get('trigger-grid').mask("Select a cluster.","x-cust-mask");
-	Ext.get('tick-logs').mask("Select a trigger.","x-cust-mask");
+			Ext.create('Ext.app.Portal');
+			Ext.get('tock-logs').mask("Select a cluster.","x-cust-mask");
+			Ext.get('trigger-grid').mask("Select a cluster.","x-cust-mask");
+			Ext.get('tick-logs').mask("Select a trigger.","x-cust-mask");
+			Ext.TaskManager.start({
+				run: function (){
+					Ext.Ajax.request({
+						url: 'data.php?view=clockd_status',
+						success: function(response, opts) {
+							var obj = Ext.decode(response.responseText);
+							if ( obj.running ) {
+								var sb = Ext.getCmp('basic-statusbar');
+								sb.setStatus({
+									text: 'Clockd running',
+									iconCls: 'x-status-valid'
+								});
+							} else {
+								var sb = Ext.getCmp('basic-statusbar');
+								sb.setStatus({
+									text: 'Clockd not running!',
+									iconCls: 'x-status-error'
+								});
+							}
+						}
+					});
+						
+					},
+				interval: 10000
+			});
+			
         });
     </script>
 </head>

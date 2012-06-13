@@ -9,7 +9,7 @@ Ext.define('Ext.app.Portal', {
 
     extend: 'Ext.container.Viewport',
 
-    uses: ['Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Cloud.TickLogPortlet', 'Cloud.TockLogPortlet','Cloud.ErrorLogPortlet'],
+    uses: ['Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Cloud.TickLogPortlet', 'Cloud.TockLogPortlet','Cloud.ErrorLogPortlet','Ext.ux.StatusBar'],
 	ConfigureAPI : function (){
 		var me = Ext.data.StoreManager.lookup('CustomerStore').getAt(0);
 		var popup = new Ext.Window({
@@ -150,7 +150,18 @@ Ext.define('Ext.app.Portal', {
 							Ext.create('Cloud.TriggerPortlet'),
 							Ext.create('Cloud.TockLogPortlet')
 						]
-					}]
+					}],
+					bbar: Ext.create('Ext.ux.StatusBar', {
+						id:'basic-statusbar',
+						// defaults to use when the status is cleared:
+						defaultText: 'Default status text',
+						// values to set initially:
+						text: 'Checking..',
+						iconCls: 'x-status-valid',
+
+						// any standard Toolbar items:
+						items: [						]
+					})
 				},
 				{
 					region: 'east',
