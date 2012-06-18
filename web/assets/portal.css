@@ -74,4 +74,6 @@
 .icon-error-logs { background-image:url('error_log.png'); !important}
 .icon-refresh { background-image:url('refresh.png'); !important}
 .icon-error-logs { background-image:url('error_log.png'); !important}
+.icon-scale-up { background-image:url('scale_up.png'); !important}
+.icon-scale-down { background-image:url('scale_down.png'); !important}
 .x-cust-mask div{padding:5px 10px 5px 25px;background-image:url('error_log.png');background-repeat:no-repeat;background-position:5px center;cursor:wait;border:1px solid #a3bad9;background-color:#eeeeee;color:#222222;font:normal 11px tahoma, arial, verdana, sans-serif}

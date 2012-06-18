@@ -101,12 +101,9 @@ class Abiquo implements Connector{
 		$vdcs = $this->GetAbiquoVirtualDatacenters();
 		if (is_array($vdcs)){
 			if (is_array($vdcs['virtualDatacenter'][0]['link'])){
-				foreach ($vdcs['virtualDatacenter'][0]['link'] as $link){
-					if ($link['rel'] == 'enterprise') {
-						$parts = explode('/',$link['href']);
-						$this->enterpriseId = $parts[count($parts)-1];
-					}
-				}
+				$link = $this->FindRel($vdcs['virtualDatacenter'][0]['link'],'enterprise');
+				$parts = explode('/',$link['href']);
+				$this->enterpriseId = $parts[count($parts)-1];
 			} else {
 				throw new ConnectorException( $this, "Could not establish Enterprise ID from API response.",CEX_INVALID_API_RESPONSE);
 			}
@@ -192,6 +189,21 @@ class Abiquo implements Connector{
 		return str_replace (str_replace($s,'>','&gt;'), '<','&lt;');
 	}
 	
+	/**
+	 * In an array of 'links' from a REST API response, find the link with the specified rel 
+	 * @param array $link_list the array of links
+	 * @param string $rel the rel
+	 * @return array The link
+	 * @access private
+	 **/
+	private function FindRel( $link_list, $rel ) {
+		foreach ($link_list as $link){
+			if ($link['rel']==$rel) 
+				return $link; 
+		}
+		return false;
+	}
+	
 	/** 
 	 * Request to the API, expect XML back and format into assoc array and return 
 	 * @param string $url URI to request (will be appended to the address of the API)
@@ -202,19 +214,22 @@ class Abiquo implements Connector{
 	 */	 
 	private function ApiRequest( $url, $accept, $extraOpt = false ) {
 		$opt = array( 
-			CURLOPT_FAILONERROR => true,
+			CURLOPT_FAILONERROR => false,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HEADER => false,
 			CURLOPT_HTTPHEADER => array('Accept:'.$accept),
 			CURLOPT_COOKIE => 'auth='.$this->token.'; JSESSIONID='.$this->sessionid 
 			);
 		if ($extraOpt)
-			$opt = array_merge($opt,$extraOpt);
+			$opt = $extraOpt;
 		$res = $this->HttpRequest ($this->url.$url, $opt);
 		if ($res){
 			$array = $this->xml2array($res);
 			if (!is_array($array)){
 				throw new ConnectorException( $this, "Backend did not return valid XML (".var_export($xml, true).")",CEX_INVALID_API_RESPONSE);
+			}
+			if ( isset($array['error']) ) {
+				throw new ConnectorException( $this, "Abiquo returned an error message : '".$array['error'][0]['message'][0]."'",CEX_INVALID_API_RESPONSE);
 			}
 			return $array;
 		} else {
@@ -230,10 +245,14 @@ class Abiquo implements Connector{
 	 * @return Array Object of the returned data
 	 * @access private
 	 */	 
-	private function ApiPOSTRequest( $url, $accept, $message ) {
-		$opt = array( 
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => $message
+	private function ApiPOSTRequest( $url, $accept, $message, $content_type ) {
+		$opt = array(
+			CURLOPT_FAILONERROR => false,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_COOKIE => 'auth='.$this->token.'; JSESSIONID='.$this->sessionid,
+			CURLOPT_POST => 1,
+			CURLOPT_POSTFIELDS => "$message",
+			CURLOPT_HTTPHEADER => array('Accept: '.$accept,'Content-Type: '.$content_type)
 		);
 		return $this->ApiRequest($url, $accept, $opt);
 	}
@@ -247,11 +266,14 @@ class Abiquo implements Connector{
 	 * @return Array Object of the returned data
 	 * @access private
 	 */	 
-	private function ApiPUTRequest( $url, $accept, $message, $content_type ) {
+	private function ApiSpecialRequest( $url, $accept, $message, $content_type, $http_method ) {
 		$opt = array( 
-			CURLOPT_CUSTOMREQUEST => 'PUT',
-			CURLOPT_POSTFIELDS => $message,
-			CURLOPT_HTTPHEADER => array('Accept:'.$accept,'Content-Type:'.$content_type),
+			CURLOPT_FAILONERROR => false,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_COOKIE => 'auth='.$this->token.'; JSESSIONID='.$this->sessionid,
+			CURLOPT_CUSTOMREQUEST => $http_method,
+			CURLOPT_POSTFIELDS => "$message",
+			CURLOPT_HTTPHEADER => array('Accept:'.$accept,'Content-Type:'.$content_type)
 		);
 		return $this->ApiRequest($url, $accept, $opt);
 	}
@@ -300,9 +322,9 @@ class Abiquo implements Connector{
 	/**
 	 * Get a list of VDCs in logged in Enterprise
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoVirtualDatacenters () {
+	private function GetAbiquoVirtualDatacenters () {
 		return $this->ApiRequest('cloud/virtualdatacenters','application/vnd.abiquo.virtualdatacenters+xml');
 	}
 	
@@ -310,9 +332,9 @@ class Abiquo implements Connector{
 	 * Get a VDC in logged in Enterprise	 
 	 * @param int $id ID of the Virtual Data Center
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoVirtualDatacenter ($id){
+	private function GetAbiquoVirtualDatacenter ($id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$id/",'application/vnd.abiquo.virtualdatacenter+xml');
 	}
 	
@@ -334,7 +356,7 @@ class Abiquo implements Connector{
 	 * @access private
 	 * @return Array array of IPs ('id','ip','name','mac','link')
 	 **/
-	private function GetAbiquoPrivateNetworkIps ($vdc_id,$network_id,$free=false){
+	public function GetAbiquoPrivateNetworkIps ($vdc_id,$network_id,$free=false){
 		$free = ($free?'true':'false'); // bool->string
 		$result = $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$network_id/ips?free=$free",'application/vnd.abiquo.ips+xml;version=2.0');
 		$results=array();
@@ -349,6 +371,8 @@ class Abiquo implements Connector{
 					'link'=>$this->url."cloud/virtualdatacenters/$vdc_id/privatenetworks/$network_id/ips/".$ip['id'][0]
 					);
 			}
+		} else {
+			throw new ConnectorException($this, "IP listing was not a valid response.",CEX_INVALID_API_RESPONSE);
 		}
 		return $results;
 	}
@@ -368,7 +392,7 @@ class Abiquo implements Connector{
 	   foreach ($ips as $ip)
                $request .= "<link rel=\"$ip[type]\" href=\"$ip[link]\"/>";
        $request .= '</links>';
-	   return $this->ApiPUTRequest ("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/network/nics",'application/vnd.abiquo.acceptedrequest+xml; version=2.0;',$request,'application/vnd.abiquo.links+xml; version=2.0;');
+	   return $this->ApiSpecialRequest ("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/network/nics",'application/vnd.abiquo.acceptedrequest+xml; version=2.0;',$request,'application/vnd.abiquo.links+xml; version=2.0;','PUT');
 	}
 	
 	/**
@@ -376,9 +400,9 @@ class Abiquo implements Connector{
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $pn_id ID of the Private Network
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoPrivateNetwork ($vdc_id, $pn_id){
+	private function GetAbiquoPrivateNetwork ($vdc_id, $pn_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/privatenetworks/$pn_id",'application/vnd.abiquo.vlan+xml');
 	}
 	
@@ -386,9 +410,9 @@ class Abiquo implements Connector{
 	 * Get a list of Virtual Appliances in this Enterprise
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoVirtualAppliances ($vdc_id){
+	private function GetAbiquoVirtualAppliances ($vdc_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances",'application/vnd.abiquo.virtualappliances+xml');
 	}
 	
@@ -397,9 +421,9 @@ class Abiquo implements Connector{
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoVirtualAppliance ($vdc_id,$vapp_id){
+	private function GetAbiquoVirtualAppliance ($vdc_id,$vapp_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id",'application/vnd.abiquo.virtualappliance+xml');
 	}
 
@@ -408,9 +432,9 @@ class Abiquo implements Connector{
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoIPsUsedInVirtualAppliance ($vdc_id, $vapp_id){
+	private function GetAbiquoIPsUsedInVirtualAppliance ($vdc_id, $vapp_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/action/ips",'application/vnd.abiquo.ip+xml');
 	}
 	
@@ -419,9 +443,9 @@ class Abiquo implements Connector{
 	 * @param int $vdc_id ID of the Virtual Data Center
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoVirtualMachines($vdc_id,$vapp_id){
+	private function GetAbiquoVirtualMachines($vdc_id,$vapp_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines",'application/vnd.abiquo.virtualmachines+xml');
 	}
 	
@@ -431,9 +455,9 @@ class Abiquo implements Connector{
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @param int $vm_id ID of the Virtual Machine
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
+	private function GetAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id",'application/vnd.abiquo.virtualmachine+xml');
 	}
 	
@@ -443,9 +467,9 @@ class Abiquo implements Connector{
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @param int $vm_id ID of the Virtual Machine
 	 * @return Array
-	 * @access public
+	 * @access private
 	 */
-	public function DeployAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
+	private function DeployAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/deploy",'application/vnd.abiquo.acceptedrequest+xml');
 	}
 	
@@ -455,9 +479,9 @@ class Abiquo implements Connector{
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @param int $vm_id ID of the Virtual Machine
 	 * @return Array
-	 * @access public
+	 * @access private
 	 */
-	public function UndeployAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
+	private function UndeployAbiquoVirtualMachine($vdc_id,$vapp_id,$vm_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/undeploy",'application/vnd.abiquo.acceptedrequest+xml');
 	}
 	
@@ -467,19 +491,66 @@ class Abiquo implements Connector{
 	 * @param int $vapp_id ID of the Virtual Appliance
 	 * @param int $vm_id ID of the Virtual Machine
 	 * @return Array Object tree of the result
-	 * @access public
+	 * @access private
 	 */
-	public function GetAbiquoVirtualMachineNetworks($vdc_id,$vapp_id,$vm_id){
+	private function GetAbiquoVirtualMachineNetworks($vdc_id,$vapp_id,$vm_id){
 		return $this->ApiRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/network/nics",'application/vnd.abiquo.nics+xml');
 	}
 	
 	/**
 	 * Get a list of templates from Abiquo for this enterprise
-	 * @access public
+	 * @access private
 	 * @return array of response
 	 **/
-	public function GetAbiquoEnterpriseTemplates () {
+	private function GetAbiquoEnterpriseTemplates () {
 		return $this->ApiRequest("admin/enterprises/$this->enterpriseId/appslib/templateDefinitions",'application/vnd.abiquo.templatedefinitions+xml');
+	}
+	
+	/**
+	 * Get a list of templates from the datacenter repository for this enterprise 
+	 * @access private
+	 * @return array of response
+	 **/
+	private function GetAbiquoDatacenterTemplates($dc_id){
+		return $this->ApiRequest("admin/enterprises/$this->enterpriseId/datacenterrepositories/$dc_id/virtualmachinetemplates",'application/vnd.abiquo.virtualmachinetemplates+xml');
+	}
+	
+	/**
+	 * Get the datacenter ID for the given VDC ID
+	 * @param int $vdc_id Virtual Data center ID
+	 * @return int datacenter ID
+	 * @access private
+	 **/
+	private function GetVirtualDatacenterDatacenterID($vdc_id){
+		$vdc = $this->GetAbiquoVirtualDatacenter($vdc_id);
+		$link = $this->FindRel($vdc['link'],'datacenter');
+		$parts = explode('/',$link['href']);
+		return $parts[count($parts)-1];
+	}
+	
+	/**
+	 * Create an instance (snapshot) of a vm
+	 * @param int $vdc_id the ID of the virtual data center
+	 * @param int $vapp_id the Id of the virtual appliance
+	 * @param int $vm_id The ID of the VM
+	 * @param string $snapshot_name the name of the snapshot
+	 * @access public
+	 **/
+	public function AbiquoSnapshotVm($vdc_id, $vapp_id, $vm_id, $snapshot_name ) {
+		$accept = "application/vnd.abiquo.acceptedrequest+xml; version=2.0;";
+		$type = "application/vnd.abiquo.virtualmachineinstance+xml; version=2.0;";
+		$message = "<virtualmachineinstance><instanceName>".$this->SanitiseForXML($snapshot_name)."</instanceName></virtualmachineinstance>";
+		return $this->ApiPOSTRequest("cloud/virtualdatacenters/$vdc_id/virtualappliances/$vapp_id/virtualmachines/$vm_id/action/instance",$accept,$message,$type ) ;
+	}
+	
+	/** 
+	 * delete a template
+	 * @param int $repo_id the id of the datacenter repository
+	 * @param int $template_id the id of the template
+	 **/
+	public function AbiquoDeleteTemplate($repo_id,$template_id){
+		$url = "admin/enterprises/$this->enterpriseId/datacenterrepositories/$repo_id/virtualmachinetemplates/$template_id";
+		$this->ApiSpecialRequest($url,"","","","DELETE");
 	}
 	
 	/**
@@ -567,7 +638,6 @@ class Abiquo implements Connector{
 		$vdcs = $this->GetAbiquoPrivateNetwork($location,$networkId);
 		$results=array();
 		if (is_array($vdcs)){
-			print_r($vdcs);
 			foreach ($vdcs['network'] as $vdc) {
 				$results[] = array (
 					'networkId'=>$vdc['id'][0], 
@@ -640,19 +710,21 @@ class Abiquo implements Connector{
 	public function CreateVM ( $clusterLocation, $targetApplianceId, $targetVlanId, $targetSecondaryVlanId, $templateUrl, $vmname ) {
 		// Get the Virtual Data Center
 		$request = "<virtualMachine><link href=\"".$templateUrl."\" rel=\"virtualmachinetemplate\" title=\"$vmname\"/></virtualMachine>";
-		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request);
-		$vmId = $vm['virtualmachine']['id'][0];
+		echo $request;
+		$vm = $this->ApiPOSTRequest("cloud/virtualdatacenters/$clusterLocation/virtualappliances/$targetApplianceId/virtualmachines",'application/vnd.abiquo.virtualmachine+xml',$request,'application/vnd.abiquo.virtualmachine+xml;version=2.0');
+		if (!$vm) throw new ConnectorException($this, 'Failed to create VM', CEX_INVALID_API_RESPONSE);
+		$vmId = $vm['id'][0];
 		// Add NICS
 		$ips = array();
 		if ($targetVlanId){
 			$primary_ips = $this->GetAbiquoPrivateNetworkIPs($clusterLocation,$targetVlanId,true);
-			if (count($primary_ips) > 0) 
+			if (count($primary_ips) == 0) 
 				throw new ConnectorException( $this, "VLAN is out of available IPs ($targetVlanId)",CEX_INVALID_API_RESPONSE);
 			$ips[] = $primary_ips[0];
 		}
 		if ($targetSecondaryVlanId){
 			$secondary_ips = $this->GetAbiquoPrivateNetworkIPs($clusterLocation,$targetSecondaryVlanId,true);
-			if (count($secondary_ips) > 0) 
+			if (count($secondary_ips) == 0) 
 				throw new ConnectorException( $this, "Secondary VLAN is out of available IPs ($targetSecondaryVlanId)",CEX_INVALID_API_RESPONSE);
 			$ips[] = $secondary_ips[0];
 		}
@@ -686,15 +758,20 @@ class Abiquo implements Connector{
 	 * Get the templates for this enterprise
 	 * @access public 
 	 **/
-	public function GetTemplates ( ){
-		$templ = $this->GetAbiquoEnterpriseTemplates();
+	public function GetTemplates ( $location_id	){
+		$dc_id = $this->GetVirtualDatacenterDatacenterID($location_id);
+		$templ = $this->GetAbiquoDatacenterTemplates($dc_id);
 		$results=array();
 		if (is_array($templ)){
-			foreach ($templ['templateDefinition'] as $template) {
+			foreach ($templ['virtualMachineTemplate'] as $template) {
+				$url_link = $this->FindRel($template['link'],'edit');
 				$results[] = array (
+					'id' => $template['id'][0],
+					'repoId' => $dc_id,
 					'name' => $template['name'][0],
+					'creationDate' => $template['creationDate'][0],
 					'description' => $template['description'][0],
-					'url' => $template['url'][0],
+					'url' => $url_link['href'],
 					'icon' => $template['iconUrl'][0]
 					);
 			}

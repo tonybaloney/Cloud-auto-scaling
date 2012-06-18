@@ -8,13 +8,18 @@
 Ext.define('Cloud.ClusterPortlet', {
     extend: 'Ext.grid.Panel', // Extend from basic panel
 	
-	updateLocationFilters: function ( sender, event ) {
+	updateLocationFilters: function ( sender ) {
 		Ext.data.StoreManager.lookup('PrivateNetworkStore').load({
 			params: {
 				location: sender.value
 				}
 		});
 		Ext.data.StoreManager.lookup('VirtualApplianceStore').load({
+			params: {
+				location: sender.value
+				}
+		});
+		Ext.data.StoreManager.lookup('TemplateStore').load({
 			params: {
 				location: sender.value
 				}
@@ -29,7 +34,7 @@ Ext.define('Cloud.ClusterPortlet', {
 				form:'DeleteCluster',
 				id:clusterRecord.data.clusterId
 			},
-			success: function(form,action){
+			success: function(){
 				Ext.data.StoreManager.lookup('ClusterStore').load();
 				Ext.data.StoreManager.lookup('TriggerStore').load();
 			}
@@ -40,13 +45,18 @@ Ext.define('Cloud.ClusterPortlet', {
 	CreateCluster : function (sender,event,clusterRecord/* If record is given this is an edit not a create */){
 		if(clusterRecord){
 			Ext.data.StoreManager.lookup('PrivateNetworkStore').load({
-			params: {
-				location: clusterRecord.data.clusterLocation
+				params: {
+					location: clusterRecord.data.clusterLocation
 				}
 			});
 			Ext.data.StoreManager.lookup('VirtualApplianceStore').load({
-			params: {
-				location: clusterRecord.data.clusterLocation
+				params: {
+					location: clusterRecord.data.clusterLocation
+				}
+			});
+			Ext.data.StoreManager.lookup('TemplateStore').load({
+				params: {
+					location: clusterRecord.data.clusterLocation
 				}
 			});
 		}
@@ -143,21 +153,19 @@ Ext.define('Cloud.ClusterPortlet', {
 								valueField: 'networkId',
 								store: 'PrivateNetworkStore',
 								queryMode: 'local',
-								typeAhead: true,
-								allowBlank: false
+								typeAhead: true
 							},
 							{
 								xtype:'combo',
 								name:'targetSecondaryVlanId',
 								fieldLabel:'Target VLAN (2)',
-								allowBlank:false,
+								allowBlank:true,
 								value: (clusterRecord?clusterRecord.data.targetSecondaryVlanId:''),
 								displayField: 'networkDescription',
 								valueField: 'networkId',
 								store: 'PrivateNetworkStore',
 								queryMode: 'local',
-								typeAhead: true,
-								allowBlank: true
+								typeAhead: true
 							},
 							{
 								xtype:'combo',
@@ -169,8 +177,7 @@ Ext.define('Cloud.ClusterPortlet', {
 								valueField: 'applianceId',
 								store: 'VirtualApplianceStore',
 								queryMode: 'local',
-								typeAhead: true,
-								allowBlank: false
+								typeAhead: true
 							},
 							{
 								xtype:'combo',
@@ -183,7 +190,6 @@ Ext.define('Cloud.ClusterPortlet', {
 								store: 'TemplateStore',
 								queryMode: 'local',
 								typeAhead: true,
-								allowBlank: false,
 								listConfig: {
 									getInnerTpl: function() {
 										return '<p><img src="{icon}" width=32 height=32 align="left"/><b>{name}</b><br clear="all"/></p>' ;
@@ -230,7 +236,7 @@ Ext.define('Cloud.ClusterPortlet', {
 			border: false,
 			flex:1,
 			listeners: {
-				'select' : function (a,b,c){
+				'select' : function (a,b){
 					if (b.data && b.data.clusterId){
 						// Load the stores..
 						Ext.data.StoreManager.lookup('TriggerStore').load({
@@ -277,10 +283,9 @@ Ext.define('Cloud.ClusterPortlet', {
 					disabled:true,
                     scope: this,
                     handler: function() { 
-						this.DeleteCluster(this,null,(this.selModel.selected.length>0?this.selModel.selected.items[0]:null)) 
+						this.DeleteCluster(this,null,(this.selModel.selected.length>0?this.selModel.selected.items[0]:null)); 
 					},
 					iconCls:'icon-delete-cluster'
-					
                 },{
                     text: 'Configure',
 					id:'ConfigureCluster',

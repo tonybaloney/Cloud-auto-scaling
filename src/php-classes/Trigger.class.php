@@ -214,9 +214,11 @@ class Trigger {
 	 * @access public
 	 * @param string $direction Either SCALE_UP or SCALE_DOWN
 	 **/
-	public function Scale($direction){
-		if($this->triggerApproval == 'Automatic') $approval = 'AUTO_APPROVED';
-		else $approval = 'PENDING';
+	public function Scale($direction,$approval=false){
+		if (!$approval) {
+			if($this->triggerApproval == 'Automatic') $approval = 'AUTO_APPROVED';
+			else $approval = 'PENDING';
+		}
 		$cluster = new Cluster($this->clusterId,$this->customerId);
 		// Check limits
 		if (($direction=='SCALE_UP' && ($cluster->clusterVmCount+1 > $cluster->maxServers)) OR ($direction == 'SCALE_DOWN' && ($cluster->clusterVmCount-1 < $cluster->minServers))){

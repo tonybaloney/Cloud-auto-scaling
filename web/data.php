@@ -10,7 +10,7 @@
 if (!isset($_GET['view'])) die();
 
 include ('../src/all.inc.php');
-
+$data = array();
 switch ($_GET['view']){
 	case 'Cluster':
 		$data = Cluster::GetClusters();
@@ -23,9 +23,6 @@ switch ($_GET['view']){
 		break;
 	case 'Customer':
 		$data[] = Auth::GetMe();
-		break;
-	case 'Log':
-		$data = Log::GetLogs();
 		break;
 	case 'TickLog':
 		if(isset($_GET['clusterId']) && isset($_GET['triggerId'])) 
@@ -41,7 +38,7 @@ switch ($_GET['view']){
 		$data['total'] = $limit;
 		break;
 	case 'Locations':
-		try { 
+		try {
 			$cloud = Auth::GetCloudConnection();
 			$data = $cloud->GetLocations();
 		} catch (ConnectorException $cex){
@@ -49,16 +46,18 @@ switch ($_GET['view']){
 		}
 		break;
 	case 'Templates':
-		try { 
-			$cloud = Auth::GetCloudConnection();
-			$data = $cloud->GetTemplates();
-		} catch (ConnectorException $cex){
-			die ($cex->GetConnectorErrorMessage());
+		if(isset($_GET['location'])) {
+			try {
+				$cloud = Auth::GetCloudConnection();
+				$data = $cloud->GetTemplates($_GET['location']);
+			} catch (ConnectorException $cex){
+				die ($cex->GetConnectorErrorMessage());
+			}
 		}
 		break;
 	case 'PrivateNetworks':
 		if(isset($_GET['location'])) {
-			try { 
+			try {
 				$cloud = Auth::GetCloudConnection();
 				$data = $cloud->GetPrivateNetworks($_GET['location']);
 			} catch (ConnectorException $cex){
@@ -68,7 +67,7 @@ switch ($_GET['view']){
 		break;
 	case 'VirtualAppliances':
 		if(isset($_GET['location'])) {
-			try { 
+			try {
 				$cloud = Auth::GetCloudConnection();
 				$data = $cloud->GetAppliances($_GET['location']);
 			} catch (ConnectorException $cex){

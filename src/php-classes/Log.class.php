@@ -13,17 +13,6 @@
  **/
 class Log {
 	/** 
-	 * Get the user ( trigger ) logs
-	 * @access public
-	 * @param int Customer ID
-	 * @return array The log entries
-	 **/
-	public static function GetLogs( $uid=false ) {
-		if(!$uid) $uid = Auth::GetUID();
-		return DB::GetData("SELECT `log`.*,`triggers`.triggerName,`clusters`.`clusterName` FROM `log` INNER JOIN `triggers` ON `triggers`.`triggerId`=`log`.`triggerId` INNER JOIN `clusters` ON `clusters`.`clusterId`=`log`.`clusterId` WHERE `log`.`customerId` = $uid");
-	}
-	
-	/** 
 	 * Get the generic error logs
 	 * @access public
 	 * @param int $uid Customer ID

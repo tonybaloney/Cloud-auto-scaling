@@ -22,6 +22,38 @@ Ext.define('Cloud.TriggerPortlet', {
 			}
 		});
 	},
+	ForceScaleUp: function (sender,event){
+		var b=sender.ownerCt.ownerCt.selModel.getSelection();
+		var id = b[0].raw.triggerId;
+		Ext.Ajax.request({
+			url: 'form.php',
+			params: {
+				form:'TriggerForceScale',
+				direction:'SCALE_UP',
+				triggerId:id
+			},
+			success: function(form,action){
+				var x = Ext.StoreManager.lookup('TickLogStore');
+				Ext.StoreManager.lookup('TickLogStore').load(x.lastParams);
+			}
+		});
+	},
+	ForceScaleDown: function (sender,event){
+		var b=sender.ownerCt.ownerCt.selModel.getSelection();
+		var id = b[0].raw.triggerId;
+		Ext.Ajax.request({
+			url: 'form.php',
+			params: {
+				form:'TriggerForceScale',
+				direction:'SCALE_DOWN',
+				triggerId:id
+			},
+			success: function(form,action){
+				var x = Ext.StoreManager.lookup('TickLogStore');
+				Ext.StoreManager.lookup('TickLogStore').load(x.lastParams);
+			}
+		});
+	},
 	CreateTrigger : function (sender,event,triggerRecord/* If record is given this is an edit not a create */)	{
 		var popup = new Ext.Window({	
 			layout:'fit',
@@ -320,7 +352,19 @@ Ext.define('Cloud.TriggerPortlet', {
 						this.CreateTrigger(this,null,(this.selModel.selected.length>0?this.selModel.selected.items[0]:null)) ;
 					},
 					iconCls:'icon-edit-trigger'
-				},{xtype:'tbfill'}
+				},'-',
+				{
+					text: 'Raise Scale up',
+					scope:this,
+					handler: this.ForceScaleUp,
+					iconCls: 'icon-scale-up'
+				},
+				{
+					text: 'Raise Scale down',
+					scope:this,
+					handler: this.ForceScaleDown,
+					iconCls: 'icon-scale-down'
+				}
 				]
             }]
         });

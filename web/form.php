@@ -133,22 +133,29 @@ switch ($form){
 		$res['success'] = true;
 		$res['msg'] = "Trigger deleted.";
 		break;
+	case 'TriggerForceScale':
+		$triggerId = $_POST['triggerId'];
+		$trigger = new Trigger($triggerId);
+		$trigger->Scale($_POST['direction'],'PENDING');
+		$res['success'] = true;
+		$res['msg'] = "Trigger deleted.";
+		break;
 	case 'SaveCustomer':
 		Auth::SaveDetails($_POST['portalAPIUrl'],$_POST['portalUsername'],$_POST['portalPassword'],$_POST['apiType']);
-		try { 
+		try {
 			$cloud = Auth::GetCloudConnection();
 			$result = $cloud->TestConnection();
 			if($result) {
 				$res['success'] = true;
 				$res['msg'] = 'Updated user details. Connection test to API was successful.';
-			} else { 
+			} else {
 				$res['success'] = false;
 				$res['msg'] = 'Could not establish connection to API';
 			}
 		} catch (ConnectorException $cex){
 			$res['success'] = false;
 			$res['msg'] = $cex->GetConnectorErrorMessage();
-		}		
+		}
 	break;
 }
 echo json_encode($res);

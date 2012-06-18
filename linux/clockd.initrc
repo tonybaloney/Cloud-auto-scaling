@@ -29,8 +29,10 @@ start() {
 
 	echo -n "Starting clockd daemon: "
 	cd $local_dir
-	daemon --pidfile $pidfile $exec &
+	daemon $exec &
+	RETVAL=$?
 	echo
+	[ $RETVAL -eq 0 ] && touch $lockfile
 	return $retval
 }
 

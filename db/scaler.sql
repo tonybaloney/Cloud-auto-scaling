@@ -73,7 +73,7 @@ CREATE TABLE `error_log` (
   `message` blob,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`errorId`)
-) ENGINE=MyISAM AUTO_INCREMENT=1211 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=36569 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +111,7 @@ CREATE TABLE `tock_actions` (
   `approval` enum('PENDING','APPROVED','AUTO_APPROVED','DECLINED') DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`ta_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,4 +147,4 @@ CREATE TABLE `triggers` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-11 10:28:15
+-- Dump completed on 2012-06-18 22:09:06

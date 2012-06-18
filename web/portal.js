@@ -6,23 +6,21 @@
   * @package auto-scaler
   **/
 Ext.define('Ext.app.Portal', {
-
     extend: 'Ext.container.Viewport',
-
-    uses: ['Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Cloud.TickLogPortlet', 'Cloud.TockLogPortlet','Cloud.ErrorLogPortlet','Ext.ux.StatusBar'],
-	ConfigureAPI : function (){
+    uses: ['Cloud.ClusterPortlet', 'Cloud.TriggerPortlet', 'Cloud.TickLogPortlet', 'Cloud.TockLogPortlet', 'Cloud.ErrorLogPortlet', 'Ext.ux.StatusBar'],
+	ConfigureAPI : function () {
 		var me = Ext.data.StoreManager.lookup('CustomerStore').getAt(0);
 		var popup = new Ext.Window({
-			layout:'fit',
-			width:308,
-			height:433,
-			closeAction:'hide',
-			iconCls:'icon-configure',
+			layout: 'fit',
+			width: 308,
+			height: 433,
+			closeAction: 'hide',
+			iconCls: 'icon-configure',
 			plain: true,
-			resizable:true,
+			resizable: true,
 			title: 'Configure API',
 			items: {
-				xtype:'form',
+				xtype: 'form',
 				url: 'form.php?form=SaveCustomer',
 				layout: {
 					type: 'vbox',
@@ -40,38 +38,38 @@ Ext.define('Ext.app.Portal', {
 				},
 				items: [
 					{
-						xtype:'textfield',
-						name:'portalAPIUrl',
+						xtype: 'textfield',
+						name: 'portalAPIUrl',
 						fieldLabel: 'Cloud API URL',
 						allowBlank: false,
 						value: me.data.portalAPIUrl
 					},
-					{ 
-						xtype:'textfield',
-						name:'portalUsername',
+					{
+						xtype: 'textfield',
+						name: 'portalUsername',
 						fieldLabel: 'Username',
 						allowBlank: false,
 						value: me.data.portalUsername
 					},
 					{
-						xtype:'textfield',
-						name:'portalPassword',
+						xtype: 'textfield',
+						name: 'portalPassword',
 						fieldLabel: 'Password',
 						allowBlank: false,
 						value: me.data.portalPassword
 					},
 					{
-						xtype:'combo',
-						name:'apiType',
-						fieldLabel:'API Type',
-						store:['abiquo'],
+						xtype: 'combo',
+						name: 'apiType',
+						fieldLabel: 'API Type',
+						store: ['abiquo'],
 						allowBlank: false,
 						value: me.data.apiType
 					}
 				],
 				buttons: [
 					{ 
-						text:'Save', 
+						text: 'Save', 
 						handler: function(){
 							this.up('form').getForm().submit({
 								clientValidation: true,
@@ -103,7 +101,7 @@ Ext.define('Ext.app.Portal', {
             },
             items: [{
                 xtype: 'box',
-				id:'top-header',
+				id: 'top-header',
                 region: 'north',
                 height: 60,
                 html: '<img src="assets/logo.png"/><span style="float:right;top:10px; right:10px; position:relative;">Cloud Autoscaling Dashboard</span>'
@@ -111,9 +109,9 @@ Ext.define('Ext.app.Portal', {
                 xtype: 'container',
                 region: 'center',
                 layout: 'border',
-				defaults: { 
-					border:false
-				} ,
+				defaults: {
+					border: false
+				},
                 items: [{
                     region: 'west',
                     width: "20%",
@@ -157,10 +155,7 @@ Ext.define('Ext.app.Portal', {
 						defaultText: 'Default status text',
 						// values to set initially:
 						text: 'Checking..',
-						iconCls: 'x-status-valid',
-
-						// any standard Toolbar items:
-						items: [						]
+						iconCls: 'x-status-valid'
 					})
 				},
 				{
@@ -176,7 +171,7 @@ Ext.define('Ext.app.Portal', {
 							pack:'start'
 						},
 						defaults: { 
-							border:false,
+							border:false
 						},
                         items: [
 							Ext.create('Cloud.TickLogPortlet'),

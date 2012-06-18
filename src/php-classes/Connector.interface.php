@@ -90,5 +90,12 @@ interface Connector {
 	 * @param string $vmPrefix The prefix for Virtual Machines.
 	 **/
 	public function DestroyNextVM ( $clusterLocation, $targetApplianceId, $vmPrefix ) ;
+	
+	/**
+	 * Get the templates for this enterprise
+	 * @param int $location_id The template library location 
+	 * @access public 
+	 **/
+	public function GetTemplates ( $location_id	) ;
 }
 ?>
